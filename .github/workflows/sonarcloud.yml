@@ -27,6 +27,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=LorenzoGrasselli30_ISPW_Progetto_Codice \
+            -Dsonar.projectKey=LorenzoGrasselli30_ISPW_Progetto \
             -Dsonar.organization=LorenzoGrasselli30 \
             -Dsonar.host.url=https://sonarcloud.io
