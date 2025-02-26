@@ -20,13 +20,6 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		/*
-		 * Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));  // <--- Load the FXML file here!
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-		 */
 	}
 	
 	public static void main(String[] args) {
