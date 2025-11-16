@@ -2,7 +2,7 @@ package application;
 	
 import java.util.Scanner;
 
-import configuration.AppConfig;
+import application.configuration.AppConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

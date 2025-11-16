@@ -1,4 +1,4 @@
-package configuration;
+package application.configuration;
 
 //Ho bisogno di una classe che mantiene il tipo di modalità scelto a run time dall'utente e concettualmente devo avere un'istanza che deve essere utilizzata da più client -> singleton
 
