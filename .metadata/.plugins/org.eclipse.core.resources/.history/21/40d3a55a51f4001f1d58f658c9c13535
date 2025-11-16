@@ -1,5 +1,0 @@
-package application.view.utils;
-
-public class Prova {
-	System:out.println("Prova");
-}
