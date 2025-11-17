@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <content>
+    <AnchorPane>
+         <children>
+            <VBox alignment="TOP_CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/DF.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Creazione dell'attività">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Inserisci la informazioni richieste dell'attività che vuoi creare">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane>
+                           <children>
+                              <Label text="* Campi obblicatori" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label text="Inserisci il nome dell'attività*">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField minHeight="50.0" prefHeight="50.0" prefWidth="598.0" promptText="Nome attività" style="-fx-border-color: black;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Descrizione dell'attività">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField alignment="TOP_LEFT" minHeight="100.0" prefHeight="100.0" promptText="Descrizione" style="-fx-border-color: black;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Durata dell'attività*">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField prefHeight="100.0" style="-fx-border-color: black;" />
+                              <MenuButton mnemonicParsing="false" prefHeight="100.0" text="Seleziona">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Minuti" />
+                                  <MenuItem mnemonicParsing="false" text="Ore" />
+                                </items>
+                              </MenuButton>
+                           </children>
+                        </HBox>
+                        <Label text="Tipologia dell'attività*">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <RadioButton mnemonicParsing="false" text="Cultura">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="Activity_type" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Natura" toggleGroup="$Activity_type">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Cucina" toggleGroup="$Activity_type">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Altro" toggleGroup="$Activity_type">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <Label text="Informazioni sull'attività">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <CheckBox mnemonicParsing="false" text="Cancellazione gratuita">
+                           <font>
+                              <Font size="14.0" />
+                           </font></CheckBox>
+                        <Label text="Cancella fino a 24 ore prima per ricevere un rimborso completo" />
+                        <CheckBox mnemonicParsing="false" text="Prenota ora e paga dopo">
+                           <font>
+                              <Font size="14.0" />
+                           </font></CheckBox>
+                        <Label text="Pianifica in modo flessibile: prenota un posto senza pagare oggi." />
+                        <CheckBox mnemonicParsing="false" text="Salta la fila per la biglietteria">
+                           <font>
+                              <Font size="14.0" />
+                           </font></CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>
