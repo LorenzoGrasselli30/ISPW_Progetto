@@ -17,17 +17,16 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getResource("/application/view/paymentView.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/application/view/homeView.fxml"));
 			Scene scene = new Scene(root, 640, 480);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			//Font font = Font.loadFont(getClass().getResourceAsStream("/Fonts/Montserrat-Regular.ttf"), 18);
 			//System.out.println(font); // Se null, c’è un problema!
 			
 			primaryStage.setTitle("Homepage");
 			primaryStage.setScene(scene);
-			primaryStage.setResizable(false); // <-- Rende la finestra NON ridimensionabile per il login, pagamento
+			primaryStage.setResizable(false); //Rende la finestra NON ridimensionabile per il login, pagamento
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -64,13 +63,11 @@ public class Main extends Application {
 				System.out.println("Inserisci un'interfaccia valida: db/demo/file");	
 			}
 			
-			
-			
 			if ("GUI".equals(visual)) {
 				launch(args); //Chiama il metodo start della GUI
 			} else {
 				System.out.println("Funzione non ancora implementata");
-				//creare un metodo start della CLI
+				//Creare un metodo start della CLI
 			}
 			
 		} catch (Exception e) {
