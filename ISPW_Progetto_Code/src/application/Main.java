@@ -44,34 +44,27 @@ public class Main extends Application {
 			System.out.println("Scegli l'interfaccia da utilizzare: GUI/CLI");
 			while (true) {
 				visual = scanner.nextLine().trim().toUpperCase();
-				if (!("GUI".equals(visual)) && !("CLI".equals(visual))) {
-					System.out.println("Inserisci un'interfaccia valida: GUI/CLI");
-					continue;
+				if (("GUI".equals(visual)) || ("CLI".equals(visual))) {	
+					break;
 				}
-				
-				break;
+				System.out.println("Inserisci un'interfaccia valida: GUI/CLI");
 			}
 			
 			System.out.println("Scegli la modalità da utilizzare: db/demo/file");
 			while (true) {
 				mode = scanner.nextLine().trim().toLowerCase();
-				if ("db".equals(mode)) {
-					System.out.println("Avvio la versione con database");
-				} else if ("demo".equals(mode)) {
-					System.out.println("Avvio la versione demo");
-				} else if ("file".equals(mode)) {
-					System.out.println("Avvio la versione con file");
-				} else {
-					System.out.println("Inserisci un'interfaccia valida: db/demo/file");
-					continue;
+				if (("db".equals(mode))||("demo".equals(mode))||("file".equals(mode))) {
+					AppConfig.initMode(mode);//Inizializzazione della modalità
+					
+					AppConfig startMode= AppConfig.getInstance();
+					System.out.println("Avvio la modalità: " + startMode.getMode());
+					
+					break;
 				}
-				
-				AppConfig.initMode(mode);
-				break;
+				System.out.println("Inserisci un'interfaccia valida: db/demo/file");	
 			}
 			
-			AppConfig startMode= AppConfig.getInstance();
-			System.out.println(startMode.getMode());
+			
 			
 			if ("GUI".equals(visual)) {
 				launch(args); //Chiama il metodo start della GUI
@@ -84,6 +77,5 @@ public class Main extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 }
