@@ -1,23 +1,28 @@
 package application.controller.graphic;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-public class HomepageGraphicController {
-	/*
-	private void useHompage(MouseEvent event) throws IOException {
-		
-	}
-	*/
+public class ActivityGraphicController {
+	
+	@FXML
+	public void goToHomepage(ActionEvent event) throws IOException {
+		// Carica il login FXML
+        Parent root = FXMLLoader.load(getClass().getResource("/application/view/homeView.fxml"));
+        // Recupera la stage corrente
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Imposta nuova scena
+        stage.setScene(new Scene(root, 640, 480));
+        stage.show();
+    }
 	
 	@FXML
 	public void goToLogin(ActionEvent event) throws IOException {
@@ -25,7 +30,7 @@ public class HomepageGraphicController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
         Parent root = loader.load();
 
-        // Ottieni la stage della homepage
+        // Ottieni la stage dalla finestra parent
         Stage parentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         // Crea nuova Stage modale
@@ -42,27 +47,5 @@ public class HomepageGraphicController {
         });
         
         loginStage.show();
-    }
-	
-	@FXML
-	public void goToNewActivity(ActionEvent event) throws IOException {
-        // Carica il login FXML
-        Parent root = FXMLLoader.load(getClass().getResource("/application/view/newActivityView.fxml"));
-        // Recupera la stage corrente
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        // Imposta nuova scena
-        stage.setScene(new Scene(root, 640, 480));
-        stage.show();
-    }
-	
-	@FXML
-	public void goToActivity(MouseEvent event) throws IOException { //Attenzione questa è un MouseEvent
-        // Carica il login FXML
-        Parent root = FXMLLoader.load(getClass().getResource("/application/view/activityView.fxml"));
-        // Recupera la stage corrente
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        // Imposta nuova scena
-        stage.setScene(new Scene(root, 640, 480));
-        stage.show();
     }
 }
