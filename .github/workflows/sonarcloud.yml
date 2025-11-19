@@ -21,7 +21,7 @@ jobs:
             -Dsonar.projectKey=LorenzoGrasselli30_ISPW_Progetto
             -Dsonar.organization=lorenzograsselli30
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.sources=ISPW_Progetto_Code/src
-            -Dsonar.java.binaries=ISPW_Progetto_Code/bin
+            -Dsonar.sources=Dream_Finder/src
+            -Dsonar.java.binaries=Dream_Finder/bin
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
