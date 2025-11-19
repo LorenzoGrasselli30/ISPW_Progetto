@@ -25,7 +25,7 @@ public class HomepageGraphicController {
         // Recupera la stage corrente
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         // Imposta nuova scena
-        stage.setResizable(false); //Rende la finestra NON ridimensionabile per il login, pagamento
+        stage.setResizable(false); //Rende la finestra NON ridimensionabile per il login, pagamento, newactivity
         stage.setScene(new Scene(root, 640, 480));
         stage.show();
     }
@@ -37,7 +37,7 @@ public class HomepageGraphicController {
         // Recupera la stage corrente
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         // Imposta nuova scena
-        stage.setResizable(false); //Rende la finestra NON ridimensionabile per il login, pagamento
+        stage.setResizable(false); //Rende la finestra NON ridimensionabile
         stage.setScene(new Scene(root, 640, 480));
         stage.show();
     }
