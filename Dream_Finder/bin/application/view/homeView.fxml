@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.graphic.HomepageGraphicController">
   <content>
     <AnchorPane>
          <children>
@@ -55,7 +55,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <Button minWidth="60.0" mnemonicParsing="false" style="-fx-background-color: #E7EFD6; -fx-border-color: black; -fx-border-width: 0.2;" text="👤" HBox.hgrow="ALWAYS">
+                              <Button fx:id="areaUserButton" minWidth="60.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #E7EFD6; -fx-border-color: black; -fx-border-width: 0.2;" text="👤" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -673,7 +673,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Button minHeight="40.0" minWidth="170.0" mnemonicParsing="false" style="-fx-background-color: #E7EFD6; -fx-border-color: black; -fx-border-width: 0.2;" text="Crea un'attività">
+                              <Button fx:id="newActivityButton" minHeight="40.0" minWidth="170.0" mnemonicParsing="false" onAction="#goToNewActivity" style="-fx-background-color: #E7EFD6; -fx-border-color: black; -fx-border-width: 0.2;" text="Crea un'attività">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

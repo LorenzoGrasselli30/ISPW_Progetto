@@ -26,7 +26,6 @@ public class Main extends Application {
 			
 			primaryStage.setTitle("Homepage");
 			primaryStage.setScene(scene);
-			primaryStage.setResizable(false); //Rende la finestra NON ridimensionabile per il login, pagamento
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
