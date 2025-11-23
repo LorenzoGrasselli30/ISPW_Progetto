@@ -125,7 +125,7 @@
                         <Region maxWidth="100.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <FlowPane columnHalignment="CENTER" maxHeight="543.0" minHeight="543.0" VBox.vgrow="ALWAYS">
+                  <FlowPane columnHalignment="CENTER">
                      <children>
                         <VBox>
                            <children>

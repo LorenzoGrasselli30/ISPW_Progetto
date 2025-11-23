@@ -15,9 +15,9 @@ public class WindowsNavigatorUtils {
 	private static final int DEFAULT_WIDTH = 640;
     private static final int DEFAULT_HEIGHT = 480;
     
-    private static final String BASE_PATH = System.getProperty("app.view.basePath", "/application/view/");
+    private static final String BASE_PATH = System.getProperty("app.view.basePath", "/application/view/"); //Corretto da sonarcloud
     
-    private WindowsNavigatorUtils() {
+    private WindowsNavigatorUtils() { //Corretto da sonarcloud
         throw new IllegalStateException("OpenWindowUtils class");
     }
 	//Se si ingrandisce la finestra pi la finestra viene  aperta piccola Ricordati.di.cancellare()
