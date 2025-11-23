@@ -39,22 +39,21 @@ public class Main extends Application {
 		Scanner scanner= new Scanner(System.in); 
 		
 		try {
-			System.out.println("Scegli l'interfaccia da utilizzare: GUI/CLI");
+			System.out.println("Scegli l'interfaccia da utilizzare: GUI/CLI (Invio per versione di default)");
 			while (true) {
 				visual = scanner.nextLine().trim().toUpperCase();
-				if (("GUI".equals(visual)) || ("CLI".equals(visual))) {	
+				if (("GUI".equals(visual)) || ("CLI".equals(visual)) || ("".equals(visual))) {	
 					break;
 				}
 				System.out.println("Inserisci un'interfaccia valida: GUI/CLI");
 			}
 			
-			System.out.println("Scegli la modalità da utilizzare: db/demo/file");
+			System.out.println("Scegli la modalità da utilizzare: db/demo/file (Invio per versione demo)");
 			while (true) {
 				mode = scanner.nextLine().trim().toLowerCase();
-				if (("db".equals(mode))||("demo".equals(mode))||("file".equals(mode))) {
-					AppConfig.initMode(mode);//Inizializzazione della modalità
-					
+				if (("db".equals(mode)) || ("demo".equals(mode)) || ("file".equals(mode)) || ("".equals(mode))) {
 					AppConfig startMode= AppConfig.getInstance();
+					AppConfig.initMode(mode);//Inizializzazione della modalità
 					System.out.println("Avvio la modalità: " + startMode.getMode());
 					
 					break;
@@ -63,6 +62,8 @@ public class Main extends Application {
 			}
 			
 			if ("GUI".equals(visual)) {
+				launch(args); //Chiama il metodo start della GUI
+			} else if ("".equals(visual)) {
 				launch(args); //Chiama il metodo start della GUI
 			} else {
 				System.out.println("Funzione non ancora implementata");

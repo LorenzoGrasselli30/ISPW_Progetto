@@ -16,7 +16,7 @@ public class AppConfig {
 
     public static AppConfig getInstance() {
         if (singletonIstance == null) {
-        	singletonIstance = new AppConfig("demo"); //Non sarebbe meglio un controllo?
+        	singletonIstance = new AppConfig("demo"); //Se premo invio avvio questa versione di default
         }
         return singletonIstance;
     }
