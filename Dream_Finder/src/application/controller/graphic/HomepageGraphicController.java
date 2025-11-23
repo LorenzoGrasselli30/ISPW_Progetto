@@ -22,9 +22,9 @@ public class HomepageGraphicController {
     	 String fxmlFile = "";
     	 String title = "";
     	 
-    	 final String loginPath = "/application/view/loginView.fxml";
+    	 final String loginPath = "loginView.fxml";
     	 final String titleLogin = "Login";
-    	 final String homepagePath = "/application/view/homeView.fxml";
+    	 final String homepagePath = "homeView.fxml";
     	 final String homepageTitle = "Homepage"; 
     	 
     	    switch (((Node) event.getSource()).getId()) {
@@ -38,11 +38,10 @@ public class HomepageGraphicController {
     	        	title = homepageTitle;
     	        	break;
     	        case "activityButton":
-    	        	fxmlFile = "/application/view/activityView.fxml";
+    	        	fxmlFile = "activityView.fxml";
     	        	title = "Info Attività";
     	        	break;
     	    }
-			Stage parentStage = (Stage)((Node)(event.getSource())).getScene().getWindow();
     	
         	if (title.equals("Login")) {
         		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);

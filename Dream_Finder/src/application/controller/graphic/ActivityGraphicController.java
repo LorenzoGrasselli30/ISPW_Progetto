@@ -16,14 +16,14 @@ public class ActivityGraphicController {
 	
 	@FXML
 	public void goToHomepage(ActionEvent event) throws IOException {
-		String fxmlFile = "/application/view/homeView.fxml";
+		String fxmlFile = "homeView.fxml";
 		String title = "Homepage";
         WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
     }
 	
 	@FXML
 	public void goToLogin(ActionEvent event) throws IOException {
-		String fxmlFile = "/application/view/loginView.fxml";
+		String fxmlFile = "loginView.fxml";
 		String title = "Login";
 		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
     }

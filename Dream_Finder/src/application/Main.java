@@ -71,7 +71,6 @@ public class Main extends Application {
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

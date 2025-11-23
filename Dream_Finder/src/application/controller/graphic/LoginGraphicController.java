@@ -33,10 +33,9 @@ public class LoginGraphicController {
     private void openSignUp(ActionEvent event) throws IOException{
 		 
 		//Da finire
-		 String fxmlFile = "/application/view/homeView.fxml";
+		 String fxmlFile = "homeView.fxml";
 		 String title = "Sign Up";
 		 Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		 Stage parentStage = (Stage) loginStage.getOwner();
 		 
 		 WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
     }

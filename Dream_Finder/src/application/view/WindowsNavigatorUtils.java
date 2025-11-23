@@ -14,9 +14,15 @@ public class WindowsNavigatorUtils {
     
 	private static final int DEFAULT_WIDTH = 640;
     private static final int DEFAULT_HEIGHT = 480;
-	
+    
+    private static final String BASE_PATH = System.getProperty("app.view.basePath", "/application/view/");
+    
+    private WindowsNavigatorUtils() {
+        throw new IllegalStateException("OpenWindowUtils class");
+    }
+	//Se si ingrandisce la finestra pi la finestra viene  aperta piccola %d
 	public static void openWindow(Event event, String fxmlPath, String title) throws IOException {
-        Parent root = FXMLLoader.load(WindowsNavigatorUtils.class.getResource(fxmlPath));
+		Parent root = FXMLLoader.load(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
         stage.setScene(new Scene(root));
@@ -24,7 +30,7 @@ public class WindowsNavigatorUtils {
     }
 	
 	public static void openModalWindow(Event event, String fxmlPath, String title) throws IOException {
-	FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(fxmlPath));
+	FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
 	Parent root = loader.load();
 	
 	Stage parentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
