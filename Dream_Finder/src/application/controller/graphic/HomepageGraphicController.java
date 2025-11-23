@@ -12,57 +12,46 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import application.view.WindowsNavigatorUtils;
+
 public class HomepageGraphicController {
-	/*
-	private void useHompage(MouseEvent event) throws IOException {
-		
+	
+	@FXML
+	private void useHomepage(MouseEvent event) throws IOException {
+		 // Controlla l'ID del bottone per decidere quale finestra aprire
+    	 String fxmlFile = "";
+    	 String title = "";
+    	 
+    	 final String loginPath = "/application/view/loginView.fxml";
+    	 final String titleLogin = "Login";
+    	 final String homepagePath = "/application/view/homeView.fxml";
+    	 final String homepageTitle = "Homepage"; 
+    	 
+    	    switch (((Node) event.getSource()).getId()) {
+    	        case "areaUserButton":
+    	        case "newActivityButton":
+    	            fxmlFile = loginPath;
+    	            title = titleLogin;
+    	            break;
+    	        case "homeButton":
+    	        	fxmlFile = homepagePath;
+    	        	title = homepageTitle;
+    	        	break;
+    	        case "activityButton":
+    	        	fxmlFile = "/application/view/activityView.fxml";
+    	        	title = "Info Attività";
+    	        	break;
+    	    }
+			Stage parentStage = (Stage)((Node)(event.getSource())).getScene().getWindow();
+    	
+        	if (title.equals("Login")) {
+        		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
+        	} 
+        	
+        	
+        	if (("Homepage".equals(title)) || ("Info Attività".equals(title))) {
+        		WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
+        	}
+        	
 	}
-	*/
-	
-	@FXML
-	public void goToLogin(ActionEvent event) throws IOException {
-        // Carica FXML login
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
-        Parent root = loader.load();
-
-        // Ottieni la stage della homepage
-        Stage parentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Crea nuova Stage modale
-        Stage loginStage = new Stage();
-        loginStage.setTitle("Login");
-        loginStage.initOwner(parentStage);
-        loginStage.initModality(Modality.WINDOW_MODAL); // blocca la homepage padre si può mettere anche APPLICATION_MODAL blocca tutte le altre finestre dell’applicazione
-        loginStage.setScene(new Scene(root, 640, 480));
-        loginStage.setResizable(false);
-        
-        loginStage.setOnHidden(e -> {
-            // eventuale refresh della homepage o azioni post-login
-            // es: homeStage.requestFocus();
-        });
-        
-        loginStage.show();
-    }
-	
-	@FXML
-	public void goToNewActivity(ActionEvent event) throws IOException {
-        // Carica il login FXML
-        Parent root = FXMLLoader.load(getClass().getResource("/application/view/newActivityView.fxml"));
-        // Recupera la stage corrente
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        // Imposta nuova scena
-        stage.setScene(new Scene(root, 640, 480));
-        stage.show();
-    }
-	
-	@FXML
-	public void goToActivity(MouseEvent event) throws IOException { //Attenzione questa è un MouseEvent
-        // Carica il login FXML
-        Parent root = FXMLLoader.load(getClass().getResource("/application/view/activityView.fxml"));
-        // Recupera la stage corrente
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        // Imposta nuova scena
-        stage.setScene(new Scene(root, 640, 480));
-        stage.show();
-    }
 }

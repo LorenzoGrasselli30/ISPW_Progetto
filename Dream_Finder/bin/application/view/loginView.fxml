@@ -42,7 +42,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField promptText="Inserisci qui la mail">
+                        <TextField fx:id="emailField" promptText="Inserisci qui la mail">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -54,7 +54,7 @@
                         </Label>
                         <HBox prefWidth="200.0">
                            <children>
-                              <PasswordField prefWidth="178.0" promptText="Inserisci qui la password">
+                              <PasswordField fx:id="passwordField" prefWidth="178.0" promptText="Inserisci qui la password">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -73,7 +73,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#goToHomepage" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Accedi">
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#doLogin" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Accedi">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -85,7 +85,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" spacing="2.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #6FA655;" text="Iscriviti">
+                  <Button mnemonicParsing="false" onAction="#openSignUp" style="-fx-background-color: #6FA655;" text="Iscriviti">
                      <font>
                         <Font size="18.0" />
                      </font>

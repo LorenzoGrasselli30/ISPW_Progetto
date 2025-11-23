@@ -6,6 +6,7 @@ module Dream_Finder {
 	requires javafx.base;
 	requires javafx.fxml;
 	requires javafx.graphics;
+	requires javafx.controls;
 	
 	opens application to javafx.graphics, javafx.fxml;
 	opens application.controller.graphic to javafx.fxml;
