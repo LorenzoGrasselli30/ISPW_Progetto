@@ -125,17 +125,17 @@
                         <Region maxWidth="100.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <FlowPane columnHalignment="CENTER">
+                  <FlowPane fx:id="activityFlowPane" columnHalignment="CENTER">
                      <children>
                         <VBox>
                            <children>
                               <HBox maxHeight="400.0" minHeight="200.0" prefHeight="200.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <AnchorPane maxHeight="400.0" minHeight="200.0" style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" HBox.hgrow="ALWAYS" />
+                                    <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" HBox.hgrow="ALWAYS" />
                                     <VBox HBox.hgrow="ALWAYS">
                                        <children>
-                                          <AnchorPane maxHeight="200.0" minHeight="100.0" style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" />
-                                          <AnchorPane maxHeight="200.0" minHeight="100.0" style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" />
+                                          <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" />
+                                          <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" />
                                        </children>
                                     </VBox>
                                  </children>

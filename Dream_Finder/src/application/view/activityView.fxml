@@ -125,9 +125,9 @@
                         <Region maxWidth="100.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <FlowPane columnHalignment="CENTER">
+                  <FlowPane fx:id="activityFlowPane" columnHalignment="CENTER">
                      <children>
-                        <VBox>
+                        <VBox fx:id="imgVBox">
                            <children>
                               <HBox maxHeight="400.0" minHeight="200.0" prefHeight="200.0" VBox.vgrow="ALWAYS">
                                  <children>

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 public class ActivityGraphicController {
 	
+	
 	@FXML
 	public void goToHomepage(ActionEvent event) throws IOException {
 		String fxmlFile = "homeView.fxml";
