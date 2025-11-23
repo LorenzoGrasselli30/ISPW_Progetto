@@ -20,7 +20,7 @@ public class WindowsNavigatorUtils {
     private WindowsNavigatorUtils() {
         throw new IllegalStateException("OpenWindowUtils class");
     }
-	//Se si ingrandisce la finestra pi la finestra viene  aperta piccola %d
+	//Se si ingrandisce la finestra pi la finestra viene  aperta piccola Ricordati.di.cancellare()
 	public static void openWindow(Event event, String fxmlPath, String title) throws IOException {
 		Parent root = FXMLLoader.load(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
