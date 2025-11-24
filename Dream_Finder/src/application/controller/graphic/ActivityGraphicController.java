@@ -40,7 +40,9 @@ public class ActivityGraphicController implements Initializable{
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+    	System.out.println("Initialize chiamato!");
     	if (imageGalleryContainer != null && mainActivityImg != null) {
+    		System.out.println("Binding immagine principale...");
             // L'immagine principale prende il 50% della larghezza dell'HBox
             // e tutta l'altezza disponibile
 			mainActivityImg.fitWidthProperty().bind(
@@ -49,7 +51,7 @@ public class ActivityGraphicController implements Initializable{
 			mainActivityImg.fitHeightProperty().bind(
                 imageGalleryContainer.heightProperty()
             );
-			mainActivityImg.setPreserveRatio(true);
+			mainActivityImg.setPreserveRatio(false);
         }
         
         if (imageGalleryContainer != null && secondaryActivityImg1 != null) {
@@ -61,7 +63,7 @@ public class ActivityGraphicController implements Initializable{
         	secondaryActivityImg1.fitHeightProperty().bind(
                 imageGalleryContainer.heightProperty().multiply(0.5)
             );
-        	secondaryActivityImg1.setPreserveRatio(true);
+        	secondaryActivityImg1.setPreserveRatio(false);
         }
         
         if (imageGalleryContainer != null && secondaryActivityImg2 != null) {
@@ -71,8 +73,9 @@ public class ActivityGraphicController implements Initializable{
         	secondaryActivityImg2.fitHeightProperty().bind(
                 imageGalleryContainer.heightProperty().multiply(0.5)
             );
-        	secondaryActivityImg2.setPreserveRatio(true);
+        	secondaryActivityImg2.setPreserveRatio(false);
         }
+        
 	}
 	 
 	@FXML
