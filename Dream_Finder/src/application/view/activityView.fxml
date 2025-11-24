@@ -128,11 +128,23 @@
                      <children>
                         <HBox maxHeight="400.0" minHeight="200.0" prefHeight="200.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" HBox.hgrow="ALWAYS" />
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/caption%20(3).jpg" />
+                                 </image>
+                              </ImageView>
                               <VBox HBox.hgrow="ALWAYS">
                                  <children>
-                                    <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" />
-                                    <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" />
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/caption.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/caption%20(2).jpg" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </VBox>
                            </children>

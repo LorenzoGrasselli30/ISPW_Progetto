@@ -20,7 +20,7 @@
   <content>
     <AnchorPane>
          <children>
-            <VBox alignment="TOP_CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="TOP_CENTER" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox alignment="CENTER" maxHeight="200.0" minHeight="100.0" prefHeight="100.0">
                      <children>
@@ -68,7 +68,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" minHeight="100.0" spacing="20.0">
+                  <HBox alignment="CENTER" maxHeight="140.0" minHeight="100.0" spacing="20.0">
                      <children>
                         <Region maxWidth="100.0" HBox.hgrow="ALWAYS" />
                         <Label text="Titolo dell'attività">
@@ -124,22 +124,34 @@
                         <Region maxWidth="100.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <VBox maxHeight="300.0" VBox.vgrow="ALWAYS">
+                  <VBox maxHeight="400.0">
                      <children>
                         <HBox maxHeight="400.0" minHeight="200.0" prefHeight="200.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" HBox.hgrow="ALWAYS" />
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/caption%20(3).jpg" />
+                                 </image>
+                              </ImageView>
                               <VBox HBox.hgrow="ALWAYS">
                                  <children>
-                                    <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" />
-                                    <AnchorPane style="-fx-background-image: url(@../../Images/caption.jpg); -fx-background-size: cover;" />
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/caption.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/caption%20(2).jpg" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                         <VBox>
                            <children>
-                              <Label text="Esplorate il Grand Canyon West nella riserva Hualapai con questa escursione di un giorno a Las Vegas. Camminate lungo il bordo del canyon, ammirate il panorama e fermatevi per ammirare la diga di Hoover" wrapText="true">
+                              <Label maxHeight="80.0" minHeight="80.0" text="Esplorate il Grand Canyon West nella riserva Hualapai con questa escursione di un giorno a Las Vegas. Camminate lungo il bordo del canyon, ammirate il panorama e fermatevi per ammirare la diga di Hoover" wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -173,7 +185,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox spacing="10.0" style="-fx-border-color: black; -fx-border-radius: 12;">
+                  <VBox alignment="CENTER" maxWidth="620.0" spacing="10.0" style="-fx-border-color: black; -fx-border-radius: 12;">
                      <children>
                         <VBox spacing="10.0">
                            <children>
@@ -227,7 +239,7 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <HBox alignment="CENTER_LEFT">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Selezionare la lingua se si desidera la visita guidata">
                                  <font>
@@ -294,7 +306,7 @@
                         </Label>
                         <VBox>
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                              <HBox>
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -317,7 +329,7 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                              <HBox>
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -338,9 +350,9 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox>
+                        <VBox maxHeight="120.0">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                              <HBox>
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -361,7 +373,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <HBox prefHeight="100.0">
+                        <HBox>
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -838,6 +850,9 @@
                            </padding>
                         </ScrollPane>
                      </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
                   </VBox>
                   <HBox alignment="CENTER" minHeight="100.0" prefHeight="100.0" style="-fx-background-color: black;">
                      <children>
