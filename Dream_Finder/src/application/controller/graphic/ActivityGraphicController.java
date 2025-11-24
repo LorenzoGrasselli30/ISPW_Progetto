@@ -52,6 +52,15 @@ public class ActivityGraphicController implements Initializable{
                 imageGalleryContainer.heightProperty()
             );
 			mainActivityImg.setPreserveRatio(false);
+
+			imageGalleryContainer.sceneProperty().addListener((obs, oldScene, newScene) -> {
+	            if (newScene != null) {
+	                // Binda l'altezza dell'HBox al 40% dell'altezza della finestra
+	                imageGalleryContainer.prefHeightProperty().bind(
+	                    newScene.heightProperty().multiply(0.4)
+	                );
+	            }
+			});
         }
         
         if (imageGalleryContainer != null && secondaryActivityImg1 != null) {
