@@ -10,17 +10,71 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ActivityGraphicController {
+public class ActivityGraphicController implements Initializable{
     
+	@FXML
+	private ImageView mainActivityImg;
+	
+	@FXML
+	private ImageView secondaryActivityImg1;
+	
+	@FXML
+	private ImageView secondaryActivityImg2;
+	
+	@FXML
+    private HBox imageGalleryContainer;
+    
+    @FXML
+    private VBox secondaryImagesContainer;
+    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+    	if (imageGalleryContainer != null && mainActivityImg != null) {
+            // L'immagine principale prende il 50% della larghezza dell'HBox
+            // e tutta l'altezza disponibile
+			mainActivityImg.fitWidthProperty().bind(
+                imageGalleryContainer.widthProperty().multiply(0.5)
+            );
+			mainActivityImg.fitHeightProperty().bind(
+                imageGalleryContainer.heightProperty()
+            );
+			mainActivityImg.setPreserveRatio(true);
+        }
+        
+        if (imageGalleryContainer != null && secondaryActivityImg1 != null) {
+            // Le immagini secondarie prendono il 50% della larghezza
+            // e il 50% dell'altezza ciascuna
+        	secondaryActivityImg1.fitWidthProperty().bind(
+                imageGalleryContainer.widthProperty().multiply(0.5)
+            );
+        	secondaryActivityImg1.fitHeightProperty().bind(
+                imageGalleryContainer.heightProperty().multiply(0.5)
+            );
+        	secondaryActivityImg1.setPreserveRatio(true);
+        }
+        
+        if (imageGalleryContainer != null && secondaryActivityImg2 != null) {
+        	secondaryActivityImg2.fitWidthProperty().bind(
+                imageGalleryContainer.widthProperty().multiply(0.5)
+            );
+        	secondaryActivityImg2.fitHeightProperty().bind(
+                imageGalleryContainer.heightProperty().multiply(0.5)
+            );
+        	secondaryActivityImg2.setPreserveRatio(true);
+        }
+	}
+	 
 	@FXML
 	public void goToHomepage(ActionEvent event) throws IOException {
 		String fxmlFile = "homeView.fxml";

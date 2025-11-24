@@ -126,21 +126,21 @@
                   </HBox>
                   <VBox maxHeight="400.0">
                      <children>
-                        <HBox maxHeight="400.0" minHeight="200.0" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                        <HBox fx:id="imageGalleryContainer" maxHeight="400.0" minHeight="200.0" prefHeight="200.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="mainActivityImg" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/caption%20(3).jpg" />
                                  </image>
                               </ImageView>
-                              <VBox HBox.hgrow="ALWAYS">
+                              <VBox fx:id="secondaryImagesContainer" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="secondaryActivityImg1" fitHeight="100.0" fitWidth="300.0" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../Images/caption.jpg" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="secondaryActivityImg2" fitHeight="100.0" fitWidth="320.0" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../Images/caption%20(2).jpg" />
                                        </image>
