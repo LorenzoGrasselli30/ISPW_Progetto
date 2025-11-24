@@ -40,9 +40,8 @@ public class ActivityGraphicController implements Initializable{
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-    	System.out.println("Initialize chiamato!");
+    	System.out.println("Initialize chiamato");
     	if (imageGalleryContainer != null && mainActivityImg != null) {
-    		System.out.println("Binding immagine principale...");
             // L'immagine principale prende il 50% della larghezza dell'HBox
             // e tutta l'altezza disponibile
 			mainActivityImg.fitWidthProperty().bind(
@@ -84,9 +83,8 @@ public class ActivityGraphicController implements Initializable{
             );
         	secondaryActivityImg2.setPreserveRatio(false);
         }
-        
 	}
-	 
+	
 	@FXML
 	public void goToHomepage(ActionEvent event) throws IOException {
 		String fxmlFile = "homeView.fxml";

@@ -126,7 +126,7 @@
                   </HBox>
                   <VBox alignment="CENTER" maxHeight="400.0">
                      <children>
-                        <HBox fx:id="imageGalleryContainer" alignment="CENTER" maxWidth="1200.0" minHeight="200.0" minWidth="625.0" VBox.vgrow="ALWAYS">
+                        <HBox fx:id="imageGalleryContainer" alignment="CENTER" maxHeight="600.0" maxWidth="1400.0" minHeight="200.0" minWidth="625.0" VBox.vgrow="ALWAYS">
                            <children>
                               <ImageView fx:id="mainActivityImg" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true">
                                  <image>

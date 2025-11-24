@@ -20,12 +20,31 @@ public class WindowsNavigatorUtils {
     private WindowsNavigatorUtils() { //Corretto da sonarcloud
         throw new IllegalStateException("OpenWindowUtils class");
     }
-	//Se si ingrandisce la finestra pi la finestra viene  aperta piccola Ricordati.di.cancellare()
+    
+	//Se si ingrandisce la finestra poi la finestra viene  aperta piccola Ricordati.di.cancellare()
 	public static void openWindow(Event event, String fxmlPath, String title) throws IOException {
-		Parent root = FXMLLoader.load(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
+		// Ottieni lo stage corrente
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
+        
+        // Salva le dimensioni e la posizione correnti
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+        double currentX = stage.getX();
+        double currentY = stage.getY();
+        
+        // Carica il nuovo FXML
+        Parent root = FXMLLoader.load(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
+
+        // Imposta la nuova scena
         stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        
+        // Ripristina le dimensioni e la posizione
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+        stage.setX(currentX);
+        stage.setY(currentY);
+        
         stage.show();
     }
 	
