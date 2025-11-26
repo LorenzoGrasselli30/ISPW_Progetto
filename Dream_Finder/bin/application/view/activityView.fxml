@@ -269,7 +269,7 @@
                         <HBox alignment="CENTER">
                            <children>
                               <Region HBox.hgrow="ALWAYS" />
-                              <Button maxWidth="320.0" minHeight="50.0" minWidth="220.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #6FA655;" text="Verifica la disponibilità" HBox.hgrow="ALWAYS">
+                              <Button fx:id="formButton" maxWidth="320.0" minHeight="50.0" minWidth="220.0" mnemonicParsing="false" onMouseClicked="#submitActivityForm" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #6FA655;" text="Verifica la disponibilità" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

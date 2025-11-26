@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -86,16 +87,24 @@ public class ActivityGraphicController implements Initializable{
 	}
 	
 	@FXML
-	public void goToHomepage(ActionEvent event) throws IOException {
+	public void goToHomepage(MouseEvent event) throws IOException {
 		String fxmlFile = "homeView.fxml";
 		String title = "Homepage";
         WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
     }
 	
 	@FXML
-	public void goToLogin(ActionEvent event) throws IOException {
+	public void goToLogin(MouseEvent event) throws IOException {
 		String fxmlFile = "loginView.fxml";
 		String title = "Login";
 		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
     }
+	
+	@FXML
+	public void submitActivityForm(MouseEvent event) throws IOException {
+		String fxmlFile = "paymentView.fxml";
+		String title = "Schermata di pagamento";
+		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
+    }
+	
 }

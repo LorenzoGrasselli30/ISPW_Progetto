@@ -27,6 +27,7 @@ public class LoginGraphicController {
 	
 	@FXML
 	private TextField emailField;
+	
 	@FXML
 	private PasswordField passwordField;
 	
@@ -44,7 +45,9 @@ public class LoginGraphicController {
 	        // Acquisisci i dati dalla View
 	        String email = emailField.getText();
 	        String password = passwordField.getText();
-	           
+	        
+	        
+	        
 	        // Invia i dati al Controller Applicativo dovrebbe utilizzare una bean ma in questo caso per il login non è necessario
 	        //LoginApplicationController loginController = new LoginApplicationController();  
 	        //boolean isAuthenticated = loginController.authenticate(email, password);
