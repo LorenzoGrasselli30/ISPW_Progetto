@@ -27,11 +27,13 @@ public class PaymentGraphicController {
 	@FXML
 	private void doPayment(MouseEvent event) throws IOException{
 		
+		//Creare un medoto nel windowsNavigatorUtils che chiude la modal page e cambia la parent page
+	    
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		
-		WindowsNavigatorUtils.closeWindow(event);
 		WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
+		
    }
 	
 	@FXML
