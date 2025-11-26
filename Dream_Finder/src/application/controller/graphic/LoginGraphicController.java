@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class LoginGraphicController {
 	
@@ -30,12 +31,10 @@ public class LoginGraphicController {
 	private PasswordField passwordField;
 	
 	@FXML
-    private void openSignUp(ActionEvent event) throws IOException{
+    private void openSignUp(MouseEvent event) throws IOException{
 		 
-		//Da finire
-		 String fxmlFile = "homeView.fxml";
+		 String fxmlFile = "signUpView.fxml";
 		 String title = "Sign Up";
-		 Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		 
 		 WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
     }

@@ -85,7 +85,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" spacing="2.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#openSignUp" style="-fx-background-color: #6FA655;" text="Iscriviti">
+                  <Button mnemonicParsing="false" onMouseClicked="#openSignUp" style="-fx-background-color: #6FA655;" text="Iscriviti">
                      <font>
                         <Font size="18.0" />
                      </font>
