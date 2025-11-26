@@ -32,14 +32,12 @@ public class PaymentGraphicController {
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		
-		WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
+		WindowsNavigatorUtils.changeParentWindow(event, fxmlFile, title);
 		
    }
 	
 	@FXML
 	private void goBackPayment(MouseEvent event) throws IOException{
-		
-		//Andare alla pagina dell'attività
 		
 		WindowsNavigatorUtils.closeWindow(event);
    }
