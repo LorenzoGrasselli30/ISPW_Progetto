@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 
-//Homepage, Catalogo, attivita, form, pagamento, consigliati, agg attivita, login, prenotazioni organizzatore
 
 public class Main extends Application {
 	@Override

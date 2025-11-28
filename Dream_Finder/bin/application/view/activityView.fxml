@@ -48,7 +48,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" maxWidth="200.0" prefHeight="0.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Button fx:id="homeButton" minWidth="60.0" mnemonicParsing="false" onAction="#goToHomepage" style="-fx-background-color: #E7EFD6; -fx-border-color: black; -fx-border-width: 0.2;" text="🏠" HBox.hgrow="ALWAYS">
+                              <Button fx:id="homeButton" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#goToHomepage" style="-fx-background-color: #E7EFD6; -fx-border-color: black; -fx-border-width: 0.2;" text="🏠" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -58,7 +58,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="userAreaButton" minWidth="60.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #E7EFD6; -fx-border-color: black; -fx-border-width: 0.2;" text="👤" HBox.hgrow="ALWAYS">
+                              <Button fx:id="userAreaButton" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#goToLogin" style="-fx-background-color: #E7EFD6; -fx-border-color: black; -fx-border-width: 0.2;" text="👤" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

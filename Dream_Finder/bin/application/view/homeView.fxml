@@ -652,6 +652,386 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </ScrollPane>
+                        <Label text="I migliori itinerari proposti dagli utenti">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="160.0" prefHeight="160.0" vbarPolicy="NEVER">
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <VBox alignment="CENTER" minWidth="500.0" prefWidth="500.0" spacing="5.0">
+                                             <children>
+                                                <VBox style="-fx-border-color: black; -fx-background-radius: 12; -fx-border-radius: 12;">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <HBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-size: cover; -fx-background-position: center;">
+                                                               <children>
+                                                                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../Images/Marker%2002.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <Label text="Titolo del'itineraio - Località">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <opaqueInsets>
+                                                                  <Insets />
+                                                               </opaqueInsets>
+                                                               <padding>
+                                                                  <Insets left="10.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <VBox alignment="CENTER" style="-fx-border-color: transparent transparent transparent black;">
+                                                               <children>
+                                                                  <Label text="A partire da">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label text="999,99$">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                               </padding>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" style="-fx-border-color: black transparent transparent transparent;">
+                                                         <children>
+                                                            <Label minHeight="20.0" prefHeight="20.0" text="Punteggio: 5/5">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="(# recenzoni)">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../Images/Heart.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <Label text="Pubblicato dall'utente;">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Nome dell'utente">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" minWidth="500.0" prefWidth="500.0" spacing="5.0">
+                                             <children>
+                                                <VBox style="-fx-border-color: black; -fx-background-radius: 12; -fx-border-radius: 12;">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <HBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-size: cover; -fx-background-position: center;">
+                                                               <children>
+                                                                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../Images/Marker%2002.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <Label text="Titolo del'itineraio - Località">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <opaqueInsets>
+                                                                  <Insets />
+                                                               </opaqueInsets>
+                                                               <padding>
+                                                                  <Insets left="10.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <VBox alignment="CENTER" style="-fx-border-color: transparent transparent transparent black;">
+                                                               <children>
+                                                                  <Label text="A partire da">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label text="999,99$">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                               </padding>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" style="-fx-border-color: black transparent transparent transparent;">
+                                                         <children>
+                                                            <Label minHeight="20.0" prefHeight="20.0" text="Punteggio: 5/5">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="(# recenzoni)">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../Images/Heart.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <Label text="Pubblicato dall'utente;">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Nome dell'utente">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" minWidth="500.0" prefWidth="500.0" spacing="5.0">
+                                             <children>
+                                                <VBox style="-fx-border-color: black; -fx-background-radius: 12; -fx-border-radius: 12;">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <HBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-size: cover; -fx-background-position: center;">
+                                                               <children>
+                                                                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../Images/Marker%2002.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <Label text="Titolo del'itineraio - Località">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <opaqueInsets>
+                                                                  <Insets />
+                                                               </opaqueInsets>
+                                                               <padding>
+                                                                  <Insets left="10.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <VBox alignment="CENTER" style="-fx-border-color: transparent transparent transparent black;">
+                                                               <children>
+                                                                  <Label text="A partire da">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label text="999,99$">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                               </padding>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" style="-fx-border-color: black transparent transparent transparent;">
+                                                         <children>
+                                                            <Label minHeight="20.0" prefHeight="20.0" text="Punteggio: 5/5">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="(# recenzoni)">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../Images/Heart.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <Label text="Pubblicato dall'utente;">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Nome dell'utente">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" minWidth="500.0" prefWidth="500.0" spacing="5.0">
+                                             <children>
+                                                <VBox style="-fx-border-color: black; -fx-background-radius: 12; -fx-border-radius: 12;">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <HBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-size: cover; -fx-background-position: center;">
+                                                               <children>
+                                                                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../../Images/Marker%2002.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <Label text="Titolo del'itineraio - Località">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <opaqueInsets>
+                                                                  <Insets />
+                                                               </opaqueInsets>
+                                                               <padding>
+                                                                  <Insets left="10.0" top="5.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <VBox alignment="CENTER" style="-fx-border-color: transparent transparent transparent black;">
+                                                               <children>
+                                                                  <Label text="A partire da">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label text="999,99$">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                               </padding>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" style="-fx-border-color: black transparent transparent transparent;">
+                                                         <children>
+                                                            <Label minHeight="20.0" prefHeight="20.0" text="Punteggio: 5/5">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="(# recenzoni)">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../Images/Heart.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <Label text="Pubblicato dall'utente;">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Nome dell'utente">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </ScrollPane>
                         <VBox spacing="5.0">
                            <children>
                               <Label text="Organizza il tuo viaggio al meglio">
