@@ -2,6 +2,9 @@ package application.controller.graphic;
 
 import java.io.IOException;
 
+import application.exception.ValidationException;
+import application.util.Validator;
+import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -42,12 +46,23 @@ public class LoginGraphicController {
 	 
 	@FXML
 	private void doLogin(ActionEvent event) {
-	        // Acquisisci i dati dalla View
-	        String email = emailField.getText();
-	        String password = passwordField.getText();
-	        
-	        //Controlla che i dati siano nel formato corretto
-	        
+		// Acquisisci i dati dalla View
+		String email = emailField.getText();
+		String password = passwordField.getText();
+	    
+		try {
+	    //Controlla che i dati siano nel formato corretto 
+		//String formattedEmail = Formatter.removeBlanks(email.toLowerCase());
+		//Utilizza una classe formatter?
+		String formattedEmail = email.toLowerCase().trim();
+		String fomattedPassword = password.trim();
+		
+		// Validazione dei dati
+        if (!Validator.isValidEmail(formattedEmail)) {
+        	throw new ValidationException("Formato dell'email non valido. Esempio: name@mail.com");
+        	//System.out.print("Email non valida");
+        }
+        
 	        // Invia i dati al Controller Applicativo dovrebbe utilizzare una bean ma in questo caso per il login non è necessario
 	        //LoginApplicationController loginController = new LoginApplicationController();  
 	        //boolean isAuthenticated = loginController.authenticate(email, password);
@@ -61,18 +76,16 @@ public class LoginGraphicController {
                OpenWindowUtils.openRoleView(event, userRole);		
 	        }
 			*/
-	    
-	    /*
-	    Così il cana he gestito le eccezioni bisogna aggiungere un blocco try catch
-	    catch (Exception e) {
-	    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Error", "Something went wrong, try again.");		
-	    }
-	    catch (ValidationException ve) {
+		}
+		catch (ValidationException ve) {
 	           // Gestione specifica per errori di validazione
 		    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Login Error", ve.getMessage());
 	    }
-	     
-	     */
+	    catch (Exception e) {
+	    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Error", "Something went wrong, try again.");		
+	    }
+	    
+
 	}
 }
 
