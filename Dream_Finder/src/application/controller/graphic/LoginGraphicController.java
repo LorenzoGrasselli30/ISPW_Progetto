@@ -46,7 +46,7 @@ public class LoginGraphicController {
 	        String email = emailField.getText();
 	        String password = passwordField.getText();
 	        
-	        
+	        //Controlla che i dati siano nel formato corretto
 	        
 	        // Invia i dati al Controller Applicativo dovrebbe utilizzare una bean ma in questo caso per il login non è necessario
 	        //LoginApplicationController loginController = new LoginApplicationController();  
