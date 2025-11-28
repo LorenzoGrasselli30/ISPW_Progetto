@@ -33,7 +33,7 @@ public class FactoryDAO {
 	    	    if (travelerIstance == null) {  
 	    	    	travelerIstance = new TravelerDAODemo();
 	    	    }
-	    	    return (TravelerDAO) travelerIstance;           
+	    	    return travelerIstance;           
 	    	    
 	    	} else if (MODE_FILE.equals(mode)) {
 	    		return new TravelerDAOFile();

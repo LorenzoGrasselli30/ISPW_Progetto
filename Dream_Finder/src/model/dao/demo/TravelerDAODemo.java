@@ -1,5 +1,7 @@
 package model.dao.demo;
 
-public class TravelerDAODemo {
+import model.dao.TravelerDAO;
+
+public class TravelerDAODemo implements TravelerDAO {
 
 }
