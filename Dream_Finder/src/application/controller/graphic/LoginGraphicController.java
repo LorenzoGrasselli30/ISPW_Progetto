@@ -2,6 +2,7 @@ package application.controller.graphic;
 
 import java.io.IOException;
 
+import application.controller.application.LoginApplicationController;
 import application.exception.ValidationException;
 import application.util.Validator;
 import application.view.AlertUtils;
@@ -19,15 +20,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class LoginGraphicController {
-	
-	/*
-	@FXML
-	public void goToHomepage(ActionEvent event) throws IOException {
-		//Chiusura della finestra di Login
-		Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        loginStage.close();
-    }
-    */
 	
 	@FXML
 	private TextField emailField;
@@ -56,25 +48,19 @@ public class LoginGraphicController {
 		//Utilizza una classe formatter?
 		String formattedEmail = email.toLowerCase().trim();
 		String fomattedPassword = password.trim();
-		
-		// Validazione dei dati
-        if (!Validator.isValidEmail(formattedEmail)) {
-        	throw new ValidationException("Formato dell'email non valido. Esempio: name@mail.com");
-        }
         
-	        // Invia i dati al Controller Applicativo dovrebbe utilizzare una bean ma in questo caso per il login non è necessario
-	        //LoginApplicationController loginController = new LoginApplicationController();  
-	        //boolean isAuthenticated = loginController.authenticate(formattedEmail, fomattedPassword);
+        //Invia i dati al Controller Applicativo dovrebbe utilizzare una bean ma in questo caso per il login non è necessario
+        LoginApplicationController loginController = new LoginApplicationController();  
+        boolean isAuthenticated = loginController.authenticate(formattedEmail, fomattedPassword);
 	        
-	        /*
 	        // Aggiorna la View in base al risultato
 	        if (isAuthenticated) {
-	        	// Lancio schermata in base al ruolo 
-	        	String userRole = loginController.getUserRole();  
-               // Apre la schermata in base al ruolo 
-               OpenWindowUtils.openRoleView(event, userRole);		
+	        	// Devo visualizzare una homepage in base al ruolo e con bentornato: nome dell'utente
+	        	//String userRole = loginController.getUserRole();
+	        	String fxmlPath = loginController.getPathWindow();
+	        	String title = loginController.getTitleWindow();
+	        	WindowsNavigatorUtils.changeParentWindow(event, fxmlPath, title);
 	        }
-			*/
 		}
 		catch (ValidationException ve) {
 	           // Gestione specifica per errori di validazione
