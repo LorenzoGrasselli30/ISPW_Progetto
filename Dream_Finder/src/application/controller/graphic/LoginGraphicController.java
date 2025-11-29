@@ -60,12 +60,11 @@ public class LoginGraphicController {
 		// Validazione dei dati
         if (!Validator.isValidEmail(formattedEmail)) {
         	throw new ValidationException("Formato dell'email non valido. Esempio: name@mail.com");
-        	//System.out.print("Email non valida");
         }
         
 	        // Invia i dati al Controller Applicativo dovrebbe utilizzare una bean ma in questo caso per il login non è necessario
 	        //LoginApplicationController loginController = new LoginApplicationController();  
-	        //boolean isAuthenticated = loginController.authenticate(email, password);
+	        //boolean isAuthenticated = loginController.authenticate(formattedEmail, fomattedPassword);
 	        
 	        /*
 	        // Aggiorna la View in base al risultato
@@ -79,12 +78,11 @@ public class LoginGraphicController {
 		}
 		catch (ValidationException ve) {
 	           // Gestione specifica per errori di validazione
-		    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Login Error", ve.getMessage());
+		    	AlertUtils.showAlert(Alert.AlertType.WARNING, "Errore durante il login:", ve.getMessage());
 	    }
 	    catch (Exception e) {
-	    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Error", "Something went wrong, try again.");		
+	    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Fatal error", "Qualcosa è andato storto, riprova più tardi.");		
 	    }
-	    
 
 	}
 }

@@ -34,8 +34,8 @@ public class AlertUtils {
             							   "-fx-effect: dropshadow(three-pass-box, ";
 
 	    public static void showAlert(Alert.AlertType alertType, String title, String message) {
-	        Platform.runLater(() -> {
-	            Alert alert = new Alert(alertType);
+	        Platform.runLater(() -> { //Assicura che l'alert venga creato sul JavaFX Application Thread Necessario se chiamato da thread secondari
+	        	Alert alert = new Alert(alertType);
 	            setupAlertStructure(alert, title, message);
 	            String color = styleByAlertType(alert, alertType);
 	            addCustomEffects(alert);
@@ -59,21 +59,20 @@ public class AlertUtils {
 	        contentLabel.setMaxWidth(Double.MAX_VALUE); // Occupa tutto lo spazio disponibile
 	        dialogPane.setContent(contentLabel);
 	        
-	        dialogPane.setStyle("-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 2; -fx-alignment: center;");
+	        dialogPane.setStyle("-fx-background-radius: 0 0 8 8; -fx-border-radius: 0 0 8 8; -fx-border-width: 2; -fx-alignment: center;");
 	        dialogPane.setMinWidth(400);
 	        dialogPane.setPrefWidth(500);
 	    }
 
-	    private static String styleByAlertType(Alert alert, Alert.AlertType type) {
+	    private static String styleByAlertType(Alert alert, Alert.AlertType type) { //cambia il colore dei bottoni in base al tipo di alert
 	        String color = switch (type) {
-	            case ERROR -> "#d32f2f";
-	            case WARNING -> "#f57c00";
-	            case INFORMATION -> "#1976d2";
-	            case CONFIRMATION -> "#388e3c";
+	            case ERROR -> "#6FA655"; //Verde scuro
+	            case WARNING -> "#E9A649"; //Arancione
+	            case INFORMATION -> "#1976d2"; //Azzurro
+	            case CONFIRMATION -> "#6FA655";
 	            default -> throw new IllegalArgumentException("Unexpected value: " + type);
 	        };
 	        
-	        alert.getDialogPane().setStyle("-fx-border-color: " + color + ";");
 	        return color;
 	    }
 
@@ -98,7 +97,7 @@ public class AlertUtils {
 	    	    if (okButton != null) {
 	    	    	// Colore più chiaro per l'hover
 	    	        String hoverColor = calculateLighterColor(color, 0.2);
-	    	     // Calcola colore ombra correlato
+	    	        // Calcola colore ombra correlato
 	    	        String shadowColor = color + "80";
 	    	        // Stile base
 	    	        okButton.setStyle(

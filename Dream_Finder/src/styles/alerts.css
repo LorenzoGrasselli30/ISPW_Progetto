@@ -1,0 +1,22 @@
+.dialog-pane {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: transparent;
+}
+
+.dialog-pane .content.label {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-padding: 15px 0;
+}
+
+.dialog-pane .button-bar {
+    -fx-padding: 15px 0 0 0;
+}
+
+.dialog-pane .button {
+    -fx-cursor: hand;
+}
