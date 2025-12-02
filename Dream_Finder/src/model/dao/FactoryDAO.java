@@ -2,8 +2,11 @@ package model.dao;
 
 import application.configuration.AppConfig;
 import model.dao.db.TravelerDAODB;
+import model.dao.db.UserDAODB;
 import model.dao.demo.TravelerDAODemo;
+import model.dao.demo.UserDAODemo;
 import model.dao.file.TravelerDAOFile;
+import model.dao.file.UserDAOFile;
 
 public class FactoryDAO {
 	
@@ -23,23 +26,24 @@ public class FactoryDAO {
 		return singletonInstance;
 	}
 	
-	private TravelerDAODemo travelerIstance;
+	private UserDAO userIstance;
 	
-	public TravelerDAO getUserDAO() {
+	public UserDAO getUserDAO() {
 		if (mode == null) {					
 			throw new IllegalStateException(MODE_EXCEPTION);
 		}
-	    	if (MODE_DEMO.equals(mode) || "".equals(mode)) { 
-	    	    if (travelerIstance == null) {  
-	    	    	travelerIstance = new TravelerDAODemo();
+	    	
+		if (MODE_DEMO.equals(mode) || "".equals(mode)) { 
+	    	    if (userIstance == null) {  
+	    	    	userIstance = new UserDAODemo();
 	    	    }
-	    	    return travelerIstance;           
+	    	    return userIstance;           
 	    	    
 	    	} else if (MODE_FILE.equals(mode)) {
-	    		return new TravelerDAOFile();
+	    		return new UserDAOFile();
 	    		
 	    	} else {
-	        	return new TravelerDAODB();
+	        	return new UserDAODB();
 	        }
 	    }
 	 
