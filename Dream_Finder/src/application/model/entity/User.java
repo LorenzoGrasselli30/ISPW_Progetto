@@ -1,6 +1,6 @@
-package model.entity;
+package application.model.entity;
 
-import model.enums.UserRole;
+import application.model.enums.UserRole;
 
 public class User {
 	

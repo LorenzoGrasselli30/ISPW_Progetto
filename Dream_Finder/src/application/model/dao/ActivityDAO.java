@@ -1,4 +1,4 @@
-package model.dao;
+package application.model.dao;
 
 public interface ActivityDAO {
 

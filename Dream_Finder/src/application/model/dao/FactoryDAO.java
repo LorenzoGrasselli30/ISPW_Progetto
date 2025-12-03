@@ -1,12 +1,12 @@
-package model.dao;
+package application.model.dao;
 
 import application.configuration.AppConfig;
-import model.dao.db.TravelerDAODB;
-import model.dao.db.UserDAODB;
-import model.dao.demo.TravelerDAODemo;
-import model.dao.demo.UserDAODemo;
-import model.dao.file.TravelerDAOFile;
-import model.dao.file.UserDAOFile;
+import application.model.dao.db.TravelerDAODB;
+import application.model.dao.db.UserDAODB;
+import application.model.dao.demo.TravelerDAODemo;
+import application.model.dao.demo.UserDAODemo;
+import application.model.dao.file.TravelerDAOFile;
+import application.model.dao.file.UserDAOFile;
 
 public class FactoryDAO {
 	

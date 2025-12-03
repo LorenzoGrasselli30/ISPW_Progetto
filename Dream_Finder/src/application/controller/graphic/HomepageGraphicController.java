@@ -12,9 +12,22 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import application.controller.application.HomeApplicationController;
+import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 
 public class HomepageGraphicController {
+	
+	private HomeApplicationController homeController;
+	
+	public HomepageGraphicController() {
+		this.homeController= new HomeApplicationController();
+	}
+	
+	@FXML
+    private void initialize() {
+		
+    }
 	
 	@FXML
 	private void useHomepage(MouseEvent event) throws IOException {
@@ -50,7 +63,11 @@ public class HomepageGraphicController {
         	
         	if (("Homepage".equals(title)) || ("Info Attività".equals(title))) {
         		WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
-        	}
-        	
+        	}	
 	}
+	
+	@FXML
+	private void notImplementedYet(MouseEvent event) {
+   	 	AlertUtils.notImplementedYet();
+    }
 }

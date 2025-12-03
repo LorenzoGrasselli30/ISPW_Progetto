@@ -1,11 +1,11 @@
-package model.dao.demo;
+package application.model.dao.demo;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import model.dao.UserDAO;
-import model.entity.User;
-import model.enums.UserRole;
+import application.model.dao.UserDAO;
+import application.model.entity.User;
+import application.model.enums.UserRole;
 
 public class UserDAODemo implements UserDAO {
 	

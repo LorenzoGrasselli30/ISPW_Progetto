@@ -2,11 +2,11 @@ package application.controller.application;
 
 import application.configuration.UserSession;
 import application.exception.ValidationException;
+import application.model.dao.FactoryDAO;
+import application.model.dao.TravelerDAO;
+import application.model.dao.UserDAO;
+import application.model.entity.User;
 import application.util.Validator;
-import model.dao.FactoryDAO;
-import model.dao.TravelerDAO;
-import model.dao.UserDAO;
-import model.entity.User;
 
 public class LoginApplicationController {
 	

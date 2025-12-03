@@ -1,7 +1,7 @@
-package model.dao.db;
+package application.model.dao.db;
 
-import model.dao.UserDAO;
-import model.entity.User;
+import application.model.dao.UserDAO;
+import application.model.entity.User;
 
 public class UserDAODB implements UserDAO {
 

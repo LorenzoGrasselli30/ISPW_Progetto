@@ -2,6 +2,7 @@ package application.view;
 
 import java.io.IOException;
 
+import application.model.enums.UserRole;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.enums.UserRole;
 
 public class WindowsNavigatorUtils {
     

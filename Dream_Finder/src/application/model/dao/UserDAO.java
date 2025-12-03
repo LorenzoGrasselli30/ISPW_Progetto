@@ -1,6 +1,6 @@
-package model.dao;
+package application.model.dao;
 
-import model.entity.User;
+import application.model.entity.User;
 
 public interface UserDAO {
 

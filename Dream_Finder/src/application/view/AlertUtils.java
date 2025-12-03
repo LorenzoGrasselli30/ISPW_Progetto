@@ -137,7 +137,7 @@ public class AlertUtils {
 	    }
 	    
 	    
-	    public static void comingSoonAlert() {
-	    	showAlert(Alert.AlertType.INFORMATION, null, "Coming soon");
+	    public static void notImplementedYet() {
+	    	showAlert(Alert.AlertType.INFORMATION, null, "Questa funzione arriverà presto");
 	    }
 }

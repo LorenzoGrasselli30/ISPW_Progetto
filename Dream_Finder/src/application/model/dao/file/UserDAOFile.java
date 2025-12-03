@@ -1,7 +1,7 @@
-package model.dao.file;
+package application.model.dao.file;
 
-import model.dao.UserDAO;
-import model.entity.User;
+import application.model.dao.UserDAO;
+import application.model.entity.User;
 
 public class UserDAOFile implements UserDAO {
 

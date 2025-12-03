@@ -1,6 +1,6 @@
 package application.configuration;
 
-import model.entity.User;
+import application.model.entity.User;
 
 public class UserSession { //Una sessione di un utente può essere gestita con il pattern singleton
 	

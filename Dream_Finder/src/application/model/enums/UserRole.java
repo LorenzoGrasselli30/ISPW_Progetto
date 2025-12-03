@@ -1,4 +1,4 @@
-package model.enums;
+package application.model.enums;
 
 public enum UserRole {
 	TRAVELER("traveler"),
