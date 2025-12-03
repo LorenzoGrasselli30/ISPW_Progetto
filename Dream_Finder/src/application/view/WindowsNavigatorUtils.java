@@ -18,6 +18,8 @@ public class WindowsNavigatorUtils {
     
     private static final String BASE_PATH = System.getProperty("app.view.basePath", "/application/view/"); //Corretto da sonarcloud
     
+    private static Event lastParentEvent;
+    
     private WindowsNavigatorUtils() { //Corretto da sonarcloud
         throw new IllegalStateException("WindowsNavigatorUtils class");
     }
@@ -50,6 +52,11 @@ public class WindowsNavigatorUtils {
     }
 	
 	public static void openModalWindow(Event event, String fxmlPath, String title) throws IOException {
+	//Salva il lastParentEvent per il login
+	if (fxmlPath.equals("loginView.fxml")) {	
+	lastParentEvent = event;
+	}
+	
 	FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
 	Parent root = loader.load();
 	
@@ -108,7 +115,7 @@ public class WindowsNavigatorUtils {
         parentStage.show();
     }
 	
-	public static void loginToWindow(Event event, UserRole userRole) {
+	public static void loginToWindow(Event event, String userRole) {
 		//Stage corrente
         Stage modalstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         
@@ -123,6 +130,7 @@ public class WindowsNavigatorUtils {
         double currentX = parentStage.getX();
         double currentY = parentStage.getY();
         
+        System.out.println(lastParentEvent.getSource());
         /*
         Parent root = FXMLLoader.load(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
         

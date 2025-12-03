@@ -57,13 +57,8 @@ public class LoginGraphicController {
 	        if (isAuthenticated) {
 	        	String userRole = loginController.getUserRole();
 	        	System.out.println("Login effettuato correttamente, tipo di utente loggato: " + userRole);
-	        	/*
-	        	// Devo visualizzare una homepage in base al ruolo e con bentornato: nome dell'utente
-	        	//String userRole = loginController.getUserRole();
-	        	String fxmlPath = loginController.getPathWindow();
-	        	String title = loginController.getTitleWindow();
-	        	WindowsNavigatorUtils.changeParentWindow(event, fxmlPath, title);
-	        	*/
+	        	
+	        	WindowsNavigatorUtils.loginToWindow(event, userRole);
 	        }
 		}
 		catch (ValidationException ve) {
