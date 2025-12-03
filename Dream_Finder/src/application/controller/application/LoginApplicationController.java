@@ -33,9 +33,8 @@ public class LoginApplicationController {
         	//setto lo UserSession a questo utente
         	userSession.setCurrentUser(user);
         } else {
-        	throw new ValidationException("Invalid email or password");
+        	throw new ValidationException("L'email o la password non corrispondono");
         }
-        
  		return true;
 	}
 
@@ -48,5 +47,11 @@ public class LoginApplicationController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String getUserRole() {
+		String result = userSession.getCurrentUser().getUserRole().getStringName();
+		return result;
+	}
+	
 
 }

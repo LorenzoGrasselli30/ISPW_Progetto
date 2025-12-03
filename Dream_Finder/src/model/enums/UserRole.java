@@ -4,14 +4,14 @@ public enum UserRole {
 	TRAVELER("traveler"),
     PROVIDER("provider");
 
-    private final String displayName;
+    private final String stringName;
 
-	UserRole(String displayName) {
-        this.displayName = displayName;
+	UserRole(String stringName) {
+        this.stringName = stringName;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getStringName() {
+        return stringName;
     }
 	    
     public static UserRole fromString(String str) {

@@ -55,7 +55,8 @@ public class LoginGraphicController {
 	    
 	        // Aggiorna la View in base al risultato
 	        if (isAuthenticated) {
-	        	System.out.println("Login effettuato correttamente");
+	        	String userRole = loginController.getUserRole();
+	        	System.out.println("Login effettuato correttamente, tipo di utente loggato: " + userRole);
 	        	/*
 	        	// Devo visualizzare una homepage in base al ruolo e con bentornato: nome dell'utente
 	        	//String userRole = loginController.getUserRole();

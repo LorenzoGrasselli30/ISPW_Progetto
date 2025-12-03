@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.enums.UserRole;
 
 public class WindowsNavigatorUtils {
     
@@ -107,4 +108,34 @@ public class WindowsNavigatorUtils {
         parentStage.show();
     }
 	
+	public static void loginToWindow(Event event, UserRole userRole) {
+		//Stage corrente
+        Stage modalstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        //Parent window
+        Stage parentStage = (Stage) modalstage.getOwner();
+        
+        modalstage.close();
+        
+        //Dimensioni della parent
+        double currentWidth = parentStage.getWidth();
+        double currentHeight = parentStage.getHeight();
+        double currentX = parentStage.getX();
+        double currentY = parentStage.getY();
+        
+        /*
+        Parent root = FXMLLoader.load(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
+        
+        parentStage.setScene(new Scene(root));
+        parentStage.setTitle(title);
+        */
+        
+        // Ripristina le dimensioni e la posizione
+        parentStage.setWidth(currentWidth);
+        parentStage.setHeight(currentHeight);
+        parentStage.setX(currentX);
+        parentStage.setY(currentY);
+        
+        parentStage.show();
+	}
 }
