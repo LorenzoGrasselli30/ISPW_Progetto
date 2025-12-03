@@ -4,16 +4,10 @@ import java.io.IOException;
 
 import application.controller.application.LoginApplicationController;
 import application.exception.ValidationException;
-import application.util.Validator;
 import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;

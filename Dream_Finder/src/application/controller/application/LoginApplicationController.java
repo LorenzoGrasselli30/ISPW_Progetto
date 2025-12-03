@@ -38,16 +38,6 @@ public class LoginApplicationController {
  		return true;
 	}
 
-	public String getPathWindow() {
-		
-		return null;
-	}
-
-	public String getTitleWindow() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public String getUserRole() {
 		String result = userSession.getCurrentUser().getUserRole().getStringName();
 		return result;

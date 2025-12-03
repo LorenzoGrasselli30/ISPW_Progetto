@@ -102,8 +102,8 @@ public class ActivityGraphicController implements Initializable{
 	
 	@FXML
 	public void submitActivityForm(MouseEvent event) throws IOException {
-		String fxmlFile = "paymentView.fxml";
-		String title = "Schermata di pagamento";
+		String fxmlFile = "loginView.fxml";
+		String title = "Login";
 		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
     }
 	

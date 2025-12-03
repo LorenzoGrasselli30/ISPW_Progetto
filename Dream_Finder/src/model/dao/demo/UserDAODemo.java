@@ -15,7 +15,6 @@ public class UserDAODemo implements UserDAO {
     	initializeUsersDemo();
     }
     
-    
     private void initializeUsersDemo() {
     	// Inizializzazione traveler nella demo
     	users.put("mario.rossi@mail.com", new User("mario.rossi@mail.com", "Mariorossi1!", UserRole.TRAVELER));

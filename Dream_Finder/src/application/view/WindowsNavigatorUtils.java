@@ -115,7 +115,7 @@ public class WindowsNavigatorUtils {
         parentStage.show();
     }
 	
-	public static void loginToWindow(Event event, String userRole) {
+	public static void loginToWindow(Event event, String userRole) throws IOException {
 		//Stage corrente
         Stage modalstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         
@@ -124,26 +124,27 @@ public class WindowsNavigatorUtils {
         
         modalstage.close();
         
-        //Dimensioni della parent
-        double currentWidth = parentStage.getWidth();
-        double currentHeight = parentStage.getHeight();
-        double currentX = parentStage.getX();
-        double currentY = parentStage.getY();
+        String parentTitle= ((Node) lastParentEvent.getSource()).getId();
+        System.out.println(parentTitle);
         
-        System.out.println(lastParentEvent.getSource());
-        /*
-        Parent root = FXMLLoader.load(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
-        
-        parentStage.setScene(new Scene(root));
-        parentStage.setTitle(title);
-        */
-        
-        // Ripristina le dimensioni e la posizione
-        parentStage.setWidth(currentWidth);
-        parentStage.setHeight(currentHeight);
-        parentStage.setX(currentX);
-        parentStage.setY(currentY);
-        
-        parentStage.show();
+        if ("traveler".equals(userRole)) { //Comportamento del login se l'utente è un traveler
+        	
+        	if ("Info Attività".equals(parentStage.getTitle()) && ("formButton".equals(parentTitle))) {
+        		WindowsNavigatorUtils.openWindow(event, "paymentView.fxml", "Schermata di pagamento");
+        	} else if ("Info Attività".equals(parentStage.getTitle()) && ("formButton".equals(parentTitle))){
+        		WindowsNavigatorUtils.closeWindow(event);
+        	} else {
+        		WindowsNavigatorUtils.closeWindow(event);
+        	}
+        	
+        } else { //Comportamento del login se l'utente è un provider
+        	
+        	if ("Homepage".equals(parentStage.getTitle()) && ("newActivityButton".equals(parentTitle))) {
+        		WindowsNavigatorUtils.openWindow(event, "newActivityView.fxml", "Nuova attività");
+        	} else {
+        		WindowsNavigatorUtils.changeParentWindow(event, "homeProviderView.fxml", "Homepage");
+        	}
+        	
+        }
 	}
 }
