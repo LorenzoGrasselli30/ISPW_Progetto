@@ -131,8 +131,6 @@ public class WindowsNavigatorUtils {
         	
         	if ("Info Attività".equals(parentStage.getTitle()) && ("formButton".equals(parentTitle))) {
         		WindowsNavigatorUtils.openWindow(event, "paymentView.fxml", "Schermata di pagamento");
-        	} else if ("Info Attività".equals(parentStage.getTitle()) && ("formButton".equals(parentTitle))){
-        		WindowsNavigatorUtils.closeWindow(event);
         	} else {
         		WindowsNavigatorUtils.closeWindow(event);
         	}
