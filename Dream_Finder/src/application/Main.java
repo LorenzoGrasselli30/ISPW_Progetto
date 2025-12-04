@@ -19,13 +19,14 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("/application/view/homeView.fxml"));
 			Scene scene = new Scene(root, 640, 480);
 			
+			
+			
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			//Font font = Font.loadFont(getClass().getResourceAsStream("/Fonts/Montserrat-Regular.ttf"), 18);
 			//System.out.println(font); // Se null, c’è un problema!
 			
 			primaryStage.setTitle("Homepage");
 			primaryStage.setScene(scene);
-			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

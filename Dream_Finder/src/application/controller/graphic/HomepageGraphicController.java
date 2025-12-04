@@ -26,7 +26,7 @@ public class HomepageGraphicController {
 	
 	@FXML
     private void initialize() {
-		
+		System.out.println("Il sistema sta per essere inizializzato");
     }
 	
 	@FXML

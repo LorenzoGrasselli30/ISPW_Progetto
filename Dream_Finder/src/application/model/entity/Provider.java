@@ -33,5 +33,4 @@ public class Provider {
 		this.providerRate = 0.0;
 	}
 	
-	
 }

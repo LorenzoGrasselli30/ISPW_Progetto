@@ -108,6 +108,15 @@
                               <Region HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button fx:id="returnHomeButton1" maxHeight="140.0" minHeight="70.0" mnemonicParsing="false" onMouseClicked="#useRecommendedActivities" prefHeight="70.0" prefWidth="290.0" style="-fx-background-color: #6FA655;" text="Scarica qui il tuo biglietto">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                         <Label text="Gli utenti che hanno acquistato questo prodotto hanno scelto anche">
                            <font>
                               <Font size="18.0" />

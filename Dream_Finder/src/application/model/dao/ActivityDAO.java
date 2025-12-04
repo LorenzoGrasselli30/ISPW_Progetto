@@ -1,5 +1,11 @@
 package application.model.dao;
 
-public interface ActivityDAO {
+import application.model.entity.Activity;
 
+public interface ActivityDAO {
+	
+	Activity findTopActivities();
+
+	void saveNewActivity();
+	
 }

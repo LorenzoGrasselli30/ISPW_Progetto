@@ -1,7 +1,5 @@
 package application.model.enumsm;
 
-import application.model.enums.ProviderType;
-
 public enum ActivityType {
 	CULTURE("culture"),
     NATURE("nature"),

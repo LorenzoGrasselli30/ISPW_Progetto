@@ -29,5 +29,4 @@ public class Activity {
 		this.rate = 0.0;
 	}
 	
-	
 }
