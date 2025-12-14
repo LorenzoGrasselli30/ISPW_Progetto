@@ -13,7 +13,7 @@ public class Activity {
 	private Boolean skipLine;
 	private Integer nRating;
 	private Double rate;
-	
+
 	public Activity(String activityName, String description, Integer duration, Boolean timeInMinutes,
 			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
 			Double rate) {
@@ -29,4 +29,7 @@ public class Activity {
 		this.rate = rate;
 	}
 	
+	public Double getRate() {
+		return rate;
+	}
 }

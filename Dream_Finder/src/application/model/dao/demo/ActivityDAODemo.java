@@ -17,7 +17,8 @@ public class ActivityDAODemo implements ActivityDAO{
     }
     
     private void initializeActivityDemo() {
-    	
+    	//Non sicuro che sia giusto
+    	ProviderDAODemo providerDAO= new ProviderDAODemo();
     }
 
 	@Override

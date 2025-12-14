@@ -43,10 +43,18 @@ public class Provider {
 				skipLine, nRating, rate));
 		
 		this.nOfferedActivities+=1;
+		this.setProviderRate();
 	}
 	
-	public Double calcProviderRate(Integer nOfferedActivities, List<Activity> activities) {
-		Double rateResult= 0.0;
-		return rateResult;
+	public void setProviderRate() {
+		Double resultRate= 0.0;
+		
+		for (Activity activity : this.activities) {
+			resultRate += activity.getRate();
+	    }
+		
+		resultRate = resultRate / (this.nOfferedActivities);
+		
+		this.providerRate= resultRate;
 	}
 }

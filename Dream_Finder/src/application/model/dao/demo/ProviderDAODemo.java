@@ -1,9 +1,11 @@
 package application.model.dao.demo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import application.model.dao.ProviderDAO;
+import application.model.entity.Activity;
 import application.model.entity.Provider;
 import application.model.enums.ProviderType;
 import application.model.enumsm.ActivityType;
@@ -31,7 +33,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		providers.put("luigi.verdi@mail.com", provider1);
 		
 		//Creazione del provider2
-				Provider provider2= new Provider("provider2@mail.com", "Provider2!", "Provider2Group", ProviderType.INDIVIDUAL, 0, "Francia", "Provider2", "Provider2", 3.5);
+		Provider provider2= new Provider("provider2@mail.com", "Provider2!", "Provider2Group", ProviderType.INDIVIDUAL, 0, "Francia", "Provider2", "Provider2", 3.5);
 				
 		//Associazione delle attività al provider2
 		provider2.addActivity("Parigi: crociera sulla Senna", "Ammirate i monumenti più famosi di Parigi durante una piacevole crociera sulla Senna.", 
@@ -40,7 +42,7 @@ public class ProviderDAODemo implements ProviderDAO{
 				2, false, ActivityType.FOOD, true, true, false, 220, 3.8);
 		provider2.addActivity("Parigi: tour guidato di Notre-Dame", "Scopri Notre-Dame attraverso i suoi simboli gotici, gli interni restaurati e 850 anni di storia", 
 				75, true, ActivityType.CULTURE, true, true, true, 96, 4.0);
-				
+		
 		providers.put("provider2@mail.com", provider2);
 				
 		//Creazione del provider3
@@ -53,8 +55,16 @@ public class ProviderDAODemo implements ProviderDAO{
 				4, false, ActivityType.NATURE, true, false, true, 170, 4.1);
 		provider3.addActivity("Barcellona: biglietto d'ingresso alla Sagrada Familia", "Entra nel capolavoro incompiuto di Gaudí, la Sagrada Familia", 
 				45, true, ActivityType.CULTURE, false, false, true, 345, 4.0);
-				
-		providers.put("giacomo.bianchi@mail.com", provider3);
-				
+		
+		providers.put("giacomo.bianchi@mail.com", provider3);			
 	}
+
+	@Override
+	public List<Provider> findTopProviders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
 }

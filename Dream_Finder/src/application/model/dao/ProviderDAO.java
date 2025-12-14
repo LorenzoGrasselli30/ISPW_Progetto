@@ -1,5 +1,9 @@
 package application.model.dao;
 
-public interface ProviderDAO {
+import java.util.List;
 
+import application.model.entity.Provider;
+
+public interface ProviderDAO {
+	List<Provider> findTopProviders();
 }

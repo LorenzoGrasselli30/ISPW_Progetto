@@ -21,5 +21,4 @@ public class TravelerDAODemo implements TravelerDAO {
 		travelers.put("utente3@mail.com", new Traveler("utente3@mail.com", "Utente3!", "Utente3", "1969/04/30"));
 	}
     
-    
 }
