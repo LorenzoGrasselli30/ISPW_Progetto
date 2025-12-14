@@ -1,19 +1,19 @@
 package application.model.dao.demo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import application.model.dao.ActivityDAO;
 import application.model.entity.Activity;
-import application.model.entity.User;
-import application.model.enums.UserRole;
+import application.model.entity.Provider;
 
 public class ActivityDAODemo implements ActivityDAO{
 	
-	private Map<String, User> activities = new HashMap<>();
+	private Map<String, Activity> activities = new HashMap<>();
 	
 	public ActivityDAODemo() {
-    	//Metodo che chiama la creazione di una serie di provider con delle attività
+		initializeActivityDemo();
     }
     
     private void initializeActivityDemo() {
@@ -21,7 +21,7 @@ public class ActivityDAODemo implements ActivityDAO{
     }
 
 	@Override
-	public Activity findTopActivities() {
+	public List<Activity> findTopActivities() {
 		// TODO Auto-generated method stub
 		return null;
 	}

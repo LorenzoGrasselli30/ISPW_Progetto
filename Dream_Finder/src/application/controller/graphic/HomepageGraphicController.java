@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import application.controller.application.HomeApplicationController;
 import application.view.AlertUtils;
@@ -27,6 +28,10 @@ public class HomepageGraphicController {
 	@FXML
     private void initialize() {
 		System.out.println("Il sistema sta per essere inizializzato");
+		
+		homeController.fetchActivities();
+		
+		System.out.println("Inizializzazione completata");
     }
 	
 	@FXML

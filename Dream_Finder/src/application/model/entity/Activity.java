@@ -3,7 +3,7 @@ package application.model.entity;
 import application.model.enumsm.ActivityType;
 
 public class Activity {
-	private String providerName;
+	private String activityName;
 	private String description;
 	private Integer duration;
 	private Boolean timeInMinutes;
@@ -14,10 +14,10 @@ public class Activity {
 	private Integer nRating;
 	private Double rate;
 	
-	public Activity(String providerName, String description, Integer duration, Boolean timeInMinutes,
+	public Activity(String activityName, String description, Integer duration, Boolean timeInMinutes,
 			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
 			Double rate) {
-		this.providerName = providerName;
+		this.activityName = activityName;
 		this.description = description;
 		this.duration = duration;
 		this.timeInMinutes = timeInMinutes;
@@ -25,8 +25,8 @@ public class Activity {
 		this.freeCancellation = freeCancellation;
 		this.payLater = payLater;
 		this.skipLine = skipLine;
-		this.nRating = 0;
-		this.rate = 0.0;
+		this.nRating = nRating;
+		this.rate = rate;
 	}
 	
 }

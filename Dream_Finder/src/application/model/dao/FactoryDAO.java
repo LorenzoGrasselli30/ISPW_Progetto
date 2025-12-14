@@ -1,10 +1,13 @@
 package application.model.dao;
 
 import application.configuration.AppConfig;
+import application.model.dao.db.ActivityDAODB;
 import application.model.dao.db.TravelerDAODB;
 import application.model.dao.db.UserDAODB;
+import application.model.dao.demo.ActivityDAODemo;
 import application.model.dao.demo.TravelerDAODemo;
 import application.model.dao.demo.UserDAODemo;
+import application.model.dao.file.ActivityDAOFile;
 import application.model.dao.file.TravelerDAOFile;
 import application.model.dao.file.UserDAOFile;
 
@@ -46,5 +49,27 @@ public class FactoryDAO {
 	        	return new UserDAODB();
 	        }
 	    }
-	 
+	
+	private ActivityDAO activityDAO;
+	
+	public ActivityDAO getActivityDAO() {
+		if (mode == null) {					
+			throw new IllegalStateException(MODE_EXCEPTION);
+		}
+	    	
+		if (MODE_DEMO.equals(mode) || "".equals(mode)) { 
+	    	    if (activityDAO == null) {  
+	    	    	activityDAO = new ActivityDAODemo();
+	    	    }
+	    	    return activityDAO;           
+	    	    
+	    	} else if (MODE_FILE.equals(mode)) {
+	    		return new ActivityDAOFile();
+	    		
+	    	} else {
+	        	return new ActivityDAODB();
+	        }
+	    }
 }
+	 
+

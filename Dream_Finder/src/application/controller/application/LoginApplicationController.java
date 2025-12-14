@@ -28,6 +28,7 @@ public class LoginApplicationController {
         //Trovo l'utente a partire dall'email
         User user = userDAO.findByEmail(formattedEmail);
         
+        
         //controllo che la password di quesro utente è giusta
         if ((user != null) && (formattedPassword.equals(user.getPassword()))) {
         	//setto lo UserSession a questo utente
