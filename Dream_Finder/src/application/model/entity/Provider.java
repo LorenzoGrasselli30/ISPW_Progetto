@@ -57,4 +57,9 @@ public class Provider {
 		
 		this.providerRate= resultRate;
 	}
+	
+	public Double getProviderRate() {
+		return this.providerRate;
+	}
+	
 }

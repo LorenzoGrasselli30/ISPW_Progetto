@@ -3,6 +3,7 @@ package application.model.dao.demo;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
@@ -61,8 +62,10 @@ public class ProviderDAODemo implements ProviderDAO{
 
 	@Override
 	public List<Provider> findTopProviders() {
-		// TODO Auto-generated method stub
-		return null;
+		return providers.values().stream()
+				.sorted((p1, p2) -> Double.compare(p2.getProviderRate(), p1.getProviderRate()))
+				.limit(5)
+				.collect(Collectors.toList());
 	}
 	
 	
