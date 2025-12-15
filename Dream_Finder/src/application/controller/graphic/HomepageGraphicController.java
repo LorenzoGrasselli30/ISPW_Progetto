@@ -11,9 +11,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import application.controller.application.HomeApplicationController;
+import application.model.bean.ActivityDTO;
 import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 
@@ -29,8 +31,13 @@ public class HomepageGraphicController {
     private void initialize() {
 		System.out.println("Il sistema sta per essere inizializzato");
 		
-		homeController.fetchActivities();
-		
+		List<ActivityDTO> activities= homeController.fetchActivities();
+		for (ActivityDTO activity: activities) {
+			System.out.println(activity.getActivityName());
+			System.out.println(activity.getDescription());
+			System.out.println(activity.getPrice());
+			System.out.println(activity.getRate()+" "+activity.getnRating());
+		}
 		System.out.println("Inizializzazione completata");
     }
 	

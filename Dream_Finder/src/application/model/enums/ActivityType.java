@@ -1,4 +1,4 @@
-package application.model.enumsm;
+package application.model.enums;
 
 public enum ActivityType {
 	CULTURE("culture"),

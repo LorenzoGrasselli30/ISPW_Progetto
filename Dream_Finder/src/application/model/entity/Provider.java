@@ -3,8 +3,8 @@ package application.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
-import application.model.enumsm.ActivityType;
 
 public class Provider {
 	
@@ -36,11 +36,11 @@ public class Provider {
 		this.providerRate= providerRate;
 	}
 	
-	public void addActivity(String providerName, String description, Integer duration, Boolean timeInMinutes,
+	public void addActivity(String activityName, String description, Double price, Integer duration, Boolean timeInMinutes,
 			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
 			Double rate) {
-		activities.add(new Activity(providerName, description, duration, timeInMinutes, activityType, freeCancellation, payLater,
-				skipLine, nRating, rate));
+		activities.add(new Activity(activityName, description, price, duration, timeInMinutes, activityType, freeCancellation, payLater,
+				skipLine, nRating, rate, this.providerName));
 		
 		this.nOfferedActivities+=1;
 		this.setProviderRate();
@@ -59,7 +59,11 @@ public class Provider {
 	}
 	
 	public Double getProviderRate() {
-		return this.providerRate;
+		return providerRate;
 	}
 	
+	public List<Activity> getActivities() {
+		return activities;
+	}
+
 }
