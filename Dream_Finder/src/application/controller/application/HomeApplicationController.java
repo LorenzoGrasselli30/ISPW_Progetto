@@ -24,9 +24,7 @@ public class HomeApplicationController {
 		for (Provider provider: providers) {
 			System.out.println(provider+"\n");
 		}
-		List<Activity> activities= activityDAO.findTopActivities();
+		//List<Activity> activities= activityDAO.findTopActivities();
 	}
-	
-	
 	
 }

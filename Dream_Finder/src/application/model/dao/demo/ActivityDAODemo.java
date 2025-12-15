@@ -13,15 +13,11 @@ public class ActivityDAODemo implements ActivityDAO{
 	private Map<String, Activity> activities = new HashMap<>();
 	
 	public ActivityDAODemo() {
-		initializeActivityDemo();
+		
     }
     
-    private void initializeActivityDemo() {
-    	
-    }
-
 	@Override
-	public List<Activity> findTopActivities() {
+	public List<Activity> findTopActivities(List<Provider> providers) {
 		// TODO Auto-generated method stub
 		return null;
 	}
