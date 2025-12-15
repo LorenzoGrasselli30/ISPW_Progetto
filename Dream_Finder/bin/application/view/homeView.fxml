@@ -441,7 +441,7 @@
                            <content>
                               <AnchorPane>
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+                                    <HBox fx:id="forYouContainer" alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
                                              <children>
