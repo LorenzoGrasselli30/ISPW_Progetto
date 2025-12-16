@@ -23,9 +23,6 @@ public class HomeApplicationController {
 	//Chiama la factory per prendere una lista di activity DAO con rating più alto
 	public List<ActivityDTO> fetchActivities() {
 		List<Provider> providers= providerDAO.findTopProviders();
-		for (Provider provider: providers) {
-			System.out.println(provider);
-		}
 		List<Activity> activities= activityDAO.findTopActivities(providers);
 		
 		List<ActivityDTO> activityDTO= new ArrayList();

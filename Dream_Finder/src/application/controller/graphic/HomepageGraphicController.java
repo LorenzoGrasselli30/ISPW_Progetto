@@ -45,7 +45,7 @@ public class HomepageGraphicController {
 		
 		List<ActivityDTO> activities= homeController.fetchActivities();
 		
-		//populateForYouSection(activities);
+		populateForYouSection(activities);
 		
 		for (ActivityDTO activity: activities) {
 			System.out.println(activity.getActivityName());
@@ -72,9 +72,7 @@ public class HomepageGraphicController {
 		}
 	}
 	
-	/*
-	 * Crea una card per una singola attività
-	 */
+	// Crea una card per una singola attività
 	private VBox createActivityCard(ActivityDTO activity) {
 		VBox card = new VBox();
 		card.setAlignment(Pos.CENTER);
@@ -148,7 +146,7 @@ public class HomepageGraphicController {
 		perPersonLabel.setFont(Font.font("System", 14.0));
 		
 		priceBox.getChildren().addAll(priceLabel, perPersonLabel);
-		System.out.println("Inizializzazione...");
+
 		// Aggiungi tutti gli elementi alla card
 		card.getChildren().addAll(header, descriptionBox, activityImage, ratingBox, priceBox);
 		
@@ -164,7 +162,7 @@ public class HomepageGraphicController {
 		return card;
 	}
 	
-	/**
+	/*
 	 * Gestisce il click su una card attività
 	 */
 	private void handleActivityClick(MouseEvent event, ActivityDTO activity) throws IOException {

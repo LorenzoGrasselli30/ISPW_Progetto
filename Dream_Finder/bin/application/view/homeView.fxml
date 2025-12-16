@@ -437,13 +437,13 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="270.0" prefHeight="270.0" vbarPolicy="NEVER">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="320.0" prefHeight="320.0" vbarPolicy="NEVER">
                            <content>
                               <AnchorPane>
                                  <children>
-                                    <HBox fx:id="forYouContainer" alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+                                    <HBox fx:id="forYouContainer" alignment="CENTER_LEFT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
+                                          <VBox alignment="CENTER" minWidth="250.0" prefWidth="250.0" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
                                              <children>
                                                 <HBox alignment="TOP_CENTER" spacing="10.0">
                                                    <children>
@@ -452,12 +452,16 @@
                                                             <Font name="System Bold" size="18.0" />
                                                          </font>
                                                       </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
                                                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../../Images/Heart.png" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                                 <HBox>
                                                    <children>
@@ -467,8 +471,11 @@
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../Images/caption%20(3).jpg" />
                                                    </image>
@@ -480,12 +487,16 @@
                                                             <Font name="System Bold" size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
                                                       <Label text="(# recenzoni)">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                                 <HBox minHeight="20.0" prefHeight="20.0">
                                                    <children>
@@ -500,13 +511,19 @@
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                              </children>
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
+                                             <padding>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </padding>
                                           </VBox>
-                                          <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
+                                          <VBox alignment="CENTER" minWidth="250.0" prefWidth="250.0" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
                                              <children>
                                                 <HBox alignment="TOP_CENTER" spacing="10.0">
                                                    <children>
@@ -515,12 +532,16 @@
                                                             <Font name="System Bold" size="18.0" />
                                                          </font>
                                                       </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
                                                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../../Images/Heart.png" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                                 <HBox>
                                                    <children>
@@ -530,8 +551,11 @@
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../Images/caption%20(3).jpg" />
                                                    </image>
@@ -543,12 +567,16 @@
                                                             <Font name="System Bold" size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
                                                       <Label text="(# recenzoni)">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                                 <HBox minHeight="20.0" prefHeight="20.0">
                                                    <children>
@@ -563,13 +591,19 @@
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                              </children>
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
+                                             <padding>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </padding>
                                           </VBox>
-                                          <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
+                                          <VBox alignment="CENTER" minWidth="250.0" prefWidth="250.0" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
                                              <children>
                                                 <HBox alignment="TOP_CENTER" spacing="10.0">
                                                    <children>
@@ -578,12 +612,16 @@
                                                             <Font name="System Bold" size="18.0" />
                                                          </font>
                                                       </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
                                                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../../Images/Heart.png" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                                 <HBox>
                                                    <children>
@@ -593,8 +631,11 @@
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../Images/caption%20(3).jpg" />
                                                    </image>
@@ -606,12 +647,16 @@
                                                             <Font name="System Bold" size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
                                                       <Label text="(# recenzoni)">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                                 <HBox minHeight="20.0" prefHeight="20.0">
                                                    <children>
@@ -626,13 +671,19 @@
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                              </children>
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
+                                             <padding>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </padding>
                                           </VBox>
-                                          <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
+                                          <VBox alignment="CENTER" minWidth="250.0" prefWidth="250.0" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
                                              <children>
                                                 <HBox alignment="TOP_CENTER" spacing="10.0">
                                                    <children>
@@ -641,12 +692,16 @@
                                                             <Font name="System Bold" size="18.0" />
                                                          </font>
                                                       </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
                                                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../../Images/Heart.png" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                                 <HBox>
                                                    <children>
@@ -656,8 +711,11 @@
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="180.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../Images/caption%20(3).jpg" />
                                                    </image>
@@ -669,12 +727,16 @@
                                                             <Font name="System Bold" size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
                                                       <Label text="(# recenzoni)">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                                 <HBox minHeight="20.0" prefHeight="20.0">
                                                    <children>
@@ -689,11 +751,17 @@
                                                          </font>
                                                       </Label>
                                                    </children>
+                                                   <padding>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </padding>
                                                 </HBox>
                                              </children>
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
+                                             <padding>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </padding>
                                           </VBox>
                                        </children>
                                     </HBox>

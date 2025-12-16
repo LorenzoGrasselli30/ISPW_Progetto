@@ -70,7 +70,7 @@ public class ProviderDAODemo implements ProviderDAO{
 				provider4.addActivity("Berlino: biglietto d'ingresso al Berlin Story Bunker", "Scoprite la mostra \"Hitler, come è potuto accadere\" e il Berlin Story Museum con un unico biglietto", 18.99,
 						2, false, ActivityType.CULTURE, true, false, true, 345, 4.2);
 				
-				providers.put("giacomo.bianchi@mail.com", provider4);
+				providers.put("marco.marroni@mail.com", provider4);
 		
 		//Creazione del provider5
 				Provider provider5= new Provider("provider5@mail.com", "Provider5!", "Provider5Group", ProviderType.INDIVIDUAL, 0, "Italia", "Provider5", "Provider5", 3.0);
@@ -83,7 +83,7 @@ public class ProviderDAODemo implements ProviderDAO{
 				provider5.addActivity("Londra: Biglietto d'ingresso per il London Eye", "Ammira monumenti come il Big Ben, Buckingham Palace e la Cattedrale di St Paul da 135 metri di altezza", 33.99,
 						30, true, ActivityType.CULTURE, false, false, true, 345, 4.0);
 				
-				providers.put("giacomo.bianchi@mail.com", provider5);	
+				providers.put("provider5@mail.com", provider5);	
 	}
 
 	@Override
