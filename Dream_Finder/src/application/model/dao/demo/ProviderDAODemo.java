@@ -57,7 +57,33 @@ public class ProviderDAODemo implements ProviderDAO{
 		provider3.addActivity("Barcellona: biglietto d'ingresso alla Sagrada Familia", "Entra nel capolavoro incompiuto di Gaudí, la Sagrada Familia", 15.0,
 				45, true, ActivityType.CULTURE, false, false, true, 345, 4.0);
 		
-		providers.put("giacomo.bianchi@mail.com", provider3);			
+		providers.put("giacomo.bianchi@mail.com", provider3);
+		
+		//Creazione del provider4
+				Provider provider4= new Provider("marco.marroni@mail.com", "Marcomarroni1!", "MarcoTravel", ProviderType.EDU, 0, "Germania", "Marco", "Marroni", 0.0);
+						
+				//Associazione delle attività al provider4
+				provider4.addActivity("Museo del Muro di Berlino al Checkpoint Charlie", "Fondato poco dopo la costruzione del Muro di Berlino, questo museo ha avuto un ruolo fondamentale nella storia e gli oggetti esposti ne sono la prova.", 19.99, 
+						2, false, ActivityType.CULTURE, true, true, true, 140, 4.0);
+				provider4.addActivity("Berlino: Biglietto d'ingresso per il Palazzo di Charlottenburg", "Il Palazzo Vecchio e l'Ala Nuova formano il più importante complesso di palazzi degli ex elettori del Brandeburgo, dei re prussiani e degli imperatori tedeschi a Berlino.", 
+						25.0, 3, false, ActivityType.CULTURE, true, true, true, 168, 4.5);
+				provider4.addActivity("Berlino: biglietto d'ingresso al Berlin Story Bunker", "Scoprite la mostra \"Hitler, come è potuto accadere\" e il Berlin Story Museum con un unico biglietto", 18.99,
+						2, false, ActivityType.CULTURE, true, false, true, 345, 4.2);
+				
+				providers.put("giacomo.bianchi@mail.com", provider4);
+		
+		//Creazione del provider5
+				Provider provider5= new Provider("provider5@mail.com", "Provider5!", "Provider5Group", ProviderType.INDIVIDUAL, 0, "Italia", "Provider5", "Provider5", 3.0);
+						
+				//Associazione delle attività al provider5
+				provider5.addActivity("Londra: esperienza di Buckingham Palace e cambio della guardia", "Immergiti nella ricca storia di Westminster, che abbraccia oltre un millennio, mentre le guide ti svelano punti di riferimento iconici e racconti regali in questo tour a piedi di Londra.", 35.99, 
+						2, false, ActivityType.CULTURE, true, true, true, 2345, 4.2);
+				provider5.addActivity("Londra: tour rapido del Museo di storia naturale", "Viaggia nel tempo e scopri le meraviglie della scienza e del mondo naturale", 15.0,
+						120, true, ActivityType.NATURE, true, false, true, 70, 4.2);
+				provider5.addActivity("Londra: Biglietto d'ingresso per il London Eye", "Ammira monumenti come il Big Ben, Buckingham Palace e la Cattedrale di St Paul da 135 metri di altezza", 33.99,
+						30, true, ActivityType.CULTURE, false, false, true, 345, 4.0);
+				
+				providers.put("giacomo.bianchi@mail.com", provider5);	
 	}
 
 	@Override

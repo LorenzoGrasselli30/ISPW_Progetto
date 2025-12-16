@@ -45,7 +45,7 @@ public class HomepageGraphicController {
 		
 		List<ActivityDTO> activities= homeController.fetchActivities();
 		
-		populateForYouSection(activities);
+		//populateForYouSection(activities);
 		
 		for (ActivityDTO activity: activities) {
 			System.out.println(activity.getActivityName());
@@ -53,7 +53,6 @@ public class HomepageGraphicController {
 			System.out.println(activity.getPrice());
 			System.out.println(activity.getRate()+" "+activity.getnRating());
 		}
-
     }
 	
 	private void populateForYouSection(List<ActivityDTO> activities) {
@@ -73,7 +72,7 @@ public class HomepageGraphicController {
 		}
 	}
 	
-	/**
+	/*
 	 * Crea una card per una singola attività
 	 */
 	private VBox createActivityCard(ActivityDTO activity) {

@@ -24,7 +24,6 @@ public class WindowsNavigatorUtils {
         throw new IllegalStateException("WindowsNavigatorUtils class");
     }
     
-	//Se si ingrandisce la finestra poi la finestra viene  aperta piccola Ricordati.di.cancellare()
 	public static void openWindow(Event event, String fxmlPath, String title) throws IOException {
 		// Ottieni lo stage corrente
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
