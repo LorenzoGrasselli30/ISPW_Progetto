@@ -46,13 +46,6 @@ public class HomepageGraphicController {
 		List<ActivityDTO> activities= homeController.fetchActivities();
 		
 		populateForYouSection(activities);
-		
-		for (ActivityDTO activity: activities) {
-			System.out.println(activity.getActivityName());
-			System.out.println(activity.getDescription());
-			System.out.println(activity.getPrice());
-			System.out.println(activity.getRate()+" "+activity.getnRating());
-		}
     }
 	
 	private void populateForYouSection(List<ActivityDTO> activities) {
@@ -75,89 +68,112 @@ public class HomepageGraphicController {
 	// Crea una card per una singola attività
 	private VBox createActivityCard(ActivityDTO activity) {
 		VBox card = new VBox();
-		card.setAlignment(Pos.CENTER);
-		card.setSpacing(5.0);
-		card.setStyle("-fx-border-color: black; -fx-border-width: 0.2;");
-		card.setCursor(Cursor.HAND);
-		
-		// Header con titolo e icona cuore
-		HBox header = new HBox();
-		header.setAlignment(Pos.TOP_CENTER);
-		header.setSpacing(10.0);
-		
-		Label titleLabel = new Label(activity.getActivityName());
-		titleLabel.setFont(Font.font("System", FontWeight.BOLD, 18.0));
-		
-		ImageView heartIcon = new ImageView();
-		try {
-			heartIcon.setImage(new Image(getClass().getResource("/Images/Heart.png").toExternalForm()));
-			heartIcon.setFitHeight(30.0);
-			heartIcon.setFitWidth(30.0);
-			heartIcon.setPreserveRatio(true);
-			heartIcon.setPickOnBounds(true);
-		} catch (Exception e) {
-			System.err.println("Errore nel caricamento dell'icona cuore: " + e.getMessage());
-		}
-		
-		header.getChildren().addAll(titleLabel, heartIcon);
-		
-		// Descrizione
-		HBox descriptionBox = new HBox();
-		Label descriptionLabel = new Label(activity.getDescription());
-		descriptionLabel.setFont(Font.font("System", 14.0));
-		descriptionBox.getChildren().add(descriptionLabel);
-		
-		// Immagine attività
-		ImageView activityImage = new ImageView();
-		activityImage.setFitHeight(150.0);
-		activityImage.setFitWidth(200.0);
-		activityImage.setPreserveRatio(true);
-		activityImage.setPickOnBounds(true);
-		
-		try {
-			// Carica l'immagine dell'attività se disponibile
-			// Altrimenti usa un'immagine di default
-			activityImage.setImage(new Image(getClass().getResource("/Images/caption (3).jpg").toExternalForm()));
-		} catch (Exception e) {
-			System.err.println("Errore nel caricamento dell'immagine: " + e.getMessage());
-		}
-		
-		// Rating
-		HBox ratingBox = new HBox();
-		Label ratingLabel = new Label(String.format("Punteggio: %.1f/5", activity.getRate()));
-		ratingLabel.setFont(Font.font("System", FontWeight.BOLD, 14.0));
-		ratingLabel.setMinHeight(20.0);
-		ratingLabel.setPrefHeight(20.0);
-		
-		Label reviewsLabel = new Label(String. format("(%d recensioni)", activity.getnRating()));
-		reviewsLabel.setFont(Font.font("System", 14.0));
-		
-		ratingBox.getChildren().addAll(ratingLabel, reviewsLabel);
-		
-		// Prezzo
-		HBox priceBox = new HBox();
-		priceBox.setMinHeight(20.0);
-		priceBox.setPrefHeight(20.0);
-		
-		Label priceLabel = new Label(String.format("%.2f$ ", activity.getPrice()));
-		priceLabel.setFont(Font.font("System", 14.0));
-		
-		Label perPersonLabel = new Label("A persona");
-		perPersonLabel.setFont(Font.font("System", 14.0));
-		
-		priceBox.getChildren().addAll(priceLabel, perPersonLabel);
+	    card.setAlignment(Pos.CENTER);
+	    card.setMinWidth(250.0);
+	    card.setPrefWidth(250.0);
+	    card.setSpacing(5.0);
+	    card.setStyle("-fx-border-color:  black; -fx-border-width: 0.2;");
+	    card.setCursor(Cursor.HAND);
+	    
+	    // Aggiungi padding alla card
+	    card.setStyle("-fx-border-color: black; -fx-border-width: 0.2; -fx-padding: 5 0 5 0;");
+	    
+	    // Header con titolo e icona cuore
+	    HBox header = new HBox();
+	    header.setAlignment(Pos.TOP_CENTER);
+	    header.setSpacing(10.0);
+	    
+	    Label titleLabel = new Label(activity.getActivityName());
+	    titleLabel.setFont(Font.font("System", FontWeight.BOLD, 18.0));
+	    
+	    // Aggiungi Region per spaziare il cuore a destra
+	    javafx.scene.layout.Region spacer = new javafx.scene.layout.Region();
+	    javafx.scene.layout.HBox.setHgrow(spacer, javafx.scene.layout.Priority. ALWAYS);
+	    
+	    ImageView heartIcon = new ImageView();
+	    try {
+	        heartIcon.setImage(new Image(getClass().getResource("/Images/Heart.png").toExternalForm()));
+	        heartIcon.setFitHeight(30.0);
+	        heartIcon.setFitWidth(30.0);
+	        heartIcon.setPreserveRatio(true);
+	        heartIcon.setPickOnBounds(true);
+	    } catch (Exception e) {
+	        System.err.println("Errore nel caricamento dell'icona cuore: " + e.getMessage());
+	    }
+	    
+	    header.getChildren().addAll(titleLabel, spacer, heartIcon);
+	    
+	    // Aggiungi padding all'header
+	    header.setStyle("-fx-padding: 0 5 0 5;");
+	    
+	    // Descrizione
+	    HBox descriptionBox = new HBox();
+	    Label descriptionLabel = new Label(activity.getDescription());
+	    descriptionLabel.setFont(Font.font("System", 14.0));
+	    descriptionBox.getChildren().add(descriptionLabel);
+	    
+	    // Aggiungi padding alla descrizione
+	    descriptionBox.setStyle("-fx-padding: 0 5 0 5;");
+	    
+	    // Immagine attività
+	    ImageView activityImage = new ImageView();
+	    activityImage.setFitHeight(180.0);  // Aumentato da 150 a 180
+	    activityImage.setFitWidth(250.0);   // Aumentato da 200 a 250
+	    activityImage.setPreserveRatio(true);
+	    activityImage.setPickOnBounds(true);
+	    
+	    try {
+	        activityImage.setImage(new Image(getClass().getResource("/Images/caption (3).jpg").toExternalForm()));
+	    } catch (Exception e) {
+	        System.err.println("Errore nel caricamento dell'immagine: " + e.getMessage());
+	    }
+	    
+	    // Rating
+	    HBox ratingBox = new HBox();
+	    Label ratingLabel = new Label(String. format("Punteggio:  %.1f/5", activity.getRate()));
+	    ratingLabel.setFont(Font.font("System", FontWeight.BOLD, 14.0));
+	    ratingLabel.setMinHeight(20.0);
+	    ratingLabel.setPrefHeight(20.0);
+	    
+	    // Aggiungi Region per spaziare le recensioni a destra
+	    javafx.scene.layout.Region ratingSpacer = new javafx. scene.layout.Region();
+	    javafx.scene.layout.HBox.setHgrow(ratingSpacer, javafx.scene.layout.Priority.ALWAYS);
+	    
+	    Label reviewsLabel = new Label(String. format("(%d recensioni)", activity.getnRating()));
+	    reviewsLabel.setFont(Font.font("System", 14.0));
+	    
+	    ratingBox.getChildren().addAll(ratingLabel, ratingSpacer, reviewsLabel);
+	    
+	    // Aggiungi padding al rating
+	    ratingBox.setStyle("-fx-padding: 0 5 0 5;");
+	    
+	    // Prezzo
+	    HBox priceBox = new HBox();
+	    priceBox.setMinHeight(20.0);
+	    priceBox.setPrefHeight(20.0);
+	    
+	    Label priceLabel = new Label(String.format("%.2f$ ", activity.getPrice()));
+	    priceLabel.setFont(Font.font("System", FontWeight.BOLD, 14.0));
+	    
+	    Label perPersonLabel = new Label("a persona");
+	    perPersonLabel. setFont(Font.font("System", 14.0));
+	    
+	    priceBox.getChildren().addAll(priceLabel, perPersonLabel);
+	    
+	    // Aggiungi padding al prezzo
+	    priceBox.setStyle("-fx-padding: 0 5 0 5;");
 
-		// Aggiungi tutti gli elementi alla card
-		card.getChildren().addAll(header, descriptionBox, activityImage, ratingBox, priceBox);
-		
-		// Aggiungi event handler per click sulla card
-		card.setOnMouseClicked(event -> {
-			try {
-				handleActivityClick(event, activity);
-			} catch (IOException e) {
-				System.err.println("Errore nell'apertura della vista attività: " + e.getMessage());
-			}
-		});
+	    // Aggiungi tutti gli elementi alla card
+	    card.getChildren().addAll(header, descriptionBox, activityImage, ratingBox, priceBox);
+	    
+	    // Aggiungi event handler per click sulla card
+	    card.setOnMouseClicked(event -> {
+	        try {
+	            handleActivityClick(event, activity);
+	        } catch (IOException e) {
+	            System.err. println("Errore nell'apertura della vista attività: " + e.getMessage());
+	        }
+	    });
 		
 		return card;
 	}
@@ -186,6 +202,7 @@ public class HomepageGraphicController {
     	    switch (((Node) event.getSource()).getId()) {
     	        case "areaUserButton":
     	        case "newActivityButton":
+    	        case "favouriteImage":
     	            fxmlFile = loginPath;
     	            title = titleLogin;
     	            break;

@@ -154,284 +154,6 @@
                   </HBox>
                   <VBox alignment="CENTER_LEFT" spacing="20.0">
                      <children>
-                        <Label text="I tuoi preferiti">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="270.0" prefHeight="270.0" vbarPolicy="NEVER">
-                          <content>
-                            <AnchorPane>
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <VBox fx:id="activityButton" alignment="CENTER" onMouseClicked="#useHomepage" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
-                                             <children>
-                                                <HBox alignment="TOP_CENTER" spacing="10.0">
-                                                   <children>
-                                                      <Label text="Titolo dell'attività">
-                                                         <font>
-                                                            <Font name="System Bold" size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../../Images/HeartPref.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                                <HBox>
-                                                   <children>
-                                                      <Label text="Descrizione breve dell'attività">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../../Images/caption%20(3).jpg" />
-                                                   </image>
-                                                </ImageView>
-                                                <HBox>
-                                                   <children>
-                                                      <Label minHeight="20.0" prefHeight="20.0" text="Punteggio: 5/5">
-                                                         <font>
-                                                            <Font name="System Bold" size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label text="(# recenzoni)">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <HBox minHeight="20.0" prefHeight="20.0">
-                                                   <children>
-                                                      <Label text="999,999$ ">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label text="a persona">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </VBox>
-                                          <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
-                                             <children>
-                                                <HBox alignment="TOP_CENTER" spacing="10.0">
-                                                   <children>
-                                                      <Label text="Titolo dell'attività">
-                                                         <font>
-                                                            <Font name="System Bold" size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../../Images/HeartPref.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                                <HBox>
-                                                   <children>
-                                                      <Label text="Descrizione breve dell'attività">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../../Images/caption%20(3).jpg" />
-                                                   </image>
-                                                </ImageView>
-                                                <HBox>
-                                                   <children>
-                                                      <Label minHeight="20.0" prefHeight="20.0" text="Punteggio: 5/5">
-                                                         <font>
-                                                            <Font name="System Bold" size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label text="(# recenzoni)">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <HBox minHeight="20.0" prefHeight="20.0">
-                                                   <children>
-                                                      <Label text="999,999$ ">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label text="a persona">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </VBox>
-                                          <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
-                                             <children>
-                                                <HBox alignment="TOP_CENTER" spacing="10.0">
-                                                   <children>
-                                                      <Label text="Titolo dell'attività">
-                                                         <font>
-                                                            <Font name="System Bold" size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../../Images/HeartPref.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                                <HBox>
-                                                   <children>
-                                                      <Label text="Descrizione breve dell'attività">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../../Images/caption%20(3).jpg" />
-                                                   </image>
-                                                </ImageView>
-                                                <HBox>
-                                                   <children>
-                                                      <Label minHeight="20.0" prefHeight="20.0" text="Punteggio: 5/5">
-                                                         <font>
-                                                            <Font name="System Bold" size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label text="(# recenzoni)">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <HBox minHeight="20.0" prefHeight="20.0">
-                                                   <children>
-                                                      <Label text="999,999$ ">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label text="a persona">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </VBox>
-                                          <VBox alignment="CENTER" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
-                                             <children>
-                                                <HBox alignment="TOP_CENTER" spacing="10.0">
-                                                   <children>
-                                                      <Label text="Titolo dell'attività">
-                                                         <font>
-                                                            <Font name="System Bold" size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../../Images/HeartPref.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                                <HBox>
-                                                   <children>
-                                                      <Label text="Descrizione breve dell'attività">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../../Images/caption%20(3).jpg" />
-                                                   </image>
-                                                </ImageView>
-                                                <HBox>
-                                                   <children>
-                                                      <Label minHeight="20.0" prefHeight="20.0" text="Punteggio: 5/5">
-                                                         <font>
-                                                            <Font name="System Bold" size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label text="(# recenzoni)">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <HBox minHeight="20.0" prefHeight="20.0">
-                                                   <children>
-                                                      <Label text="999,999$ ">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label text="a persona">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </ScrollPane>
                         <Label text="Per te">
                            <font>
                               <Font size="18.0" />
@@ -453,7 +175,7 @@
                                                          </font>
                                                       </Label>
                                                       <Region HBox.hgrow="ALWAYS" />
-                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="favouriteImage" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#useHomepage" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../../Images/Heart.png" />
                                                          </image>
@@ -799,7 +521,7 @@
                                                                         <Image url="@../../Images/Marker%2002.png" />
                                                                      </image>
                                                                   </ImageView>
-                                                                  <Label text="Titolo del'itineraio - Località">
+                                                                  <Label text="Titolo dell'itineraio - Località">
                                                                      <font>
                                                                         <Font name="System Bold" size="18.0" />
                                                                      </font>
@@ -892,7 +614,7 @@
                                                                         <Image url="@../../Images/Marker%2002.png" />
                                                                      </image>
                                                                   </ImageView>
-                                                                  <Label text="Titolo del'itineraio - Località">
+                                                                  <Label text="Titolo dell'itineraio - Località">
                                                                      <font>
                                                                         <Font name="System Bold" size="18.0" />
                                                                      </font>
@@ -985,7 +707,7 @@
                                                                         <Image url="@../../Images/Marker%2002.png" />
                                                                      </image>
                                                                   </ImageView>
-                                                                  <Label text="Titolo del'itineraio - Località">
+                                                                  <Label text="Titolo dell'itineraio - Località">
                                                                      <font>
                                                                         <Font name="System Bold" size="18.0" />
                                                                      </font>
@@ -1078,7 +800,7 @@
                                                                         <Image url="@../../Images/Marker%2002.png" />
                                                                      </image>
                                                                   </ImageView>
-                                                                  <Label text="Titolo del'itineraio - Località">
+                                                                  <Label text="Titolo dell'itineraio - Località">
                                                                      <font>
                                                                         <Font name="System Bold" size="18.0" />
                                                                      </font>
