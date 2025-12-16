@@ -128,7 +128,7 @@ public class WindowsNavigatorUtils {
         
         if ("traveler".equals(userRole)) { //Comportamento del login se l'utente è un traveler
         	
-        	if ("Info Attività".equals(parentStage.getTitle()) && ("formButton".equals(parentTitle))) {
+        	if ("Info Attivita'".equals(parentStage.getTitle()) && ("formButton".equals(parentTitle))) {
         		WindowsNavigatorUtils.openWindow(event, "paymentView.fxml", "Schermata di pagamento");
         	} else {
         		WindowsNavigatorUtils.closeWindow(event);
@@ -137,7 +137,7 @@ public class WindowsNavigatorUtils {
         } else { //Comportamento del login se l'utente è un provider
         	
         	if ("Homepage".equals(parentStage.getTitle()) && ("newActivityButton".equals(parentTitle))) {
-        		WindowsNavigatorUtils.openWindow(event, "newActivityView.fxml", "Nuova attività");
+        		WindowsNavigatorUtils.openWindow(event, "newActivityView.fxml", "Nuova attivita'");
         	} else {
         		WindowsNavigatorUtils.changeParentWindow(event, "homeProviderView.fxml", "Homepage");
         	}

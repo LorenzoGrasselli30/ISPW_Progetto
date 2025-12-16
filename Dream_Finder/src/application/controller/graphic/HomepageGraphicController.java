@@ -67,6 +67,9 @@ public class HomepageGraphicController {
 	
 	// Crea una card per una singola attività
 	private VBox createActivityCard(ActivityDTO activity) {
+		final String DEFAULT_FONT = "System";
+		final String HBOX_PADDING = "-fx-padding: 0 5 0 5;";
+		
 		VBox card = new VBox();
 	    card.setAlignment(Pos.CENTER);
 	    card.setMinWidth(250.0);
@@ -84,7 +87,7 @@ public class HomepageGraphicController {
 	    header.setSpacing(10.0);
 	    
 	    Label titleLabel = new Label(activity.getActivityName());
-	    titleLabel.setFont(Font.font("System", FontWeight.BOLD, 18.0));
+	    titleLabel.setFont(Font.font(DEFAULT_FONT, FontWeight.BOLD, 18.0));
 	    
 	    // Aggiungi Region per spaziare il cuore a destra
 	    javafx.scene.layout.Region spacer = new javafx.scene.layout.Region();
@@ -115,16 +118,16 @@ public class HomepageGraphicController {
 	    header.getChildren().addAll(titleLabel, spacer, heartIcon);
 	    
 	    // Aggiungi padding all'header
-	    header.setStyle("-fx-padding: 0 5 0 5;");
+	    header.setStyle(HBOX_PADDING);
 	    
 	    // Descrizione
 	    HBox descriptionBox = new HBox();
 	    Label descriptionLabel = new Label(activity.getDescription());
-	    descriptionLabel.setFont(Font.font("System", 14.0));
+	    descriptionLabel.setFont(Font.font(DEFAULT_FONT, 14.0));
 	    descriptionBox.getChildren().add(descriptionLabel);
 	    
 	    // Aggiungi padding alla descrizione
-	    descriptionBox.setStyle("-fx-padding: 0 5 0 5;");
+	    descriptionBox.setStyle(HBOX_PADDING);
 	    
 	    // Immagine attività
 	    ImageView activityImage = new ImageView();
@@ -142,7 +145,7 @@ public class HomepageGraphicController {
 	    // Rating
 	    HBox ratingBox = new HBox();
 	    Label ratingLabel = new Label(String. format("Punteggio:  %.1f/5", activity.getRate()));
-	    ratingLabel.setFont(Font.font("System", FontWeight.BOLD, 14.0));
+	    ratingLabel.setFont(Font.font(DEFAULT_FONT, FontWeight.BOLD, 14.0));
 	    ratingLabel.setMinHeight(20.0);
 	    ratingLabel.setPrefHeight(20.0);
 	    
@@ -151,12 +154,12 @@ public class HomepageGraphicController {
 	    javafx.scene.layout.HBox.setHgrow(ratingSpacer, javafx.scene.layout.Priority.ALWAYS);
 	    
 	    Label reviewsLabel = new Label(String. format("(%d recensioni)", activity.getnRating()));
-	    reviewsLabel.setFont(Font.font("System", 14.0));
+	    reviewsLabel.setFont(Font.font(DEFAULT_FONT, 14.0));
 	    
 	    ratingBox.getChildren().addAll(ratingLabel, ratingSpacer, reviewsLabel);
 	    
 	    // Aggiungi padding al rating
-	    ratingBox.setStyle("-fx-padding: 0 5 0 5;");
+	    ratingBox.setStyle(HBOX_PADDING);
 	    
 	    // Prezzo
 	    HBox priceBox = new HBox();
@@ -164,15 +167,15 @@ public class HomepageGraphicController {
 	    priceBox.setPrefHeight(20.0);
 	    
 	    Label priceLabel = new Label(String.format("%.2f$ ", activity.getPrice()));
-	    priceLabel.setFont(Font.font("System", FontWeight.BOLD, 14.0));
+	    priceLabel.setFont(Font.font(DEFAULT_FONT, FontWeight.BOLD, 14.0));
 	    
 	    Label perPersonLabel = new Label("a persona");
-	    perPersonLabel. setFont(Font.font("System", 14.0));
+	    perPersonLabel. setFont(Font.font(DEFAULT_FONT, 14.0));
 	    
 	    priceBox.getChildren().addAll(priceLabel, perPersonLabel);
 	    
 	    // Aggiungi padding al prezzo
-	    priceBox.setStyle("-fx-padding: 0 5 0 5;");
+	    priceBox.setStyle(HBOX_PADDING);
 
 	    // Aggiungi tutti gli elementi alla card
 	    card.getChildren().addAll(header, descriptionBox, activityImage, ratingBox, priceBox);
@@ -211,6 +214,8 @@ public class HomepageGraphicController {
     	 final String titleLogin = "Login";
     	 final String homepagePath = "homeView.fxml";
     	 final String homepageTitle = "Homepage"; 
+    	 final String activityPath = "activityView.fxml";
+    	 final String activityTitle= "Info Attività";
     	 
     	    switch (((Node) event.getSource()).getId()) {
     	        case "areaUserButton":
@@ -223,17 +228,17 @@ public class HomepageGraphicController {
     	        	title = homepageTitle;
     	        	break;
     	        case "activityButton":
-    	        	fxmlFile = "activityView.fxml";
-    	        	title = "Info Attività";
+    	        	fxmlFile = activityPath;
+    	        	title = activityTitle;
     	        	break;
     	    }
     	
-        	if (title.equals("Login")) {
+        	if (titleLogin.equals(title)) {
         		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
         	} 
         	
         	
-        	if (("Homepage".equals(title)) || ("Info Attività".equals(title))) {
+        	if ((homepageTitle.equals(title)) || (activityPath.equals(title))) {
         		WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
         	}	
 	}
