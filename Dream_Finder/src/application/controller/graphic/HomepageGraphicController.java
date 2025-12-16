@@ -97,6 +97,17 @@ public class HomepageGraphicController {
 	        heartIcon.setFitWidth(30.0);
 	        heartIcon.setPreserveRatio(true);
 	        heartIcon.setPickOnBounds(true);
+	        
+	        // Aggiungi event handler per il click sul cuore
+	        heartIcon.setOnMouseClicked(event -> {
+	            event.consume(); // Previene la propagazione dell'evento alla card
+	            try {
+	            	handleHeartClick(event);
+	            } catch (IOException e) {
+	                System.err.println("Errore nell'apertura del login: " + e.getMessage());
+	            }
+	        });
+	      
 	    } catch (Exception e) {
 	        System.err.println("Errore nel caricamento dell'icona cuore: " + e.getMessage());
 	    }
@@ -178,15 +189,17 @@ public class HomepageGraphicController {
 		return card;
 	}
 	
-	/*
-	 * Gestisce il click su una card attività
-	 */
+	//Gestisce il click su una card attività
 	private void handleActivityClick(MouseEvent event, ActivityDTO activity) throws IOException {
 		System.out.println("Click su attività: " + activity.getActivityName());
 		// Qui puoi passare i dati dell'attività alla vista di dettaglio
 		WindowsNavigatorUtils.openWindow(event, "activityView.fxml", "Info Attività");
 	}
 	
+	//Gestisce il click sull'icona del cuore 
+	private void handleHeartClick(MouseEvent event) throws IOException {
+	    WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
+	}
 	
 	@FXML
 	private void useHomepage(MouseEvent event) throws IOException {
@@ -202,7 +215,6 @@ public class HomepageGraphicController {
     	    switch (((Node) event.getSource()).getId()) {
     	        case "areaUserButton":
     	        case "newActivityButton":
-    	        case "favouriteImage":
     	            fxmlFile = loginPath;
     	            title = titleLogin;
     	            break;
