@@ -194,9 +194,7 @@ public class HomepageGraphicController {
 	
 	//Gestisce il click su una card attività
 	private void handleActivityClick(MouseEvent event, ActivityDTO activity) throws IOException {
-		System.out.println("Click su attività: " + activity.getActivityName());
-		// Qui puoi passare i dati dell'attività alla vista di dettaglio
-		WindowsNavigatorUtils.openWindow(event, "activityView.fxml", "Info Attività");
+		WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attività", activity);
 	}
 	
 	//Gestisce il click sull'icona del cuore 

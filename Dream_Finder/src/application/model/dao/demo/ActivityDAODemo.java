@@ -15,10 +15,6 @@ public class ActivityDAODemo implements ActivityDAO{
 	
 	private Map<String, Activity> activities = new HashMap<>();
 	
-	public ActivityDAODemo() {
-		
-    }
-    
 	@Override
 	public List<Activity> findTopActivities(List<Provider> providers) {
 		List<Activity> topActivities = new ArrayList<>();
@@ -39,9 +35,9 @@ public class ActivityDAODemo implements ActivityDAO{
 	}
 
 	@Override
-	public void saveNewActivity() {
+	public Activity findByProvider(String activityName, String providerName) {
 		// TODO Auto-generated method stub
-		
-	} 
-    
+		return null;
+	}
+
 }

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.controller.application.ActivityApplicationController;
+import application.model.bean.ActivityDTO;
 import application.view.WindowsNavigatorUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,6 +26,9 @@ import javafx.stage.Stage;
 
 public class ActivityGraphicController implements Initializable{
     
+	private ActivityApplicationController activityController;
+	private ActivityDTO clickedActivity;
+	
 	@FXML
 	private ImageView mainActivityImg;
 	
@@ -39,9 +44,15 @@ public class ActivityGraphicController implements Initializable{
     @FXML
     private VBox secondaryImagesContainer;
     
+    public ActivityGraphicController() {
+		activityController = new ActivityApplicationController();
+	}
+	
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	System.out.println("Initialize chiamato");
+    	
+    	//Gestione delle immagini
     	if (imageGalleryContainer != null && mainActivityImg != null) {
             // L'immagine principale prende il 50% della larghezza dell'HBox
             // e tutta l'altezza disponibile
@@ -86,6 +97,12 @@ public class ActivityGraphicController implements Initializable{
         }
 	}
 	
+    public void selectActivityInfo(ActivityDTO activity) {
+		String activityName= activity.getActivityName();
+		String providerName= activity.getProviderName();
+		ActivityDTO activityInfo= activityController.fetchActivityInfo(activityName, providerName);
+	}
+    
 	@FXML
 	public void goToHomepage(MouseEvent event) throws IOException {
 		String fxmlFile = "homeView.fxml";

@@ -15,9 +15,9 @@ public class ActivityDAOFile implements ActivityDAO {
 	}
 
 	@Override
-	public void saveNewActivity() {
+	public Activity findByProvider(String activityName, String providerName) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 }

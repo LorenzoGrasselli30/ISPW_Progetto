@@ -2,12 +2,15 @@ package application.view;
 
 import java.io.IOException;
 
+import application.controller.graphic.ActivityGraphicController;
+import application.model.bean.ActivityDTO;
 import application.model.enums.UserRole;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -143,5 +146,36 @@ public class WindowsNavigatorUtils {
         	}
         	
         }
+	}
+
+	public static void openActivityWindow(Event event, String fxmlPath, String title, ActivityDTO activity) throws IOException {
+		//Ottieni lo stage corrente
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        //Salva le dimensioni e la posizione correnti
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+        double currentX = stage.getX();
+        double currentY = stage.getY();
+        
+        //Carica il nuovo FXML
+        FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
+        Parent root = loader.load();
+        
+        //Passa le informazioni dell'attività
+        ActivityGraphicController activityController= loader.getController();
+        activityController.selectActivityInfo(activity);
+        
+        //Imposta la nuova scena
+        stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        
+        //Ripristina le dimensioni e la posizione
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+        stage.setX(currentX);
+        stage.setY(currentY);
+        
+        stage.show();
 	}
 }

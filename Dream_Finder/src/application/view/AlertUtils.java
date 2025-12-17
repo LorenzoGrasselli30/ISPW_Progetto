@@ -138,7 +138,7 @@ public class AlertUtils {
 	    
 	    
 	    public static void notImplementedYet() {
-	    	final String MESSAGE= "Questa funzione arriverà presto";
+	    	final String MESSAGE= "Questa funzione arrivera' presto";
 	    	showAlert(Alert.AlertType.INFORMATION, null, MESSAGE);
 	    }
 }

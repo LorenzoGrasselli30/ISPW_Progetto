@@ -8,7 +8,6 @@ import application.model.entity.Provider;
 public interface ActivityDAO {
 	
 	List<Activity> findTopActivities(List<Provider> providers);
-
-	void saveNewActivity();
+	Activity findByProvider(String activityName, String providerName);
 	
 }
