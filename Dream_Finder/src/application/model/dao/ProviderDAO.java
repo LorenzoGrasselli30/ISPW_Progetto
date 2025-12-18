@@ -6,4 +6,5 @@ import application.model.entity.Provider;
 
 public interface ProviderDAO {
 	List<Provider> findTopProviders();
+	List<Provider> providersList();
 }

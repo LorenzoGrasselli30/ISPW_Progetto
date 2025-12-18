@@ -65,5 +65,37 @@ public class Provider {
 	public List<Activity> getActivities() {
 		return activities;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getProviderName() {
+		return providerName;
+	}
+
+	public ProviderType getProviderType() {
+		return providerType;
+	}
+
+	public Integer getnOfferedActivities() {
+		return nOfferedActivities;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
 
 }

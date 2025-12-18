@@ -1,5 +1,6 @@
 package application.model.dao.demo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,7 +86,11 @@ public class ProviderDAODemo implements ProviderDAO{
 				
 				providers.put("provider5@mail.com", provider5);	
 	}
-
+	
+	public List<Provider> providersList() {
+		return new ArrayList<>(providers.values());
+	}
+	
 	@Override
 	public List<Provider> findTopProviders() {
 		return providers.values().stream()

@@ -13,4 +13,10 @@ public class ProviderDAODB implements ProviderDAO {
 		return null;
 	}
 
+	@Override
+	public List<Provider> providersList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

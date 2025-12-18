@@ -56,13 +56,13 @@ public class FactoryDAO {
 	private ActivityDAO activityDAO;
 	
 	public ActivityDAO getActivityDAO() {
-		if (mode == null) {					
+		if (mode == null && providerDAO == null) {					
 			throw new IllegalStateException(MODE_EXCEPTION);
 		}
 	    	
 		if (MODE_DEMO.equals(mode) || "".equals(mode)) { 
 	    	    if (activityDAO == null) {  
-	    	    	activityDAO = new ActivityDAODemo();
+	    	    	activityDAO = new ActivityDAODemo(providerDAO);
 	    	    }
 	    	    return activityDAO;           
 	    	    

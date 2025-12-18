@@ -8,12 +8,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import application.model.dao.ActivityDAO;
+import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
 import application.model.entity.Provider;
 
-public class ActivityDAODemo implements ActivityDAO{
+public class ActivityDAODemo implements ActivityDAO {
 	
-	private Map<String, Activity> activities = new HashMap<>();
+	//Dependency Injection di ProviderDAO
+	private ProviderDAO providerDAO;
+		
+	public ActivityDAODemo(ProviderDAO providerDAO) {
+		this.providerDAO = providerDAO;
+	}
 	
 	@Override
 	public List<Activity> findTopActivities(List<Provider> providers) {
@@ -36,8 +42,22 @@ public class ActivityDAODemo implements ActivityDAO{
 
 	@Override
 	public Activity findByProvider(String activityName, String providerName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+		List<Provider> availableProviders = providerDAO.providersList();
+				
+		Provider targetProvider = availableProviders.stream()
+			.filter(p -> p.getProviderName().equals(providerName))
+			.findFirst()
+			.orElse(null);
+			
+		//Caso provider non trovato
+		if (targetProvider == null) {
+			return null; 
+		}
+				
+		return targetProvider.getActivities().stream()
+				.filter(a -> a.getActivityName().equals(activityName))
+				.findFirst()
+				.orElse(null); // Caos attività non trovata
+		}
 }
+

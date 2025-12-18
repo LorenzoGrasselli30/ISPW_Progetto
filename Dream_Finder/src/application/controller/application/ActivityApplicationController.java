@@ -19,6 +19,10 @@ public class ActivityApplicationController {
 		
 		Activity newActivityInfo= activityDAO.findByProvider(activityName, providerName);
 		
+		System.out.println(newActivityInfo.getActivityName());
+		System.out.println(newActivityInfo.getProviderName());
+		System.out.println(newActivityInfo.getDuration());
+		
 		ActivityDTO newActivityDTO= new ActivityDTO();
 		
 		return newActivityDTO;
