@@ -63,8 +63,45 @@ public class ActivityDAODemo implements ActivityDAO {
 
 	@Override
 	public List<Activity> findRelatedActivities(String activityName, ActivityType activityType, String providerName) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Provider> availableProviders = providerDAO.providersList();
+		
+		// Raccoglie tutte le attività disponibili
+		List<Activity> allActivities = new ArrayList<>();
+		for (Provider provider :  availableProviders) {
+			allActivities.addAll(provider. getActivities());
+		}
+		
+		// Rimuove l'attività passata come parametro
+		allActivities = allActivities.stream()
+			.filter(a -> !a. getActivityName().equals(activityName) || ! a.getProviderName().equals(providerName))
+			.collect(Collectors.toList());
+		
+		// Divide le attività in tre gruppi di priorità
+		List<Activity> highScore = new ArrayList<>(); // Stesso provider e stesso tipo
+		List<Activity> mediumScore = new ArrayList<>(); // Solo stesso provider o stesso tipo
+		List<Activity> others = new ArrayList<>();   // Tutte le altre
+		
+		for (Activity activity : allActivities) {
+			if (activity.calculateRelevanceScore(activity, activityType, providerName)==2) {
+				highScore.add(activity);
+			} else if (activity.calculateRelevanceScore(activity, activityType, providerName)==1) {
+				mediumScore.add(activity);
+			} else {
+				others.add(activity);
+			}
+		}
+		
+		// Costruisce la lista finale rispettando le priorità
+		List<Activity> relatedActivities = new ArrayList<>();
+		relatedActivities.addAll(highScore);
+		relatedActivities.addAll(mediumScore);
+		relatedActivities.addAll(others);
+		
+		// Limita a 10 attività
+		return relatedActivities.stream()
+			.limit(10)
+			.collect(Collectors.toList());
 	}
+	
 }
 

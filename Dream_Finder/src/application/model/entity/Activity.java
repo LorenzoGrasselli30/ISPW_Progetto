@@ -81,4 +81,20 @@ public class Activity {
 		return price;
 	}
 	
+	public int calculateRelevanceScore(Activity target, ActivityType referenceType, String referenceProvider) {
+        int score = 0;
+        
+        boolean sameProvider = target.getProviderName().equals(referenceProvider);
+        boolean sameType = target.getActivityType() == referenceType;
+
+        if (sameProvider) {
+            score += 1; // Aumenta priorità per lo stesso provider
+        }
+        if (sameType) {
+            score += 1; // Aumenta priorità per lo stesso tipo
+        }
+        
+        return score;
+    }
+	
 }
