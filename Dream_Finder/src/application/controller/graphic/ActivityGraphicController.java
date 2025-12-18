@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import application.controller.application.ActivityApplicationController;
 import application.model.bean.ActivityDTO;
+import application.model.entity.Activity;
 import application.view.WindowsNavigatorUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -183,6 +184,13 @@ public class ActivityGraphicController implements Initializable{
 		
 				List<ActivityDTO> relatedInfo= activityController.fetchRelatedInfo(activityInfo.getActivityName(), 
 						activityInfo.getActivityType(), activityInfo.getProviderName());
+				
+				int i=0;
+				for (ActivityDTO activityDTO: relatedInfo) {
+					i++;
+					System.out.println(i+")");
+					System.out.println(activityDTO.getActivityName());
+				}
 	}
     
 	@FXML

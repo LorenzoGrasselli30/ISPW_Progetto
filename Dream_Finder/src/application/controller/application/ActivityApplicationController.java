@@ -41,17 +41,18 @@ public class ActivityApplicationController {
 	public List<ActivityDTO> fetchRelatedInfo(String activityName, ActivityType activityType, String providerName) {
 		
 		List<Activity> newActivities= activityDAO.findRelatedActivities(activityName, activityType, providerName);
-		int i=0;
-		for (Activity activity: newActivities) {
-			i++;
-			System.out.println(i+")");
-			System.out.println(activity.getActivityName());
-			System.out.println(activity.getActivityType());
-		}
 		
 		List<ActivityDTO> relatedActivity= new ArrayList();
-		for (ActivityDTO activity: relatedActivity) {
+		for (Activity activity: newActivities) {
+			ActivityDTO newActivity= new ActivityDTO();
+			newActivity.setActivityName(activity.getActivityName());
+			newActivity.setDescription(activity.getDescription());
+			newActivity.setnRating(activity.getnRating());
+			newActivity.setRate(activity.getRate());
+			newActivity.setPrice(activity.getPrice());
+			newActivity.setProviderName(activity.getProviderName());
 			
+			relatedActivity.add(newActivity);
 		}
 		
 		return relatedActivity;
