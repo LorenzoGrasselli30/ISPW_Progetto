@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -29,6 +30,7 @@ public class ActivityGraphicController implements Initializable{
 	private ActivityApplicationController activityController;
 	private ActivityDTO clickedActivity;
 	
+	//Variabili per le immagini
 	@FXML
 	private ImageView mainActivityImg;
 	
@@ -43,6 +45,37 @@ public class ActivityGraphicController implements Initializable{
     
     @FXML
     private VBox secondaryImagesContainer;
+    
+    //Variabili per i campi di testo
+    @FXML
+    private Label titleLabel;
+    
+    @FXML
+    private Label descriptionLabel;
+    
+    @FXML
+    private Label ratingLabel;
+    
+    @FXML
+    private Label nReviewsLabel;
+    
+    @FXML
+    private Label providerLabel;
+    
+    @FXML
+    private Label priceLabel;
+    
+    @FXML
+    private Label durationLabel;
+    
+    @FXML
+    private VBox cancellationSection;
+    
+    @FXML
+    private VBox paylaterSection;
+    
+    @FXML
+    private HBox skiplineSection;
     
     public ActivityGraphicController() {
 		activityController = new ActivityApplicationController();
@@ -103,18 +136,43 @@ public class ActivityGraphicController implements Initializable{
 		
 		ActivityDTO activityInfo= activityController.fetchActivityInfo(activityName, providerName);
 		
-		activityInfo.getActivityName();
-		activityInfo.getActivityType();
-		activityInfo.getDescription();
-		activityInfo.getDuration();
-		activityInfo.getTimeInMinutes();
-		activityInfo.getnRating();
-		activityInfo.getRate();
-		activityInfo.getPrice();
-		activityInfo.getSkipLine();
-		activityInfo.getFreeCancellation();
-		activityInfo.getPayLater();
-		activityInfo.getProviderName();
+		// Popola la UI con i dati recuperati
+				if (titleLabel != null) {
+					titleLabel.setText(activityInfo.getActivityName());
+				}
+				
+				if (descriptionLabel != null) {
+					descriptionLabel.setText(activityInfo.getDescription());
+				}
+				
+				if (ratingLabel != null) {
+					ratingLabel.setText("Punteggio: " + activityInfo.getRate() + "/5");
+				}
+				
+				if (nReviewsLabel != null) {
+					nReviewsLabel.setText("(" + activityInfo.getnRating() + " recensioni)");
+				}
+				
+				if (providerLabel != null) {
+					providerLabel.setText("Fornitore dell'attività: " + activityInfo.getProviderName());
+				}
+				
+				if (priceLabel != null) {
+					priceLabel.setText(String.format("%.2f€", activityInfo.getPrice()));
+				}
+				
+				if (durationLabel != null) {
+					String unit = Boolean.TRUE.equals(activityInfo.getTimeInMinutes()) ? "minuti" : "ore";
+					durationLabel.setText("Durata dell'attività: " + activityInfo.getDuration() + " " + unit);
+				}
+				if (durationLabel != null) {
+					String unit = Boolean.TRUE.equals(activityInfo.getTimeInMinutes()) ? "minuti" : "ore";
+					durationLabel.setText("Durata dell'attività: " + activityInfo.getDuration() + " " + unit);
+				}
+				if (durationLabel != null) {
+					String unit = Boolean.TRUE.equals(activityInfo.getTimeInMinutes()) ? "minuti" : "ore";
+					durationLabel.setText("Durata dell'attività: " + activityInfo.getDuration() + " " + unit);
+				}
 	}
     
 	@FXML
