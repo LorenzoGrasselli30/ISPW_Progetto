@@ -1,11 +1,13 @@
 package application.controller.application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import application.model.bean.ActivityDTO;
 import application.model.dao.ActivityDAO;
 import application.model.dao.FactoryDAO;
 import application.model.entity.Activity;
+import application.model.enums.ActivityType;
 
 public class ActivityApplicationController {
 	
@@ -34,5 +36,17 @@ public class ActivityApplicationController {
 		newActivityDTO.setProviderName(newActivityInfo.getProviderName());
 		
 		return newActivityDTO;
+	}
+
+	public List<ActivityDTO> fetchRelatedInfo(String activityName, ActivityType activityType, String providerName) {
+		
+		List<Activity> newActivities= activityDAO.findRelatedActivities(activityName, activityType, providerName);
+		
+		List<ActivityDTO> relatedActivity= new ArrayList();
+		for (ActivityDTO activity: relatedActivity) {
+			
+		}
+		
+		return relatedActivity;
 	}
 }

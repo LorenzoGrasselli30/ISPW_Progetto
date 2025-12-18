@@ -11,6 +11,7 @@ import application.model.dao.ActivityDAO;
 import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
 import application.model.entity.Provider;
+import application.model.enums.ActivityType;
 
 public class ActivityDAODemo implements ActivityDAO {
 	
@@ -59,5 +60,11 @@ public class ActivityDAODemo implements ActivityDAO {
 				.findFirst()
 				.orElse(null); // Caos attività non trovata
 		}
+
+	@Override
+	public List<Activity> findRelatedActivities(String activityName, ActivityType activityType, String providerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

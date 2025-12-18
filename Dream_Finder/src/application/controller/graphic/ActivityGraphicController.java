@@ -2,6 +2,7 @@ package application.controller.graphic;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.controller.application.ActivityApplicationController;
@@ -165,14 +166,23 @@ public class ActivityGraphicController implements Initializable{
 					String unit = Boolean.TRUE.equals(activityInfo.getTimeInMinutes()) ? "minuti" : "ore";
 					durationLabel.setText("Durata dell'attività: " + activityInfo.getDuration() + " " + unit);
 				}
-				if (durationLabel != null) {
-					String unit = Boolean.TRUE.equals(activityInfo.getTimeInMinutes()) ? "minuti" : "ore";
-					durationLabel.setText("Durata dell'attività: " + activityInfo.getDuration() + " " + unit);
+				if (cancellationSection != null) {
+					cancellationSection.setVisible(activityInfo.getFreeCancellation());
+					cancellationSection.setManaged(activityInfo.getFreeCancellation());
 				}
-				if (durationLabel != null) {
-					String unit = Boolean.TRUE.equals(activityInfo.getTimeInMinutes()) ? "minuti" : "ore";
-					durationLabel.setText("Durata dell'attività: " + activityInfo.getDuration() + " " + unit);
+
+				if (paylaterSection != null) {
+					paylaterSection.setVisible(activityInfo.getPayLater());
+					paylaterSection.setManaged(activityInfo.getPayLater());
 				}
+
+				if (skiplineSection != null) {
+					skiplineSection.setVisible(activityInfo.getSkipLine());
+					skiplineSection.setManaged(activityInfo.getSkipLine());
+				}	
+		
+				List<ActivityDTO> relatedInfo= activityController.fetchRelatedInfo(activityInfo.getActivityName(), 
+						activityInfo.getActivityType(), activityInfo.getProviderName());
 	}
     
 	@FXML
