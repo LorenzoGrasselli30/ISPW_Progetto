@@ -656,7 +656,7 @@
                            <content>
                               <AnchorPane>
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+                                    <HBox fx:id="relatedContainer" alignment="CENTER_LEFT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <VBox alignment="CENTER" minWidth="250.0" prefWidth="250.0" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 0.2;">
                                              <children>

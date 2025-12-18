@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import application.controller.application.ActivityApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.entity.Activity;
+import application.view.ActivityLayoutUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -78,6 +79,9 @@ public class ActivityGraphicController implements Initializable{
     
     @FXML
     private HBox skiplineSection;
+    
+    @FXML
+    private HBox relatedContainer;
     
     public ActivityGraphicController() {
 		activityController = new ActivityApplicationController();
@@ -185,14 +189,50 @@ public class ActivityGraphicController implements Initializable{
 				List<ActivityDTO> relatedInfo= activityController.fetchRelatedInfo(activityInfo.getActivityName(), 
 						activityInfo.getActivityType(), activityInfo.getProviderName());
 				
-				int i=0;
-				for (ActivityDTO activityDTO: relatedInfo) {
-					i++;
-					System.out.println(i+")");
-					System.out.println(activityDTO.getActivityName());
-				}
+				populateRelatedSection(relatedInfo);
 	}
     
+    private void populateRelatedSection(List<ActivityDTO> activities) {
+    	if (relatedContainer == null) {
+			System.err.println("Errore: forYouContainer non è stato inizializzato");
+			return;
+		}
+		
+		// Pulisce il container prima di popolarlo
+    	relatedContainer.getChildren().clear();
+		
+		// Crea una card per ogni attività
+		for (ActivityDTO activity : activities) {
+			VBox activityCard = ActivityLayoutUtils.createActivityCard(
+					activity, 
+					event -> {
+						handleActivityClick(event, activity);
+					}, 
+					event -> {
+						handleHeartClick(event);
+					}
+			);
+			relatedContainer.getChildren().add(activityCard);
+		}
+    }
+    
+    private void handleActivityClick(MouseEvent event, ActivityDTO activity) {
+		try {
+			WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attività", activity);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+    
+	private void handleHeartClick(MouseEvent event) {
+		try {
+			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	@FXML
 	public void goToHomepage(MouseEvent event) throws IOException {
 		String fxmlFile = "homeView.fxml";
