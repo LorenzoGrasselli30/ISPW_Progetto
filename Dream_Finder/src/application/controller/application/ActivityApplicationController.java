@@ -19,11 +19,19 @@ public class ActivityApplicationController {
 		
 		Activity newActivityInfo= activityDAO.findByProvider(activityName, providerName);
 		
-		System.out.println(newActivityInfo.getActivityName());
-		System.out.println(newActivityInfo.getProviderName());
-		System.out.println(newActivityInfo.getDuration());
-		
 		ActivityDTO newActivityDTO= new ActivityDTO();
+		newActivityDTO.setActivityName(newActivityInfo.getActivityName());
+		newActivityDTO.setActivityType(newActivityInfo.getActivityType());
+		newActivityDTO.setDescription(newActivityInfo.getDescription());
+		newActivityDTO.setDuration(newActivityInfo.getDuration());
+		newActivityDTO.setTimeInMinutes(newActivityInfo.getTimeInMinutes());
+		newActivityDTO.setnRating(newActivityInfo.getnRating());
+		newActivityDTO.setRate(newActivityInfo.getRate());
+		newActivityDTO.setPrice(newActivityInfo.getPrice());
+		newActivityDTO.setSkipLine(newActivityInfo.getSkipLine());
+		newActivityDTO.setFreeCancellation(newActivityInfo.getFreeCancellation());
+		newActivityDTO.setPayLater(newActivityInfo.getPayLater());
+		newActivityDTO.setProviderName(newActivityInfo.getProviderName());
 		
 		return newActivityDTO;
 	}

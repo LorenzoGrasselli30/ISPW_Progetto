@@ -100,7 +100,21 @@ public class ActivityGraphicController implements Initializable{
     public void selectActivityInfo(ActivityDTO activity) {
 		String activityName= activity.getActivityName();
 		String providerName= activity.getProviderName();
+		
 		ActivityDTO activityInfo= activityController.fetchActivityInfo(activityName, providerName);
+		
+		activityInfo.getActivityName();
+		activityInfo.getActivityType();
+		activityInfo.getDescription();
+		activityInfo.getDuration();
+		activityInfo.getTimeInMinutes();
+		activityInfo.getnRating();
+		activityInfo.getRate();
+		activityInfo.getPrice();
+		activityInfo.getSkipLine();
+		activityInfo.getFreeCancellation();
+		activityInfo.getPayLater();
+		activityInfo.getProviderName();
 	}
     
 	@FXML
