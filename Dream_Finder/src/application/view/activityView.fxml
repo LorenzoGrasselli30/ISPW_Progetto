@@ -224,7 +224,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button mnemonicParsing="false" text="+">
+                                    <Button fx:id="plusFullTicket" mnemonicParsing="false" text="+">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -232,12 +232,12 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Label text="0">
+                                    <Label fx:id="fullTicketLabel" text="0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button mnemonicParsing="false" text="-">
+                                    <Button fx:id="minusFullTicket" mnemonicParsing="false" text="-">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -254,7 +254,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button mnemonicParsing="false" text="+">
+                                    <Button fx:id="plusReducedTicket" mnemonicParsing="false" text="+">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -262,12 +262,12 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Label text="0">
+                                    <Label fx:id="reducedTicketLabel" text="0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button mnemonicParsing="false" text="-">
+                                    <Button fx:id="minusReducedTicket" mnemonicParsing="false" text="-">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -286,10 +286,13 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <MenuButton mnemonicParsing="false" text="Seleziona">
+                              <MenuButton fx:id="guideButton" mnemonicParsing="false" text="Seleziona">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                                  <MenuItem mnemonicParsing="false" text="Inglese" />
+                                  <MenuItem mnemonicParsing="false" text="Italiano" />
+                                    <MenuItem mnemonicParsing="false" text="Francese" />
+                                    <MenuItem mnemonicParsing="false" text="Tedesco" />
+                                    <MenuItem mnemonicParsing="false" text="Spagnolo" />
                                 </items>
                                  <font>
                                     <Font size="14.0" />
@@ -302,7 +305,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Prenota anche il servizio navetta">
+                              <CheckBox fx:id="shuttleServiceButton" mnemonicParsing="false" text="Prenota anche il servizio navetta">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

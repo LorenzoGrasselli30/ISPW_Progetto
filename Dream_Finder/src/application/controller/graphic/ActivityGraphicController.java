@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import application.controller.application.ActivityApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.entity.Activity;
+import application.observer.Observer;
+import application.observer.PriceCalculator;
 import application.view.ActivityLayoutUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.beans.value.ChangeListener;
@@ -28,10 +30,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ActivityGraphicController implements Initializable{
+public class ActivityGraphicController implements Observer{
     
 	private ActivityApplicationController activityController;
 	private ActivityDTO clickedActivity;
+	
+	//Pattern observer
+	private PriceCalculator subject;
 	
 	//Variabili per le immagini
 	@FXML
@@ -87,8 +92,7 @@ public class ActivityGraphicController implements Initializable{
 		activityController = new ActivityApplicationController();
 	}
 	
-    @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize() {
     	System.out.println("Initialize chiamato");
     	
     	//Gestione delle immagini
@@ -232,7 +236,13 @@ public class ActivityGraphicController implements Initializable{
 		}
 
 	}
-
+	
+	@Override
+	public void update() {
+		Double observerState = subject.getPrice();
+	    priceLabel.setText(String.format("%.2f€", observerState));
+	}
+	
 	@FXML
 	public void goToHomepage(MouseEvent event) throws IOException {
 		String fxmlFile = "homeView.fxml";
