@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,10 +34,9 @@ import javafx.stage.Stage;
 public class ActivityGraphicController implements Observer{
     
 	private ActivityApplicationController activityController;
-	private ActivityDTO clickedActivity;
 	
 	//Pattern observer
-	private PriceCalculator subject;
+	private PriceCalculator subject= new PriceCalculator();
 	
 	//Variabili per le immagini
 	@FXML
@@ -87,6 +87,24 @@ public class ActivityGraphicController implements Observer{
     
     @FXML
     private HBox relatedContainer;
+    
+    // Bottoni e Label per il form
+    @FXML private Button plusFullTicket;
+    
+    @FXML private Button minusFullTicket;
+    
+    @FXML private Label fullTicketLabel;
+    
+    @FXML private Button plusReducedTicket;
+    
+    @FXML private Button minusReducedTicket;
+    
+    @FXML private Label reducedTicketLabel;
+    
+    // Stato interno per il calcolo
+ 	private int fullTicketCount = 1; //Almeno un adulto deve essere presente
+ 	private int reducedTicketCount = 0;
+ 	private Double currentBasePrice = 0.0;
     
     public ActivityGraphicController() {
 		activityController = new ActivityApplicationController();
@@ -146,6 +164,9 @@ public class ActivityGraphicController implements Observer{
 		
 		ActivityDTO activityInfo= activityController.fetchActivityInfo(activityName, providerName);
 		
+		//Aggiorna il prezzo per l'observer 
+		currentBasePrice= activityInfo.getPrice();
+		
 		// Popola la UI con i dati recuperati
 				if (titleLabel != null) {
 					titleLabel.setText(activityInfo.getActivityName());
@@ -194,11 +215,20 @@ public class ActivityGraphicController implements Observer{
 						activityInfo.getActivityType(), activityInfo.getProviderName());
 				
 				populateRelatedSection(relatedInfo);
+				
+				subject.registerObserver(this);
+	}
+    
+    //Pattern observer
+	private void recalculateTotal() {
+		// Invoca il calcolo sul Subject
+		System.out.println("currentBasePrice: "+currentBasePrice);
+		subject.calculatePrice(currentBasePrice, fullTicketCount, reducedTicketCount, false, false);
 	}
     
     private void populateRelatedSection(List<ActivityDTO> activities) {
     	if (relatedContainer == null) {
-			System.err.println("Errore: forYouContainer non è stato inizializzato");
+			//System.err.println("Errore: forYouContainer non è stato inizializzato");
 			return;
 		}
 		
@@ -240,7 +270,40 @@ public class ActivityGraphicController implements Observer{
 	@Override
 	public void update() {
 		Double observerState = subject.getPrice();
-	    priceLabel.setText(String.format("%.2f€", observerState));
+		if (priceLabel != null) {
+	    	priceLabel.setText(String.format("%.2f€", observerState));
+	    }
+	}
+	
+    @FXML
+	private void useActivityForm(MouseEvent event) throws IOException {
+    	 
+    	    switch (((Node) event.getSource()).getId()) {
+    	        case "plusFullTicket":
+    	        	fullTicketCount++;
+    				fullTicketLabel.setText(String.valueOf(fullTicketCount));
+    				recalculateTotal();
+    	        	break;
+    	        case "minusFullTicket":
+    	        	if(fullTicketCount > 1) {
+    					fullTicketCount--;
+    					fullTicketLabel.setText(String.valueOf(fullTicketCount));
+    					recalculateTotal();
+    				}
+    	            break;
+    	        case "plusReducedTicket":
+    	        	reducedTicketCount++;
+    				reducedTicketLabel.setText(String.valueOf(reducedTicketCount));
+    				recalculateTotal();
+    	        	break;
+    	        case "minusReducedTicket":
+    	        	if(reducedTicketCount > 0) {
+    					reducedTicketCount--;
+    					reducedTicketLabel.setText(String.valueOf(reducedTicketCount));
+    					recalculateTotal();
+    				}
+    	        	break;
+    	    }
 	}
 	
 	@FXML

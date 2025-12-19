@@ -2,7 +2,7 @@ package application.observer;
 
 public class PriceCalculator extends Subject {
 	
-	private Double price;
+	 private Double price;
 
 	 public Double getPrice() {
 		 return price;

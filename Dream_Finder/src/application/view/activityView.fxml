@@ -224,7 +224,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="plusFullTicket" mnemonicParsing="false" text="+">
+                                    <Button fx:id="plusFullTicket" mnemonicParsing="false" onMouseClicked="#useActivityForm" text="+">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -232,12 +232,12 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Label fx:id="fullTicketLabel" text="0">
+                                    <Label fx:id="fullTicketLabel" text="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="minusFullTicket" mnemonicParsing="false" text="-">
+                                    <Button fx:id="minusFullTicket" mnemonicParsing="false" onMouseClicked="#useActivityForm" text="-">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -254,7 +254,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="plusReducedTicket" mnemonicParsing="false" text="+">
+                                    <Button fx:id="plusReducedTicket" mnemonicParsing="false" onMouseClicked="#useActivityForm" text="+">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -267,7 +267,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="minusReducedTicket" mnemonicParsing="false" text="-">
+                                    <Button fx:id="minusReducedTicket" mnemonicParsing="false" onMouseClicked="#useActivityForm" text="-">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
