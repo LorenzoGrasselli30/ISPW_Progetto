@@ -286,8 +286,9 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <MenuButton fx:id="guideButton" mnemonicParsing="false" text="Seleziona">
+                              <MenuButton fx:id="guideButton" mnemonicParsing="false" onMouseClicked="#useActivityForm" text="Seleziona">
                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Non necessaria" />
                                   <MenuItem mnemonicParsing="false" text="Inglese" />
                                   <MenuItem mnemonicParsing="false" text="Italiano" />
                                     <MenuItem mnemonicParsing="false" text="Francese" />
@@ -305,7 +306,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <CheckBox fx:id="shuttleServiceButton" mnemonicParsing="false" text="Prenota anche il servizio navetta">
+                              <CheckBox fx:id="shuttleServiceButton" mnemonicParsing="false" onMouseClicked="#useActivityForm" text="Prenota anche il servizio navetta">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -326,12 +327,12 @@
                               <Region HBox.hgrow="ALWAYS" />
                               <HBox alignment="CENTER" spacing="5.0">
                                  <children>
-                                    <Label fx:id="priceLabel" text="99">
+                                    <Label fx:id="totalPriceLabel" text="99">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label text="a persona">
+                                    <Label fx:id="ppPriceLabel" text="(99 a persona)">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

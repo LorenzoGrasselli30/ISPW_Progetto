@@ -97,4 +97,25 @@ public class Activity {
         return score;
     }
 	
+	public Double calculateAddedServices(Activity activity, int nPeople, Boolean shuttleService, Boolean guideTour) {
+		//Il servizio navetta ha tariffa fissa e viene moltiplicata per il numero di persone 
+		//La guida viene calcolata in base alla durata dell'attività 10$/60 min
+		Double priceResult= 0.0;
+		
+		if (guideTour) {
+			if (activity.getTimeInMinutes()) {
+				priceResult+= (10.0*activity.getDuration());
+			} else {
+				Double timeInMinute= (activity.getDuration()*60.0);
+				priceResult+= (10.0*timeInMinute);
+			}
+		}
+		
+		if (shuttleService) {
+			priceResult+= (5.0*nPeople);
+		}
+		
+		return priceResult;
+	}
+	
 }

@@ -25,9 +25,9 @@ public class ProviderDAODemo implements ProviderDAO{
 		Provider provider1= new Provider("luigi.verdi@mail.com", "LuigiVerdi1!", "LuigiSRL",ProviderType.COMPANY, 0, "Italia", "Luigi", "Verdi", 4.6);
 		
 		//Associazione delle attività al provider1
-		provider1.addActivity("Roma: tour guidato del Colosseo", "Visita il Colosseo, il più grande anfiteatro del mondo romano", 40.0,
+		provider1.addActivity("Roma: tour guidato del Colosseo", "Visita il Colosseo, il più grande anfiteatro del mondo romano", 30.0,
 				1, false, ActivityType.CULTURE, true, false, true, 340, 4.8);
-		provider1.addActivity("Roma: biglietto d'ingresso per Castel Sant'Angelo", "Risparmia tempo durante il tuo viaggio a Roma con questo biglietto d'ingresso a Castel Sant'Angelo", 50.0,
+		provider1.addActivity("Roma: biglietto d'ingresso per Castel Sant'Angelo", "Risparmia tempo durante il tuo viaggio a Roma con questo biglietto d'ingresso a Castel Sant'Angelo", 40.0,
 				2, false, ActivityType.CULTURE, true, true, true, 200, 4.5);
 		provider1.addActivity("Roma: tour privato del Foro Romano e del Palatino", "Esplora il cuore dell'antica Roma con un tour del Foro Romano e del Palatino con una guida autorizzata", 27.99,
 				180, true, ActivityType.CULTURE, true, false, false, 300, 4.5);

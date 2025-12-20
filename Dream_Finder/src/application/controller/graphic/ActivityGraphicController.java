@@ -23,6 +23,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -71,7 +73,10 @@ public class ActivityGraphicController implements Observer{
     private Label providerLabel;
     
     @FXML
-    private Label priceLabel;
+    private Label totalPriceLabel;
+    
+    @FXML
+    private Label ppPriceLabel;
     
     @FXML
     private Label durationLabel;
@@ -89,24 +94,34 @@ public class ActivityGraphicController implements Observer{
     private HBox relatedContainer;
     
     //Bottoni e Label per il form
-    @FXML private Button plusFullTicket;
+    @FXML 
+    private Button plusFullTicket;
     
-    @FXML private Button minusFullTicket;
+    @FXML 
+    private Button minusFullTicket;
     
-    @FXML private Label fullTicketLabel;
+    @FXML 
+    private Label fullTicketLabel;
     
-    @FXML private Button plusReducedTicket;
+    @FXML 
+    private Button plusReducedTicket;
     
-    @FXML private Button minusReducedTicket;
+    @FXML 
+    private Button minusReducedTicket;
     
-    @FXML private Label reducedTicketLabel;
+    @FXML 
+    private Label reducedTicketLabel;
+    
+    @FXML 
+    private MenuButton guideButton;
     
     //Stato interno per il calcolo del prezzo
  	private int fullTicketCount = 1; //Almeno un adulto deve essere presente
  	private int reducedTicketCount = 0;
- 	private Double currentBasePrice = 0.0;
+ 	private ActivityDTO currentActivity;
     private Boolean shuttleService = false;
     private Boolean guideTour = false;
+    private String selectedLanguage;
     
     public ActivityGraphicController() {
 		activityController = new ActivityApplicationController();
@@ -161,8 +176,8 @@ public class ActivityGraphicController implements Observer{
 		
 		ActivityDTO activityInfo= activityController.fetchActivityInfo(activityName, providerName);
 		
-		//Aggiorna il prezzo per l'observer 
-		currentBasePrice= activityInfo.getPrice();
+		//Aggiorna i dati per l'observer 
+		currentActivity= activityInfo;
 		
 		// Popola la UI con i dati recuperati
 				if (titleLabel != null) {
@@ -185,8 +200,12 @@ public class ActivityGraphicController implements Observer{
 					providerLabel.setText("Fornitore dell'attività: " + activityInfo.getProviderName());
 				}
 				
-				if (priceLabel != null) {
-					priceLabel.setText(String.format("%.2f€", activityInfo.getPrice()));
+				if (totalPriceLabel != null) {
+					totalPriceLabel.setText(String.format("%.2f€", activityInfo.getPrice()));
+				}
+				
+				if (ppPriceLabel != null) {
+					ppPriceLabel.setText(String.format("(%.2f€ a persona)", activityInfo.getPrice()));
 				}
 				
 				if (durationLabel != null) {
@@ -219,16 +238,17 @@ public class ActivityGraphicController implements Observer{
     
     //Pattern observer
 	private void recalculateTotal() {
-		System.out.println("currentBasePrice: "+currentBasePrice);
-		subject.calculatePrice(currentBasePrice, fullTicketCount, reducedTicketCount, shuttleService, guideTour);
+		System.out.println("currentBasePrice: "+currentActivity.getPrice());
+		subject.calculatePrice(currentActivity, fullTicketCount, reducedTicketCount, guideTour, shuttleService);
 	}
     
 	//Pattern observer
 	@Override
 	public void update() {
 		Double observerState = subject.getPrice();
-		if (priceLabel != null) {
-		    priceLabel.setText(String.format("%.2f€", observerState));
+		if (totalPriceLabel != null && ppPriceLabel != null) {
+			totalPriceLabel.setText(String.format("%.2f€", observerState));
+			ppPriceLabel.setText(String.format("(%.2f€ a persona)", observerState/(fullTicketCount+reducedTicketCount)));
 		}
 	}
 		
@@ -299,6 +319,24 @@ public class ActivityGraphicController implements Observer{
     					reducedTicketCount--;
     					reducedTicketLabel.setText(String.valueOf(reducedTicketCount));
     					recalculateTotal();
+    				}
+    	        	break;
+    	        case "shuttleServiceButton":
+    	        	shuttleService = !shuttleService;
+    				recalculateTotal();
+    	        	break;
+    	        case "guideButton":
+    	        	for (MenuItem item : guideButton.getItems()) {
+    					item.setOnAction(e -> {
+    						selectedLanguage = item.getText();
+    						if (!"Non necessaria".equals(selectedLanguage)) {
+    							guideTour= true;
+    						} else {
+    							guideTour= false;
+    						}
+    						guideButton.setText(selectedLanguage); // Aggiorna il testo del bottone
+    						recalculateTotal();
+    					});
     				}
     	        	break;
     	    }
