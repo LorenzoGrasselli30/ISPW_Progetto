@@ -60,7 +60,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </PasswordField>
-                              <ImageView fitHeight="30.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="showPasswordButton" fitHeight="30.0" fitWidth="89.0" onMouseClicked="#useLogin" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Images/Eye.png" />
                                  </image>
@@ -80,7 +80,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#doLogin" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Accedi" textFill="WHITE">
+                  <Button fx:id="loginButton" mnemonicParsing="false" onMouseClicked="#doLogin" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Accedi" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -95,7 +95,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" spacing="2.0">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#openSignUp" style="-fx-background-color: #6FA655;" text="Iscriviti" textFill="WHITE">
+                  <Button fx:id="signUpButton" mnemonicParsing="false" onMouseClicked="#useLogin" style="-fx-background-color: #6FA655;" text="Iscriviti" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

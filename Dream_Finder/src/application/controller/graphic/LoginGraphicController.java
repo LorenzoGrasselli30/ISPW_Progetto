@@ -8,9 +8,11 @@ import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class LoginGraphicController {
@@ -22,16 +24,22 @@ public class LoginGraphicController {
 	private PasswordField passwordField;
 	
 	@FXML
-    private void openSignUp(MouseEvent event) throws IOException{
-		 
-		 String fxmlFile = "signUpView.fxml";
-		 String title = "Sign Up";
-		 
-		 WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
+	private ImageView showPasswordButton;
+	
+	@FXML
+    private void useLogin(MouseEvent event) throws IOException{
+   	 
+   	    switch (((Node) event.getSource()).getId()) {
+   	        case "showPasswordButton":
+   	            break;
+   	        case "signUpButton":
+   	        	WindowsNavigatorUtils.openWindow(event, "signUpView.fxml", "Sign Up");
+   	        	break;
+   	    }
     }
 	 
 	@FXML
-	private void doLogin(ActionEvent event) {
+	private void doLogin(MouseEvent event) {
 		// Acquisisci i dati dalla View
 		String email = emailField.getText();
 		String password = passwordField.getText();
