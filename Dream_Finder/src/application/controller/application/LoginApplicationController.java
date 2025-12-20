@@ -43,6 +43,5 @@ public class LoginApplicationController {
 		String result = userSession.getCurrentUser().getUserRole().getStringName();
 		return result;
 	}
-	
 
 }

@@ -19,6 +19,5 @@ public class PriceCalculator extends Subject {
 		 Double estimatedPrice = (nFullTicket * defaultPrice) + (nReducedTicket * (defaultPrice / 3.0));
 		 
 		 setPrice(estimatedPrice);
-	 }
-	 
+	 } 
 }

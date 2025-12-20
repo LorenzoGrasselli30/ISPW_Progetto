@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -56,7 +57,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <HBox prefWidth="200.0">
+                              <HBox prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <PasswordField fx:id="passwordField" prefWidth="178.0" promptText="Inserisci qui la password">
                                        <font>
@@ -67,6 +68,9 @@
                                        <image>
                                           <Image url="@../../Images/Eye.png" />
                                        </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </ImageView>
                                  </children>
                               </HBox>
@@ -75,7 +79,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <HBox prefWidth="200.0">
+                              <HBox prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <PasswordField fx:id="confirmPasswordField" prefWidth="178.0" promptText="Conferma qui la password">
                                        <font>
@@ -86,6 +90,9 @@
                                        <image>
                                           <Image url="@../../Images/Eye.png" />
                                        </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </ImageView>
                                  </children>
                               </HBox>
@@ -116,7 +123,10 @@
                                  </font>
                               </Label>
                               <HBox prefWidth="200.0" />
-                              <DatePicker fx:id="dateField" prefHeight="30.0" prefWidth="200.0" promptText="Seleziona" />
+                              <DatePicker fx:id="dateField" prefHeight="30.0" prefWidth="200.0" promptText="Seleziona">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></DatePicker>
                            </children>
                         </VBox>
                      </children>
@@ -130,11 +140,17 @@
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </CheckBox>
-            <Button fx:id="signUpButton" mnemonicParsing="false" onMouseClicked="#doSignUp" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Registrati">
+            <Button fx:id="signUpButton" mnemonicParsing="false" onMouseClicked="#doSignUp" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Registrati" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
          <padding>

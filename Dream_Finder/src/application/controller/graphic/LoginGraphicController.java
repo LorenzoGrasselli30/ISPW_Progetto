@@ -55,6 +55,7 @@ public class LoginGraphicController {
 	        	WindowsNavigatorUtils.loginToWindow(event, userRole);
 	        }
 		}
+		
 		catch (ValidationException ve) {
 	           // Gestione specifica per errori di validazione
 		    	AlertUtils.showAlert(Alert.AlertType.WARNING, "Errore durante il login:", ve.getMessage());

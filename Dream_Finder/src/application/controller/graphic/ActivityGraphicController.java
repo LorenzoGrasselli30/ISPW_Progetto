@@ -216,6 +216,7 @@ public class ActivityGraphicController implements Observer{
 				
 				populateRelatedSection(relatedInfo);
 				
+				//Registra l'ActivityGraphicController come Observer
 				subject.registerObserver(this);
 	}
     

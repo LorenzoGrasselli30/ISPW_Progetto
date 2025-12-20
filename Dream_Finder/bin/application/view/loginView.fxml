@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -52,7 +53,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <HBox prefWidth="200.0">
+                        <HBox prefWidth="200.0" spacing="5.0">
                            <children>
                               <PasswordField fx:id="passwordField" prefWidth="178.0" promptText="Inserisci qui la password">
                                  <font>
@@ -63,6 +64,9 @@
                                  <image>
                                     <Image url="@../../Images/Eye.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                            </children>
                         </HBox>
@@ -70,13 +74,19 @@
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </children>
                   </VBox>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#doLogin" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Accedi">
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#doLogin" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Accedi" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
                <padding>
@@ -85,10 +95,13 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" spacing="2.0">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#openSignUp" style="-fx-background-color: #6FA655;" text="Iscriviti">
+                  <Button mnemonicParsing="false" onMouseClicked="#openSignUp" style="-fx-background-color: #6FA655;" text="Iscriviti" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Label text="per scoprire il meglio di Dream finder">
                      <font>
