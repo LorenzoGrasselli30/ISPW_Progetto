@@ -55,7 +55,7 @@
                         </Label>
                         <HBox prefWidth="200.0" spacing="5.0">
                            <children>
-                              <PasswordField fx:id="passwordField" prefWidth="178.0" promptText="Inserisci qui la password">
+                              <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="178.0" promptText="Inserisci qui la password">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
