@@ -88,7 +88,7 @@ public class ActivityGraphicController implements Observer{
     @FXML
     private HBox relatedContainer;
     
-    // Bottoni e Label per il form
+    //Bottoni e Label per il form
     @FXML private Button plusFullTicket;
     
     @FXML private Button minusFullTicket;
@@ -101,10 +101,12 @@ public class ActivityGraphicController implements Observer{
     
     @FXML private Label reducedTicketLabel;
     
-    // Stato interno per il calcolo
+    //Stato interno per il calcolo del prezzo
  	private int fullTicketCount = 1; //Almeno un adulto deve essere presente
  	private int reducedTicketCount = 0;
  	private Double currentBasePrice = 0.0;
+    private Boolean shuttleService = false;
+    private Boolean guideTour = false;
     
     public ActivityGraphicController() {
 		activityController = new ActivityApplicationController();
@@ -115,8 +117,6 @@ public class ActivityGraphicController implements Observer{
     	
     	//Gestione delle immagini
     	if (imageGalleryContainer != null && mainActivityImg != null) {
-            // L'immagine principale prende il 50% della larghezza dell'HBox
-            // e tutta l'altezza disponibile
 			mainActivityImg.fitWidthProperty().bind(
                 imageGalleryContainer.widthProperty().multiply(0.5)
             );
@@ -127,7 +127,6 @@ public class ActivityGraphicController implements Observer{
 
 			imageGalleryContainer.sceneProperty().addListener((obs, oldScene, newScene) -> {
 	            if (newScene != null) {
-	                // Binda l'altezza dell'HBox al 40% dell'altezza della finestra
 	                imageGalleryContainer.prefHeightProperty().bind(
 	                    newScene.heightProperty().multiply(0.4)
 	                );
@@ -136,8 +135,6 @@ public class ActivityGraphicController implements Observer{
         }
         
         if (imageGalleryContainer != null && secondaryActivityImg1 != null) {
-            // Le immagini secondarie prendono il 50% della larghezza
-            // e il 50% dell'altezza ciascuna
         	secondaryActivityImg1.fitWidthProperty().bind(
                 imageGalleryContainer.widthProperty().multiply(0.5)
             );
@@ -222,11 +219,19 @@ public class ActivityGraphicController implements Observer{
     
     //Pattern observer
 	private void recalculateTotal() {
-		// Invoca il calcolo sul Subject
 		System.out.println("currentBasePrice: "+currentBasePrice);
-		subject.calculatePrice(currentBasePrice, fullTicketCount, reducedTicketCount, false, false);
+		subject.calculatePrice(currentBasePrice, fullTicketCount, reducedTicketCount, shuttleService, guideTour);
 	}
     
+	//Pattern observer
+	@Override
+	public void update() {
+		Double observerState = subject.getPrice();
+		if (priceLabel != null) {
+		    priceLabel.setText(String.format("%.2f€", observerState));
+		}
+	}
+		
     private void populateRelatedSection(List<ActivityDTO> activities) {
     	if (relatedContainer == null) {
 			//System.err.println("Errore: forYouContainer non è stato inizializzato");
@@ -266,14 +271,6 @@ public class ActivityGraphicController implements Observer{
 			e.printStackTrace();
 		}
 
-	}
-	
-	@Override
-	public void update() {
-		Double observerState = subject.getPrice();
-		if (priceLabel != null) {
-	    	priceLabel.setText(String.format("%.2f€", observerState));
-	    }
 	}
 	
     @FXML
