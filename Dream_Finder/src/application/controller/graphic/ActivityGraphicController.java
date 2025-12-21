@@ -367,6 +367,22 @@ public class ActivityGraphicController implements Observer{
 	@FXML
 	public void submitActivityForm(MouseEvent event) throws IOException {
 		ReceiptDTO receipt= new ReceiptDTO();
+		
+		// Popolamento con i dati presenti nel controller
+		if (currentActivity != null) {
+			receipt.setProviderName(currentActivity.getProviderName());
+		}
+				
+		receipt.setnFullTicket(fullTicketCount);
+		receipt.setnReducedTicket(reducedTicketCount);
+		receipt.setTotalPrice(subject.getPrice()); // Prende il prezzo calcolato dal Subject
+				
+		receipt.setShuttlePrice(0.0);
+		receipt.setGuidePrice(0.0);
+				
+		receipt.setTravelerName("Guest"); 
+		receipt.setTravelerSurname("User");
+		
 		Boolean result= activityController.createQuotation(receipt);
 		if (UserSession.getInstance().getCurrentUser() == null) {
 			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
