@@ -1,7 +1,10 @@
 package application.controller.graphic;
 
 import java.io.IOException;
+import java.util.List;
 
+import application.model.bean.ActivityDTO;
+import application.observer.PriceCalculator;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -23,6 +26,15 @@ public class PaymentGraphicController {
 	
 	@FXML
 	private DatePicker dateField;
+	
+	@FXML
+    private void initialize() {
+		
+    }
+	
+	private void detailedPaymentInfo (ActivityDTO activity, int fullTicketCount, int reducedActivityCount) {
+		
+	}
 	
 	@FXML
 	private void doPayment(MouseEvent event) throws IOException{

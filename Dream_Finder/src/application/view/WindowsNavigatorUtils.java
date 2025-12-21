@@ -128,11 +128,12 @@ public class WindowsNavigatorUtils {
         
         String parentTitle= ((Node) lastParentEvent.getSource()).getId();
         System.out.println(parentTitle);
+        System.out.println(parentStage.getTitle());
         
         if ("traveler".equals(userRole)) { //Comportamento del login se l'utente è un traveler
         	
         	if ("Info Attivita'".equals(parentStage.getTitle()) && ("formButton".equals(parentTitle))) {
-        		WindowsNavigatorUtils.openWindow(event, "paymentView.fxml", "Schermata di pagamento");
+        		WindowsNavigatorUtils.changeParentWindow(event, "formView.fxml", "Dati dell'utente");
         	} else {
         		WindowsNavigatorUtils.closeWindow(event);
         	}

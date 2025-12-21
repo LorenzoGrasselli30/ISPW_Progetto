@@ -5,12 +5,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import application.configuration.UserSession;
 import application.controller.application.ActivityApplicationController;
 import application.model.bean.ActivityDTO;
+import application.model.bean.ReceiptDTO;
 import application.model.entity.Activity;
 import application.observer.Observer;
 import application.observer.PriceCalculator;
 import application.view.ActivityLayoutUtils;
+import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -353,14 +357,22 @@ public class ActivityGraphicController implements Observer{
 	public void goToLogin(MouseEvent event) throws IOException {
 		String fxmlFile = "loginView.fxml";
 		String title = "Login";
-		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
+		if (UserSession.getInstance().getCurrentUser() == null) {
+			WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
+		} else {
+			AlertUtils.showAlert(AlertType.INFORMATION, title, "L'utente e' gia' loggato");
+		}
     }
 	
 	@FXML
 	public void submitActivityForm(MouseEvent event) throws IOException {
-		String fxmlFile = "loginView.fxml";
-		String title = "Login";
-		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
+		ReceiptDTO receipt= new ReceiptDTO();
+		Boolean result= activityController.createQuotation(receipt);
+		if (UserSession.getInstance().getCurrentUser() == null) {
+			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
+		} else {
+			WindowsNavigatorUtils.openModalWindow(event, "paymentView.fxml", "Sezione del pagamento");
+		}
     }
 	
 }

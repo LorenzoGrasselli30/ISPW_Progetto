@@ -84,7 +84,7 @@ public class HomepageGraphicController {
 	
 	//Gestisce il click su una card attività
 	private void handleActivityClick(MouseEvent event, ActivityDTO activity) throws IOException {
-		WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attività", activity);
+		WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attivita'", activity);
 	}
 	
 	//Gestisce il click sull'icona del cuore 
@@ -103,7 +103,7 @@ public class HomepageGraphicController {
     	 final String homepagePath = "homeView.fxml";
     	 final String homepageTitle = "Homepage"; 
     	 final String activityPath = "activityView.fxml";
-    	 final String activityTitle= "Info Attività";
+    	 final String activityTitle= "Info Attivita'";
     	 
     	    switch (((Node) event.getSource()).getId()) {
     	        case "areaUserButton":

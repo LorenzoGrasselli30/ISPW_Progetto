@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.model.bean.ActivityDTO;
+import application.model.bean.ReceiptDTO;
 import application.model.dao.ActivityDAO;
 import application.model.dao.FactoryDAO;
+import application.model.dao.ReceiptDAO;
 import application.model.entity.Activity;
 import application.model.enums.ActivityType;
 
 public class ActivityApplicationController {
 	
 	private ActivityDAO activityDAO;
+	private ReceiptDAO receiptDAO;
 	
 	public ActivityApplicationController() {
 		this.activityDAO= FactoryDAO.getFactoryInstance().getActivityDAO();
+		this.receiptDAO= FactoryDAO.getFactoryInstance().getReceiptDAO();
 	}
 	
 	public ActivityDTO fetchActivityInfo(String activityName, String providerName) {
@@ -56,5 +60,13 @@ public class ActivityApplicationController {
 		}
 		
 		return relatedActivity;
+	}
+
+	public Boolean createQuotation(ReceiptDTO receiptDTO) {
+		
+		Boolean result= receiptDAO.saveQuotation(receiptDTO.getTravelerName(), receiptDTO.getTravelerSurname(), receiptDTO.getProviderName(), 
+		receiptDTO.getnFullTicket(), receiptDTO.getnReducedTicket(), receiptDTO.getShuttlePrice(), receiptDTO.getGuidePrice(), receiptDTO.getTotalPrice());
+		
+		return result;
 	}
 }

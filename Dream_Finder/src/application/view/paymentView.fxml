@@ -33,7 +33,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Nome del fornitore">
+                        <Label fx:id="providerNameLabel" text="Nome del fornitore">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -47,7 +47,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label text="# di persone">
+                        <Label fx:id="nPeopleLabel" text="# di persone">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -80,48 +80,35 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <HBox>
+                        <VBox>
                            <children>
                               <Label text="Prenotazione attività:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="999,99$">
+                              <Label text="x1 Biglietto intero 99,99">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="x0 Biglietto ridotto 99,99">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
                            </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label text="Servizio navetta:">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label text="999,99$">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label text="Guida:">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label text="999,99$">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
+                        </VBox>
+                        <Label fx:id="shuttleServiceLabel" text="Servizio navetta: 999,99">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tourGuideLabel" text="Tour guidato: 999,99">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </VBox>
                   <HBox>
@@ -186,7 +173,10 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker fx:id="dateField" prefHeight="30.0" promptText="Seleziona data" />
+                                          <DatePicker fx:id="dateField" prefHeight="30.0" promptText="Seleziona data">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></DatePicker>
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefWidth="210.0">
@@ -226,10 +216,13 @@
                               </VBox>
                            </children>
                         </VBox>
-                        <Button fx:id="paymentButton" mnemonicParsing="false" onMouseClicked="#doPayment" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Effettua pagamento">
+                        <Button fx:id="paymentButton" mnemonicParsing="false" onMouseClicked="#doPayment" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Effettua pagamento" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                      <padding>
