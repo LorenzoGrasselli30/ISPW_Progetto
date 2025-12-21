@@ -9,6 +9,7 @@ import application.model.dao.ActivityDAO;
 import application.model.dao.FactoryDAO;
 import application.model.dao.ReceiptDAO;
 import application.model.entity.Activity;
+import application.model.entity.Receipt;
 import application.model.enums.ActivityType;
 
 public class ActivityApplicationController {
@@ -64,8 +65,11 @@ public class ActivityApplicationController {
 
 	public Boolean createQuotation(ReceiptDTO receiptDTO) {
 		
-		Boolean result= receiptDAO.saveQuotation(receiptDTO.getTravelerName(), receiptDTO.getTravelerSurname(), receiptDTO.getProviderName(), 
-		receiptDTO.getnFullTicket(), receiptDTO.getnReducedTicket(), receiptDTO.getShuttlePrice(), receiptDTO.getGuidePrice(), receiptDTO.getTotalPrice());
+		// 1. Converti il DTO in Entity (diminuisce l'accoppiamento)
+		Receipt receipt = new Receipt(receiptDTO.getTravelerName(), receiptDTO.getTravelerSurname(), receiptDTO.getProviderName(), receiptDTO.getnFullTicket(), 
+				receiptDTO.getnReducedTicket(), receiptDTO.getShuttlePrice(), receiptDTO.getGuidePrice(), receiptDTO.getTotalPrice());
+			
+		Boolean result= receiptDAO.saveQuotation(receipt);
 		
 		return result;
 	}

@@ -1,8 +1,9 @@
 package application.model.dao;
 
+import application.model.entity.Receipt;
+
 public interface ReceiptDAO {
 
-	Boolean saveQuotation(String travelerName, String travelerSurname, String providerName, int nFullTicket,
-			int nReducedTicket, Double shuttlePrice, Double guidePrice, Double totalPrice);
+	Boolean saveQuotation(Receipt receipt);
 
 }
