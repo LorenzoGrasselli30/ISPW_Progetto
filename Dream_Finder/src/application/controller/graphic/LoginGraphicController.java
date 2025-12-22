@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import application.controller.application.LoginApplicationController;
 import application.exception.ValidationException;
+import application.model.bean.BookingContext;
 import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
@@ -19,6 +20,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class LoginGraphicController implements Initializable {
+	
+	private BookingContext context;
 	
 	@FXML
 	private TextField emailField;
@@ -47,6 +50,10 @@ public class LoginGraphicController implements Initializable {
 		this.passwordTextField.promptTextProperty().bind(passwordField.promptTextProperty());
 		this.passwordTextField.prefHeightProperty().bind(passwordField.prefHeightProperty());
 		this.passwordTextField.prefWidthProperty().bind(passwordField.prefWidthProperty());
+	}
+	
+	public void initLogin(BookingContext context) {
+		this.context= context;
 	}
 	
 	@FXML
@@ -111,7 +118,12 @@ public class LoginGraphicController implements Initializable {
 	        	String userRole = loginController.getUserRole();
 	        	System.out.println("Login effettuato correttamente, tipo di utente loggato: " + userRole);
 	        	
-	        	WindowsNavigatorUtils.closeWindow(event);
+	        	if (context != null) {
+	        		WindowsNavigatorUtils.closeWindow(event);
+	        		WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Informazioni sui partecipanti", context);
+	        	} else {
+	        		WindowsNavigatorUtils.loginToWindow(event, userRole);
+	        	}
 	        } 
 		}
 		

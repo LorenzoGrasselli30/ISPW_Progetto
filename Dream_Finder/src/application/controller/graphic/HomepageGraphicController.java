@@ -89,7 +89,7 @@ public class HomepageGraphicController {
 	
 	//Gestisce il click sull'icona del cuore 
 	private void handleHeartClick(MouseEvent event) throws IOException {
-	    WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
+	    WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", null);
 	}
 	
 	@FXML
@@ -122,7 +122,7 @@ public class HomepageGraphicController {
     	    }
     	
         	if (titleLogin.equals(title)) {
-        		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
+        		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null);
         	} 
         	
         	

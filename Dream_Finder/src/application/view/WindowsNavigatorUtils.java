@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import application.controller.graphic.ActivityGraphicController;
 import application.controller.graphic.FormGraphicController;
+import application.controller.graphic.LoginGraphicController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.model.enums.UserRole;
@@ -21,11 +22,11 @@ public class WindowsNavigatorUtils {
 	private static final int DEFAULT_WIDTH = 640;
     private static final int DEFAULT_HEIGHT = 480;
     
-    private static final String BASE_PATH = System.getProperty("app.view.basePath", "/application/view/"); //Corretto da sonarcloud
+    private static final String BASE_PATH = System.getProperty("app.view.basePath", "/application/view/");
     
     private static Event lastParentEvent;
     
-    private WindowsNavigatorUtils() { //Corretto da sonarcloud
+    private WindowsNavigatorUtils() {
         throw new IllegalStateException("WindowsNavigatorUtils class");
     }
     
@@ -55,7 +56,7 @@ public class WindowsNavigatorUtils {
         stage.show();
     }
 	
-	public static void openModalWindow(Event event, String fxmlPath, String title) throws IOException {
+	public static void openModalWindow(Event event, String fxmlPath, String title, BookingContext context) throws IOException {
 	//Salva il lastParentEvent per il login
 	if (fxmlPath.equals("loginView.fxml")) {	
 	lastParentEvent = event;
@@ -63,6 +64,12 @@ public class WindowsNavigatorUtils {
 	
 	FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
 	Parent root = loader.load();
+	
+	//Passa le informazioni dell'attività
+	if (context != null) {
+		LoginGraphicController loginController= loader.getController();
+    	loginController.initLogin(context);
+	}
 	
 	Stage parentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	

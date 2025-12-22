@@ -291,7 +291,7 @@ public class ActivityGraphicController implements Observer{
     
 	private void handleHeartClick(MouseEvent event) {
 		try {
-			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
+			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -359,7 +359,7 @@ public class ActivityGraphicController implements Observer{
 		String fxmlFile = "loginView.fxml";
 		String title = "Login";
 		if (UserSession.getInstance().getCurrentUser() == null) {
-			WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
+			WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null);
 		} else {
 			AlertUtils.showAlert(AlertType.INFORMATION, title, "L'utente e' gia' loggato");
 		}
@@ -367,6 +367,7 @@ public class ActivityGraphicController implements Observer{
 	
 	@FXML
 	public void submitActivityForm(MouseEvent event) throws IOException {
+		//Se non si muove l'observer non vengono calcolati i prezzi correttamente
 		BookingContext context= new BookingContext();
 		
 		context.setActivity(currentActivity);
@@ -380,16 +381,21 @@ public class ActivityGraphicController implements Observer{
 		context.setShuttlePrice(subject.getShuttlePrice());
 		context.setGuidePrice(subject.getGuidePrice());
 		
-		if (UserSession.getInstance().getCurrentUser() == null) {
-			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
-		}
-		
-		if ("traveler".equals(UserSession.getInstance().getCurrentUser().getUserRole().getStringName())) {
-			WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Informazioni dei partecipanti", context);
-		} else {
-			WindowsNavigatorUtils.openWindow(event, "homeView.fxml", "Homepage");
-		}
-		
+		UserSession session = UserSession.getInstance();
+        
+        if (session.getCurrentUser() != null) { //Caso utente già loggato
+            String role = session.getCurrentUser().getUserRole().getStringName();
+            
+            if ("traveler".equals(role)) { 
+                WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Dati sui partecipanti", context);
+            } else {
+                AlertUtils.showAlert(javafx.scene.control.Alert.AlertType.WARNING, "Attenzione", "Per prenotare questa attivita' accedi o crea un account viaggiatore.");
+                WindowsNavigatorUtils.openWindow(event, "homeView.fxml", "Homepage");
+            }
+        } else { //Caso utente non loggato
+            WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", context);
+        }
+        
     }
 	
 }

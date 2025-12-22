@@ -38,7 +38,7 @@ public class RecommendedActivitiesGraphicController {
     	    }
     	
         	if (title.equals("Login")) {
-        		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title);
+        		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null);
         	} 
         	
         	
