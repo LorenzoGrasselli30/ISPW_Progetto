@@ -79,7 +79,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <Label minHeight="27.0" text="Trova l'attività che fa per te">
+                  <Label minHeight="27.0" text="Inserisci le informazioni dei partecipanti">
                      <font>
                         <Font size="18.0" />
                      </font>

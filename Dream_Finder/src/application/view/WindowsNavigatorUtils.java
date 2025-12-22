@@ -197,7 +197,7 @@ public class WindowsNavigatorUtils {
         Parent root = loader.load();
 	    
 	    FormGraphicController formController = loader.getController();
-	    formController.initContext(context);
+	    formController.initForm(context);
 
 	    stage.setScene(new Scene(root));
 	    stage.show();

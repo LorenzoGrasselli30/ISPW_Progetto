@@ -111,7 +111,7 @@ public class LoginGraphicController implements Initializable {
 	        	String userRole = loginController.getUserRole();
 	        	System.out.println("Login effettuato correttamente, tipo di utente loggato: " + userRole);
 	        	
-	        	WindowsNavigatorUtils.loginToWindow(event, userRole);
+	        	WindowsNavigatorUtils.closeWindow(event);
 	        } 
 		}
 		
@@ -120,7 +120,7 @@ public class LoginGraphicController implements Initializable {
 			AlertUtils.showAlert(Alert.AlertType.WARNING, "Errore durante il login:", ve.getMessage());
 	    }
 	    catch (Exception e) {
-	    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Error: ", "Qualcosa è andato storto, riprova più tardi.");		
+	    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Error", "Qualcosa è andato storto, riprova più tardi.");		
 	    }
 
 	}

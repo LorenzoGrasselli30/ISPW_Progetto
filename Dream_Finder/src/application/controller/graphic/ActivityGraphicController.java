@@ -382,9 +382,14 @@ public class ActivityGraphicController implements Observer{
 		
 		if (UserSession.getInstance().getCurrentUser() == null) {
 			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
-		} else {
-			WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Informazioni dei partecipanti", context);
 		}
+		
+		if ("traveler".equals(UserSession.getInstance().getCurrentUser().getUserRole().getStringName())) {
+			WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Informazioni dei partecipanti", context);
+		} else {
+			WindowsNavigatorUtils.openWindow(event, "homeView.fxml", "Homepage");
+		}
+		
     }
 	
 }
