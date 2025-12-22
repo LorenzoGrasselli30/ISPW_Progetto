@@ -38,7 +38,7 @@ public class ActivityApplicationController {
 		newActivityDTO.setSkipLine(newActivityInfo.getSkipLine());
 		newActivityDTO.setFreeCancellation(newActivityInfo.getFreeCancellation());
 		newActivityDTO.setPayLater(newActivityInfo.getPayLater());
-		newActivityDTO.setProviderName(newActivityInfo.getProviderName());
+		newActivityDTO.setProviderName(newActivityInfo.getProvider().getProviderName());
 		
 		return newActivityDTO;
 	}
@@ -55,7 +55,7 @@ public class ActivityApplicationController {
 			newActivity.setnRating(activity.getnRating());
 			newActivity.setRate(activity.getRate());
 			newActivity.setPrice(activity.getPrice());
-			newActivity.setProviderName(activity.getProviderName());
+			newActivity.setProviderName(activity.getProvider().getProviderName());
 			
 			relatedActivity.add(newActivity);
 		}

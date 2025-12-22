@@ -33,7 +33,7 @@ public class HomeApplicationController {
 			newActivity.setPrice(activity.getPrice());
 			newActivity.setRate(activity.getRate());
 			newActivity.setnRating(activity.getnRating());
-			newActivity.setProviderName(activity.getProviderName());
+			newActivity.setProviderName(activity.getProvider().getProviderName());
 			
 			activityDTO.add(newActivity);
 		}

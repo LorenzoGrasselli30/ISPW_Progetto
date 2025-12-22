@@ -7,7 +7,7 @@ import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
 
 public class Provider {
-	
+	//Conposizione con Activity
 	private List<Activity> activities;
 	
 	private String email;
@@ -40,9 +40,10 @@ public class Provider {
 			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
 			Double rate) {
 		activities.add(new Activity(activityName, description, price, duration, timeInMinutes, activityType, freeCancellation, payLater,
-				skipLine, nRating, rate, this.providerName));
+				skipLine, nRating, rate, this));
 		
 		this.nOfferedActivities+=1;
+		
 		this.setProviderRate();
 	}
 	

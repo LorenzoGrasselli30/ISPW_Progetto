@@ -14,11 +14,12 @@ public class Activity {
 	private Boolean skipLine;
 	private Integer nRating;
 	private Double rate;
-	private String providerName;
+	//Relazione di composizione quindi Activity deve mantenere un'istanza del provider associato
+	private Provider provider;
 
 	public Activity(String activityName, String description, Double price, Integer duration, Boolean timeInMinutes,
 			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
-			Double rate, String providerName) {
+			Double rate, Provider provider) {
 		this.activityName = activityName;
 		this.description = description;
 		this.price= price;
@@ -30,7 +31,7 @@ public class Activity {
 		this.skipLine = skipLine;
 		this.nRating = nRating;
 		this.rate = rate;
-		this.providerName= providerName;
+		this.provider= provider;
 	}
 	
 	public Double getRate() {
@@ -73,8 +74,8 @@ public class Activity {
 		return nRating;
 	}
 
-	public String getProviderName() {
-		return providerName;
+	public Provider getProvider() {
+		return provider;
 	}
 
 	public Double getPrice() {
@@ -84,7 +85,7 @@ public class Activity {
 	public int calculateRelevanceScore(Activity target, ActivityType referenceType, String referenceProvider) {
         int score = 0;
         
-        boolean sameProvider = target.getProviderName().equals(referenceProvider);
+        boolean sameProvider = target.getProvider().getProviderName().equals(referenceProvider);
         boolean sameType = target.getActivityType() == referenceType;
 
         if (sameProvider) {
@@ -97,6 +98,7 @@ public class Activity {
         return score;
     }
 	
+	/*
 	public Double calculateAddedServices(Activity activity, int nPeople, Boolean shuttleService, Boolean guideTour) {
 		//Il servizio navetta ha tariffa fissa e viene moltiplicata per il numero di persone 
 		//La guida viene calcolata in base alla durata dell'attività 10$/60 min
@@ -117,5 +119,5 @@ public class Activity {
 		
 		return priceResult;
 	}
-	
+	*/
 }

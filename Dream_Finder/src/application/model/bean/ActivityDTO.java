@@ -14,6 +14,7 @@ public class ActivityDTO {
 	private Boolean skipLine;
 	private Integer nRating;
 	private Double rate;
+	//Non è necessario mantenere tutti i dati del provider nella view
 	private String providerName;
 	
 	public String getActivityName() {

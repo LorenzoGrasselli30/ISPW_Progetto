@@ -73,7 +73,7 @@ public class ActivityDAODemo implements ActivityDAO {
 		
 		// Rimuove l'attività passata come parametro
 		allActivities = allActivities.stream()
-			.filter(a -> !a. getActivityName().equals(activityName) || ! a.getProviderName().equals(providerName))
+			.filter(a -> !a. getActivityName().equals(activityName) || ! a.getProvider().getProviderName().equals(providerName))
 			.collect(Collectors.toList());
 		
 		// Divide le attività in tre gruppi di priorità
