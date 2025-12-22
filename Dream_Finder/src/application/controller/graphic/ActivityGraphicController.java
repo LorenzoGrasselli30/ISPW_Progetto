@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import application.configuration.UserSession;
 import application.controller.application.ActivityApplicationController;
 import application.model.bean.ActivityDTO;
+import application.model.bean.BookingContext;
 import application.model.bean.ReceiptDTO;
 import application.model.entity.Activity;
 import application.observer.Observer;
@@ -366,28 +367,23 @@ public class ActivityGraphicController implements Observer{
 	
 	@FXML
 	public void submitActivityForm(MouseEvent event) throws IOException {
-		ReceiptDTO receipt= new ReceiptDTO();
+		BookingContext context= new BookingContext();
 		
-		// Popolamento con i dati presenti nel controller
-		if (currentActivity != null) {
-			receipt.setProviderName(currentActivity.getProviderName());
-		}
-				
-		receipt.setnFullTicket(fullTicketCount);
-		receipt.setnReducedTicket(reducedTicketCount);
-		receipt.setTotalPrice(subject.getPrice()); // Prende il prezzo calcolato dal Subject
-				
-		receipt.setShuttlePrice(0.0);
-		receipt.setGuidePrice(0.0);
-				
-		receipt.setTravelerName("Guest"); 
-		receipt.setTravelerSurname("User");
+		context.setActivity(currentActivity);
+		context.setnFullTickets(fullTicketCount);
+		context.setnReducedTickets(reducedTicketCount);
+		context.setGuideService(guideTour);
+		context.setShuttleService(shuttleService);
 		
-		Boolean result= activityController.createQuotation(receipt);
+		// Prende i prezzi calcolati dal Subject
+		context.setTotalPrice(subject.getPrice()); 
+		context.setShuttlePrice(subject.getShuttlePrice());
+		context.setGuidePrice(subject.getGuidePrice());
+		
 		if (UserSession.getInstance().getCurrentUser() == null) {
 			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login");
 		} else {
-			WindowsNavigatorUtils.openModalWindow(event, "paymentView.fxml", "Sezione del pagamento");
+			WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Informazioni dei partecipanti", context);
 		}
     }
 	

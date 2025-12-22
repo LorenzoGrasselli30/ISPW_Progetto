@@ -62,7 +62,8 @@ public class ActivityApplicationController {
 		
 		return relatedActivity;
 	}
-
+	
+	/*
 	public Boolean createQuotation(ReceiptDTO receiptDTO) {
 		
 		// 1. Converti il DTO in Entity (diminuisce l'accoppiamento)
@@ -73,4 +74,5 @@ public class ActivityApplicationController {
 		
 		return result;
 	}
+	*/
 }
