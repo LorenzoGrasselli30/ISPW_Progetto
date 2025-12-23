@@ -367,7 +367,6 @@ public class ActivityGraphicController implements Observer{
 	
 	@FXML
 	public void submitActivityForm(MouseEvent event) throws IOException {
-		//Se non si muove l'observer non vengono calcolati i prezzi correttamente
 		BookingContext context= new BookingContext();
 		
 		context.setActivity(currentActivity);
@@ -375,6 +374,9 @@ public class ActivityGraphicController implements Observer{
 		context.setnReducedTickets(reducedTicketCount);
 		context.setGuideService(guideTour);
 		context.setShuttleService(shuttleService);
+		
+		//Se non si muove l'observer non vengono calcolati i prezzi correttamente
+		recalculateTotal();
 		
 		// Prende i prezzi calcolati dal Subject
 		context.setTotalPrice(subject.getPrice()); 
