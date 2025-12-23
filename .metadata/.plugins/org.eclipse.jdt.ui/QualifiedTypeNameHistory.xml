@@ -2,4 +2,7 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="javafx.fxml.FXMLLoader"/>
     <fullyQualifiedTypeName name="application.view.WindowsNavigatorUtils"/>
+    <fullyQualifiedTypeName name="application.configuration.UserSession"/>
+    <fullyQualifiedTypeName name="application.view.AlertUtils"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
 </qualifiedTypeNameHistroy>

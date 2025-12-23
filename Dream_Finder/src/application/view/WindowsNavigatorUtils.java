@@ -56,6 +56,7 @@ public class WindowsNavigatorUtils {
         stage.show();
     }
 	
+	//Imposta la stage parent e anche il context per il login
 	public static void openModalWindow(Event event, String fxmlPath, String title, BookingContext context) throws IOException {
 	//Salva il lastParentEvent per il login
 	if (fxmlPath.equals("loginView.fxml")) {	
@@ -97,6 +98,7 @@ public class WindowsNavigatorUtils {
         stage.close();
     }
 	
+	//Utilizzata dal login
 	public static void changeParentWindow(Event event, String fxmlPath, String title) throws IOException {
 		//Stage corrente
         Stage modalstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -126,7 +128,7 @@ public class WindowsNavigatorUtils {
         parentStage.show();
     }
 	
-	public static void loginToWindow(Event event, String userRole) throws IOException {
+	public static void loginToWindow(Event event, String userRole, BookingContext context) throws IOException {
 		//Stage corrente
         Stage modalstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         
@@ -138,6 +140,15 @@ public class WindowsNavigatorUtils {
         String parentTitle= ((Node) lastParentEvent.getSource()).getId();
         System.out.println(parentTitle);
         System.out.println(parentStage.getTitle());
+        
+        if (context != null) { //Comportamento del login nel caso è settato un context
+        	//Carica il nuovo FXML
+            FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + "formView.fxml"));
+            Parent root = loader.load();
+            
+    	    FormGraphicController formController = loader.getController();
+    	    formController.initForm(context);
+        }
         
         if ("traveler".equals(userRole)) { //Comportamento del login se l'utente è un traveler
         	
@@ -188,7 +199,7 @@ public class WindowsNavigatorUtils {
         
         stage.show();
 	}
-
+	
 	public static void openFormWindow(MouseEvent event, String fxmlPath, String title, BookingContext context) throws IOException {
 		//Ottieni lo stage corrente
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -206,7 +217,16 @@ public class WindowsNavigatorUtils {
 	    FormGraphicController formController = loader.getController();
 	    formController.initForm(context);
 
-	    stage.setScene(new Scene(root));
-	    stage.show();
+	    //Imposta la nuova scena
+        stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        
+        //Ripristina le dimensioni e la posizione
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+        stage.setX(currentX);
+        stage.setY(currentY);
+        
+        stage.show();
 	}
 }

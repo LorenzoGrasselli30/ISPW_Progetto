@@ -118,12 +118,8 @@ public class LoginGraphicController implements Initializable {
 	        	String userRole = loginController.getUserRole();
 	        	System.out.println("Login effettuato correttamente, tipo di utente loggato: " + userRole);
 	        	
-	        	if (context != null) {
-	        		WindowsNavigatorUtils.closeWindow(event);
-	        		WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Informazioni sui partecipanti", context);
-	        	} else {
-	        		WindowsNavigatorUtils.loginToWindow(event, userRole);
-	        	}
+	        	
+	        	WindowsNavigatorUtils.loginToWindow(event, userRole, context);
 	        } 
 		}
 		

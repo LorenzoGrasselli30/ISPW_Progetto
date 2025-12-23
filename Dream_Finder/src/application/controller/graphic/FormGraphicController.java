@@ -10,6 +10,5 @@ public class FormGraphicController {
         this.context = context;
         // Opzionale: usa context.getActivity().getName() per mostrare un titolo nella view
     }
-    
-    
+
 }
