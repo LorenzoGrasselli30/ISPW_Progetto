@@ -8,16 +8,18 @@ public class Traveler {
 	private String email;
 	private String password;
 	private String username;
+	private String name;
+	private String surname;
 	private String dob;
 	
-	private List<Activity> favActivities;
+	//private List<Activity> favActivities;
 	
-	public Traveler(String email, String password, String username, String dob) {
+	public Traveler(String email, String password, String username, String name, String surname, String dob) {
 		this.email = email;
 		this.password = password;
 		this.username = username;
 		this.dob = dob;
-		this.favActivities = new ArrayList<>();
+		//this.favActivities = new ArrayList<>();
 	}
 
 	public String getEmail() {
@@ -50,6 +52,22 @@ public class Traveler {
 
 	public void setDob(String dob) {
 		this.dob = dob;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

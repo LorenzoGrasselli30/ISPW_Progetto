@@ -1,8 +1,12 @@
 package application.controller.graphic;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import application.model.bean.BookingContext;
+import application.model.bean.GuestInformationDTO;
 import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
@@ -28,13 +32,16 @@ public class FormGraphicController {
     public void initForm(BookingContext context) {
         this.context = context;
         
-     // Pulisce eventuali elementi placeholder presenti nell'FXML
+        //Metodo che chiama l'application controller che trova le informazioni del traveler dalla mail
+        
+        
+        //Pulisce eventuali elementi placeholder presenti nell'FXML
         participantsContainer.getChildren().clear();
 
         int totalParticipants = context.getnFullTickets() + context.getnReducedTickets();
 
         for (int i = 1; i <= totalParticipants; i++) {
-            // Creazione del VBox per il singolo partecipante
+            //Creazione del VBox per il singolo partecipante
             VBox participantBox = new VBox();
             participantBox.setStyle("-fx-background-color: #E7EFD6;");
             participantBox.setPadding(new Insets(5, 10, 5, 10));
@@ -96,7 +103,56 @@ public class FormGraphicController {
         	break;
         	
         case "confirmFormButton":
+        	List<GuestInformationDTO> guests = new ArrayList<>();
+        	boolean allFieldsFilled = true;
         	
+        	// Iterazione su ogni VBox nel participantsContainer
+        	for (Node node : participantsContainer.getChildren()) {
+        	    if (node instanceof VBox) { //L'oggetto contenuto nella variabile node è un'istanza della classe VBox di una sua sottoclasse
+        	        VBox box = (VBox) node;
+        	        
+        	        // Estrazione dei controlli dal VBox
+        	        // Gli indici dipendono dall'ordine di aggiunta in initForm:
+        	        // 0: titleLabel, 1: nameLabel, 2: nameField, 
+        	        // 3: surnameLabel, 4: surnameField, 5: dateLabel, 6: datePicker
+        	        
+        	        TextField nameField = (TextField) box.getChildren().get(2);
+        	        TextField surnameField = (TextField) box.getChildren().get(4);
+        	        DatePicker datePicker = (DatePicker) box.getChildren().get(6);
+        	        
+        	        String name = nameField.getText();
+        	        String surname = surnameField.getText();
+        	        
+        	        if (name == null || name.trim().isEmpty() || 
+        	            surname == null || surname.trim().isEmpty() || 
+        	            datePicker.getValue() == null) {
+        	            
+        	        	AlertUtils.showAlert(AlertType.WARNING, "Dati mancanti", "Per favore, compila tutti i campi richiesti.");
+        	            allFieldsFilled = false;
+        	            break;
+        	        }
+        	        
+        	        GuestInformationDTO guest = new GuestInformationDTO();
+        	        guest.setName(name);
+        	        guest.setSurname(surname);
+        	        guest.setDateOfBirth(datePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        	        
+        	        guests.add(guest);
+        	    }
+        	}
+        	
+        	if (allFieldsFilled) {
+        	    context.setGuests(guests);
+        	    for (GuestInformationDTO guest : context.getGuests()) {
+        	    	System.out.println(guest.getName());
+        	    	System.out.println(guest.getSurname());
+        	    	System.out.println(guest.getDateOfBirth());
+        	    }
+        	    
+        	    
+        	    
+        	    AlertUtils.showAlert(AlertType.INFORMATION, "Successo", "Dati partecipanti salvati correttamente!");
+        	}
         	break;
     	}
     }

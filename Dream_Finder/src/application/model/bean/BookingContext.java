@@ -15,7 +15,7 @@ public class BookingContext {
     //Informazioni sul traveler che effetttua la prenotazione
     private String travelerName;
     private String travelerSurname;
-    private String traveterDOB;
+    private String travelerDOB;
     
     //Informazioni per la prenotazione 
     private List<GuestInformationDTO> guests;

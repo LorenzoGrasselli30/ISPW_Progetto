@@ -10,11 +10,4 @@ public class UserDAOFile implements UserDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void saveNewUser(User user) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

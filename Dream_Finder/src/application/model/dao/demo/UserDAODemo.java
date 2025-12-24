@@ -33,11 +33,5 @@ public class UserDAODemo implements UserDAO {
     public User findByEmail(String email) {
         return users.get(email);
     }
-
-	@Override
-	public void saveNewUser(User user) {
-		// Salvataggio dell'utente
-		users.put(user.getEmail(), user);
-	}
 	
 }

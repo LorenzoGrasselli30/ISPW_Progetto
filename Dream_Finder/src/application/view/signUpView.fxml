@@ -7,6 +7,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,39 +16,120 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.graphic.SignUpGraphicController">
-   <children>
-      <VBox alignment="CENTER" fillWidth="false" layoutX="280.0" layoutY="150.0" prefHeight="480.0" prefWidth="640.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+<ScrollPane hbarPolicy="NEVER" prefHeight="480.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.graphic.SignUpGraphicController">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="640.0">
          <children>
-            <VBox alignment="CENTER" spacing="5.0">
+            <VBox alignment="CENTER" fillWidth="false" layoutX="280.0" layoutY="150.0" prefHeight="480.0" prefWidth="640.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../Images/DF.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" text="Crea il tuo account">
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/DF.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" text="Crea il tuo account">
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox>
+                     <children>
+                        <Label text="Informazioni personali">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <VBox alignment="CENTER" prefWidth="640.0" spacing="10.0" style="-fx-background-color: #E7EFD6;">
+                           <children>
+                              <VBox maxWidth="200.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Nome">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="emailField" promptText="Inserisci qui la mail">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Data di nascita">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="dateField1" prefHeight="30.0" prefWidth="200.0" promptText="Seleziona">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </DatePicker>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" prefWidth="640.0" spacing="10.0" style="-fx-background-color: #E7EFD6;">
+                           <children>
+                              <VBox maxWidth="200.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Cognome">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="usernameField" promptText="Inserisci qui il tuo username">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Username">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="usernameField1" promptText="Inserisci qui il tuo username">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Label text="Informazioni per l'account">
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-               </children>
-            </VBox>
-            <HBox>
-               <children>
                   <VBox alignment="CENTER" prefWidth="640.0" spacing="10.0" style="-fx-background-color: #E7EFD6;">
                      <children>
-                        <VBox maxWidth="200.0" prefWidth="200.0" spacing="5.0">
+                        <VBox maxWidth="400.0" prefWidth="400.0" spacing="5.0">
                            <children>
                               <Label text="Email">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="emailField" promptText="Inserisci qui la mail">
+                              <TextField fx:id="emailField1" promptText="Inserisci qui la mail">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -57,9 +139,9 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <HBox prefWidth="200.0" spacing="5.0">
+                              <HBox spacing="5.0">
                                  <children>
-                                    <PasswordField fx:id="passwordField" prefWidth="178.0" promptText="Inserisci qui la password">
+                                    <PasswordField fx:id="passwordField1" prefWidth="370.0" promptText="Inserisci qui la password">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -81,7 +163,7 @@
                               </Label>
                               <HBox prefWidth="200.0" spacing="5.0">
                                  <children>
-                                    <PasswordField fx:id="confirmPasswordField" prefWidth="178.0" promptText="Conferma qui la password">
+                                    <PasswordField fx:id="confirmPasswordField1" prefWidth="370.0" promptText="Conferma qui la password">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -103,59 +185,31 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <VBox alignment="CENTER" prefWidth="640.0" spacing="10.0" style="-fx-background-color: #E7EFD6;">
-                     <children>
-                        <VBox maxWidth="200.0" prefWidth="200.0" spacing="5.0">
-                           <children>
-                              <Label text="Username">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="usernameField" promptText="Inserisci qui il tuo username">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                              <Label text="Data di nascita">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <HBox prefWidth="200.0" />
-                              <DatePicker fx:id="dateField" prefHeight="30.0" prefWidth="200.0" promptText="Seleziona">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor></DatePicker>
-                           </children>
-                        </VBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
+                  <CheckBox fx:id="privacyCheck" mnemonicParsing="false" text="Accetta informativa sulla privacy">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </CheckBox>
+                  <Button fx:id="signUpButton" mnemonicParsing="false" onMouseClicked="#doSignUp" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Registrati" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
-            </HBox>
-            <CheckBox fx:id="privacyCheck" mnemonicParsing="false" text="Accetta informativa sulla privacy">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </CheckBox>
-            <Button fx:id="signUpButton" mnemonicParsing="false" onMouseClicked="#doSignUp" prefWidth="125.0" style="-fx-background-color: #6FA655; -fx-border-color: black; -fx-border-width: 0.2;" text="Registrati" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
          </children>
          <padding>
-            <Insets top="10.0" />
+            <Insets bottom="10.0" />
          </padding>
-      </VBox>
-   </children>
-</AnchorPane>
+      </AnchorPane>
+   </content>
+</ScrollPane>

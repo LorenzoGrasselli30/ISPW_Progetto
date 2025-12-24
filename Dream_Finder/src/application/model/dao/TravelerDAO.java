@@ -1,5 +1,8 @@
 package application.model.dao;
 
-public interface TravelerDAO {
+import application.configuration.UserSession;
+import application.model.entity.Traveler;
 
+public interface TravelerDAO {
+	Traveler findByUserSession(UserSession userSession);
 }
