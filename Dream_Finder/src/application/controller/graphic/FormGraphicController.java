@@ -43,7 +43,10 @@ public class FormGraphicController {
         
         //Metodo che chiama l'application controller che trova le informazioni del traveler dalla mail
         TravelerDTO currentTraveler= bookingController.fetchCurrentTraveler(UserSession.getInstance());
-        
+        System.out.println(currentTraveler.getName());
+    	System.out.println(currentTraveler.getSurname());
+    	System.out.println(currentTraveler.getDob());
+    	
         //Pulisce eventuali elementi placeholder presenti nell'FXML
         participantsContainer.getChildren().clear();
 

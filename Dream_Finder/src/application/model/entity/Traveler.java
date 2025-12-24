@@ -18,6 +18,8 @@ public class Traveler {
 		this.email = email;
 		this.password = password;
 		this.username = username;
+		this.name= name;
+		this.surname= surname;
 		this.dob = dob;
 		//this.favActivities = new ArrayList<>();
 	}
