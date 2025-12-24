@@ -7,7 +7,6 @@ INDEX VERSION 1.134+C:\Users\loren\Desktop\Tor Vergata\ISPW\Progetto\ISPW_Proget
 3797231290.index
 2398974480.index
 1288848795.index
-2488224033.index
 670267773.index
 3685792730.index
 34368043.index

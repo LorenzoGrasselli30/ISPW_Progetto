@@ -141,19 +141,34 @@ public class WindowsNavigatorUtils {
         System.out.println(parentTitle);
         System.out.println(parentStage.getTitle());
         
-        if (context != null) { //Comportamento del login nel caso è settato un context
-        	//Carica il nuovo FXML
-            FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + "formView.fxml"));
-            Parent root = loader.load();
-            
-    	    FormGraphicController formController = loader.getController();
-    	    formController.initForm(context);
-        }
-        
         if ("traveler".equals(userRole)) { //Comportamento del login se l'utente è un traveler
         	
         	if ("Info Attivita'".equals(parentStage.getTitle()) && ("formButton".equals(parentTitle))) {
-        		WindowsNavigatorUtils.changeParentWindow(event, "formView.fxml", "Dati dell'utente");
+        		if (context != null) { //Comportamento del login nel caso è settato un context
+                	//Carica il nuovo FXML
+                    FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + "formView.fxml"));
+                    Parent root = loader.load();
+                    
+            	    FormGraphicController formController = loader.getController();
+            	    formController.initForm(context);
+            	    
+            	    //Dimensioni della parent
+                    double currentWidth = parentStage.getWidth();
+                    double currentHeight = parentStage.getHeight();
+                    double currentX = parentStage.getX();
+                    double currentY = parentStage.getY();
+                    
+                    parentStage.setScene(new Scene(root));
+                    parentStage.setTitle("Informazioni sui partecipanti");
+                    
+                    // Ripristina le dimensioni e la posizione
+                    parentStage.setWidth(currentWidth);
+                    parentStage.setHeight(currentHeight);
+                    parentStage.setX(currentX);
+                    parentStage.setY(currentY);
+                    
+                    parentStage.show();
+                }
         	} else {
         		WindowsNavigatorUtils.closeWindow(event);
         	}
