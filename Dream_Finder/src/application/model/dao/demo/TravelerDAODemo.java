@@ -23,8 +23,7 @@ public class TravelerDAODemo implements TravelerDAO {
 	}
 
 	@Override
-	public Traveler findByUserSession(UserSession userSession) {
-		// TODO Auto-generated method stub
-		return null;
+	public Traveler findByEmail(String formattedEmail) {
+		return travelers.get(formattedEmail);
 	}
 }

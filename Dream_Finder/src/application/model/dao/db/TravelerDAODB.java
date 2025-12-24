@@ -7,7 +7,7 @@ import application.model.entity.Traveler;
 public class TravelerDAODB implements TravelerDAO {
 
 	@Override
-	public Traveler findByUserSession(UserSession userSession) {
+	public Traveler findByEmail(String formattedEmail) {
 		// TODO Auto-generated method stub
 		return null;
 	}

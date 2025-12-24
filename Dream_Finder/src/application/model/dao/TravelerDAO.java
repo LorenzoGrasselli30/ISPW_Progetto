@@ -4,5 +4,5 @@ import application.configuration.UserSession;
 import application.model.entity.Traveler;
 
 public interface TravelerDAO {
-	Traveler findByUserSession(UserSession userSession);
+	Traveler findByEmail(String formattedEmail);
 }

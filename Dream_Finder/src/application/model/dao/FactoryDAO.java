@@ -118,6 +118,27 @@ public class FactoryDAO {
 	        	return new ReceiptDAODB();
 	        }
 	}
+	
+	private TravelerDAO travelerDAO;
+	
+	public TravelerDAO getTravelerDAO() {
+		if (mode == null) {					
+			throw new IllegalStateException(MODE_EXCEPTION);
+		}
+	    	
+		if (MODE_DEMO.equals(mode) || "".equals(mode)) { 
+	    	    if (travelerDAO == null) {  
+	    	    	travelerDAO = new TravelerDAODemo();
+	    	    }
+	    	    return travelerDAO;           
+	    	    
+	    	} else if (MODE_FILE.equals(mode)) {
+	    		return new TravelerDAOFile();
+	    		
+	    	} else {
+	        	return new TravelerDAODB();
+	        }
+	}
 }
 	 
 

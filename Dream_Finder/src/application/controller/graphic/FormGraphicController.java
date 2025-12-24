@@ -5,8 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.configuration.UserSession;
+import application.controller.application.BookingApplicationController;
 import application.model.bean.BookingContext;
 import application.model.bean.GuestInformationDTO;
+import application.model.bean.TravelerDTO;
 import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
@@ -23,17 +26,23 @@ import javafx.scene.text.FontWeight;
 
 public class FormGraphicController {
 	
+	private BookingApplicationController bookingController;
+	
 	@FXML
     private VBox participantsContainer;
 	
 	private BookingContext context; // Lo stato corrente
-
+	
+	public FormGraphicController() {
+		bookingController= new BookingApplicationController();
+	}
+	
     // Metodo chiamato dal controller precedente
     public void initForm(BookingContext context) {
         this.context = context;
         
         //Metodo che chiama l'application controller che trova le informazioni del traveler dalla mail
-        
+        TravelerDTO currentTraveler= bookingController.fetchCurrentTraveler(UserSession.getInstance());
         
         //Pulisce eventuali elementi placeholder presenti nell'FXML
         participantsContainer.getChildren().clear();
