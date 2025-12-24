@@ -1,11 +1,18 @@
 package application.controller.graphic;
 
+import java.io.IOException;
+
 import application.model.bean.BookingContext;
+import application.view.AlertUtils;
+import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -69,5 +76,28 @@ public class FormGraphicController {
             //Aggiunta del box al container principale
             participantsContainer.getChildren().add(participantBox);
         }
+    }
+    
+    @FXML
+   	private void useForm(MouseEvent event) throws IOException {
+    	
+    	switch (((Node) event.getSource()).getId()) {
+        case "homeButton":
+        	WindowsNavigatorUtils.openWindow(event, "homeView.fxml", "Homepage");
+        	break;
+        	
+        case "areaUserButton":
+        	AlertUtils.showAlert(AlertType.INFORMATION, "Logout", "Logout dell'utente");
+        	WindowsNavigatorUtils.openWindow(event, "homeView.fxml", "Homepage");
+            break;
+            
+        case "goBackButton":
+        	WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attivita'", context.getActivity());
+        	break;
+        	
+        case "confirmFormButton":
+        	
+        	break;
+    	}
     }
 }
