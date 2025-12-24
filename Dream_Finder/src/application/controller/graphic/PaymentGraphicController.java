@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import application.model.bean.ActivityDTO;
+import application.model.bean.BookingContext;
 import application.observer.PriceCalculator;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
@@ -14,6 +15,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class PaymentGraphicController {
+	
+	private BookingContext context;
+	
+	public PaymentGraphicController() {
+		
+	}	
+	
+	public void initPayment(BookingContext context) {
+		this.context= context;
+	}
 	
 	@FXML
 	private TextField cardNumeberField;
@@ -28,19 +39,8 @@ public class PaymentGraphicController {
 	private DatePicker dateField;
 	
 	@FXML
-    private void initialize() {
-		
-    }
-	
-	private void detailedPaymentInfo (ActivityDTO activity, int fullTicketCount, int reducedActivityCount) {
-		
-	}
-	
-	@FXML
 	private void doPayment(MouseEvent event) throws IOException{
 		
-		//Creare un medoto nel windowsNavigatorUtils che chiude la modal page e cambia la parent page
-	    
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		

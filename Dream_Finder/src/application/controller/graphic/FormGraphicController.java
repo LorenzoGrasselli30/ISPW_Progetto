@@ -182,7 +182,7 @@ public class FormGraphicController {
         	    context.setTravelerSurname(currentTraveler.getSurname());
         	    context.setTravelerDOB(currentTraveler.getDob());
         	    
-        	    AlertUtils.showAlert(AlertType.INFORMATION, "Successo", "Dati partecipanti salvati correttamente!");
+        	    WindowsNavigatorUtils.openPaymentWindow(event, "paymentView.fxml", "Schermata di pagamento", context);
         	}
         	break;
     	}

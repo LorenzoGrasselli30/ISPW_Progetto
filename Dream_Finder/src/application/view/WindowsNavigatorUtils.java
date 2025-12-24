@@ -5,6 +5,7 @@ import java.io.IOException;
 import application.controller.graphic.ActivityGraphicController;
 import application.controller.graphic.FormGraphicController;
 import application.controller.graphic.LoginGraphicController;
+import application.controller.graphic.PaymentGraphicController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.model.enums.UserRole;
@@ -231,6 +232,36 @@ public class WindowsNavigatorUtils {
 	    
 	    FormGraphicController formController = loader.getController();
 	    formController.initForm(context);
+
+	    //Imposta la nuova scena
+        stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        
+        //Ripristina le dimensioni e la posizione
+        stage.setWidth(currentWidth);
+        stage.setHeight(currentHeight);
+        stage.setX(currentX);
+        stage.setY(currentY);
+        
+        stage.show();
+	}
+	
+	public static void openPaymentWindow(MouseEvent event, String fxmlPath, String title, BookingContext context) throws IOException {
+		//Ottieni lo stage corrente
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        //Salva le dimensioni e la posizione correnti
+        double currentWidth = stage.getWidth();
+        double currentHeight = stage.getHeight();
+        double currentX = stage.getX();
+        double currentY = stage.getY();
+        
+        //Carica il nuovo FXML
+        FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
+        Parent root = loader.load();
+	    
+	    PaymentGraphicController paymentController = loader.getController();
+	    paymentController.initPayment(context);
 
 	    //Imposta la nuova scena
         stage.setScene(new Scene(root));
