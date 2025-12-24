@@ -129,5 +129,29 @@ public class BookingContext {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
+
+	public String getTravelerName() {
+		return travelerName;
+	}
+
+	public void setTravelerName(String travelerName) {
+		this.travelerName = travelerName;
+	}
+
+	public String getTravelerSurname() {
+		return travelerSurname;
+	}
+
+	public void setTravelerSurname(String travelerSurname) {
+		this.travelerSurname = travelerSurname;
+	}
+
+	public String getTravelerDOB() {
+		return travelerDOB;
+	}
+
+	public void setTravelerDOB(String travelerDOB) {
+		this.travelerDOB = travelerDOB;
+	}
   	
 }

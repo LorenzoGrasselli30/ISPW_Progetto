@@ -1,6 +1,7 @@
 package application.controller.graphic;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,8 @@ public class FormGraphicController {
 	
 	private BookingApplicationController bookingController;
 	
+	private TravelerDTO currentTraveler;
+	
 	@FXML
     private VBox participantsContainer;
 	
@@ -42,10 +45,7 @@ public class FormGraphicController {
         this.context = context;
         
         //Metodo che chiama l'application controller che trova le informazioni del traveler dalla mail
-        TravelerDTO currentTraveler= bookingController.fetchCurrentTraveler(UserSession.getInstance());
-        System.out.println(currentTraveler.getName());
-    	System.out.println(currentTraveler.getSurname());
-    	System.out.println(currentTraveler.getDob());
+        currentTraveler= bookingController.fetchCurrentTraveler(UserSession.getInstance());
     	
         //Pulisce eventuali elementi placeholder presenti nell'FXML
         participantsContainer.getChildren().clear();
@@ -83,7 +83,22 @@ public class FormGraphicController {
             DatePicker datePicker = new DatePicker();
             datePicker.setPromptText("Seleziona");
             datePicker.setPrefHeight(30);
-
+            
+            //I campi delle informazioni del primo partecipante vengono inserite automaticamente
+            if (i == 1) {
+                if (currentTraveler.getName() != null) {
+                    nameField.setText(currentTraveler.getName());
+                }
+                
+                if (currentTraveler.getSurname() != null) {
+                    surnameField.setText(currentTraveler.getSurname());
+                }
+                
+                if (currentTraveler.getDob() != null) {
+                    datePicker.setValue(LocalDate.parse(currentTraveler.getDob()));
+                }
+            }
+            
             //Aggiunta degli elementi al box del partecipante
             participantBox.getChildren().addAll(
                 titleLabel, 
@@ -154,6 +169,7 @@ public class FormGraphicController {
         	}
         	
         	if (allFieldsFilled) {
+        		//Inserisco la lista degli ospiti nel booking context
         	    context.setGuests(guests);
         	    for (GuestInformationDTO guest : context.getGuests()) {
         	    	System.out.println(guest.getName());
@@ -161,7 +177,10 @@ public class FormGraphicController {
         	    	System.out.println(guest.getDateOfBirth());
         	    }
         	    
-        	    
+        	    //Inserisco le informazioni del traveler nel booking context
+        	    context.setTravelerName(currentTraveler.getName());
+        	    context.setTravelerSurname(currentTraveler.getSurname());
+        	    context.setTravelerDOB(currentTraveler.getDob());
         	    
         	    AlertUtils.showAlert(AlertType.INFORMATION, "Successo", "Dati partecipanti salvati correttamente!");
         	}
