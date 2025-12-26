@@ -247,32 +247,28 @@ public class WindowsNavigatorUtils {
 	}
 	
 	public static void openPaymentWindow(MouseEvent event, String fxmlPath, String title, BookingContext context) throws IOException {
-		//Ottieni lo stage corrente
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        
-        //Salva le dimensioni e la posizione correnti
-        double currentWidth = stage.getWidth();
-        double currentHeight = stage.getHeight();
-        double currentX = stage.getX();
-        double currentY = stage.getY();
-        
         //Carica il nuovo FXML
         FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
         Parent root = loader.load();
 	    
-	    PaymentGraphicController paymentController = loader.getController();
-	    paymentController.initPayment(context);
-
-	    //Imposta la nuova scena
-        stage.setScene(new Scene(root));
-        stage.setTitle(title);
+        Stage parentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    	
+    	Stage modalStage = new Stage();
+    	modalStage.setTitle(title);
+    	modalStage.initOwner(parentStage);
+    	modalStage.initModality(Modality.WINDOW_MODAL);
+    	
+    	// Calcola il centro della finestra chiamante
+        double centerX = parentStage.getX() + (parentStage.getWidth() - root.prefWidth(-1)) / 2;
+        double centerY = parentStage.getY() + (parentStage.getHeight() - root.prefHeight(-1)) / 2;
         
-        //Ripristina le dimensioni e la posizione
-        stage.setWidth(currentWidth);
-        stage.setHeight(currentHeight);
-        stage.setX(currentX);
-        stage.setY(currentY);
+        // Posiziona la finestra al centro
+        modalStage.setX(centerX);
+        modalStage.setY(centerY);
         
-        stage.show();
+    	modalStage.setScene(new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT));
+    	modalStage.setResizable(false);
+    	
+    	modalStage.show();
 	}
 }

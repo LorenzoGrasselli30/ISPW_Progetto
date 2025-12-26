@@ -55,6 +55,15 @@ public class PaymentGraphicController {
 	@FXML
 	private Label totalLabel;
 	
+	@FXML
+	private Label payLaterLabel;
+	
+	@FXML
+	private Label freeCancellationLabel;
+	
+	@FXML
+	private Label skipLineLabel;
+	
 	public PaymentGraphicController() {
 		bookingController= new BookingApplicationController();
 	}	
@@ -62,9 +71,9 @@ public class PaymentGraphicController {
 	public void initPayment(BookingContext context) {
 		this.context= context;
 		
+		// Inizializzazione label di riepilogo
 		ActivityDTO activity = context.getActivity();
 		
-		// Inizializzazione label riepilogo
 		if (activity != null) { 
 			providerNameLabel.setText(activity.getProviderName());
 			
@@ -94,6 +103,24 @@ public class PaymentGraphicController {
 			totalLabel.setText(String.format("%.2f", context.getTotalPrice()) + "€");
 		} else {
 			totalLabel.setText("0.00$");
+		}
+		
+		if (payLaterLabel != null) {
+			boolean isPayLater = Boolean.TRUE.equals(activity.getPayLater());
+			payLaterLabel.setVisible(isPayLater);
+			payLaterLabel.setManaged(isPayLater);
+		}
+
+		if (freeCancellationLabel != null) {
+			boolean isFreeCancel = Boolean.TRUE.equals(activity.getFreeCancellation());
+			freeCancellationLabel.setVisible(isFreeCancel);
+			freeCancellationLabel.setManaged(isFreeCancel);
+		}
+		
+		if (skipLineLabel != null) {
+			boolean isSkipLine = Boolean.TRUE.equals(activity.getSkipLine());
+			skipLineLabel.setVisible(isSkipLine);
+			skipLineLabel.setManaged(isSkipLine);
 		}
 		
 	}
