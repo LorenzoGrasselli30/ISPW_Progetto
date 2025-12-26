@@ -3,6 +3,7 @@ package application.controller.graphic;
 import java.io.IOException;
 import java.util.List;
 
+import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.observer.PriceCalculator;
@@ -18,13 +19,7 @@ public class PaymentGraphicController {
 	
 	private BookingContext context;
 	
-	public PaymentGraphicController() {
-		
-	}	
-	
-	public void initPayment(BookingContext context) {
-		this.context= context;
-	}
+	private BookingApplicationController bookingController;
 	
 	@FXML
 	private TextField cardNumeberField;
@@ -38,6 +33,16 @@ public class PaymentGraphicController {
 	@FXML
 	private DatePicker dateField;
 	
+	public PaymentGraphicController() {
+		bookingController= new BookingApplicationController();
+	}	
+	
+	public void initPayment(BookingContext context) {
+		this.context= context;
+		
+		
+	}
+	
 	@FXML
 	private void doPayment(MouseEvent event) throws IOException{
 		
@@ -50,8 +55,7 @@ public class PaymentGraphicController {
 	
 	@FXML
 	private void goBackPayment(MouseEvent event) throws IOException{
-		
-		WindowsNavigatorUtils.closeWindow(event);
+		WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attivita'", context.getActivity());
    }
 	
 }
