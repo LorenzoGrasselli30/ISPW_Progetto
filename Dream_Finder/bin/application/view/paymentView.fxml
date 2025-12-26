@@ -61,12 +61,17 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Prenota ora paga dopo">
+                        <Label fx:id="payLaterLabel" text="Prenota ora paga dopo">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="Cancellazione gratuita">
+                        <Label fx:id="freeCancellationLabel" text="Cancellazione gratuita">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="skipLineLabel" text="Sala fila incluso">
                            <font>
                               <Font size="14.0" />
                            </font>
