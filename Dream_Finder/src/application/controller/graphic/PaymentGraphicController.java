@@ -134,14 +134,6 @@ public class PaymentGraphicController {
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		
-		StripePayment payment = new StripePayment();
-		try {
-			payment.createPayment();
-		} catch (StripeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		WindowsNavigatorUtils.changeParentWindow(event, fxmlFile, title);
 		
    }
