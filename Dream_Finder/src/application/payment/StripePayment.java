@@ -1,6 +1,7 @@
 package application.payment;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Properties;
 import com.stripe.Stripe;
 import com.stripe.model.PaymentIntent;
@@ -12,9 +13,9 @@ import com.stripe.exception.StripeException;
 //Classe adeptee
 public class StripePayment {
 	
-	private final String SUCCESSFULL= "pm_card_visa";
-	private final String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
-	private final String DECLINED= "pm_card_chargeDeclined";
+	private final static String SUCCESSFULL= "pm_card_visa";
+	private final static String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
+	private final static String DECLINED= "pm_card_chargeDeclined";
 	
 	public static PaymentIntent createPayment(String cardNumber, String expiredDate, String activityName, String customerName, String providerName) 
 			throws StripeException, IOException {
@@ -23,6 +24,19 @@ public class StripePayment {
 		
 		//In base al Expired date e al card number si hanno diversi tipi di risultati del pagamento
 		String paymentResult = null;
+		
+		LocalDate expiration = LocalDate.parse(expiredDate);
+		
+		// Se la data di scadenza è prima di oggi (o fine mese corrente), è scaduta
+		if (expiration.isBefore(LocalDate.now())) {
+			paymentResult = EXPIRED;
+		} else {
+			if(cardNumber.trim().equals("4242424242424242")) {
+				paymentResult = SUCCESSFULL;
+			} else {
+				paymentResult = DECLINED;
+			}
+		}
 		
 		PaymentIntent paymentIntent = new PaymentIntent();
 		

@@ -134,6 +134,8 @@ public class PaymentGraphicController {
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		
+		
+		
 		bookingController.makeTransaction(context);
 		
 		WindowsNavigatorUtils.changeParentWindow(event, fxmlFile, title);

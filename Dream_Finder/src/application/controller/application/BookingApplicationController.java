@@ -39,7 +39,7 @@ public class BookingApplicationController {
 		
 		StripePayment newPayment = new StripePayment();
 		try {
-			newPayment.createPayment();
+			newPayment.createPayment("4242424242424242", "2027-04-10", "Attività di prova", "Mario rossi", "Provider prova");
 		} catch (StripeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
