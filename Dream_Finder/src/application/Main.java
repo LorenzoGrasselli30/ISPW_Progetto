@@ -2,7 +2,10 @@ package application;
 	
 import java.util.Scanner;
 
+import com.stripe.exception.StripeException;
+
 import application.configuration.AppConfig;
+import application.payment.StripePayment;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

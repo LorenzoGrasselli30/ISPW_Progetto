@@ -7,7 +7,9 @@ module Dream_Finder {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	requires javafx.controls;
-	
+	requires stripe.java;
+    requires com.google.gson;
+    
 	opens application to javafx.graphics, javafx.fxml;
 	opens application.controller.graphic to javafx.fxml;
 }
