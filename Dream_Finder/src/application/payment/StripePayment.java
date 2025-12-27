@@ -7,12 +7,16 @@ import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
 import com.stripe.exception.StripeException;
 
+//Classe adeptee
 public class StripePayment {
 	
 	public static PaymentIntent createPayment() throws StripeException, IOException {
 		String secretKey= loadApiKey();
 		Stripe.apiKey= secretKey;
 		
+		PaymentIntent paymentIntent = new PaymentIntent();
+		
+		//Creazione delle informazioni del pagamento
 	    PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
 	        .setAmount(2000L) // Importo in centesimi (2000 = 20.00 EUR)
 	        .setCurrency("eur") 
@@ -21,8 +25,9 @@ public class StripePayment {
 	        .putMetadata("customer_name", "Mario Rossi")
 	        .putMetadata("provider_name", "Luigi Verdi")
 	        .build();
+	    paymentIntent.create(params);
 	    
-	    return PaymentIntent.create(params);
+	    return paymentIntent;
 	}
 	
 	private static String loadApiKey() throws IOException {
