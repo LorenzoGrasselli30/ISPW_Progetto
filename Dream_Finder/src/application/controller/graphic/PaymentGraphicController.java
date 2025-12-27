@@ -142,7 +142,6 @@ public class PaymentGraphicController {
 			e.printStackTrace();
 		}
 		
-		
 		WindowsNavigatorUtils.changeParentWindow(event, fxmlFile, title);
 		
    }

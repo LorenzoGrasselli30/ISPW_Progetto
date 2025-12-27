@@ -1,5 +1,6 @@
 package application;
 	
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.stripe.exception.StripeException;
@@ -38,6 +39,9 @@ public class Main extends Application {
 		String visual = null;
 		String mode = null;
 		Scanner scanner= new Scanner(System.in); 
+		
+		
+		
 		
 		try {
 			System.out.println("Scegli l'interfaccia da utilizzare: GUI/CLI (Invio per versione di default)");
