@@ -26,7 +26,7 @@ public class PaymentGraphicController {
 	private BookingApplicationController bookingController;
 	
 	@FXML
-	private TextField cardNumeberField;
+	private TextField cardNumberField;
 	
 	@FXML
 	private TextField cvvField;
@@ -126,6 +126,7 @@ public class PaymentGraphicController {
 			skipLineLabel.setManaged(isSkipLine);
 		}
 		
+		cardNumberField.setText("4242424242424242");
 	}
 	
 	@FXML
@@ -134,7 +135,13 @@ public class PaymentGraphicController {
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		
+		context.setCardNumber(cardNumberField.getText().trim());
+		context.setCvv(cvvField.getText().trim());
+		context.setOwnerName(ownerField.getText());
 		
+		if (dateField.getValue() != null) {
+			context.setExpiredDate(dateField.getValue().toString());
+		}
 		
 		bookingController.makeTransaction(context);
 		

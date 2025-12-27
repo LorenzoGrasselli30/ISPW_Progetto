@@ -164,7 +164,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="cardNumeberField" promptText="Numero della carta">
+                              <TextField fx:id="cardNumberField" promptText="Numero della carta">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

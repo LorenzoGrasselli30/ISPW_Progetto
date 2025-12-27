@@ -103,6 +103,9 @@ public class BookingContext {
 	}
 	
 	public void setCardNumber(String cardNumber) {
+		if (cardNumber == null || ! cardNumber.matches("\\d{16}")) {
+			throw new IllegalArgumentException("Il numero della carta deve essere composto da esattamente 16 cifre numeriche");
+		}
 		this.cardNumber = cardNumber;
 	}
 	
@@ -111,6 +114,9 @@ public class BookingContext {
 	}
 	
 	public void setCvv(String cvv) {
+		if (cvv == null || !cvv.matches("\\d{3}")) {
+			throw new IllegalArgumentException("Il CVV deve essere composto da esattamente 3 cifre numeriche");
+		}
 		this.cvv = cvv;
 	}
 	
@@ -119,6 +125,9 @@ public class BookingContext {
 	}
 	
 	public void setExpiredDate(String expiredDate) {
+		if (expiredDate == null || !expiredDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
+			throw new IllegalArgumentException("La data di scadenza deve essere nel formato YYYY-MM-DD");
+		}
 		this.expiredDate = expiredDate;
 	}
 	

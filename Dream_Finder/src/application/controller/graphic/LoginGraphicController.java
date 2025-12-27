@@ -50,6 +50,8 @@ public class LoginGraphicController implements Initializable {
 		this.passwordTextField.promptTextProperty().bind(passwordField.promptTextProperty());
 		this.passwordTextField.prefHeightProperty().bind(passwordField.prefHeightProperty());
 		this.passwordTextField.prefWidthProperty().bind(passwordField.prefWidthProperty());
+		
+		emailField.setText("mario.rossi@mail.com");
 	}
 	
 	public void initLogin(BookingContext context) {
