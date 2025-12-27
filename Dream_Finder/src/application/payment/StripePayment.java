@@ -4,30 +4,46 @@ import java.io.IOException;
 import java.util.Properties;
 import com.stripe.Stripe;
 import com.stripe.model.PaymentIntent;
+import com.stripe.model.PaymentMethod;
 import com.stripe.param.PaymentIntentCreateParams;
+import com.stripe.param.PaymentMethodCreateParams;
 import com.stripe.exception.StripeException;
 
 //Classe adeptee
 public class StripePayment {
 	
-	public static PaymentIntent createPayment() throws StripeException, IOException {
+	private final String SUCCESSFULL= "pm_card_visa";
+	private final String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
+	private final String DECLINED= "pm_card_chargeDeclined";
+	
+	public static PaymentIntent createPayment(String cardNumber, String expiredDate, String activityName, String customerName, String providerName) 
+			throws StripeException, IOException {
 		String secretKey= loadApiKey();
 		Stripe.apiKey= secretKey;
 		
+		//In base al Expired date e al card number si hanno diversi tipi di risultati del pagamento
+		String paymentResult = null;
+		
 		PaymentIntent paymentIntent = new PaymentIntent();
 		
-		//Creazione delle informazioni del pagamento
+		//Creazione del PaymentIntent
 	    PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
 	        .setAmount(2000L) // Importo in centesimi (2000 = 20.00 EUR)
-	        .setCurrency("eur") 
-	        .addPaymentMethodType("card")
-	        .setDescription("Pagamento di esempio") //Si va a mettere il nome dell'attività
-	        .putMetadata("customer_name", "Mario Rossi")
-	        .putMetadata("provider_name", "Luigi Verdi")
+	        .setCurrency("eur") //Default
+	        .setPaymentMethod(paymentResult)
+	        .setConfirm(true)
+	        .setDescription(activityName)
+	        .putMetadata("customer_name", customerName)
+	        .putMetadata("provider_name", providerName)
+	        .setAutomaticPaymentMethods(
+			        PaymentIntentCreateParams.AutomaticPaymentMethods.builder()
+			            .setEnabled(true)
+			            .setAllowRedirects(PaymentIntentCreateParams.AutomaticPaymentMethods.AllowRedirects.NEVER)
+			            .build()
+			)
 	        .build();
-	    paymentIntent.create(params);
 	    
-	    return paymentIntent;
+	    return paymentIntent.create(params);
 	}
 	
 	private static String loadApiKey() throws IOException {
