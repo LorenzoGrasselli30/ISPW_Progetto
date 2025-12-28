@@ -11,6 +11,8 @@ import application.model.dao.FactoryDAO;
 import application.model.dao.TravelerDAO;
 import application.model.entity.Traveler;
 import application.payment.StripePayment;
+import application.adapter.PaymentAdapter;
+import application.adapter.Target;
 
 public class BookingApplicationController {
 	
@@ -36,6 +38,8 @@ public class BookingApplicationController {
 	
 	//Client che chiama l'istanza di Adapteer
 	public Boolean makeTransaction(BookingContext context) {
+		
+		Target paymentTarget= new PaymentAdapter(new StripePayment());
 		
 		StripePayment newPayment = new StripePayment();
 		try {
