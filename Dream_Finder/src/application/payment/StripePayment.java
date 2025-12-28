@@ -17,7 +17,7 @@ public class StripePayment {
 	private final static String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
 	private final static String DECLINED= "pm_card_chargeDeclined";
 	
-	public static PaymentIntent createPayment(String cardNumber, String expiredDate, String activityName, String customerName, String providerName) 
+	public static PaymentIntent createPayment(String cardNumber, String expiredDate, String activityName, String customerName, String providerName, String amount) 
 			throws StripeException, IOException {
 		String secretKey= loadApiKey();
 		Stripe.apiKey= secretKey;

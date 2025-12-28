@@ -251,6 +251,9 @@ public class WindowsNavigatorUtils {
         FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
         Parent root = loader.load();
 	    
+        PaymentGraphicController paymentController = loader.getController();
+        paymentController.initPayment(context);
+	    
         Stage parentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	
     	Stage modalStage = new Stage();

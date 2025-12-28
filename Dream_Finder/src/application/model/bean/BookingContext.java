@@ -1,5 +1,8 @@
 package application.model.bean;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class BookingContext {
@@ -103,7 +106,7 @@ public class BookingContext {
 	}
 	
 	public void setCardNumber(String cardNumber) {
-		if (cardNumber == null || ! cardNumber.matches("\\d{16}")) {
+		if (!cardNumber.matches("\\d{16}")) {
 			throw new IllegalArgumentException("Il numero della carta deve essere composto da esattamente 16 cifre numeriche");
 		}
 		this.cardNumber = cardNumber;
@@ -114,7 +117,7 @@ public class BookingContext {
 	}
 	
 	public void setCvv(String cvv) {
-		if (cvv == null || !cvv.matches("\\d{3}")) {
+		if (!cvv.matches("\\d{3}")) {
 			throw new IllegalArgumentException("Il CVV deve essere composto da esattamente 3 cifre numeriche");
 		}
 		this.cvv = cvv;
@@ -125,10 +128,20 @@ public class BookingContext {
 	}
 	
 	public void setExpiredDate(String expiredDate) {
-		if (expiredDate == null || !expiredDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
-			throw new IllegalArgumentException("La data di scadenza deve essere nel formato YYYY-MM-DD");
+		if (expiredDate == null || expiredDate.trim().isEmpty()) {
+			throw new IllegalArgumentException("La data di nascita non può essere vuota.");
 		}
-		this.expiredDate = expiredDate;
+
+		try {
+			LocalDate.parse(expiredDate, DateTimeFormatter.ISO_LOCAL_DATE);
+			
+			// Se il parsing ha successo assegno il valore
+			this.expiredDate = expiredDate;
+			
+		} catch (DateTimeParseException e) {
+			throw new IllegalArgumentException("Formato data non valido. Usare il formato YYYY-MM-DD.");
+		}
+		
 	}
 	
 	public String getOwnerName() {

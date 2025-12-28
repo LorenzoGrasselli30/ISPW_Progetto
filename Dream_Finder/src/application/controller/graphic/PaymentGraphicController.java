@@ -126,7 +126,13 @@ public class PaymentGraphicController {
 			skipLineLabel.setManaged(isSkipLine);
 		}
 		
-		cardNumberField.setText("4242424242424242");
+	}
+	
+	@FXML
+	public void initialize() {
+	    if (cardNumberField != null) {
+	        cardNumberField.setText("4242424242424242");
+	    }
 	}
 	
 	@FXML
@@ -137,6 +143,7 @@ public class PaymentGraphicController {
 		
 		context.setCardNumber(cardNumberField.getText().trim());
 		context.setCvv(cvvField.getText().trim());
+		
 		context.setOwnerName(ownerField.getText());
 		
 		if (dateField.getValue() != null) {
