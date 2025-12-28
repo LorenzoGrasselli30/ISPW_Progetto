@@ -17,26 +17,10 @@ public class StripePayment {
 	private final static String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
 	private final static String DECLINED= "pm_card_chargeDeclined";
 	
-	public static PaymentIntent createPayment(String cardNumber, String expiredDate, String activityName, 
+	public static PaymentIntent createPayment(String paymentResult, String expiredDate, String activityName, 
 			String customerName, String providerName, Long amount) throws StripeException, IOException {
 		String secretKey= loadApiKey();
 		Stripe.apiKey= secretKey;
-		
-		//In base al Expired date e al card number si hanno diversi tipi di risultati del pagamento
-		String paymentResult = null;
-		
-		LocalDate expiration = LocalDate.parse(expiredDate);
-		
-		// Se la data di scadenza è prima di oggi (o fine mese corrente), è scaduta
-		if (expiration.isBefore(LocalDate.now())) {
-			paymentResult = EXPIRED;
-		} else {
-			if(cardNumber.trim().equals("4242424242424242")) {
-				paymentResult = SUCCESSFULL;
-			} else {
-				paymentResult = DECLINED;
-			}
-		}
 		
 		PaymentIntent paymentIntent = new PaymentIntent();
 		

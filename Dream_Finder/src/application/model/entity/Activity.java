@@ -14,9 +14,12 @@ public class Activity {
 	private Boolean skipLine;
 	private Integer nRating;
 	private Double rate;
+	
 	//Relazione di composizione quindi Activity deve mantenere un'istanza del provider associato
 	private Provider provider;
-
+	
+	private Integer availablePlaces;
+	
 	public Activity(String activityName, String description, Double price, Integer duration, Boolean timeInMinutes,
 			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
 			Double rate, Provider provider) {

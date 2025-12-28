@@ -1,7 +1,7 @@
 package application.model.entity;
 
 public class Receipt {
-	private String providerName;
+	private Provider provider;
 	private int nFullTicket;
 	private int nReducedTicket;
 	private Double shuttlePrice;
@@ -18,9 +18,9 @@ public class Receipt {
 	private String paymentDescription;
 	private String paymentOutcome;
 	
-	public Receipt(String providerName, int nFullTicket, int nReducedTicket, Double shuttlePrice, Double guidePrice,
+	public Receipt(Provider provider, int nFullTicket, int nReducedTicket, Double shuttlePrice, Double guidePrice,
 			Double totalPrice, String cardNumber, String expiredDate, String ownerName, String paymentID, String paymentDescription, String paymentOutcome) {
-		this.providerName = providerName;
+		this.provider = provider;
 		this.nFullTicket = nFullTicket;
 		this.nReducedTicket = nReducedTicket;
 		this.shuttlePrice = shuttlePrice;
@@ -40,8 +40,8 @@ public class Receipt {
 		this.ownerName= ownerName;
 	}
 
-	public String getProviderName() {
-		return providerName;
+	public Provider getProviderName() {
+		return provider;
 	}
 
 	public int getnFullTicket() {
