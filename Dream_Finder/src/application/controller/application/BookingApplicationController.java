@@ -6,6 +6,7 @@ import com.stripe.exception.StripeException;
 
 import application.configuration.UserSession;
 import application.model.bean.BookingContext;
+import application.model.bean.PaymentOutcomeDTO;
 import application.model.bean.TravelerDTO;
 import application.model.dao.FactoryDAO;
 import application.model.dao.TravelerDAO;
@@ -40,6 +41,15 @@ public class BookingApplicationController {
 	public Boolean makeTransaction(BookingContext context) {
 		
 		Target paymentTarget= new PaymentAdapter(new StripePayment());
+		
+		PaymentOutcomeDTO paymentInfo= paymentTarget.verifyPayment(context.getCardNumber(), context.getExpiredDate(), context.getCvv(), context.getActivity().getActivityName(), 
+				context.getOwnerName(), context.getActivity().getProviderName(), context.getTotalPrice());
+		
+		System.out.println(paymentInfo.getPaymentID());
+		
+		if (!paymentInfo.equals("Succeded")) {
+			return false;
+		}
 		
 		return true;
 	}
