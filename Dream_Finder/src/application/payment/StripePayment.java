@@ -17,8 +17,8 @@ public class StripePayment {
 	private final static String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
 	private final static String DECLINED= "pm_card_chargeDeclined";
 	
-	public static PaymentIntent createPayment(String cardNumber, String expiredDate, String activityName, String customerName, String providerName, String amount) 
-			throws StripeException, IOException {
+	public static PaymentIntent createPayment(String cardNumber, String expiredDate, String activityName, 
+			String customerName, String providerName, Long amount) throws StripeException, IOException {
 		String secretKey= loadApiKey();
 		Stripe.apiKey= secretKey;
 		
@@ -42,7 +42,7 @@ public class StripePayment {
 		
 		//Creazione del PaymentIntent
 	    PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
-	        .setAmount(2000L) // Importo in centesimi (2000 = 20.00 EUR)
+	        .setAmount(amount) // Importo in centesimi (2000 = 20.00 EUR)
 	        .setCurrency("eur") //Default
 	        .setPaymentMethod(paymentResult)
 	        .setConfirm(true)

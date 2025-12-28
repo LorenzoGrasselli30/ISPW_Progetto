@@ -41,17 +41,6 @@ public class BookingApplicationController {
 		
 		Target paymentTarget= new PaymentAdapter(new StripePayment());
 		
-		StripePayment newPayment = new StripePayment();
-		try {
-			newPayment.createPayment("4242424242424242", "2027-04-10", "Attività di prova", "Mario rossi", "Provider prova", "3000");
-		} catch (StripeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		return true;
 	}
 }
