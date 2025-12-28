@@ -1,8 +1,6 @@
 package application.model.entity;
 
 public class Receipt {
-	private String travelerName;
-	private String travelerSurname;
 	private String providerName;
 	private int nFullTicket;
 	private int nReducedTicket;
@@ -12,39 +10,34 @@ public class Receipt {
 	
 	//Informazioni della carta
 	private String cardNumber;
-	private String cvv;
 	private String expiredDate;
 	private String ownerName;
 	
-	public Receipt(String travelerName, String travelerSurname, String providerName, int nFullTicket,
-			int nReducedTicket, Double shuttlePrice, Double guidePrice, Double totalPrice) {
-		this.travelerName = travelerName;
-		this.travelerSurname = travelerSurname;
+	//Informazioni su Stripe
+	private String paymentID;
+	private String paymentDescription;
+	private String paymentOutcome;
+	
+	public Receipt(String providerName, int nFullTicket, int nReducedTicket, Double shuttlePrice, Double guidePrice,
+			Double totalPrice, String cardNumber, String expiredDate, String ownerName, String paymentID, String paymentDescription, String paymentOutcome) {
 		this.providerName = providerName;
 		this.nFullTicket = nFullTicket;
 		this.nReducedTicket = nReducedTicket;
 		this.shuttlePrice = shuttlePrice;
 		this.guidePrice = guidePrice;
 		this.totalPrice = totalPrice;
-		this.cardNumber = null;
-		this.cvv = null;
-		this.expiredDate = null;
-		this.ownerName = null;
+		this.cardNumber = cardNumber;
+		this.expiredDate = expiredDate;
+		this.ownerName = ownerName;
+		this.paymentID = paymentID;
+		this.paymentDescription = paymentDescription;
+		this.paymentOutcome = paymentOutcome;
 	}
 	
 	public void setCardInformation (String cardNumber, String cvv, String expiredDate, String ownerName) {
 		this.cardNumber= cardNumber;
-		this.cvv= cvv;
 		this.expiredDate= expiredDate;
 		this.ownerName= ownerName;
-	}
-
-	public String getTravelerName() {
-		return travelerName;
-	}
-
-	public String getTravelerSurname() {
-		return travelerSurname;
 	}
 
 	public String getProviderName() {
@@ -73,10 +66,6 @@ public class Receipt {
 
 	public String getCardNumber() {
 		return cardNumber;
-	}
-
-	public String getCvv() {
-		return cvv;
 	}
 
 	public String getExpiredDate() {
