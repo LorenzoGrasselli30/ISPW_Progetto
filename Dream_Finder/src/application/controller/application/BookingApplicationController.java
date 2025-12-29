@@ -70,11 +70,14 @@ public class BookingApplicationController {
 		Traveler currentTraveler= travelerDAO.findByEmail(UserSession.getInstance().getCurrentUser().getEmail());
 		
 		List<GuestInformation> guests= new ArrayList();
-		for (context.getGuests(): guest) {
-			GuestInformation newGuest= new GuestInformation();
+		
+		for (GuestInformationDTO guest: context.getGuests()) {
+			GuestInformation newGuest= new GuestInformation(guest.getName(), guest.getSurname(), guest.getDateOfBirth());
 			
 			guests.add(newGuest);
 		}
+		
+		
 		
 		return true;
 	}

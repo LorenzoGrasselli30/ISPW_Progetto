@@ -2,16 +2,19 @@ package application.model.dao;
 
 import application.configuration.AppConfig;
 import application.model.dao.db.ActivityDAODB;
+import application.model.dao.db.BookingDAODB;
 import application.model.dao.db.ProviderDAODB;
 import application.model.dao.db.ReceiptDAODB;
 import application.model.dao.db.TravelerDAODB;
 import application.model.dao.db.UserDAODB;
 import application.model.dao.demo.ActivityDAODemo;
+import application.model.dao.demo.BookingDAODemo;
 import application.model.dao.demo.ProviderDAODemo;
 import application.model.dao.demo.ReceiptDAODemo;
 import application.model.dao.demo.TravelerDAODemo;
 import application.model.dao.demo.UserDAODemo;
 import application.model.dao.file.ActivityDAOFile;
+import application.model.dao.file.BookingDAOFile;
 import application.model.dao.file.ProviderDAOFile;
 import application.model.dao.file.ReceiptDAOFile;
 import application.model.dao.file.TravelerDAOFile;
@@ -137,6 +140,27 @@ public class FactoryDAO {
 	    		
 	    	} else {
 	        	return new TravelerDAODB();
+	        }
+	}
+	
+	private BookingDAO bookingDAO;
+	
+	public BookingDAO getBookingDAO() {
+		if (mode == null) {					
+			throw new IllegalStateException(MODE_EXCEPTION);
+		}
+	    	
+		if (MODE_DEMO.equals(mode) || "".equals(mode)) { 
+	    	    if (bookingDAO == null) {  
+	    	    	bookingDAO = new BookingDAODemo();
+	    	    }
+	    	    return bookingDAO;           
+	    	    
+	    	} else if (MODE_FILE.equals(mode)) {
+	    		return new BookingDAOFile();
+	    		
+	    	} else {
+	        	return new BookingDAODB();
 	        }
 	}
 }
