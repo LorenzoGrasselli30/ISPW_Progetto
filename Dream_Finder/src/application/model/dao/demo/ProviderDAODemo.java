@@ -98,6 +98,12 @@ public class ProviderDAODemo implements ProviderDAO{
 				.limit(5)
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public Provider findByActivity(Activity activity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

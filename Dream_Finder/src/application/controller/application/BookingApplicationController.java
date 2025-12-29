@@ -1,6 +1,8 @@
 package application.controller.application;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +17,13 @@ import application.model.bean.TravelerDTO;
 import application.model.dao.ActivityDAO;
 import application.model.dao.BookingDAO;
 import application.model.dao.FactoryDAO;
+import application.model.dao.ProviderDAO;
 import application.model.dao.TravelerDAO;
 import application.model.entity.Activity;
+import application.model.entity.Booking;
 import application.model.entity.GuestInformation;
+import application.model.entity.Provider;
+import application.model.entity.Receipt;
 import application.model.entity.Traveler;
 import application.payment.StripePayment;
 import application.adapter.PaymentAdapter;
@@ -28,11 +34,13 @@ public class BookingApplicationController {
 	private TravelerDAO travelerDAO;
 	private ActivityDAO activityDAO;
 	private BookingDAO bookingDAO;
+	private ProviderDAO providerDAO;
 	
 	public BookingApplicationController() {
 		this.travelerDAO= FactoryDAO.getFactoryInstance().getTravelerDAO();
 		this.activityDAO= FactoryDAO.getFactoryInstance().getActivityDAO();
 		this.bookingDAO= FactoryDAO.getFactoryInstance().getBookingDAO();
+		this.providerDAO= FactoryDAO.getFactoryInstance().getProviderDAO();
 	}
 
 	public TravelerDTO fetchCurrentTraveler(UserSession userSession) {
@@ -77,11 +85,40 @@ public class BookingApplicationController {
 			guests.add(newGuest);
 		}
 		
-		bookingDAO.confirmBooking(currentTraveler, guests, bookedActivity, context.getnFullTickets(), context.getnReducedTickets(), 
-				context.isShuttleService(), context.isGuideService(), context.getTotalPrice());
+		String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		
+		Booking newBooking= new Booking(
+				null,
+				currentTraveler,
+				guests,
+				bookedActivity,
+				context.getnFullTickets(),
+				context.getnReducedTickets(),
+				context.isShuttleService(),
+				context.isGuideService(),
+				context.getTotalPrice(),
+				currentDateTime
+				);
+		
+		bookingDAO.confirmBooking(newBooking);
 		
 		//Salvataggio della ricevuta
+		Provider currentProvider = providerDAO.findByActivity(bookedActivity);
 		
+		Receipt receipt= new Receipt(
+				currentProvider,
+				context.getnFullTickets(),
+				context.getnReducedTickets(),
+				context.getShuttlePrice(),
+				context.getGuidePrice(),
+				context.getTotalPrice(),
+				context.getCardNumber(),
+				context.getExpiredDate(),
+				context.getOwnerName(),
+				paymentInfo.getPaymentID(),
+				paymentInfo.getPaymentDescription(),
+				paymentInfo.getPaymentOutcome()
+				);
 		
 		return true;
 	}

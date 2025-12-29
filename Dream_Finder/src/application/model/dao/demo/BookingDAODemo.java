@@ -15,21 +15,17 @@ import application.model.entity.Traveler;
 public class BookingDAODemo implements BookingDAO {
 	
 	private Map<String, Booking> bookings = new HashMap<>();
-	
-	@Override
-	public Boolean confirmBooking(Traveler traveler, List<GuestInformation> guests, Activity activity,
-			int nFullTickets, int nReducedTickets, boolean shuttleService, boolean guideService, Double totalPrice) {
 
-		String uniqueBookingID = UUID.randomUUID().toString();
+	@Override
+	public Boolean confirmBooking(Booking booking) {
 		
-		String bookingDate = LocalDateTime.now().toString();
+		booking.setBookingID(UUID.randomUUID().toString());
 		
-		Booking newBooking = new Booking(uniqueBookingID, traveler, guests, activity, nFullTickets, 
-				nReducedTickets, shuttleService, guideService, totalPrice, bookingDate);
-				
-		bookings.put(uniqueBookingID, newBooking);
-				
+		bookings.put(booking.getBookingID(), booking);
+		
 		return true;
 	}
+	
+	
 
 }

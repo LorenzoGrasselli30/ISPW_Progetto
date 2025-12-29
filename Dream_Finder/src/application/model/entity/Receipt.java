@@ -33,12 +33,6 @@ public class Receipt {
 		this.paymentDescription = paymentDescription;
 		this.paymentOutcome = paymentOutcome;
 	}
-	
-	public void setCardInformation (String cardNumber, String cvv, String expiredDate, String ownerName) {
-		this.cardNumber= cardNumber;
-		this.expiredDate= expiredDate;
-		this.ownerName= ownerName;
-	}
 
 	public Provider getProviderName() {
 		return provider;
@@ -74,6 +68,18 @@ public class Receipt {
 
 	public String getOwnerName() {
 		return ownerName;
+	}
+
+	public String getPaymentID() {
+		return paymentID;
+	}
+
+	public String getPaymentDescription() {
+		return paymentDescription;
+	}
+
+	public String getPaymentOutcome() {
+		return paymentOutcome;
 	}
 	
 }

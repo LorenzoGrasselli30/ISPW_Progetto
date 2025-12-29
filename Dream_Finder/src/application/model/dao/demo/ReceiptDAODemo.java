@@ -9,12 +9,12 @@ import application.model.entity.Receipt;
 
 public class ReceiptDAODemo implements ReceiptDAO {
 	
-	private Map<String, Booking> receipts = new HashMap<>();
+	private Map<String, Receipt> receipts = new HashMap<>();
 	
 	@Override
-	public Boolean saveReceipt(String PaymentID, String PaymentDescription, String PaymentOutcome, String cardNumber,
-			String expiredDate, String ownerName) {
-		// TODO Auto-generated method stub
+	public Boolean saveReceipt(Receipt receipt) {
+		
+		receipts.put(receipt.getPaymentID(), receipt);
 		return true;
 	}
 

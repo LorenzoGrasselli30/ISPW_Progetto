@@ -3,6 +3,7 @@ package application.model.dao.file;
 import java.util.List;
 
 import application.model.dao.ProviderDAO;
+import application.model.entity.Activity;
 import application.model.entity.Provider;
 
 public class ProviderDAOFile implements ProviderDAO {
@@ -15,6 +16,12 @@ public class ProviderDAOFile implements ProviderDAO {
 
 	@Override
 	public List<Provider> providersList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Provider findByActivity(Activity activity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
