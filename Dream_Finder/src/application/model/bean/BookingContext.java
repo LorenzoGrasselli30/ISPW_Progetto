@@ -15,11 +15,6 @@ public class BookingContext {
     private Double guidePrice;
     private Double totalPrice;
     
-    //Informazioni sul traveler che effetttua la prenotazione
-    private String travelerName;
-    private String travelerSurname;
-    private String travelerDOB;
-    
     //Informazioni per la prenotazione 
     private List<GuestInformationDTO> guests;
     
@@ -150,30 +145,6 @@ public class BookingContext {
 	
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
-	}
-
-	public String getTravelerName() {
-		return travelerName;
-	}
-
-	public void setTravelerName(String travelerName) {
-		this.travelerName = travelerName;
-	}
-
-	public String getTravelerSurname() {
-		return travelerSurname;
-	}
-
-	public void setTravelerSurname(String travelerSurname) {
-		this.travelerSurname = travelerSurname;
-	}
-
-	public String getTravelerDOB() {
-		return travelerDOB;
-	}
-
-	public void setTravelerDOB(String travelerDOB) {
-		this.travelerDOB = travelerDOB;
 	}
   	
 }

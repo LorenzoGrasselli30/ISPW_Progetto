@@ -177,11 +177,6 @@ public class FormGraphicController {
         	    	System.out.println(guest.getDateOfBirth());
         	    }
         	    
-        	    //Inserisco le informazioni del traveler nel booking context
-        	    context.setTravelerName(currentTraveler.getName());
-        	    context.setTravelerSurname(currentTraveler.getSurname());
-        	    context.setTravelerDOB(currentTraveler.getDob());
-        	    
         	    WindowsNavigatorUtils.openPaymentWindow(event, "paymentView.fxml", "Schermata di pagamento", context);
         	}
         	break;

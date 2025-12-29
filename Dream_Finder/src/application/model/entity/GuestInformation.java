@@ -11,7 +11,9 @@ public class GuestInformation {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
+	/*
 	public Boolean isReducedTicket (String dateOfBirth) {
 		return null;
 	}
+	*/
 }
