@@ -18,6 +18,7 @@ import application.model.dao.ActivityDAO;
 import application.model.dao.BookingDAO;
 import application.model.dao.FactoryDAO;
 import application.model.dao.ProviderDAO;
+import application.model.dao.ReceiptDAO;
 import application.model.dao.TravelerDAO;
 import application.model.entity.Activity;
 import application.model.entity.Booking;
@@ -35,12 +36,14 @@ public class BookingApplicationController {
 	private ActivityDAO activityDAO;
 	private BookingDAO bookingDAO;
 	private ProviderDAO providerDAO;
+	private ReceiptDAO receiptDAO;
 	
 	public BookingApplicationController() {
 		this.travelerDAO= FactoryDAO.getFactoryInstance().getTravelerDAO();
 		this.activityDAO= FactoryDAO.getFactoryInstance().getActivityDAO();
 		this.bookingDAO= FactoryDAO.getFactoryInstance().getBookingDAO();
 		this.providerDAO= FactoryDAO.getFactoryInstance().getProviderDAO();
+		this.receiptDAO= FactoryDAO.getFactoryInstance().getReceiptDAO();
 	}
 
 	public TravelerDTO fetchCurrentTraveler(UserSession userSession) {
@@ -100,7 +103,7 @@ public class BookingApplicationController {
 				currentDateTime
 				);
 		
-		bookingDAO.confirmBooking(newBooking);
+		Boolean bookingResult= bookingDAO.confirmBooking(newBooking);
 		
 		//Salvataggio della ricevuta
 		Provider currentProvider = providerDAO.findByActivity(bookedActivity);
@@ -119,6 +122,8 @@ public class BookingApplicationController {
 				paymentInfo.getPaymentDescription(),
 				paymentInfo.getPaymentOutcome()
 				);
+		
+		Boolean receiptResult= receiptDAO.saveReceipt(receipt);
 		
 		return true;
 	}

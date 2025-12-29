@@ -101,7 +101,11 @@ public class ProviderDAODemo implements ProviderDAO{
 
 	@Override
 	public Provider findByActivity(Activity activity) {
-		// TODO Auto-generated method stub
+		for(Provider provider : providers.values()) {
+			if(provider.getActivities().contains(activity)) {
+				return provider;
+			}
+		}
 		return null;
 	}
 	
