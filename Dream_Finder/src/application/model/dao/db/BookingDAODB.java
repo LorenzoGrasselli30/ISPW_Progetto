@@ -10,8 +10,9 @@ import application.model.entity.Traveler;
 public class BookingDAODB implements BookingDAO {
 
 	@Override
-	public Boolean confirmBooking(Traveler traveler, List<GuestInformation> guests, Activity activity, int nFullTickets,
-			int nReducedTickets, boolean shuttleService, boolean guideService, Double totalPrice, String bookingDate) {
+	public Boolean confirmBooking(String bookingID, Traveler traveler, List<GuestInformation> guests, Activity activity,
+			int nFullTickets, int nReducedTickets, boolean shuttleService, boolean guideService, Double totalPrice,
+			String bookingDate) {
 		// TODO Auto-generated method stub
 		return null;
 	}
