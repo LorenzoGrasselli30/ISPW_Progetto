@@ -26,6 +26,7 @@ import application.model.entity.GuestInformation;
 import application.model.entity.Provider;
 import application.model.entity.Receipt;
 import application.model.entity.Traveler;
+import application.model.enums.ActivityType;
 import application.payment.StripePayment;
 import application.adapter.PaymentAdapter;
 import application.adapter.Target;
@@ -45,7 +46,48 @@ public class BookingApplicationController {
 		this.providerDAO= FactoryDAO.getFactoryInstance().getProviderDAO();
 		this.receiptDAO= FactoryDAO.getFactoryInstance().getReceiptDAO();
 	}
+	
+	public ActivityDTO fetchActivityInfo(String activityName, String providerName) {
+		
+		Activity newActivityInfo= activityDAO.findByProvider(activityName, providerName);
+		
+		ActivityDTO newActivityDTO= new ActivityDTO();
+		newActivityDTO.setActivityName(newActivityInfo.getActivityName());
+		newActivityDTO.setActivityType(newActivityInfo.getActivityType());
+		newActivityDTO.setDescription(newActivityInfo.getDescription());
+		newActivityDTO.setDuration(newActivityInfo.getDuration());
+		newActivityDTO.setTimeInMinutes(newActivityInfo.getTimeInMinutes());
+		newActivityDTO.setnRating(newActivityInfo.getnRating());
+		newActivityDTO.setRate(newActivityInfo.getRate());
+		newActivityDTO.setPrice(newActivityInfo.getPrice());
+		newActivityDTO.setSkipLine(newActivityInfo.getSkipLine());
+		newActivityDTO.setFreeCancellation(newActivityInfo.getFreeCancellation());
+		newActivityDTO.setPayLater(newActivityInfo.getPayLater());
+		newActivityDTO.setProviderName(newActivityInfo.getProvider().getProviderName());
+		
+		return newActivityDTO;
+	}
 
+	public List<ActivityDTO> fetchRelatedInfo(String activityName, ActivityType activityType, String providerName) {
+		
+		List<Activity> newActivities= activityDAO.findRelatedActivities(activityName, activityType, providerName);
+		
+		List<ActivityDTO> relatedActivity= new ArrayList();
+		for (Activity activity: newActivities) {
+			ActivityDTO newActivity= new ActivityDTO();
+			newActivity.setActivityName(activity.getActivityName());
+			newActivity.setDescription(activity.getDescription());
+			newActivity.setnRating(activity.getnRating());
+			newActivity.setRate(activity.getRate());
+			newActivity.setPrice(activity.getPrice());
+			newActivity.setProviderName(activity.getProvider().getProviderName());
+			
+			relatedActivity.add(newActivity);
+		}
+		
+		return relatedActivity;
+	}
+	
 	public TravelerDTO fetchCurrentTraveler(UserSession userSession) {
 		String email= userSession.getCurrentUser().getEmail();
 		

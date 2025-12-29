@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import application.configuration.UserSession;
 import application.controller.application.ActivityApplicationController;
+import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.model.bean.ReceiptDTO;
@@ -40,7 +41,7 @@ import javafx.stage.Stage;
 
 public class ActivityGraphicController implements Observer{
     
-	private ActivityApplicationController activityController;
+	private BookingApplicationController bookingController;
 	
 	//Pattern observer
 	private PriceCalculator subject= new PriceCalculator();
@@ -129,7 +130,7 @@ public class ActivityGraphicController implements Observer{
     private String selectedLanguage;
     
     public ActivityGraphicController() {
-		activityController = new ActivityApplicationController();
+    	bookingController= new BookingApplicationController();
 	}
 	
 	public void initialize() {
@@ -179,7 +180,7 @@ public class ActivityGraphicController implements Observer{
 		String activityName= activity.getActivityName();
 		String providerName= activity.getProviderName();
 		
-		ActivityDTO activityInfo= activityController.fetchActivityInfo(activityName, providerName);
+		ActivityDTO activityInfo= bookingController.fetchActivityInfo(activityName, providerName);
 		
 		//Aggiorna i dati per l'observer 
 		currentActivity= activityInfo;
@@ -232,7 +233,7 @@ public class ActivityGraphicController implements Observer{
 					skiplineSection.setManaged(activityInfo.getSkipLine());
 				}	
 		
-				List<ActivityDTO> relatedInfo= activityController.fetchRelatedInfo(activityInfo.getActivityName(), 
+				List<ActivityDTO> relatedInfo= bookingController.fetchRelatedInfo(activityInfo.getActivityName(), 
 						activityInfo.getActivityType(), activityInfo.getProviderName());
 				
 				populateRelatedSection(relatedInfo);
@@ -295,7 +296,6 @@ public class ActivityGraphicController implements Observer{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 	
     @FXML

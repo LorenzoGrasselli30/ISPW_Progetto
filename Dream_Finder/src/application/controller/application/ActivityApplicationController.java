@@ -15,13 +15,12 @@ import application.model.enums.ActivityType;
 public class ActivityApplicationController {
 	
 	private ActivityDAO activityDAO;
-	private ReceiptDAO receiptDAO;
 	
 	public ActivityApplicationController() {
 		this.activityDAO= FactoryDAO.getFactoryInstance().getActivityDAO();
-		this.receiptDAO= FactoryDAO.getFactoryInstance().getReceiptDAO();
 	}
 	
+	/*
 	public ActivityDTO fetchActivityInfo(String activityName, String providerName) {
 		
 		Activity newActivityInfo= activityDAO.findByProvider(activityName, providerName);
@@ -61,18 +60,6 @@ public class ActivityApplicationController {
 		}
 		
 		return relatedActivity;
-	}
-	
-	/*
-	public Boolean createQuotation(ReceiptDTO receiptDTO) {
-		
-		// 1. Converti il DTO in Entity (diminuisce l'accoppiamento)
-		Receipt receipt = new Receipt(receiptDTO.getTravelerName(), receiptDTO.getTravelerSurname(), receiptDTO.getProviderName(), receiptDTO.getnFullTicket(), 
-				receiptDTO.getnReducedTicket(), receiptDTO.getShuttlePrice(), receiptDTO.getGuidePrice(), receiptDTO.getTotalPrice());
-			
-		Boolean result= receiptDAO.saveQuotation(receipt);
-		
-		return result;
 	}
 	*/
 }

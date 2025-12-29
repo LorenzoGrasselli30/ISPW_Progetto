@@ -92,7 +92,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Napoli: Tour guidato e biglietto per il Cristo Velato">
+                              <Label fx:id="activityNameLabel" text="Napoli: Tour guidato e biglietto per il Cristo Velato">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -116,7 +116,7 @@
                                  </cursor>
                               </Button>
                               <Region HBox.hgrow="ALWAYS" />
-                              <Button maxHeight="140.0" minHeight="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="290.0" style="-fx-background-color: #6FA655;" text="Stampa ricevuta di pagamento" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Button fx:id="receiptButton" maxHeight="140.0" minHeight="70.0" mnemonicParsing="false" onMouseClicked="#useRecommendedActivities" prefHeight="70.0" prefWidth="290.0" style="-fx-background-color: #6FA655;" text="Stampa ricevuta di pagamento" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -127,9 +127,14 @@
                               <Region HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER">
+                        <VBox alignment="CENTER" spacing="5.0">
                            <children>
-                              <Button fx:id="returnHomeButton1" maxHeight="140.0" minHeight="70.0" mnemonicParsing="false" onMouseClicked="#useRecommendedActivities" prefHeight="70.0" prefWidth="290.0" style="-fx-background-color: #6FA655;" text="Scarica qui il tuo biglietto" textFill="WHITE">
+                              <Label text="Non dimenticarti di">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="ticketButton" maxHeight="140.0" minHeight="70.0" mnemonicParsing="false" onMouseClicked="#useRecommendedActivities" prefHeight="70.0" prefWidth="290.0" style="-fx-background-color: #6FA655;" text="Scarica qui il tuo biglietto" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -138,7 +143,7 @@
                                  </cursor>
                               </Button>
                            </children>
-                        </HBox>
+                        </VBox>
                         <Label text="Gli utenti che hanno acquistato questo prodotto hanno scelto anche">
                            <font>
                               <Font size="18.0" />
@@ -903,18 +908,27 @@
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Region HBox.hgrow="ALWAYS" />
                         <Label alignment="CENTER" minWidth="200.0" prefWidth="200.0" text="Chi siamo" textFill="WHITE" underline="true">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Region HBox.hgrow="ALWAYS" />
                         <Label alignment="CENTER" minWidth="200.0" prefWidth="200.0" text="Informativa sulla privacy" textFill="WHITE" underline="true">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Region HBox.hgrow="ALWAYS" />
                      </children>
