@@ -77,6 +77,10 @@ public class BookingApplicationController {
 			guests.add(newGuest);
 		}
 		
+		bookingDAO.confirmBooking(currentTraveler, guests, bookedActivity, context.getnFullTickets(), context.getnReducedTickets(), 
+				context.isShuttleService(), context.isGuideService(), context.getTotalPrice());
+		
+		//Salvataggio della ricevuta
 		
 		
 		return true;

@@ -8,8 +8,6 @@ import application.model.entity.Traveler;
 
 public interface BookingDAO {
 	Boolean confirmBooking(
-			String bookingID,
-			
 			Traveler traveler,
 			List<GuestInformation> guests,
 			Activity activity,
@@ -18,7 +16,6 @@ public interface BookingDAO {
 			int nReducedTickets,
 		    boolean shuttleService,
 		    boolean guideService,
-		    Double totalPrice,
-		    String bookingDate
+		    Double totalPrice
 			);
 }
