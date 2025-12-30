@@ -117,9 +117,11 @@ public class RecommendedActivitiesGraphicController {
     	        	break;
     	        case "receiptButton":
     	        	//Apre pagina con ricevuta e da la possibilità di scaricarla in versione non demo
+    	        	//Va preso in qualche modo il paymentID
     	        	break;
     	        case "ticketButton":
     	        	//Apre pagina con ticket e da la possibilità di scaricarla in versione non demo
+    	        	//Va preso in qualche modo il bookingID
     	        	break;
     	    }
     	

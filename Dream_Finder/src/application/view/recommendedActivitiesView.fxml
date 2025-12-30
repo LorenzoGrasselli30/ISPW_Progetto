@@ -165,7 +165,7 @@
                                                          </font>
                                                       </Label>
                                                       <Region HBox.hgrow="ALWAYS" />
-                                                      <ImageView fx:id="favouriteImage" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#useHomepage" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="favouriteImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../../Images/Heart.png" />
                                                          </image>
