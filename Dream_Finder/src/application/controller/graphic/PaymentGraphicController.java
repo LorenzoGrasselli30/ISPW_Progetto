@@ -152,7 +152,7 @@ public class PaymentGraphicController {
 		
 		BookingContext updatedContext= bookingController.makeBooking(context);
 		
-		System.out.println("Richiesta di pagamento inviata dall'utente: "+context.getOwnerName());
+		System.out.println("Richiesta di pagamento inviata dall'utente: "+updatedContext.getOwnerName());
 		WindowsNavigatorUtils.openRecommendedActivitiesWindow(event, fxmlFile, title, updatedContext);
 		
    }

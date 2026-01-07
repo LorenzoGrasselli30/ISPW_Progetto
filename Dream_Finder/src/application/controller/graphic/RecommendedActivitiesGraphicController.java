@@ -55,7 +55,7 @@ public class RecommendedActivitiesGraphicController {
 	
 	private void populateRelatedSection(List<ActivityDTO> activities) {
     	if (relatedContainer == null) {
-			//System.err.println("Errore: forYouContainer non è stato inizializzato");
+			System.out.println("Errore: relatedContainer non è stato inizializzato");
 			return;
 		}
 		
@@ -127,7 +127,7 @@ public class RecommendedActivitiesGraphicController {
     	        	currentReceipt= bookingController.fetchCurrentReceipt(context.getPaymentID());
     	        	}
     	        	
-    	        	WindowsNavigatorUtils.openModalWindow(event, homepagePath, homepageTitle, null, currentReceipt, null);
+    	        	WindowsNavigatorUtils.openModalWindow(event, "receiptView.fxml", "Ricevuta: "+currentReceipt.getPaymentID(), null, currentReceipt, null);
     	        	
     	        	break;
     	        case "ticketButton":
@@ -136,7 +136,7 @@ public class RecommendedActivitiesGraphicController {
     	        		currentBooking= bookingController.fetchCurrentTicket(context.getBookingID());
         	        	}
     	        	
-    	        	WindowsNavigatorUtils.openModalWindow(event, homepagePath, homepageTitle, null, null, currentBooking);
+    	        	WindowsNavigatorUtils.openModalWindow(event, "ticketView.fxml", "Ticket: "+currentBooking.getBookingID(), null, null, currentBooking);
     	        	
     	        	break;
     	    }
