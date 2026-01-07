@@ -48,18 +48,18 @@ public class ReceiptGraphicController {
 	*/
         // Imposta i nomi
         if (nameLabel != null) {
-            nameLabel.setText(receipt.getOwnerName() != null ? receipt.getOwnerName() : "N/D");
+            nameLabel.setText(receipt.getOwnerName());
         }
         if (providerNameLabel != null) {
-            providerNameLabel.setText(receipt.getProviderName() != null ? receipt.getProviderName() : "N/D");
+            providerNameLabel.setText(receipt.getProviderName());
         }
 
         // Imposta info transazione
         if (receiptIDLabel != null) {
-            receiptIDLabel.setText("- ID: " + (receipt.getPaymentID() != null ? receipt.getPaymentID() : "N/D"));
+            receiptIDLabel.setText("- ID: " + receipt.getPaymentID());
         }
         if (paymentOutcomeLabel != null) {
-            paymentOutcomeLabel.setText("- Stato: " + (receipt.getPaymentOutcome() != null ? receipt.getPaymentOutcome() : "N/D"));
+            paymentOutcomeLabel.setText("- Stato: " + receipt.getPaymentOutcome());
         }
 
         // Imposta info pagamento
@@ -74,7 +74,7 @@ public class ReceiptGraphicController {
         }
         
         if (expireLabel != null) {
-            expireLabel.setText("Data di scadenza della carta: " + (receipt.getExpiredDate() != null ? receipt.getExpiredDate() : "N/D"));
+            expireLabel.setText("Data di scadenza della carta: " + receipt.getExpiredDate());
         }
 
         // Imposta info prodotto
@@ -88,16 +88,16 @@ public class ReceiptGraphicController {
         }
 
         if (shuttleLabel != null) {
-            shuttleLabel.setText("- Servizio navetta: " + (receipt.getShuttlePrice() != null ? String.format("%.2f", receipt.getShuttlePrice()) + "€" : "No"));
+            shuttleLabel.setText("- Servizio navetta: " + String.format("%.2f", receipt.getShuttlePrice()) + "€");
         }
         
         if (guideLabel != null) {
-            guideLabel.setText("- Tour guidato: " + (receipt.getGuidePrice() != null ? String.format("%.2f", receipt.getGuidePrice()) + "€" : "No"));
+            guideLabel.setText("- Tour guidato: " + String.format("%.2f", receipt.getGuidePrice()) + "€");
         }
 
         // Imposta totale
         if (totalPriceLabel != null) {
-            totalPriceLabel.setText("Totale: " + (receipt.getTotalPrice() != null ? String.format("%.2f", receipt.getTotalPrice()) : "0.00") + "€");
+            totalPriceLabel.setText("Totale: " + String.format("%.2f", receipt.getTotalPrice())+ "€");
         }
 	}
 

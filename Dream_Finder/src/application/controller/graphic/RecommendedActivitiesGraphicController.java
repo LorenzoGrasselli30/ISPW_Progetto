@@ -121,8 +121,8 @@ public class RecommendedActivitiesGraphicController {
     	        	title = homepageTitle;
     	        	break;
     	        case "activityButton":
-    	        	fxmlFile = "activityView.fxml";
-    	        	title = "Info Attivita'";
+    	        	fxmlFile = activityPath;
+    	        	title = activityTitle;
     	        	break;
     	        case "receiptButton":
     	        	//Apre pagina con ricevuta e da la possibilità di scaricarla in versione non demo

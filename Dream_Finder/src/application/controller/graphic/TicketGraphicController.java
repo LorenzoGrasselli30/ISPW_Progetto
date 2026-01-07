@@ -43,27 +43,27 @@ public class TicketGraphicController {
         */
  
         if (nameLabel != null) {
-            nameLabel.setText(booking.getTravelerName() != null ? booking.getTravelerName() : "N/D");
+            nameLabel.setText(booking.getTravelerName());
         }
         if (providerNameLabel != null) {
-            providerNameLabel.setText(booking.getProviderName() != null ? booking.getProviderName() : "N/D");
+            providerNameLabel.setText(booking.getProviderName());
         }
 
         // Imposta info prenotazione
         if (bookingIDLabel != null) {
-            bookingIDLabel.setText("- ID: " + (booking.getBookingID() != null ? booking.getBookingID() : "N/D"));
+            bookingIDLabel.setText("- ID: " + booking.getBookingID());
         }
         if (activityNameLabel != null) {
-        	activityNameLabel.setText("- Nome dell'attività: " + (booking.getActivityName() != null ? booking.getActivityName() : "N/D"));
+        	activityNameLabel.setText("- Nome dell'attività: " + booking.getActivityName());
         }
         if (dateLabel != null) {
-            dateLabel.setText("- Data: " + (booking.getBookingDate() != null ? booking.getBookingDate() : "N/D"));
+            dateLabel.setText("- Data: " + booking.getBookingDate());
         }
         if (guideLabel != null) {
-            guideLabel.setText("- Tour guidato: " + (booking.isGuideService() ? "Sì" : "No"));
+            guideLabel.setText("- Tour guidato: " + (booking.isGuideService() ? "Si" : "No"));
         }
         if (shuttleLabel != null) {
-            shuttleLabel.setText("- Servizio navetta: " + (booking.isShuttleService() ? "Sì" : "No"));
+            shuttleLabel.setText("- Servizio navetta: " + (booking.isShuttleService() ? "Si" : "No"));
         }
 
         // Popola la lista dei partecipanti
