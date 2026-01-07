@@ -1,3 +1,4 @@
+
 package application.view;
 
 import java.io.IOException;
@@ -6,8 +7,10 @@ import application.controller.graphic.ActivityGraphicController;
 import application.controller.graphic.FormGraphicController;
 import application.controller.graphic.LoginGraphicController;
 import application.controller.graphic.PaymentGraphicController;
+import application.controller.graphic.RecommendedActivitiesGraphicController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
+import application.model.bean.ReceiptDTO;
 import application.model.enums.UserRole;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -274,4 +277,43 @@ public class WindowsNavigatorUtils {
     	
     	modalStage.show();
 	}
+	
+	public static void openRecommendedActivitiesWindow(Event event, String fxmlPath, String title, BookingContext context) throws IOException {
+		//Stage corrente
+        Stage modalstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        //Parent window
+        Stage parentStage = (Stage) modalstage.getOwner();
+        
+        modalstage.close();
+        
+        //Dimensioni della parent
+        double currentWidth = parentStage.getWidth();
+        double currentHeight = parentStage.getHeight();
+        double currentX = parentStage.getX();
+        double currentY = parentStage.getY();
+        
+        FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
+        Parent root = loader.load();
+        
+        RecommendedActivitiesGraphicController recActivitiesController = loader.getController();
+        recActivitiesController.initRecommendedActivities(context);
+        
+        parentStage.setScene(new Scene(root));
+        parentStage.setTitle(title);
+        
+        // Ripristina le dimensioni e la posizione
+        parentStage.setWidth(currentWidth);
+        parentStage.setHeight(currentHeight);
+        parentStage.setX(currentX);
+        parentStage.setY(currentY);
+        
+        parentStage.show();
+    }
+
+	public static void openReceiptInfo(Event event, String fxmlPath, String title, ReceiptDTO receipt) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

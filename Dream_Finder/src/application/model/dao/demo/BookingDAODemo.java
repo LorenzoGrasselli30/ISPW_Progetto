@@ -17,15 +17,19 @@ public class BookingDAODemo implements BookingDAO {
 	private Map<String, Booking> bookings = new HashMap<>();
 
 	@Override
-	public Boolean confirmBooking(Booking booking) {
-		
+	public String confirmBooking(Booking booking) {
 		booking.setBookingID(UUID.randomUUID().toString());
 		
-		bookings.put(booking.getBookingID(), booking);
+		String result= booking.getBookingID();
+				
+		bookings.put(result, booking);
 		
-		return true;
+		return result;
+	}
+
+	@Override
+	public Booking findByID(String bookingID) {
+		return bookings.get(bookingID);
 	}
 	
-	
-
 }

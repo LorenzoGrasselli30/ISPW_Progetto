@@ -8,5 +8,7 @@ import application.model.entity.GuestInformation;
 import application.model.entity.Traveler;
 
 public interface BookingDAO {
-	Boolean confirmBooking(Booking booking);
+	String confirmBooking(Booking booking);
+
+	Booking findByID(String bookingID);
 }

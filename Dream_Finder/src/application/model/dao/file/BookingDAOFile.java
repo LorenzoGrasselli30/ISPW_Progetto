@@ -11,7 +11,13 @@ import application.model.entity.Traveler;
 public class BookingDAOFile implements BookingDAO {
 
 	@Override
-	public Boolean confirmBooking(Booking booking) {
+	public String confirmBooking(Booking booking) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Booking findByID(String bookingID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -24,6 +24,9 @@ public class BookingContext {
   	private String expiredDate;
   	private String ownerName;
   	
+  	private String paymentID;
+  	private String bookingID;
+  	
 	public ActivityDTO getActivity() {
 		return activity;
 	}
@@ -145,6 +148,22 @@ public class BookingContext {
 	
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
+	}
+
+	public String getPaymentID() {
+		return paymentID;
+	}
+
+	public void setPaymentID(String paymentID) {
+		this.paymentID = paymentID;
+	}
+
+	public String getBookingID() {
+		return bookingID;
+	}
+
+	public void setBookingID(String bookingID) {
+		this.bookingID = bookingID;
 	}
   	
 }

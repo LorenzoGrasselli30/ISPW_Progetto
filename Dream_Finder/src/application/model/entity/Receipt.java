@@ -34,7 +34,7 @@ public class Receipt {
 		this.paymentOutcome = paymentOutcome;
 	}
 
-	public Provider getProviderName() {
+	public Provider getProvider() {
 		return provider;
 	}
 

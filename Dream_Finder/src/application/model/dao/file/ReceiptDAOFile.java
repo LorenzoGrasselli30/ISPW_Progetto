@@ -11,5 +11,11 @@ public class ReceiptDAOFile implements ReceiptDAO {
 		return null;
 	}
 
+	@Override
+	public Receipt findByID(String paymentID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

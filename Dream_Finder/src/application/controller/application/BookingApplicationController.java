@@ -11,8 +11,10 @@ import com.stripe.exception.StripeException;
 import application.configuration.UserSession;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
+import application.model.bean.BookingDTO;
 import application.model.bean.GuestInformationDTO;
 import application.model.bean.PaymentOutcomeDTO;
+import application.model.bean.ReceiptDTO;
 import application.model.bean.TravelerDTO;
 import application.model.dao.ActivityDAO;
 import application.model.dao.BookingDAO;
@@ -103,7 +105,7 @@ public class BookingApplicationController {
 	}
 	
 	//Client che chiama l'istanza di Adapteer
-	public Boolean makeBooking(BookingContext context) {
+	public BookingContext makeBooking(BookingContext context) {
 		
 		//Pagamento dell'attività
 		Target paymentTarget= new PaymentAdapter(new StripePayment());
@@ -115,7 +117,7 @@ public class BookingApplicationController {
 		
 		if (!paymentInfo.getPaymentID().equals("Succeded")) {
 			//Fai qualcosa per tornare indietro nella prenotazione 
-			return false;
+			return null;
 		}
 		
 		//Prenotazione dell'attività
@@ -145,7 +147,7 @@ public class BookingApplicationController {
 				currentDateTime
 				);
 		
-		Boolean bookingResult= bookingDAO.confirmBooking(newBooking);
+		String bookingResult= bookingDAO.confirmBooking(newBooking);
 		
 		//Salvataggio della ricevuta
 		Provider currentProvider = providerDAO.findByActivity(bookedActivity);
@@ -167,7 +169,67 @@ public class BookingApplicationController {
 		
 		Boolean receiptResult= receiptDAO.saveReceipt(receipt);
 		
-		return true;
+		context.setPaymentID(paymentInfo.getPaymentID());
+		context.setBookingID(bookingResult);
+		
+		return context;
+	}
+
+	public ReceiptDTO fetchCurrentReceipt(String paymentID) {
+		ReceiptDTO result= new ReceiptDTO();
+		
+		Receipt reciptFounded= receiptDAO.findByID(paymentID);
+		
+		result.setProviderName(reciptFounded.getProvider().getProviderName());
+		result.setnFullTicket(reciptFounded.getnFullTicket());
+		result.setnReducedTicket(reciptFounded.getnReducedTicket());
+		result.setTotalPrice(reciptFounded.getTotalPrice());
+		result.setGuidePrice(reciptFounded.getGuidePrice());
+		result.setShuttlePrice(reciptFounded.getShuttlePrice());
+		
+		result.setCardNumber(reciptFounded.getCardNumber());
+		result.setExpiredDate(reciptFounded.getExpiredDate());
+		result.setOwnerName(reciptFounded.getOwnerName());
+		
+		result.setPaymentID(reciptFounded.getPaymentID());
+		result.setPaymentDescription(reciptFounded.getPaymentDescription());
+		result.setPaymentOutcome(reciptFounded.getPaymentOutcome());
+		
+		return result;
+	}
+
+	public BookingDTO fetchCurrentTicket(String bookingID) {
+		BookingDTO result= new BookingDTO();
+		
+		Booking bookingFounded= bookingDAO.findByID(bookingID);
+		
+		result.setBookingID(bookingFounded.getBookingID());
+		
+		result.setTravelerName(bookingFounded.getTraveler().getName());
+		
+		List<GuestInformationDTO> guests= new ArrayList();
+		
+		for (GuestInformation guest: bookingFounded.getGuests()) {
+			GuestInformationDTO newGuest= new GuestInformationDTO();
+			
+			newGuest.setName(guest.getName());
+			newGuest.setSurname(guest.getSurname());
+			newGuest.setDateOfBirth(guest.getDateOfBirth());
+			
+			guests.add(newGuest);
+		}
+		result.setGuests(guests);
+		
+		result.setActivityName(bookingFounded.getActivity().getActivityName());
+		
+		result.setnFullTickets(bookingFounded.getnFullTickets());
+		result.setnReducedTickets(bookingFounded.getnReducedTickets());
+		result.setShuttleService(bookingFounded.isShuttleService());
+		result.setGuideService(bookingFounded.isGuideService());
+		result.setTotalPrice(bookingFounded.getTotalPrice());
+		result.setBookingDate(bookingFounded.getBookingDate());
+		
+		return result;
 	}
 	
 	

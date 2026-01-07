@@ -6,6 +6,8 @@ import java.util.List;
 import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
+import application.model.bean.BookingDTO;
+import application.model.bean.ReceiptDTO;
 import application.view.ActivityLayoutUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
@@ -26,6 +28,10 @@ public class RecommendedActivitiesGraphicController {
 	
 	@FXML
     private Label activityNameLabel;
+	
+	ReceiptDTO currentReceipt;
+	
+	BookingDTO currentBooking;
 	
 	public RecommendedActivitiesGraphicController() {
 		bookingController= new BookingApplicationController();
@@ -117,11 +123,19 @@ public class RecommendedActivitiesGraphicController {
     	        	break;
     	        case "receiptButton":
     	        	//Apre pagina con ricevuta e da la possibilità di scaricarla in versione non demo
-    	        	//Va preso in qualche modo il paymentID
+    	        	if (currentReceipt == null) {
+    	        	currentReceipt= bookingController.fetchCurrentReceipt(context.getPaymentID());
+    	        	}
+    	        	
+    	        	WindowsNavigatorUtils.openReceiptInfo(event, "receiptView.fxml", "Ricevuta: "+context.getBookingID(), currentReceipt);
+    	        	
     	        	break;
     	        case "ticketButton":
     	        	//Apre pagina con ticket e da la possibilità di scaricarla in versione non demo
-    	        	//Va preso in qualche modo il bookingID
+    	        	if (currentBooking == null) {
+    	        		currentBooking= bookingController.fetchCurrentTicket(context.getBookingID());
+        	        	}
+    	        	
     	        	break;
     	    }
     	

@@ -1,30 +1,22 @@
 package application.model.bean;
 
+import application.model.entity.Provider;
+
 public class ReceiptDTO {
-	private String travelerName;
-	private String travelerSurname;
 	private String providerName;
 	private int nFullTicket;
 	private int nReducedTicket;
-	private Double shuttlePrice;
-	private Double guidePrice;
 	private Double totalPrice;
+	private Double guidePrice;
+	private Double shuttlePrice;
 	
-	public String getTravelerName() {
-		return travelerName;
-	}
+	private String cardNumber;
+	private String expiredDate;
+	private String ownerName;
 	
-	public void setTravelerName(String travelerName) {
-		this.travelerName = travelerName;
-	}
-	
-	public String getTravelerSurname() {
-		return travelerSurname;
-	}
-	
-	public void setTravelerSurname(String travelerSurname) {
-		this.travelerSurname = travelerSurname;
-	}
+	private String paymentID;
+	private String paymentDescription;
+	private String paymentOutcome;
 	
 	public String getProviderName() {
 		return providerName;
@@ -50,12 +42,12 @@ public class ReceiptDTO {
 		this.nReducedTicket = nReducedTicket;
 	}
 	
-	public Double getShuttlePrice() {
-		return shuttlePrice;
+	public Double getTotalPrice() {
+		return totalPrice;
 	}
 	
-	public void setShuttlePrice(Double shuttlePrice) {
-		this.shuttlePrice = shuttlePrice;
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 	
 	public Double getGuidePrice() {
@@ -66,11 +58,60 @@ public class ReceiptDTO {
 		this.guidePrice = guidePrice;
 	}
 	
-	public Double getTotalPrice() {
-		return totalPrice;
+	public Double getShuttlePrice() {
+		return shuttlePrice;
 	}
 	
-	public void setTotalPrice(Double totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setShuttlePrice(Double shuttlePrice) {
+		this.shuttlePrice = shuttlePrice;
 	}
+	
+	public String getCardNumber() {
+		return cardNumber;
+	}
+	
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+	
+	public String getExpiredDate() {
+		return expiredDate;
+	}
+	
+	public void setExpiredDate(String expiredDate) {
+		this.expiredDate = expiredDate;
+	}
+	
+	public String getOwnerName() {
+		return ownerName;
+	}
+	
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+	
+	public String getPaymentID() {
+		return paymentID;
+	}
+	
+	public void setPaymentID(String paymentID) {
+		this.paymentID = paymentID;
+	}
+	
+	public String getPaymentDescription() {
+		return paymentDescription;
+	}
+	
+	public void setPaymentDescription(String paymentDescription) {
+		this.paymentDescription = paymentDescription;
+	}
+	
+	public String getPaymentOutcome() {
+		return paymentOutcome;
+	}
+	
+	public void setPaymentOutcome(String paymentOutcome) {
+		this.paymentOutcome = paymentOutcome;
+	}
+	
 }

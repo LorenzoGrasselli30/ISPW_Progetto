@@ -10,10 +10,18 @@ public class GuestInformation {
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
 	}
-	
-	/*
-	public Boolean isReducedTicket (String dateOfBirth) {
-		return null;
+
+	public String getName() {
+		return name;
 	}
-	*/
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+	
+	
 }

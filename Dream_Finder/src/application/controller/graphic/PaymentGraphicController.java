@@ -150,9 +150,9 @@ public class PaymentGraphicController {
 			context.setExpiredDate(dateField.getValue().toString());
 		}
 		
-		bookingController.makeBooking(context);
+		BookingContext updatedContext= bookingController.makeBooking(context);
 		
-		WindowsNavigatorUtils.changeParentWindow(event, fxmlFile, title);
+		
 		
    }
 	

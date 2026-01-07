@@ -13,9 +13,13 @@ public class ReceiptDAODemo implements ReceiptDAO {
 	
 	@Override
 	public Boolean saveReceipt(Receipt receipt) {
-		
 		receipts.put(receipt.getPaymentID(), receipt);
 		return true;
+	}
+
+	@Override
+	public Receipt findByID(String paymentID) {
+		return receipts.get(paymentID);
 	}
 
 }
