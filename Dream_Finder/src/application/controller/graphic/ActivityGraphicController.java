@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.configuration.UserSession;
-import application.controller.application.ActivityApplicationController;
 import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
