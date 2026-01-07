@@ -228,6 +228,7 @@ public class BookingApplicationController {
 		result.setBookingID(bookingFounded.getBookingID());
 		
 		result.setTravelerName(bookingFounded.getTraveler().getName());
+		result.setProviderName(bookingFounded.getActivity().getProvider().getProviderName());
 		
 		List<GuestInformationDTO> guests= new ArrayList();
 		

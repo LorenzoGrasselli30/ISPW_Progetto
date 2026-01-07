@@ -10,6 +10,7 @@ public class BookingDTO {
 	private String bookingID;
 	
 	private String travelerName;
+	private String providerName;
 	private List<GuestInformationDTO> guests;
 	private String activityName;
 	
@@ -98,6 +99,14 @@ public class BookingDTO {
 	
 	public void setBookingDate(String bookingDate) {
 		this.bookingDate = bookingDate;
+	}
+
+	public String getProviderName() {
+		return providerName;
+	}
+
+	public void setProviderName(String providerName) {
+		this.providerName = providerName;
 	}
     
 }

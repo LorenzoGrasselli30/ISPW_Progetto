@@ -67,6 +67,11 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <Label fx:id="activityNameLabel" text="- Nome dell'attività: nome">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                         <Label fx:id="dateLabel" text="- Data: 99/99/9999">
                            <font>
                               <Font size="18.0" />
