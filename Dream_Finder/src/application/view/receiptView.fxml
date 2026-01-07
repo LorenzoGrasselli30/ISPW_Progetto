@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.graphic.ReceiptGraphicController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -97,7 +97,12 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="infoLabel" text="Nome dell'attività | Ingresso intero: x99 | Ingresso ridotto: x99">
+                  <Label fx:id="activityNameLabel" text="Nome dell'attività">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="infoLabel" text="Ingresso intero: x99 | Ingresso ridotto: x99">
                      <font>
                         <Font size="18.0" />
                      </font>
