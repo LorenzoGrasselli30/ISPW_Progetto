@@ -40,8 +40,8 @@ public class TicketGraphicController {
 		if (booking == null) {
             return;
         }
-	*/
-        // Imposta info Traveler e Provider (Activity Name usato come provider name/titolo in questo contesto)
+        */
+ 
         if (nameLabel != null) {
             nameLabel.setText(booking.getTravelerName() != null ? booking.getTravelerName() : "N/D");
         }

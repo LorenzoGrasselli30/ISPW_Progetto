@@ -43,6 +43,12 @@ public class ActivityGraphicController implements Observer{
     
 	private BookingApplicationController bookingController;
 	
+	final String loginPath = "loginView.fxml";
+	final String titleLogin = "Login";
+	final String homepagePath = "homeView.fxml";
+	final String homepageTitle = "Homepage";
+	 
+	
 	//Pattern observer
 	private PriceCalculator subject= new PriceCalculator();
 	
@@ -203,7 +209,7 @@ public class ActivityGraphicController implements Observer{
 				}
 				
 				if (providerLabel != null) {
-					providerLabel.setText("Fornitore dell'attività: " + activityInfo.getProviderName());
+					providerLabel.setText("Fornitore dell'attivita': " + activityInfo.getProviderName());
 				}
 				
 				if (totalPriceLabel != null) {
@@ -216,7 +222,7 @@ public class ActivityGraphicController implements Observer{
 				
 				if (durationLabel != null) {
 					String unit = Boolean.TRUE.equals(activityInfo.getTimeInMinutes()) ? "minuti" : "ore";
-					durationLabel.setText("Durata dell'attività: " + activityInfo.getDuration() + " " + unit);
+					durationLabel.setText("Durata dell'attivita': " + activityInfo.getDuration() + " " + unit);
 				}
 				if (cancellationSection != null) {
 					cancellationSection.setVisible(activityInfo.getFreeCancellation());
@@ -284,7 +290,7 @@ public class ActivityGraphicController implements Observer{
     
     private void handleActivityClick(MouseEvent event, ActivityDTO activity) {
 		try {
-			WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attività", activity);
+			WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attivita'", activity);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -292,7 +298,7 @@ public class ActivityGraphicController implements Observer{
     
 	private void handleHeartClick(MouseEvent event) {
 		try {
-			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", null, null, null);
+			WindowsNavigatorUtils.openModalWindow(event, loginPath, titleLogin, null, null, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -349,15 +355,15 @@ public class ActivityGraphicController implements Observer{
 	
 	@FXML
 	public void goToHomepage(MouseEvent event) throws IOException {
-		String fxmlFile = "homeView.fxml";
-		String title = "Homepage";
+		String fxmlFile = homepagePath;
+		String title = homepageTitle;
         WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
     }
 	
 	@FXML
 	public void goToLogin(MouseEvent event) throws IOException {
-		String fxmlFile = "loginView.fxml";
-		String title = "Login";
+		String fxmlFile = loginPath;
+		String title = titleLogin;
 		if (UserSession.getInstance().getCurrentUser() == null) {
 			WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null, null, null);
 		} else {
@@ -392,10 +398,10 @@ public class ActivityGraphicController implements Observer{
                 WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Dati sui partecipanti", context);
             } else {
                 AlertUtils.showAlert(javafx.scene.control.Alert.AlertType.WARNING, "Attenzione", "Per prenotare questa attivita' accedi o crea un account viaggiatore.");
-                WindowsNavigatorUtils.openWindow(event, "homeView.fxml", "Homepage");
+                WindowsNavigatorUtils.openWindow(event, homepagePath, homepageTitle);
             }
         } else { //Caso utente non loggato
-            WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", context, null, null);
+            WindowsNavigatorUtils.openModalWindow(event, loginPath, titleLogin, context, null, null);
         }
         
     }
