@@ -28,7 +28,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Nome del cliente">
+                        <Label fx:id="nameLabel" text="Nome del cliente">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -43,7 +43,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Nome del provider">
+                        <Label fx:id="providerNameLabel" text="Nome del provider">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -59,12 +59,12 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="- ID: id della transazione">
+                  <Label fx:id="receiptIDLabel" text="- ID: id della transazione">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="- Stato: stato ">
+                  <Label fx:id="paymentOutcomeLabel" text="- Stato: stato ">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -78,12 +78,12 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Numero della carta: ************4242">
+                  <Label fx:id="cardNumberLabel" text="Numero della carta: ************4242">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Data di scadenza della carta">
+                  <Label fx:id="expireLabel" text="Data di scadenza della carta: 99/99/9999">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -97,24 +97,24 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Nome dell'attività | Ingresso intero: x99 | Ingresso ridotto: x99">
+                  <Label fx:id="infoLabel" text="Nome dell'attività | Ingresso intero: x99 | Ingresso ridotto: x99">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="- Servizio navetta: 99,99">
+                  <Label fx:id="shuttleLabel" text="- Servizio navetta: 99,99">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="- Tour guidato: 99,99">
+                  <Label fx:id="guideLabel" text="- Tour guidato: 99,99">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <Label text="Totale 99">
+            <Label fx:id="totalPriceLabel" text="Totale 99">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
