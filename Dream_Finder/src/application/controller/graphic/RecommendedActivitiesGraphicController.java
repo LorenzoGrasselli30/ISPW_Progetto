@@ -23,6 +23,13 @@ public class RecommendedActivitiesGraphicController {
 	
 	private BookingContext context;
 	
+	final String loginPath = "loginView.fxml";
+	final String titleLogin = "Login";
+	final String homepagePath = "homeView.fxml";
+	final String homepageTitle = "Homepage"; 
+	final String activityPath = "activityView.fxml"; 
+	final String activityTitle = "Info Attivita'"; 
+	
 	@FXML
     private HBox relatedContainer;
 	
@@ -81,7 +88,7 @@ public class RecommendedActivitiesGraphicController {
 	
 	private void handleActivityClick(MouseEvent event, ActivityDTO activity) {
 		try {
-			WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attività", activity);
+			WindowsNavigatorUtils.openActivityWindow(event, activityPath, activityTitle, activity);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -89,7 +96,7 @@ public class RecommendedActivitiesGraphicController {
     
 	private void handleHeartClick(MouseEvent event) {
 		try {
-			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", null, null, null);
+			WindowsNavigatorUtils.openModalWindow(event, loginPath, titleLogin, null, null, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -101,10 +108,6 @@ public class RecommendedActivitiesGraphicController {
     	 String fxmlFile = "";
     	 String title = "";
     	 
-    	 final String loginPath = "loginView.fxml";
-    	 final String titleLogin = "Login";
-    	 final String homepagePath = "homeView.fxml";
-    	 final String homepageTitle = "Homepage"; 
     	 
     	    switch (((Node) event.getSource()).getId()) {
     	        case "areaUserButton":
@@ -119,7 +122,7 @@ public class RecommendedActivitiesGraphicController {
     	        	break;
     	        case "activityButton":
     	        	fxmlFile = "activityView.fxml";
-    	        	title = "Info Attività";
+    	        	title = "Info Attivita'";
     	        	break;
     	        case "receiptButton":
     	        	//Apre pagina con ricevuta e da la possibilità di scaricarla in versione non demo
@@ -146,7 +149,7 @@ public class RecommendedActivitiesGraphicController {
         	} 
         	
         	
-        	if (("Homepage".equals(title)) || ("Info Attività".equals(title))) {
+        	if (("Homepage".equals(title)) || ("Info Attivita'".equals(title))) {
         		WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
         	}
         	
