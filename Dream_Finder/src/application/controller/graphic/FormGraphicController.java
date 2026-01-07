@@ -171,11 +171,6 @@ public class FormGraphicController {
         	if (allFieldsFilled) {
         		//Inserisco la lista degli ospiti nel booking context
         	    context.setGuests(guests);
-        	    for (GuestInformationDTO guest : context.getGuests()) {
-        	    	System.out.println(guest.getName());
-        	    	System.out.println(guest.getSurname());
-        	    	System.out.println(guest.getDateOfBirth());
-        	    }
         	    
         	    WindowsNavigatorUtils.openPaymentWindow(event, "paymentView.fxml", "Schermata di pagamento", context);
         	}

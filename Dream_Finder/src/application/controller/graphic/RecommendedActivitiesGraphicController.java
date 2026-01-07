@@ -149,8 +149,12 @@ public class RecommendedActivitiesGraphicController {
         	} 
         	
         	
-        	if (("Homepage".equals(title)) || ("Info Attivita'".equals(title))) {
+        	if ("Homepage".equals(title)) {
         		WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
+        	}
+        	
+        	if ("Info Attivita'".equals(title)) {
+        		WindowsNavigatorUtils.openActivityWindow(event, fxmlFile, title, context.getActivity());
         	}
         	
 	}
