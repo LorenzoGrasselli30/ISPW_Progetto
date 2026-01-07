@@ -89,7 +89,7 @@ public class RecommendedActivitiesGraphicController {
     
 	private void handleHeartClick(MouseEvent event) {
 		try {
-			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", null);
+			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", null, null, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -127,7 +127,7 @@ public class RecommendedActivitiesGraphicController {
     	        	currentReceipt= bookingController.fetchCurrentReceipt(context.getPaymentID());
     	        	}
     	        	
-    	        	WindowsNavigatorUtils.openReceiptInfo(event, "receiptView.fxml", "Ricevuta: "+context.getBookingID(), currentReceipt);
+    	        	WindowsNavigatorUtils.openModalWindow(event, homepagePath, homepageTitle, null, currentReceipt, null);
     	        	
     	        	break;
     	        case "ticketButton":
@@ -136,11 +136,13 @@ public class RecommendedActivitiesGraphicController {
     	        		currentBooking= bookingController.fetchCurrentTicket(context.getBookingID());
         	        	}
     	        	
+    	        	WindowsNavigatorUtils.openModalWindow(event, homepagePath, homepageTitle, null, null, currentBooking);
+    	        	
     	        	break;
     	    }
     	
         	if (title.equals("Login")) {
-        		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null);
+        		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null, null, null);
         	} 
         	
         	

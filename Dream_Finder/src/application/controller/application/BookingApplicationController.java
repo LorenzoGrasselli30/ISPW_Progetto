@@ -115,7 +115,7 @@ public class BookingApplicationController {
 		
 		System.out.println(paymentInfo.getPaymentID());
 		
-		if (!paymentInfo.getPaymentID().equals("Succeded")) {
+		if (!paymentInfo.getPaymentOutcome().equals("Succeded")) {
 			//Fai qualcosa per tornare indietro nella prenotazione 
 			return null;
 		}

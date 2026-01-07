@@ -4,12 +4,15 @@ package application.view;
 import java.io.IOException;
 
 import application.controller.graphic.ActivityGraphicController;
+import application.controller.graphic.TicketGraphicController;
 import application.controller.graphic.FormGraphicController;
 import application.controller.graphic.LoginGraphicController;
 import application.controller.graphic.PaymentGraphicController;
+import application.controller.graphic.ReceiptGraphicController;
 import application.controller.graphic.RecommendedActivitiesGraphicController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
+import application.model.bean.BookingDTO;
 import application.model.bean.ReceiptDTO;
 import application.model.enums.UserRole;
 import javafx.event.Event;
@@ -61,7 +64,8 @@ public class WindowsNavigatorUtils {
     }
 	
 	//Imposta la stage parent e anche il context per il login
-	public static void openModalWindow(Event event, String fxmlPath, String title, BookingContext context) throws IOException {
+	public static void openModalWindow(Event event, String fxmlPath, String title, BookingContext context, 
+			ReceiptDTO receipt, BookingDTO booking) throws IOException {
 	//Salva il lastParentEvent per il login
 	if (fxmlPath.equals("loginView.fxml")) {	
 	lastParentEvent = event;
@@ -74,6 +78,12 @@ public class WindowsNavigatorUtils {
 	if (context != null) {
 		LoginGraphicController loginController= loader.getController();
     	loginController.initLogin(context);
+	} else if (receipt != null) {
+		ReceiptGraphicController receiptController= loader.getController();
+		receiptController.initReceipt(receipt);
+	} else if (booking != null) {
+		TicketGraphicController bookingController= loader.getController();
+		bookingController.initBooking(booking);
 	}
 	
 	Stage parentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -310,10 +320,5 @@ public class WindowsNavigatorUtils {
         
         parentStage.show();
     }
-
-	public static void openReceiptInfo(Event event, String fxmlPath, String title, ReceiptDTO receipt) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

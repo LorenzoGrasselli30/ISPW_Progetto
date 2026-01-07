@@ -292,7 +292,7 @@ public class ActivityGraphicController implements Observer{
     
 	private void handleHeartClick(MouseEvent event) {
 		try {
-			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", null);
+			WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", null, null, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -359,7 +359,7 @@ public class ActivityGraphicController implements Observer{
 		String fxmlFile = "loginView.fxml";
 		String title = "Login";
 		if (UserSession.getInstance().getCurrentUser() == null) {
-			WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null);
+			WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null, null, null);
 		} else {
 			AlertUtils.showAlert(AlertType.INFORMATION, title, "L'utente e' gia' loggato");
 		}
@@ -395,7 +395,7 @@ public class ActivityGraphicController implements Observer{
                 WindowsNavigatorUtils.openWindow(event, "homeView.fxml", "Homepage");
             }
         } else { //Caso utente non loggato
-            WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", context);
+            WindowsNavigatorUtils.openModalWindow(event, "loginView.fxml", "Login", context, null, null);
         }
         
     }

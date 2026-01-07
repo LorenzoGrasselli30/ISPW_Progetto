@@ -141,6 +141,8 @@ public class PaymentGraphicController {
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		
+		System.out.println("Richiesta di pagamento inviata dall'utente: "+context.getOwnerName());
+		
 		context.setCardNumber(cardNumberField.getText().trim());
 		context.setCvv(cvvField.getText().trim());
 		
@@ -152,7 +154,7 @@ public class PaymentGraphicController {
 		
 		BookingContext updatedContext= bookingController.makeBooking(context);
 		
-		
+		WindowsNavigatorUtils.openRecommendedActivitiesWindow(event, fxmlFile, title, updatedContext);
 		
    }
 	
