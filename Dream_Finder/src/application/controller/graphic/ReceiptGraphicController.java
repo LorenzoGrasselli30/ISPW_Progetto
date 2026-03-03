@@ -65,11 +65,9 @@ public class ReceiptGraphicController {
         // Imposta info pagamento
         if (cardNumberLabel != null) {
             String maskedCard = "************";
-            if (receipt.getCardNumber() != null && receipt.getCardNumber().length() >= 4) {
+            if (receipt.getCardNumber() != null) {
                 maskedCard += receipt.getCardNumber().substring(receipt.getCardNumber().length() - 4);
-            } else {
-                maskedCard += "xxxx";
-            }
+            } 
             cardNumberLabel.setText("Numero della carta: " + maskedCard);
         }
         

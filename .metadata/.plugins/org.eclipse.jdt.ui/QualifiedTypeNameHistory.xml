@@ -6,4 +6,5 @@
     <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
     <fullyQualifiedTypeName name="application.configuration.UserSession"/>
     <fullyQualifiedTypeName name="application.adapter.Target"/>
+    <fullyQualifiedTypeName name="application.model.bean.ReceiptDTO"/>
 </qualifiedTypeNameHistroy>
