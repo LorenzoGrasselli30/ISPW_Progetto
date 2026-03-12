@@ -13,20 +13,16 @@ import com.stripe.exception.StripeException;
 //Classe adeptee
 public class StripePayment {
 	
-	public StripePayment() throws IOException {
-        initializeStripe();
-    }
-
-    private void initializeStripe() throws IOException {
-        if (Stripe.apiKey == null || Stripe.apiKey.isBlank()) {
+    static {
+        try {
             Stripe.apiKey = loadApiKey();
+        } catch (IOException e) {
+            throw new ExceptionInInitializerError("Errore caricamento Stripe API key: " + e.getMessage());
         }
     }
     
 	public PaymentIntent createPayment(String paymentResult, String expiredDate, String activityName, 
 			String customerName, String providerName, Long amount) throws StripeException, IOException {
-		
-		//Stripe.apiKey= loadApiKey();
 		
 		PaymentIntent paymentIntent = new PaymentIntent();
 		
