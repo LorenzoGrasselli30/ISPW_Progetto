@@ -119,6 +119,8 @@ public class HomepageGraphicController {
     	        	fxmlFile = activityPath;
     	        	title = activityTitle;
     	        	break;
+    	        default: 
+    	        	break;
     	    }
     	
         	if (titleLogin.equals(title)) {

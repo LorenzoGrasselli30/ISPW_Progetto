@@ -175,6 +175,10 @@ public class FormGraphicController {
         	    WindowsNavigatorUtils.openPaymentWindow(event, "paymentView.fxml", "Schermata di pagamento", context);
         	}
         	break;
+        	
+        default: 
+        	break;
+        	
     	}
     }
 }

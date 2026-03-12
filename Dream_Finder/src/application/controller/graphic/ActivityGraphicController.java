@@ -349,6 +349,8 @@ public class ActivityGraphicController implements Observer{
     					});
     				}
     	        	break;
+    	        default: 
+    	        	break;
     	    }
 	}
 	

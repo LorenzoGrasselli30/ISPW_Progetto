@@ -68,6 +68,8 @@ public class LoginGraphicController implements Initializable {
    	        case "signUpButton":
    	        	WindowsNavigatorUtils.openWindow(event, "signUpView.fxml", "Sign Up");
    	        	break;
+   	        default: 
+	        	break;
    	    }
     }
 	

@@ -142,6 +142,8 @@ public class RecommendedActivitiesGraphicController {
     	        	WindowsNavigatorUtils.openModalWindow(event, "ticketView.fxml", "Ticket: "+currentBooking.getBookingID(), null, null, currentBooking);
     	        	
     	        	break;
+    	        default: 
+    	        	break;
     	    }
     	
         	if (title.equals("Login")) {
