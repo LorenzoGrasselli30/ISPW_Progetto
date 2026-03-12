@@ -23,5 +23,4 @@ public class GuestInformation {
 		return dateOfBirth;
 	}
 	
-	
 }

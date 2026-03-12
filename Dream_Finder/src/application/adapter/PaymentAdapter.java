@@ -47,7 +47,8 @@ public class PaymentAdapter implements Target {
 			Long amountInCents = Math.round(amount * 100);
 			
 			try {
-				PaymentIntent paymentIntent = StripePayment.createPayment(
+				//Chiamata al metodo specificRequest()
+				PaymentIntent paymentIntent = stripePayment.createPayment(
 						paymentResult, 
 						expiredDate, 
 						activityName, 

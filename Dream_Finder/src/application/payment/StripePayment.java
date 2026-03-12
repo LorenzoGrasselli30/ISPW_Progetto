@@ -13,11 +13,7 @@ import com.stripe.exception.StripeException;
 //Classe adeptee
 public class StripePayment {
 	
-	private final static String SUCCESSFULL= "pm_card_visa";
-	private final static String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
-	private final static String DECLINED= "pm_card_chargeDeclined";
-	
-	public static PaymentIntent createPayment(String paymentResult, String expiredDate, String activityName, 
+	public PaymentIntent createPayment(String paymentResult, String expiredDate, String activityName, 
 			String customerName, String providerName, Long amount) throws StripeException, IOException {
 		String secretKey= loadApiKey();
 		Stripe.apiKey= secretKey;

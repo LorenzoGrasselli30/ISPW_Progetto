@@ -74,7 +74,7 @@ public class BookingApplicationController {
 		
 		List<Activity> newActivities= activityDAO.findRelatedActivities(activityName, activityType, providerName);
 		
-		List<ActivityDTO> relatedActivity= new ArrayList();
+		List<ActivityDTO> relatedActivity= new ArrayList<ActivityDTO>();
 		for (Activity activity: newActivities) {
 			ActivityDTO newActivity= new ActivityDTO();
 			newActivity.setActivityName(activity.getActivityName());
@@ -107,14 +107,18 @@ public class BookingApplicationController {
 	//Client che chiama l'istanza di Adapteer
 	public BookingContext makeBooking(BookingContext context) {
 		
-		//Pagamento dell'attività
-		Target paymentTarget= new PaymentAdapter(new StripePayment());
+		//Creo un oggetto della classe adaptee
+		StripePayment paymentAPI= new StripePayment();
+		//Interfaccia target utilizzata dal client
+		Target paymentTarget= new PaymentAdapter(paymentAPI);
 		
 		PaymentOutcomeDTO paymentInfo= paymentTarget.verifyPayment(context.getCardNumber(), context.getExpiredDate(), context.getCvv(), context.getActivity().getActivityName(), 
 				context.getOwnerName(), context.getActivity().getProviderName(), context.getTotalPrice());
 		
+		/*
 		System.out.println(paymentInfo.getPaymentID());
 		System.out.println(paymentInfo.getPaymentOutcome());
+		*/
 		
 		if (!paymentInfo.getPaymentOutcome().equals("succeeded")) {
 			//Fai qualcosa per tornare indietro nella prenotazione 
@@ -125,7 +129,7 @@ public class BookingApplicationController {
 		Activity bookedActivity= activityDAO.findByProvider(context.getActivity().getActivityName(), context.getActivity().getProviderName());
 		Traveler currentTraveler= travelerDAO.findByEmail(UserSession.getInstance().getCurrentUser().getEmail());
 		
-		List<GuestInformation> guests= new ArrayList();
+		List<GuestInformation> guests= new ArrayList<GuestInformation>();
 		
 		for (GuestInformationDTO guest: context.getGuests()) {
 			GuestInformation newGuest= new GuestInformation(guest.getName(), guest.getSurname(), guest.getDateOfBirth());
@@ -168,11 +172,13 @@ public class BookingApplicationController {
 				paymentInfo.getPaymentOutcome()
 				);
 		
+		//Aggiungere un modo
 		Boolean receiptResult= receiptDAO.saveReceipt(receipt);
 		
 		context.setPaymentID(paymentInfo.getPaymentID());
 		context.setBookingID(bookingResult);
 		
+		/*
 		// DEBUG PRINT START
 				System.out.println("---------- BOOKING CONTEXT DUMP ----------");
 				System.out.println("Owner Name: " + context.getOwnerName());
@@ -193,7 +199,7 @@ public class BookingApplicationController {
 				System.out.println("Number of Guests: " + (context.getGuests() != null ? context.getGuests().size() : "0"));
 				System.out.println("------------------------------------------");
 				// DEBUG PRINT END
-				
+		*/		
 		return context;
 	}
 
