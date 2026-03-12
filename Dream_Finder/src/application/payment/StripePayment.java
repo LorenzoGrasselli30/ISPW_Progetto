@@ -15,8 +15,8 @@ public class StripePayment {
 	
 	public PaymentIntent createPayment(String paymentResult, String expiredDate, String activityName, 
 			String customerName, String providerName, Long amount) throws StripeException, IOException {
-		String secretKey= loadApiKey();
-		Stripe.apiKey= secretKey;
+		
+		Stripe.apiKey= loadApiKey();
 		
 		PaymentIntent paymentIntent = new PaymentIntent();
 		
