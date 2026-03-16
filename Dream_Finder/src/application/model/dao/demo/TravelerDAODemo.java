@@ -3,7 +3,6 @@ package application.model.dao.demo;
 import java.util.HashMap;
 import java.util.Map;
 
-import application.configuration.UserSession;
 import application.model.dao.TravelerDAO;
 import application.model.entity.Traveler;
 

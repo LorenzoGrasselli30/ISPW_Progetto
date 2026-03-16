@@ -2,10 +2,6 @@ package application.model.bean;
 
 import java.util.List;
 
-import application.model.entity.Activity;
-import application.model.entity.GuestInformation;
-import application.model.entity.Traveler;
-
 public class BookingDTO {
 	private String bookingID;
 	

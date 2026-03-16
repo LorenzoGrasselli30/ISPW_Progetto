@@ -29,8 +29,6 @@ public class FormGraphicController {
 	
 	private BookingApplicationController bookingController;
 	
-	private TravelerDTO currentTraveler;
-	
 	@FXML
     private VBox participantsContainer;
 	
@@ -45,7 +43,7 @@ public class FormGraphicController {
         this.context = context;
         
         //Metodo che chiama l'application controller che trova le informazioni del traveler dalla mail
-        currentTraveler= bookingController.fetchCurrentTraveler(UserSession.getInstance());
+        TravelerDTO currentTraveler= bookingController.fetchCurrentTraveler(UserSession.getInstance());
     	
         //Pulisce eventuali elementi placeholder presenti nell'FXML
         participantsContainer.getChildren().clear();

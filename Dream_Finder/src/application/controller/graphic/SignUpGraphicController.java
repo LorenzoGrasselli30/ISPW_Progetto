@@ -31,7 +31,7 @@ public class SignUpGraphicController {
 	private CheckBox privacyCheck;
 	
 	@FXML
-	private void doSignUp(MouseEvent event) throws IOException{
+	private void doSignUp(MouseEvent event){
 		
 		//Chiama il login controller per effettuare il sign up
 		

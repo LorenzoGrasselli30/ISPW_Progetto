@@ -39,8 +39,8 @@ public class PriceCalculator extends Subject {
 		//Il servizio navetta ha tariffa fissa e viene moltiplicata per il numero di persone 
 		//La guida viene calcolata in base alla durata dell'attività 6$/1h a persona
 			
-		if (guideTour) {
-			if (activity.getTimeInMinutes()) {
+		if (guideTour == true) {
+			if (activity.getTimeInMinutes() == true) {
 				Double hours= (activity.getDuration()/60.0);
 				estimatedGuidePrice= (10.0*hours)*(nFullTicket+nReducedTicket);
 			} else {
@@ -49,7 +49,7 @@ public class PriceCalculator extends Subject {
 			}
 		}
 			
-		if (shuttleService) {
+		if (shuttleService == true) {
 			estimatedShuttlePrice= (5.0*(nFullTicket+nReducedTicket));
 		}
 		

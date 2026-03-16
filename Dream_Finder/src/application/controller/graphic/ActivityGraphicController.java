@@ -261,12 +261,8 @@ public class ActivityGraphicController implements Observer{
 		for (ActivityDTO activity : activities) {
 			VBox activityCard = ActivityLayoutUtils.createActivityCard(
 					activity, 
-					event -> {
-						handleActivityClick(event, activity);
-					}, 
-					event -> {
-						handleHeartClick(event);
-					}
+					event -> handleActivityClick(event, activity), 
+					event -> handleHeartClick(event)
 			);
 			relatedContainer.getChildren().add(activityCard);
 		}
@@ -289,7 +285,7 @@ public class ActivityGraphicController implements Observer{
 	}
 	
     @FXML
-	private void useActivityForm(MouseEvent event) throws IOException {
+	private void useActivityForm(MouseEvent event) {
     	 
     	    switch (((Node) event.getSource()).getId()) {
     	        case "plusFullTicket":

@@ -23,12 +23,12 @@ public class RecommendedActivitiesGraphicController {
 	
 	private BookingContext context;
 	
-	final String loginPath = "loginView.fxml";
-	final String titleLogin = "Login";
-	final String homepagePath = "homeView.fxml";
-	final String homepageTitle = "Homepage"; 
-	final String activityPath = "activityView.fxml"; 
-	final String activityTitle = "Info Attivita'"; 
+	static final String loginPath = "loginView.fxml";
+	static final String titleLogin = "Login";
+	static final String homepagePath = "homeView.fxml";
+	static final String homepageTitle = "Homepage"; 
+	static final String activityPath = "activityView.fxml"; 
+	static final String activityTitle = "Info Attivita'"; 
 	
 	@FXML
     private HBox relatedContainer;
@@ -73,12 +73,8 @@ public class RecommendedActivitiesGraphicController {
 		for (ActivityDTO activity : activities) {
 			VBox activityCard = ActivityLayoutUtils.createActivityCard(
 					activity, 
-					event -> {
-						handleActivityClick(event, activity);
-					}, 
-					event -> {
-						handleHeartClick(event);
-					}
+					event -> handleActivityClick(event, activity), 
+					event -> handleHeartClick(event)
 			);
 			relatedContainer.getChildren().add(activityCard);
 		}

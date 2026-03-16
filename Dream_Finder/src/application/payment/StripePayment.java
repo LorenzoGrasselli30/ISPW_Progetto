@@ -19,7 +19,7 @@ public class StripePayment {
     }
     
 	public PaymentIntent createPayment(String paymentResult, String activityName, 
-			String customerName, String providerName, Long amount) throws StripeException, IOException {
+			String customerName, String providerName, Long amount) throws StripeException{
 		
 		//Creazione del PaymentIntent
 	    PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
