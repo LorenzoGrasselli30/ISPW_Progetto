@@ -1,19 +1,13 @@
 package application;
 	
-import java.io.IOException;
 import java.util.Scanner;
 
-import com.stripe.exception.StripeException;
-
 import application.configuration.AppConfig;
-import application.payment.StripePayment;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
 
 
 public class Main extends Application {

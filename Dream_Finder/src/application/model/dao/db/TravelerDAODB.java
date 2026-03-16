@@ -1,6 +1,5 @@
 package application.model.dao.db;
 
-import application.configuration.UserSession;
 import application.model.dao.TravelerDAO;
 import application.model.entity.Traveler;
 

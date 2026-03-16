@@ -1,30 +1,18 @@
 package application.controller.graphic;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
-
 import application.configuration.UserSession;
 import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
-import application.model.bean.ReceiptDTO;
-import application.model.entity.Activity;
 import application.observer.Observer;
 import application.observer.PriceCalculator;
 import application.view.ActivityLayoutUtils;
 import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,11 +20,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class ActivityGraphicController implements Observer{
     

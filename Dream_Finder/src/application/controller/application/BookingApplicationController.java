@@ -1,12 +1,9 @@
 package application.controller.application;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.stripe.exception.StripeException;
 
 import application.configuration.UserSession;
 import application.model.bean.ActivityDTO;

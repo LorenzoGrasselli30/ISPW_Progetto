@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import application.model.dao.ReceiptDAO;
-import application.model.entity.Booking;
 import application.model.entity.Receipt;
 
 public class ReceiptDAODemo implements ReceiptDAO {

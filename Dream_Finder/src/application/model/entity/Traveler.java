@@ -1,8 +1,5 @@
 package application.model.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Traveler {
 	
 	private String email;

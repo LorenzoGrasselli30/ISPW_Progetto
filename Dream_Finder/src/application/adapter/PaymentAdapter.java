@@ -50,7 +50,6 @@ public class PaymentAdapter implements Target {
 				//Chiamata al metodo specificRequest()
 				PaymentIntent paymentIntent = stripePayment.createPayment(
 						paymentResult, 
-						expiredDate, 
 						activityName, 
 						customerName, 
 						providerName, 

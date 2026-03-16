@@ -1,13 +1,10 @@
 package application.payment;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Properties;
 import com.stripe.Stripe;
 import com.stripe.model.PaymentIntent;
-import com.stripe.model.PaymentMethod;
 import com.stripe.param.PaymentIntentCreateParams;
-import com.stripe.param.PaymentMethodCreateParams;
 import com.stripe.exception.StripeException;
 
 //Classe adeptee

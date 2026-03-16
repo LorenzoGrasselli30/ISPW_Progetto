@@ -1,6 +1,5 @@
 package application.view;
 
-import java.io.IOException;
 import java.util.function.Consumer;
 
 import application.model.bean.ActivityDTO;

@@ -1,7 +1,5 @@
 package application.model.bean;
 
-import application.model.entity.Provider;
-
 public class ReceiptDTO {
 	private String providerName;
 	private int nFullTicket;

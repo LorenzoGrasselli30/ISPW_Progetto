@@ -1,21 +1,13 @@
 package application.controller.graphic;
 
 import java.io.IOException;
-import java.util.List;
-
-import com.stripe.exception.StripeException;
-
 import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
-import application.observer.PriceCalculator;
-import application.payment.StripePayment;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 

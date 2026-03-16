@@ -1,6 +1,5 @@
 package application.controller.graphic;
 
-import application.model.bean.BookingContext;
 import application.model.bean.ReceiptDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
