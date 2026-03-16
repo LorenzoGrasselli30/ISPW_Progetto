@@ -172,7 +172,7 @@ public class BookingApplicationController {
 				paymentInfo.getPaymentOutcome()
 				);
 		
-		//Aggiungere un modo
+		//Aggiungere un modo per controllare il risultato
 		Boolean receiptResult= receiptDAO.saveReceipt(receipt);
 		
 		context.setPaymentID(paymentInfo.getPaymentID());
@@ -236,7 +236,7 @@ public class BookingApplicationController {
 		result.setTravelerName(bookingFounded.getTraveler().getName());
 		result.setProviderName(bookingFounded.getActivity().getProvider().getProviderName());
 		
-		List<GuestInformationDTO> guests= new ArrayList();
+		List<GuestInformationDTO> guests= new ArrayList<GuestInformationDTO>();
 		
 		for (GuestInformation guest: bookingFounded.getGuests()) {
 			GuestInformationDTO newGuest= new GuestInformationDTO();

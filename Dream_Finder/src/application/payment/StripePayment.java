@@ -21,10 +21,8 @@ public class StripePayment {
         }
     }
     
-	public PaymentIntent createPayment(String paymentResult, String expiredDate, String activityName, 
+	public PaymentIntent createPayment(String paymentResult, String activityName, 
 			String customerName, String providerName, Long amount) throws StripeException, IOException {
-		
-		PaymentIntent paymentIntent = new PaymentIntent();
 		
 		//Creazione del PaymentIntent
 	    PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
@@ -43,7 +41,7 @@ public class StripePayment {
 			)
 	        .build();
 	    
-	    return paymentIntent.create(params);
+	    return PaymentIntent.create(params);
 	}
 	
 	private static String loadApiKey() throws IOException {
