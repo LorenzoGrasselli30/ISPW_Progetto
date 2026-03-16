@@ -63,10 +63,7 @@ public class PaymentAdapter implements Target {
 			} catch (StripeException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} 
 			
 		return newOutcome;	
 	}

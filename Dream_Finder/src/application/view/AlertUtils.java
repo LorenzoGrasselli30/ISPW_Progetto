@@ -65,15 +65,14 @@ public class AlertUtils {
 	    }
 
 	    private static String styleByAlertType(Alert alert, Alert.AlertType type) { //cambia il colore dei bottoni in base al tipo di alert
-	        String color = switch (type) {
+	        return switch (type) {
 	            case ERROR -> "#6FA655"; //Verde scuro
 	            case WARNING -> "#E9A649"; //Arancione
 	            case INFORMATION -> "#1976d2"; //Azzurro
 	            case CONFIRMATION -> "#6FA655";
 	            default -> throw new IllegalArgumentException("Unexpected value: " + type);
 	        };
-	        
-	        return color;
+
 	    }
 
 	    private static void addCustomEffects(Alert alert) {
