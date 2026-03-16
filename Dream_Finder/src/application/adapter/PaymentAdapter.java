@@ -13,16 +13,16 @@ public class PaymentAdapter implements Target {
 	
 	private StripePayment stripePayment;
 	
-	private final static String SUCCESSFULL= "pm_card_visa";
-	private final static String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
-	private final static String DECLINED= "pm_card_chargeDeclined";
+	private static final String SUCCESSFULL= "pm_card_visa";
+	private static final String EXPIRED= "pm_card_chargeDeclinedExpiredCard";
+	private static final String DECLINED= "pm_card_chargeDeclined";
 	
 	public PaymentAdapter(StripePayment adaptee) {
 		this.stripePayment= adaptee;
 	}
 	
 	@Override
-	public PaymentOutcomeDTO verifyPayment(String cardNumber, String expiredDate, String Cvv, String activityName, String customerName,
+	public PaymentOutcomeDTO verifyPayment(String cardNumber, String expiredDate, String cvv, String activityName, String customerName,
 			String providerName, Double amount) {
 			
 		PaymentOutcomeDTO newOutcome = new PaymentOutcomeDTO();
@@ -36,7 +36,7 @@ public class PaymentAdapter implements Target {
 			if (expiration.isBefore(LocalDate.now())) {
 				paymentResult = EXPIRED;
 			} else {
-				if(cardNumber.trim().equals("4242424242424242") && Cvv != null) {
+				if(cardNumber.trim().equals("4242424242424242") && cvv != null) {
 					paymentResult = SUCCESSFULL;
 				} else {
 					paymentResult = DECLINED;
