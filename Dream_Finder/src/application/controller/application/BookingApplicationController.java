@@ -21,6 +21,7 @@ import application.model.dao.ReceiptDAO;
 import application.model.dao.TravelerDAO;
 import application.model.entity.Activity;
 import application.model.entity.Booking;
+import application.model.entity.BookingPriceInformation;
 import application.model.entity.GuestInformation;
 import application.model.entity.Provider;
 import application.model.entity.Receipt;
@@ -54,14 +55,14 @@ public class BookingApplicationController {
 		newActivityDTO.setActivityName(newActivityInfo.getActivityName());
 		newActivityDTO.setActivityType(newActivityInfo.getActivityType());
 		newActivityDTO.setDescription(newActivityInfo.getDescription());
-		newActivityDTO.setDuration(newActivityInfo.getDuration());
-		newActivityDTO.setTimeInMinutes(newActivityInfo.getTimeInMinutes());
-		newActivityDTO.setnRating(newActivityInfo.getnRating());
-		newActivityDTO.setRate(newActivityInfo.getRate());
+		newActivityDTO.setDuration(newActivityInfo.getOtherInfo().getDuration());
+		newActivityDTO.setTimeInMinutes(newActivityInfo.getOtherInfo().getTimeInMinutes());
+		newActivityDTO.setnRating(newActivityInfo.getRating().getnRating());
+		newActivityDTO.setRate(newActivityInfo.getRating().getRate());
 		newActivityDTO.setPrice(newActivityInfo.getPrice());
-		newActivityDTO.setSkipLine(newActivityInfo.getSkipLine());
-		newActivityDTO.setFreeCancellation(newActivityInfo.getFreeCancellation());
-		newActivityDTO.setPayLater(newActivityInfo.getPayLater());
+		newActivityDTO.setSkipLine(newActivityInfo.getOtherInfo().getSkipLine());
+		newActivityDTO.setFreeCancellation(newActivityInfo.getOtherInfo().getFreeCancellation());
+		newActivityDTO.setPayLater(newActivityInfo.getOtherInfo().getPayLater());
 		newActivityDTO.setProviderName(newActivityInfo.getProvider().getProviderName());
 		
 		return newActivityDTO;
@@ -76,8 +77,8 @@ public class BookingApplicationController {
 			ActivityDTO newActivity= new ActivityDTO();
 			newActivity.setActivityName(activity.getActivityName());
 			newActivity.setDescription(activity.getDescription());
-			newActivity.setnRating(activity.getnRating());
-			newActivity.setRate(activity.getRate());
+			newActivity.setnRating(activity.getRating().getnRating());
+			newActivity.setRate(activity.getRating().getRate());
 			newActivity.setPrice(activity.getPrice());
 			newActivity.setProviderName(activity.getProvider().getProviderName());
 			
@@ -140,12 +141,12 @@ public class BookingApplicationController {
 				null,
 				currentTraveler,
 				guests,
-				bookedActivity,
+				bookedActivity, new BookingPriceInformation(
 				context.getnFullTickets(),
 				context.getnReducedTickets(),
 				context.isShuttleService(),
 				context.isGuideService(),
-				context.getTotalPrice(),
+				context.getTotalPrice()),
 				currentDateTime
 				);
 		
@@ -248,11 +249,11 @@ public class BookingApplicationController {
 		
 		result.setActivityName(bookingFounded.getActivity().getActivityName());
 		
-		result.setnFullTickets(bookingFounded.getnFullTickets());
-		result.setnReducedTickets(bookingFounded.getnReducedTickets());
-		result.setShuttleService(bookingFounded.isShuttleService());
-		result.setGuideService(bookingFounded.isGuideService());
-		result.setTotalPrice(bookingFounded.getTotalPrice());
+		result.setnFullTickets(bookingFounded.getPriceInformation().getnFullTickets());
+		result.setnReducedTickets(bookingFounded.getPriceInformation().getnReducedTickets());
+		result.setShuttleService(bookingFounded.getPriceInformation().isShuttleService());
+		result.setGuideService(bookingFounded.getPriceInformation().isGuideService());
+		result.setTotalPrice(bookingFounded.getPriceInformation().getTotalPrice());
 		result.setBookingDate(bookingFounded.getBookingDate());
 		
 		return result;

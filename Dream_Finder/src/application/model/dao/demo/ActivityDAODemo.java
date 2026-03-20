@@ -27,7 +27,7 @@ public class ActivityDAODemo implements ActivityDAO {
 		//Trova le due attività con il rating più alto proposte da un provider e le inserisce in una lista 
 		for (Provider provider: providers) {
 			List<Activity> providerTopActivities = provider.getActivities().stream()
-			.sorted((a1, a2) -> Double.compare(a2.getRate(), a1.getRate()))
+			.sorted((a1, a2) -> Double.compare(a2.getRating().getRate(), a1.getRating().getRate()))
 			.limit(2)
 			.collect(Collectors.toList());
 			

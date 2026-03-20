@@ -31,8 +31,8 @@ public class HomeApplicationController {
 			newActivity.setActivityName(activity.getActivityName());
 			newActivity.setDescription(activity.getDescription());
 			newActivity.setPrice(activity.getPrice());
-			newActivity.setRate(activity.getRate());
-			newActivity.setnRating(activity.getnRating());
+			newActivity.setRate(activity.getRating().getRate());
+			newActivity.setnRating(activity.getRating().getnRating());
 			newActivity.setProviderName(activity.getProvider().getProviderName());
 			
 			activityDTO.add(newActivity);

@@ -39,8 +39,8 @@ public class Provider {
 	public void addActivity(String activityName, String description, Double price, Integer duration, Boolean timeInMinutes,
 			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
 			Double rate) {
-		activities.add(new Activity(activityName, description, price, duration, timeInMinutes, activityType, freeCancellation, payLater,
-				skipLine, nRating, rate, this));
+		activities.add(new Activity(activityName, price, activityType, this, new ActivityRating(rate, nRating), 
+				new ActivityOtherInformation(description, freeCancellation, payLater, skipLine, duration, timeInMinutes)));
 		
 		this.nOfferedActivities+=1;
 		
@@ -51,7 +51,7 @@ public class Provider {
 		Double resultRate= 0.0;
 		
 		for (Activity activity : this.activities) {
-			resultRate += activity.getRate();
+			resultRate += activity.getRating().getRate();
 	    }
 		
 		resultRate = resultRate / (this.nOfferedActivities);

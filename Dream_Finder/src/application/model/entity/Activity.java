@@ -6,39 +6,23 @@ public class Activity {
 	private String activityName;
 	private String description;
 	private Double price;
-	private Integer duration;
-	private Boolean timeInMinutes;
 	private ActivityType activityType;
-	private Boolean freeCancellation;
-	private Boolean payLater;
-	private Boolean skipLine;
-	private Integer nRating;
-	private Double rate;
+	private ActivityOtherInformation otherInfo;
+	private ActivityRating rating;
 	
 	//Relazione di composizione quindi Activity deve mantenere un'istanza del provider associato
 	private Provider provider;
 	//Utilizzato per il controllo della disponibilità (Sarebbe più giusto creare un calendario con una serie di giornate e per ogni giorno ci sono una serie di posti disponibili ad una certa ora)
 	private Integer availablePlaces;
 	
-	public Activity(String activityName, String description, Double price, Integer duration, Boolean timeInMinutes,
-			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
-			Double rate, Provider provider) {
+	public Activity(String activityName, Double price, ActivityType activityType, Provider provider, ActivityRating rating, 
+			ActivityOtherInformation otherInfo) {
 		this.activityName = activityName;
-		this.description = description;
 		this.price= price;
-		this.duration = duration;
-		this.timeInMinutes = timeInMinutes;
 		this.activityType = activityType;
-		this.freeCancellation = freeCancellation;
-		this.payLater = payLater;
-		this.skipLine = skipLine;
-		this.nRating = nRating;
-		this.rate = rate;
+		this.otherInfo = otherInfo;
+		this.rating = rating;
 		this.provider= provider;
-	}
-	
-	public Double getRate() {
-		return rate;
 	}
 
 	public String getActivityName() {
@@ -49,32 +33,8 @@ public class Activity {
 		return description;
 	}
 
-	public Integer getDuration() {
-		return duration;
-	}
-
-	public Boolean getTimeInMinutes() {
-		return timeInMinutes;
-	}
-
 	public ActivityType getActivityType() {
 		return activityType;
-	}
-
-	public Boolean getFreeCancellation() {
-		return freeCancellation;
-	}
-
-	public Boolean getPayLater() {
-		return payLater;
-	}
-
-	public Boolean getSkipLine() {
-		return skipLine;
-	}
-
-	public Integer getnRating() {
-		return nRating;
 	}
 
 	public Provider getProvider() {
@@ -85,6 +45,14 @@ public class Activity {
 		return price;
 	}
 	
+	public ActivityOtherInformation getOtherInfo() {
+		return otherInfo;
+	}
+	
+	public ActivityRating getRating() {
+		return rating;
+	}
+
 	public int calculateRelevanceScore(Activity target, ActivityType referenceType, String referenceProvider) {
         int score = 0;
         
