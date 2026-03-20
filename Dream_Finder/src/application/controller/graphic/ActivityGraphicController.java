@@ -27,10 +27,10 @@ public class ActivityGraphicController implements Observer{
     
 	private BookingApplicationController bookingController;
 	
-	final String loginPath = "loginView.fxml";
-	final String titleLogin = "Login";
-	final String homepagePath = "homeView.fxml";
-	final String homepageTitle = "Homepage";
+	static final String LOGINPATH = "loginView.fxml";
+	static final String TITLELOGIN = "Login";
+	static final String HOMEPAGEPATH = "homeView.fxml";
+	static final String HOMEPAGETITLE = "Homepage";
 	 
 	
 	//Pattern observer
@@ -278,7 +278,7 @@ public class ActivityGraphicController implements Observer{
     
 	private void handleHeartClick(MouseEvent event) {
 		try {
-			WindowsNavigatorUtils.openModalWindow(event, loginPath, titleLogin, null, null, null);
+			WindowsNavigatorUtils.openModalWindow(event, LOGINPATH, TITLELOGIN, null, null, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -337,15 +337,15 @@ public class ActivityGraphicController implements Observer{
 	
 	@FXML
 	public void goToHomepage(MouseEvent event) throws IOException {
-		String fxmlFile = homepagePath;
-		String title = homepageTitle;
+		String fxmlFile = HOMEPAGEPATH;
+		String title = HOMEPAGETITLE;
         WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
     }
 	
 	@FXML
 	public void goToLogin(MouseEvent event) throws IOException {
-		String fxmlFile = loginPath;
-		String title = titleLogin;
+		String fxmlFile = LOGINPATH;
+		String title = TITLELOGIN;
 		if (UserSession.getInstance().getCurrentUser() == null) {
 			WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null, null, null);
 		} else {
@@ -380,10 +380,10 @@ public class ActivityGraphicController implements Observer{
                 WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Dati sui partecipanti", context);
             } else {
                 AlertUtils.showAlert(javafx.scene.control.Alert.AlertType.WARNING, "Attenzione", "Per prenotare questa attivita' accedi o crea un account viaggiatore.");
-                WindowsNavigatorUtils.openWindow(event, homepagePath, homepageTitle);
+                WindowsNavigatorUtils.openWindow(event, HOMEPAGEPATH, HOMEPAGETITLE);
             }
         } else { //Caso utente non loggato
-            WindowsNavigatorUtils.openModalWindow(event, loginPath, titleLogin, context, null, null);
+            WindowsNavigatorUtils.openModalWindow(event, LOGINPATH, TITLELOGIN, context, null, null);
         }
         
     }

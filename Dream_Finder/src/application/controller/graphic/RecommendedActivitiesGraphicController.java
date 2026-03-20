@@ -23,12 +23,12 @@ public class RecommendedActivitiesGraphicController {
 	
 	private BookingContext context;
 	
-	static final String loginPath = "loginView.fxml";
-	static final String titleLogin = "Login";
-	static final String homepagePath = "homeView.fxml";
-	static final String homepageTitle = "Homepage"; 
-	static final String activityPath = "activityView.fxml"; 
-	static final String activityTitle = "Info Attivita'"; 
+	static final String LOGINPATH = "loginView.fxml";
+	static final String LOGINTITLE = "Login";
+	static final String HOMEPAGEPATH = "homeView.fxml";
+	static final String HOMEPAGETITLE = "Homepage"; 
+	static final String ACTIVITYPATH = "activityView.fxml"; 
+	static final String ACTIVITYTITLE = "Info Attivita'"; 
 	
 	@FXML
     private HBox relatedContainer;
@@ -84,7 +84,7 @@ public class RecommendedActivitiesGraphicController {
 	
 	private void handleActivityClick(MouseEvent event, ActivityDTO activity) {
 		try {
-			WindowsNavigatorUtils.openActivityWindow(event, activityPath, activityTitle, activity);
+			WindowsNavigatorUtils.openActivityWindow(event, ACTIVITYPATH, ACTIVITYTITLE, activity);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +92,7 @@ public class RecommendedActivitiesGraphicController {
     
 	private void handleHeartClick(MouseEvent event) {
 		try {
-			WindowsNavigatorUtils.openModalWindow(event, loginPath, titleLogin, null, null, null);
+			WindowsNavigatorUtils.openModalWindow(event, LOGINPATH, LOGINTITLE, null, null, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -108,17 +108,17 @@ public class RecommendedActivitiesGraphicController {
     	    switch (((Node) event.getSource()).getId()) {
     	        case "areaUserButton":
     	        case "newActivityButton":
-    	            fxmlFile = loginPath;
-    	            title = titleLogin;
+    	            fxmlFile = LOGINPATH;
+    	            title = LOGINTITLE;
     	            break;
     	        case "homeButton":
     	        case "returnHomeButton":
-    	        	fxmlFile = homepagePath;
-    	        	title = homepageTitle;
+    	        	fxmlFile = HOMEPAGEPATH;
+    	        	title = HOMEPAGETITLE;
     	        	break;
     	        case "activityButton":
-    	        	fxmlFile = activityPath;
-    	        	title = activityTitle;
+    	        	fxmlFile = ACTIVITYPATH;
+    	        	title = ACTIVITYTITLE;
     	        	break;
     	        case "receiptButton":
     	        	//Apre pagina con ricevuta e da la possibilità di scaricarla in versione non demo
@@ -142,16 +142,16 @@ public class RecommendedActivitiesGraphicController {
     	        	break;
     	    }
     	
-        	if (title.equals("Login")) {
+        	if (LOGINTITLE.equals(title)) {
         		WindowsNavigatorUtils.openModalWindow(event, fxmlFile, title, null, null, null);
         	} 
         	
         	
-        	if ("Homepage".equals(title)) {
+        	if (HOMEPAGETITLE.equals(title)) {
         		WindowsNavigatorUtils.openWindow(event, fxmlFile, title);
         	}
         	
-        	if ("Info Attivita'".equals(title)) {
+        	if (ACTIVITYTITLE.equals(title)) {
         		WindowsNavigatorUtils.openActivityWindow(event, fxmlFile, title, context.getActivity());
         	}
         	
