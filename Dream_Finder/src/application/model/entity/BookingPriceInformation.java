@@ -5,6 +5,8 @@ public class BookingPriceInformation {
     private int nReducedTickets;
     private boolean shuttleService;
     private boolean guideService;
+    private Double shuttlePrice;
+	private Double guidePrice; 
     private Double totalPrice;
     
 	public BookingPriceInformation(int nFullTickets, int nReducedTickets, boolean shuttleService, boolean guideService,
@@ -13,6 +15,16 @@ public class BookingPriceInformation {
 		this.nReducedTickets = nReducedTickets;
 		this.shuttleService = shuttleService;
 		this.guideService = guideService;
+		this.totalPrice = totalPrice;
+	}
+	
+	
+	public BookingPriceInformation(int nFullTickets, int nReducedTickets, Double shuttlePrice, Double guidePrice,
+			Double totalPrice) {
+		this.nFullTickets = nFullTickets;
+		this.nReducedTickets = nReducedTickets;
+		this.shuttlePrice = shuttlePrice;
+		this.guidePrice = guidePrice;
 		this.totalPrice = totalPrice;
 	}
 
@@ -54,5 +66,21 @@ public class BookingPriceInformation {
 
 	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public Double getShuttlePrice() {
+		return shuttlePrice;
+	}
+
+	public void setShuttlePrice(Double shuttlePrice) {
+		this.shuttlePrice = shuttlePrice;
+	}
+
+	public Double getGuidePrice() {
+		return guidePrice;
+	}
+
+	public void setGuidePrice(Double guidePrice) {
+		this.guidePrice = guidePrice;
 	}
 }

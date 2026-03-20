@@ -9,7 +9,7 @@ import application.model.enums.ProviderType;
 public class Provider {
 	//Conposizione con Activity
 	private List<Activity> activities;
-	
+	//Si potrebbe utilizzare user???
 	private String email;
 	private String password;
 	

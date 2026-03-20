@@ -12,7 +12,7 @@ public class ReceiptDAODemo implements ReceiptDAO {
 	
 	@Override
 	public Boolean saveReceipt(Receipt receipt) {
-		receipts.put(receipt.getPaymentID(), receipt);
+		receipts.put(receipt.getStripe().getPaymentID(), receipt);
 		return true;
 	}
 

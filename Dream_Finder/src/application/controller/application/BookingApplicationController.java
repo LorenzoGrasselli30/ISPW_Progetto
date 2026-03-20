@@ -22,9 +22,11 @@ import application.model.dao.TravelerDAO;
 import application.model.entity.Activity;
 import application.model.entity.Booking;
 import application.model.entity.BookingPriceInformation;
+import application.model.entity.CardInformation;
 import application.model.entity.GuestInformation;
 import application.model.entity.Provider;
 import application.model.entity.Receipt;
+import application.model.entity.StripeInformation;
 import application.model.entity.Traveler;
 import application.model.enums.ActivityType;
 import application.payment.StripePayment;
@@ -157,17 +159,22 @@ public class BookingApplicationController {
 		
 		Receipt receipt= new Receipt(
 				currentProvider,
+				new BookingPriceInformation(
 				context.getnFullTickets(),
 				context.getnReducedTickets(),
 				context.getShuttlePrice(),
 				context.getGuidePrice(),
-				context.getTotalPrice(),
+				context.getTotalPrice()
+				),
+				new CardInformation(
 				context.getCardNumber(),
 				context.getExpiredDate(),
-				context.getOwnerName(),
+				context.getOwnerName()
+				),
+				new StripeInformation(
 				paymentInfo.getPaymentID(),
 				paymentInfo.getPaymentDescription(),
-				paymentInfo.getPaymentOutcome()
+				paymentInfo.getPaymentOutcome())
 				);
 		
 		//Aggiungere un modo per controllare il risultato
@@ -207,19 +214,19 @@ public class BookingApplicationController {
 		Receipt reciptFounded= receiptDAO.findByID(paymentID);
 		
 		result.setProviderName(reciptFounded.getProvider().getProviderName());
-		result.setnFullTicket(reciptFounded.getnFullTicket());
-		result.setnReducedTicket(reciptFounded.getnReducedTicket());
-		result.setTotalPrice(reciptFounded.getTotalPrice());
-		result.setGuidePrice(reciptFounded.getGuidePrice());
-		result.setShuttlePrice(reciptFounded.getShuttlePrice());
+		result.setnFullTicket(reciptFounded.getPriceInformation().getnFullTickets());
+		result.setnReducedTicket(reciptFounded.getPriceInformation().getnReducedTickets());
+		result.setTotalPrice(reciptFounded.getPriceInformation().getTotalPrice());
+		result.setGuidePrice(reciptFounded.getPriceInformation().getGuidePrice());
+		result.setShuttlePrice(reciptFounded.getPriceInformation().getShuttlePrice());
 		
-		result.setCardNumber(reciptFounded.getCardNumber());
-		result.setExpiredDate(reciptFounded.getExpiredDate());
-		result.setOwnerName(reciptFounded.getOwnerName());
+		result.setCardNumber(reciptFounded.getCard().getCardNumber());
+		result.setExpiredDate(reciptFounded.getCard().getExpiredDate());
+		result.setOwnerName(reciptFounded.getCard().getOwnerName());
 		
-		result.setPaymentID(reciptFounded.getPaymentID());
-		result.setPaymentDescription(reciptFounded.getPaymentDescription());
-		result.setPaymentOutcome(reciptFounded.getPaymentOutcome());
+		result.setPaymentID(reciptFounded.getStripe().getPaymentID());
+		result.setPaymentDescription(reciptFounded.getStripe().getPaymentDescription());
+		result.setPaymentOutcome(reciptFounded.getStripe().getPaymentOutcome());
 		
 		return result;
 	}
@@ -258,6 +265,5 @@ public class BookingApplicationController {
 		
 		return result;
 	}
-	
 	
 }
