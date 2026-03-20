@@ -27,10 +27,10 @@ public class ActivityGraphicController implements Observer{
     
 	private BookingApplicationController bookingController;
 	
-	static final String loginPath = "loginView.fxml";
-	static final String titleLogin = "Login";
-	static final String homepagePath = "homeView.fxml";
-	static final String homepageTitle = "Homepage";
+	final String loginPath = "loginView.fxml";
+	final String titleLogin = "Login";
+	final String homepagePath = "homeView.fxml";
+	final String homepageTitle = "Homepage";
 	 
 	
 	//Pattern observer
