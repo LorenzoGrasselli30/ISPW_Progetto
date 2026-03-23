@@ -1,6 +1,5 @@
 package application.adapter;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 import com.stripe.exception.StripeException;

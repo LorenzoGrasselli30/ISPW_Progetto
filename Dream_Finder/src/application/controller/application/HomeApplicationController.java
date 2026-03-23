@@ -25,7 +25,7 @@ public class HomeApplicationController {
 		List<Provider> providers= providerDAO.findTopProviders();
 		List<Activity> activities= activityDAO.findTopActivities(providers);
 		
-		List<ActivityDTO> activityDTO= new ArrayList<ActivityDTO>(); //activityDTO è un oggetto con troppi attributi che in questo caso molti sono null (va creato una activityPreviewDTO)
+		List<ActivityDTO> activityDTO= new ArrayList(); 
 		for (Activity activity: activities) {
 			ActivityDTO newActivity= new ActivityDTO();
 			newActivity.setActivityName(activity.getActivityName());
