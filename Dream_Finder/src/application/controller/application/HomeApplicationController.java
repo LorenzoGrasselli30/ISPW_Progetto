@@ -25,7 +25,7 @@ public class HomeApplicationController {
 		List<Provider> providers= providerDAO.findTopProviders();
 		List<Activity> activities= activityDAO.findTopActivities(providers);
 		
-		List<ActivityDTO> activityDTO= new ArrayList(); 
+		List<ActivityDTO> activityDTO= new ArrayList<>(); 
 		for (Activity activity: activities) {
 			ActivityDTO newActivity= new ActivityDTO();
 			newActivity.setActivityName(activity.getActivityName());
