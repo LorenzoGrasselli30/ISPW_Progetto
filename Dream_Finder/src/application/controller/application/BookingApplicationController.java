@@ -74,7 +74,7 @@ public class BookingApplicationController {
 		
 		List<Activity> newActivities= activityDAO.findRelatedActivities(activityName, activityType, providerName);
 		
-		List<ActivityDTO> relatedActivity= new ArrayList<ActivityDTO>();
+		List<ActivityDTO> relatedActivity= new ArrayList<>();
 		for (Activity activity: newActivities) {
 			ActivityDTO newActivity= new ActivityDTO();
 			newActivity.setActivityName(activity.getActivityName());
@@ -129,7 +129,7 @@ public class BookingApplicationController {
 		Activity bookedActivity= activityDAO.findByProvider(context.getActivity().getActivityName(), context.getActivity().getProviderName());
 		Traveler currentTraveler= travelerDAO.findByEmail(UserSession.getInstance().getCurrentUser().getEmail());
 		
-		List<GuestInformation> guests= new ArrayList<GuestInformation>();
+		List<GuestInformation> guests= new ArrayList<>();
 		
 		for (GuestInformationDTO guest: context.getGuests()) {
 			GuestInformation newGuest= new GuestInformation(guest.getName(), guest.getSurname(), guest.getDateOfBirth());
@@ -241,7 +241,7 @@ public class BookingApplicationController {
 		result.setTravelerName(bookingFounded.getTraveler().getName());
 		result.setProviderName(bookingFounded.getActivity().getProvider().getProviderName());
 		
-		List<GuestInformationDTO> guests= new ArrayList<GuestInformationDTO>();
+		List<GuestInformationDTO> guests= new ArrayList<>();
 		
 		for (GuestInformation guest: bookingFounded.getGuests()) {
 			GuestInformationDTO newGuest= new GuestInformationDTO();
