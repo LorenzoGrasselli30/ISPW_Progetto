@@ -34,11 +34,9 @@ public class Provider {
 		this.providerRate= 0.0;
 	}
 	
-	public void addActivity(String activityName, String description, Double price, Integer duration, Boolean timeInMinutes,
-			ActivityType activityType, Boolean freeCancellation, Boolean payLater, Boolean skipLine, Integer nRating,
-			Double rate) {
-		activities.add(new Activity(activityName, price, activityType, this, new ActivityRating(rate, nRating), 
-				new ActivityOtherInformation(description, freeCancellation, payLater, skipLine, duration, timeInMinutes)));
+	public void addActivity(String activityName, Double price, ActivityType activityType,
+			ActivityRating activityRating, ActivityOtherInformation otherInfo) {
+		activities.add(new Activity(activityName, price, activityType, this, activityRating, otherInfo));
 		
 		this.nOfferedActivities+=1;
 		

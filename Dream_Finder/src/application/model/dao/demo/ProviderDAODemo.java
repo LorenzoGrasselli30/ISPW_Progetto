@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
+import application.model.entity.ActivityOtherInformation;
+import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
 import application.model.entity.User;
 import application.model.enums.ActivityType;
@@ -27,10 +29,12 @@ public class ProviderDAODemo implements ProviderDAO{
 		Provider provider1= new Provider(new User("luigi.verdi@mail.com", "LuigiVerdi1!", UserRole.PROVIDER), "LuigiSRL",ProviderType.COMPANY, 0, "Italia", "Luigi", "Verdi");
 		
 		//Associazione delle attività al provider1
-		provider1.addActivity("Roma: tour guidato del Colosseo", "Visita il Colosseo, il più grande anfiteatro del mondo romano", 30.0,
-				1, false, ActivityType.CULTURE, true, false, true, 340, 4.8);
-		provider1.addActivity("Roma: biglietto d'ingresso per Castel Sant'Angelo", "Risparmia tempo durante il tuo viaggio a Roma con questo biglietto d'ingresso a Castel Sant'Angelo", 40.0,
-				2, false, ActivityType.CULTURE, true, true, true, 200, 4.5);
+		provider1.addActivity("Roma: tour guidato del Colosseo", 30.0, ActivityType.CULTURE, new ActivityRating(4.8, 340), 
+				new ActivityOtherInformation("Visita il Colosseo, il più grande anfiteatro del mondo romano",
+				true, false, true, 1, false)); //duration, minutes, freecanc, paylater, skipline
+		provider1.addActivity("Roma: biglietto d'ingresso per Castel Sant'Angelo", 40.0, ActivityType.CULTURE, new ActivityRating(4.5, 200), 
+				new ActivityOtherInformation("Risparmia tempo durante il tuo viaggio a Roma con questo biglietto d'ingresso a Castel Sant'Angelo",
+				true, true, true, 2, false));
 		provider1.addActivity("Roma: tour privato del Foro Romano e del Palatino", "Esplora il cuore dell'antica Roma con un tour del Foro Romano e del Palatino con una guida autorizzata", 27.99,
 				180, true, ActivityType.CULTURE, true, false, false, 300, 4.5);
 		
