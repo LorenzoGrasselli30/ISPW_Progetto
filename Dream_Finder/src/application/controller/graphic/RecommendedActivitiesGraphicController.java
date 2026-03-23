@@ -75,6 +75,7 @@ public class RecommendedActivitiesGraphicController {
 					activity, 
 					event -> handleActivityClick(event, activity), 
 					event -> handleHeartClick(event)
+					//Scrivere "this::handleHeartClick" per risolvere l'issues
 			);
 			relatedContainer.getChildren().add(activityCard);
 		}

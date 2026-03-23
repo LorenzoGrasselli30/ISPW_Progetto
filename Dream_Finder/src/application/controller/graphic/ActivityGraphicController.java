@@ -262,7 +262,8 @@ public class ActivityGraphicController implements Observer{
 			VBox activityCard = ActivityLayoutUtils.createActivityCard(
 					activity, 
 					event -> handleActivityClick(event, activity), 
-					this::handleHeartClick
+					event -> handleHeartClick(event)
+					//Scrivere "this::handleHeartClick" per risolvere l'issues
 			);
 			relatedContainer.getChildren().add(activityCard);
 		}
