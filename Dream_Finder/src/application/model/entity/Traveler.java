@@ -2,8 +2,7 @@ package application.model.entity;
 
 public class Traveler {
 	
-	private String email;
-	private String password;
+	private User travelerUser;
 	private String username;
 	private String name;
 	private String surname;
@@ -11,30 +10,13 @@ public class Traveler {
 	
 	//private List<Activity> favActivities;
 	
-	public Traveler(String email, String password, String username, String name, String surname, String dob) {
-		this.email = email;
-		this.password = password;
+	public Traveler(User travelerUser, String username, String name, String surname, String dob) {
+		this.setTravelerUser(travelerUser);
 		this.username = username;
 		this.name= name;
 		this.surname= surname;
 		this.dob = dob;
 		//this.favActivities = new ArrayList<>();
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getUsername() {
@@ -67,6 +49,14 @@ public class Traveler {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public User getTravelerUser() {
+		return travelerUser;
+	}
+
+	public void setTravelerUser(User travelerUser) {
+		this.travelerUser = travelerUser;
 	}
 
 }

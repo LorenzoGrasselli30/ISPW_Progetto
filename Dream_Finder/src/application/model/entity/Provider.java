@@ -7,11 +7,10 @@ import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
 
 public class Provider {
-	//Conposizione con Activity
+	//Composizione con Activity
 	private List<Activity> activities;
-	//Si potrebbe utilizzare user???
-	private String email;
-	private String password;
+	
+	private User providerUser;
 	
 	private String providerName;
 	private ProviderType providerType;
@@ -22,18 +21,17 @@ public class Provider {
 	
 	private Double providerRate;
 
-	public Provider(String email, String password, String providerName,
-			ProviderType providerType, Integer nOfferedActivities, String location, String name, String surname, Double providerRate) {
+	public Provider(User providerUser, String providerName,
+			ProviderType providerType, Integer nOfferedActivities, String location, String name, String surname) {
 		this.activities = new ArrayList<>();
-		this.email = email;
-		this.password = password;
+		this.setProviderUser(providerUser);
 		this.providerName = providerName;
 		this.providerType = providerType;
 		this.nOfferedActivities = nOfferedActivities;
 		this.location = location;
 		this.name = name;
 		this.surname = surname;
-		this.providerRate= providerRate;
+		this.providerRate= 0.0;
 	}
 	
 	public void addActivity(String activityName, String description, Double price, Integer duration, Boolean timeInMinutes,
@@ -66,14 +64,6 @@ public class Provider {
 	public List<Activity> getActivities() {
 		return activities;
 	}
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
 
 	public String getProviderName() {
 		return providerName;
@@ -97,6 +87,14 @@ public class Provider {
 
 	public String getSurname() {
 		return surname;
+	}
+
+	public User getProviderUser() {
+		return providerUser;
+	}
+
+	public void setProviderUser(User providerUser) {
+		this.providerUser = providerUser;
 	}
 
 }

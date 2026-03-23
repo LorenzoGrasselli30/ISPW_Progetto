@@ -48,12 +48,12 @@ public class Validator {
         	return false;
         }
         
-     // Controllo presenza di un carattere speciale
+        // Controllo presenza di un carattere speciale
         if (!Pattern.compile("[!@#$%^&*(),.?\":{}|<>\\[\\]~-]").matcher(password).find()) {
         	return false;
         }
         
-     // Controllo presenza di un numero
+        // Controllo presenza di un numero
        return Pattern.compile("\\d").matcher(password).find();
    } 
     

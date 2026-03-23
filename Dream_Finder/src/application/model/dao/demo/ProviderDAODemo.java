@@ -9,8 +9,10 @@ import java.util.stream.Collectors;
 import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
 import application.model.entity.Provider;
+import application.model.entity.User;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
+import application.model.enums.UserRole;
 
 public class ProviderDAODemo implements ProviderDAO{
 	
@@ -22,7 +24,7 @@ public class ProviderDAODemo implements ProviderDAO{
 
 	private void initializeProviderDemo() {
 		//Creazione del provider1
-		Provider provider1= new Provider("luigi.verdi@mail.com", "LuigiVerdi1!", "LuigiSRL",ProviderType.COMPANY, 0, "Italia", "Luigi", "Verdi", 4.6);
+		Provider provider1= new Provider(new User("luigi.verdi@mail.com", "LuigiVerdi1!", UserRole.PROVIDER), "LuigiSRL",ProviderType.COMPANY, 0, "Italia", "Luigi", "Verdi");
 		
 		//Associazione delle attività al provider1
 		provider1.addActivity("Roma: tour guidato del Colosseo", "Visita il Colosseo, il più grande anfiteatro del mondo romano", 30.0,
@@ -35,7 +37,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		providers.put("luigi.verdi@mail.com", provider1);
 		
 		//Creazione del provider2
-		Provider provider2= new Provider("provider2@mail.com", "Provider2!", "Provider2Group", ProviderType.INDIVIDUAL, 0, "Francia", "Provider2", "Provider2", 3.5);
+		Provider provider2= new Provider(new User("provider2@mail.com", "Provider2!", UserRole.PROVIDER), "Provider2Group", ProviderType.INDIVIDUAL, 0, "Francia", "Provider2", "Provider2");
 				
 		//Associazione delle attività al provider2
 		provider2.addActivity("Parigi: crociera sulla Senna", "Ammirate i monumenti più famosi di Parigi durante una piacevole crociera sulla Senna.", 59.99,
@@ -48,7 +50,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		providers.put("provider2@mail.com", provider2);
 				
 		//Creazione del provider3
-		Provider provider3= new Provider("giacomo.bianchi@mail.com", "GiacomoBianchi1!", "BianchiCorp", ProviderType.EDU, 0, "Spagna", "Giacomo", "Bianchi", 4.1);
+		Provider provider3= new Provider(new User("giacomo.bianchi@mail.com", "GiacomoBianchi1!", UserRole.PROVIDER), "BianchiCorp", ProviderType.EDU, 0, "Spagna", "Giacomo", "Bianchi");
 				
 		//Associazione delle attività al provider3
 		provider3.addActivity("Madrid: Biglietto d'ingresso al Palazzo Reale", "Goditi un viaggio nella storia della Spagna e della sua monarchia grazie a questo biglietto d'ingresso con accesso rapido al Palazzo Reale di Madrid", 29.99, 
@@ -61,7 +63,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		providers.put("giacomo.bianchi@mail.com", provider3);
 		
 		//Creazione del provider4
-				Provider provider4= new Provider("marco.marroni@mail.com", "Marcomarroni1!", "MarcoTravel", ProviderType.EDU, 0, "Germania", "Marco", "Marroni", 0.0);
+				Provider provider4= new Provider(new User("marco.marroni@mail.com", "Marcomarroni1!", UserRole.PROVIDER), "MarcoTravel", ProviderType.EDU, 0, "Germania", "Marco", "Marroni");
 						
 				//Associazione delle attività al provider4
 				provider4.addActivity("Museo del Muro di Berlino al Checkpoint Charlie", "Fondato poco dopo la costruzione del Muro di Berlino, questo museo ha avuto un ruolo fondamentale nella storia e gli oggetti esposti ne sono la prova.", 19.99, 
@@ -74,7 +76,7 @@ public class ProviderDAODemo implements ProviderDAO{
 				providers.put("marco.marroni@mail.com", provider4);
 		
 		//Creazione del provider5
-				Provider provider5= new Provider("provider5@mail.com", "Provider5!", "Provider5Group", ProviderType.INDIVIDUAL, 0, "Italia", "Provider5", "Provider5", 3.0);
+				Provider provider5= new Provider(new User("provider5@mail.com", "Provider5!", UserRole.PROVIDER), "Provider5Group", ProviderType.INDIVIDUAL, 0, "Italia", "Provider5", "Provider5");
 						
 				//Associazione delle attività al provider5
 				provider5.addActivity("Londra: esperienza di Buckingham Palace e cambio della guardia", "Immergiti nella ricca storia di Westminster, che abbraccia oltre un millennio, mentre le guide ti svelano punti di riferimento iconici e racconti regali in questo tour a piedi di Londra.", 35.99, 
