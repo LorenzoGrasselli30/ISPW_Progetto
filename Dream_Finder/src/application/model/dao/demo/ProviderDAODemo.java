@@ -35,8 +35,20 @@ public class ProviderDAODemo implements ProviderDAO{
 		provider1.addActivity("Roma: biglietto d'ingresso per Castel Sant'Angelo", 40.0, ActivityType.CULTURE, new ActivityRating(4.5, 200), 
 				new ActivityOtherInformation("Risparmia tempo durante il tuo viaggio a Roma con questo biglietto d'ingresso a Castel Sant'Angelo",
 				true, true, true, 2, false));
-		provider1.addActivity("Roma: tour privato del Foro Romano e del Palatino", "Esplora il cuore dell'antica Roma con un tour del Foro Romano e del Palatino con una guida autorizzata", 27.99,
-				180, true, ActivityType.CULTURE, true, false, false, 300, 4.5);
+		provider1.addActivity(
+		            "Roma: tour privato del Foro Romano e del Palatino",
+		            27.99,
+		            ActivityType.CULTURE,
+		            new ActivityRating(4.5, 300),
+		            new ActivityOtherInformation(
+		                    "Esplora il cuore dell'antica Roma con un tour del Foro Romano e del Palatino con una guida autorizzata",
+		                    true,
+		                    false,
+		                    false,
+		                    180,
+		                    true
+		            )
+		    );
 		
 		providers.put("luigi.verdi@mail.com", provider1);
 		
@@ -44,12 +56,48 @@ public class ProviderDAODemo implements ProviderDAO{
 		Provider provider2= new Provider(new User("provider2@mail.com", "Provider2!", UserRole.PROVIDER), "Provider2Group", ProviderType.INDIVIDUAL, 0, "Francia", "Provider2", "Provider2");
 				
 		//Associazione delle attività al provider2
-		provider2.addActivity("Parigi: crociera sulla Senna", "Ammirate i monumenti più famosi di Parigi durante una piacevole crociera sulla Senna.", 59.99,
-				1, false, ActivityType.CULTURE, true, true, true, 480, 4.4);
-		provider2.addActivity("Parigi: laboratorio di pasticceria francese", "impara a preparare madeleine, macaron, financier e una deliziosa cioccolata calda", 29.99, 
-				2, false, ActivityType.FOOD, true, true, false, 220, 3.8);
-		provider2.addActivity("Parigi: tour guidato di Notre-Dame", "Scopri Notre-Dame attraverso i suoi simboli gotici, gli interni restaurati e 850 anni di storia", 18.0,
-				75, true, ActivityType.CULTURE, true, true, true, 96, 4.0);
+		provider2.addActivity(
+	            "Parigi: crociera sulla Senna",
+	            59.99,
+	            ActivityType.CULTURE,
+	            new ActivityRating(4.4, 480),
+	            new ActivityOtherInformation(
+	                    "Ammirate i monumenti più famosi di Parigi durante una piacevole crociera sulla Senna.",
+	                    true,
+	                    true,
+	                    true,
+	                    1,
+	                    false
+	            )
+	    );
+		provider2.addActivity(
+	            "Parigi: laboratorio di pasticceria francese",
+	            29.99,
+	            ActivityType.FOOD,
+	            new ActivityRating(3.8, 220),
+	            new ActivityOtherInformation(
+	                    "Impara a preparare madeleine, macaron, financier e una deliziosa cioccolata calda",
+	                    true,
+	                    true,
+	                    false,
+	                    2,
+	                    false
+	            )
+	    );
+		provider2.addActivity(
+	            "Parigi: tour guidato di Notre-Dame",
+	            18.0,
+	            ActivityType.CULTURE,
+	            new ActivityRating(4.0, 96),
+	            new ActivityOtherInformation(
+	                    "Scopri Notre-Dame attraverso i suoi simboli gotici, gli interni restaurati e 850 anni di storia",
+	                    true,
+	                    true,
+	                    true,
+	                    75,
+	                    true
+	            )
+	    );
 		
 		providers.put("provider2@mail.com", provider2);
 				
@@ -57,25 +105,101 @@ public class ProviderDAODemo implements ProviderDAO{
 		Provider provider3= new Provider(new User("giacomo.bianchi@mail.com", "GiacomoBianchi1!", UserRole.PROVIDER), "BianchiCorp", ProviderType.EDU, 0, "Spagna", "Giacomo", "Bianchi");
 				
 		//Associazione delle attività al provider3
-		provider3.addActivity("Madrid: Biglietto d'ingresso al Palazzo Reale", "Goditi un viaggio nella storia della Spagna e della sua monarchia grazie a questo biglietto d'ingresso con accesso rapido al Palazzo Reale di Madrid", 29.99, 
-				150, true, ActivityType.CULTURE, true, true, true, 130, 4.2);
-		provider3.addActivity("Madrid: biglietto per lo Zoo Aquarium", "Scopri animali, creature del mare e piante provenienti da tutto il mondo", 25.0,
-				4, false, ActivityType.NATURE, true, false, true, 170, 4.1);
-		provider3.addActivity("Barcellona: biglietto d'ingresso alla Sagrada Familia", "Entra nel capolavoro incompiuto di Gaudí, la Sagrada Familia", 15.0,
-				45, true, ActivityType.CULTURE, false, false, true, 345, 4.0);
+		provider3.addActivity(
+	            "Madrid: Biglietto d'ingresso al Palazzo Reale",
+	            22.0,
+	            ActivityType.CULTURE,
+	            new ActivityRating(4.2, 130),
+	            new ActivityOtherInformation(
+	                    "Goditi un viaggio nella storia della Spagna e della sua monarchia grazie a questo biglietto d'ingresso con accesso rapido al Palazzo Reale",
+	                    true,
+	                    true,
+	                    true,
+	                    150,
+	                    true
+	            )
+	    );
+
+	    provider3.addActivity(
+	            "Madrid: biglietto per lo Zoo Aquarium",
+	            25.0,
+	            ActivityType.NATURE,
+	            new ActivityRating(4.1, 170),
+	            new ActivityOtherInformation(
+	                    "Scopri animali, creature del mare e piante provenienti da tutto il mondo",
+	                    true,
+	                    false,
+	                    true,
+	                    4,
+	                    false
+	            )
+	    );
+
+	    provider3.addActivity(
+	            "Barcellona: biglietto d'ingresso alla Sagrada Familia",
+	            15.0,
+	            ActivityType.CULTURE,
+	            new ActivityRating(4.0, 345),
+	            new ActivityOtherInformation(
+	                    "Entra nel capolavoro incompiuto di Gaudí, la Sagrada Familia",
+	                    false,
+	                    false,
+	                    true,
+	                    45,
+	                    true
+	            )
+	    );
 		
 		providers.put("giacomo.bianchi@mail.com", provider3);
 		
 		//Creazione del provider4
 				Provider provider4= new Provider(new User("marco.marroni@mail.com", "Marcomarroni1!", UserRole.PROVIDER), "MarcoTravel", ProviderType.EDU, 0, "Germania", "Marco", "Marroni");
 						
-				//Associazione delle attività al provider4
-				provider4.addActivity("Museo del Muro di Berlino al Checkpoint Charlie", "Fondato poco dopo la costruzione del Muro di Berlino, questo museo ha avuto un ruolo fondamentale nella storia e gli oggetti esposti ne sono la prova.", 19.99, 
-						2, false, ActivityType.CULTURE, true, true, true, 140, 4.0);
-				provider4.addActivity("Berlino: Biglietto d'ingresso per il Palazzo di Charlottenburg", "Il Palazzo Vecchio e l'Ala Nuova formano il più importante complesso di palazzi degli ex elettori del Brandeburgo, dei re prussiani e degli imperatori tedeschi a Berlino.", 
-						25.0, 3, false, ActivityType.CULTURE, true, true, true, 168, 4.5);
-				provider4.addActivity("Berlino: biglietto d'ingresso al Berlin Story Bunker", "Scoprite la mostra \"Hitler, come è potuto accadere\" e il Berlin Story Museum con un unico biglietto", 18.99,
-						2, false, ActivityType.CULTURE, true, false, true, 345, 4.2);
+		//Associazione delle attività al provider4
+				provider4.addActivity(
+			            "Museo del Muro di Berlino al Checkpoint Charlie",
+			            14.0,
+			            ActivityType.CULTURE,
+			            new ActivityRating(4.0, 140),
+			            new ActivityOtherInformation(
+			                    "Fondato poco dopo la costruzione del Muro di Berlino, questo museo ha avuto un ruolo fondamentale nella storia e conserva oggetti originali.",
+			                    true,
+			                    true,
+			                    true,
+			                    2,
+			                    false
+			            )
+			    );
+
+			    provider4.addActivity(
+			            "Berlino: Biglietto d'ingresso per il Palazzo di Charlottenburg",
+			            25.0,
+			            ActivityType.CULTURE,
+			            new ActivityRating(4.5, 168),
+			            new ActivityOtherInformation(
+			                    "Il Palazzo Vecchio e l'Ala Nuova formano il più importante complesso di palazzi degli ex elettori del Brandeburgo.",
+			                    true,
+			                    true,
+			                    true,
+			                    3,
+			                    false
+			            )
+			    );
+
+			    provider4.addActivity(
+			            "Berlino: biglietto d'ingresso al Berlin Story Bunker",
+			            18.99,
+			            ActivityType.CULTURE,
+			            new ActivityRating(4.2, 345),
+			            new ActivityOtherInformation(
+			                    "Scoprite la mostra \"Hitler, come è potuto accadere\" e il Berlin Story Museum con un unico biglietto",
+			                    true,
+			                    false,
+			                    true,
+			                    2,
+			                    false
+			            )
+			    );
 				
 				providers.put("marco.marroni@mail.com", provider4);
 		
@@ -83,12 +207,50 @@ public class ProviderDAODemo implements ProviderDAO{
 				Provider provider5= new Provider(new User("provider5@mail.com", "Provider5!", UserRole.PROVIDER), "Provider5Group", ProviderType.INDIVIDUAL, 0, "Italia", "Provider5", "Provider5");
 						
 				//Associazione delle attività al provider5
-				provider5.addActivity("Londra: esperienza di Buckingham Palace e cambio della guardia", "Immergiti nella ricca storia di Westminster, che abbraccia oltre un millennio, mentre le guide ti svelano punti di riferimento iconici e racconti regali in questo tour a piedi di Londra.", 35.99, 
-						2, false, ActivityType.CULTURE, true, true, true, 2345, 4.2);
-				provider5.addActivity("Londra: tour rapido del Museo di storia naturale", "Viaggia nel tempo e scopri le meraviglie della scienza e del mondo naturale", 15.0,
-						120, true, ActivityType.NATURE, true, false, true, 70, 4.2);
-				provider5.addActivity("Londra: Biglietto d'ingresso per il London Eye", "Ammira monumenti come il Big Ben, Buckingham Palace e la Cattedrale di St Paul da 135 metri di altezza", 33.99,
-						30, true, ActivityType.CULTURE, false, false, true, 345, 4.0);
+				provider5.addActivity(
+			            "Londra: esperienza di Buckingham Palace e cambio della guardia",
+			            55.0,
+			            ActivityType.CULTURE,
+			            new ActivityRating(4.2, 2345),
+			            new ActivityOtherInformation(
+			                    "Immergiti nella ricca storia di Westminster, che abbraccia oltre un millennio, mentre le guide ti svelano i punti salienti di Buckingham Palace.",
+			                    true,
+			                    true,
+			                    true,
+			                    2,
+			                    false
+			            )
+			    );
+
+			    provider5.addActivity(
+			            "Londra: tour rapido del Museo di storia naturale",
+			            15.0,
+			            ActivityType.NATURE,
+			            new ActivityRating(4.2, 70),
+			            new ActivityOtherInformation(
+			                    "Viaggia nel tempo e scopri le meraviglie della scienza e del mondo naturale",
+			                    true,
+			                    false,
+			                    true,
+			                    120,
+			                    true
+			            )
+			    );
+
+			    provider5.addActivity(
+			            "Londra: Biglietto d'ingresso per il London Eye",
+			            33.99,
+			            ActivityType.CULTURE,
+			            new ActivityRating(4.0, 345),
+			            new ActivityOtherInformation(
+			                    "Ammira monumenti come il Big Ben, Buckingham Palace e la Cattedrale di St Paul da 135 metri di altezza",
+			                    false,
+			                    false,
+			                    true,
+			                    30,
+			                    true
+			            )
+			    );
 				
 				providers.put("provider5@mail.com", provider5);	
 	}
