@@ -12,17 +12,18 @@ public class Activity {
 	
 	//Relazione di composizione quindi Activity deve mantenere un'istanza del provider associato
 	private Provider provider;
-	//Utilizzato per il controllo della disponibilità (Sarebbe più giusto creare un calendario con una serie di giornate e per ogni giorno ci sono una serie di posti disponibili ad una certa ora)
-	private ActivityAvaibleDates avaibleDates;
+	//Utilizzato per il controllo della disponibilità 
+	private ActivityAvailableDates availableDates;
 	
 	public Activity(String activityName, Double price, ActivityType activityType, Provider provider, ActivityRating rating, 
-			ActivityOtherInformation otherInfo) {
+			ActivityOtherInformation otherInfo, ActivityAvailableDates availableDates) {
 		this.activityName = activityName;
 		this.price= price;
 		this.activityType = activityType;
 		this.otherInfo = otherInfo;
 		this.rating = rating;
 		this.provider= provider;
+		this.availableDates = availableDates;
 	}
 
 	public String getActivityName() {
@@ -68,6 +69,14 @@ public class Activity {
         
         return score;
     }
+
+	public ActivityAvailableDates getAvaibleDates() {
+		return availableDates;
+	}
+
+	public void setAvaibleDates(ActivityAvailableDates avaibleDates) {
+		this.availableDates = avaibleDates;
+	}
 	
 	/*
 	public Double calculateAddedServices(Activity activity, int nPeople, Boolean shuttleService, Boolean guideTour) {

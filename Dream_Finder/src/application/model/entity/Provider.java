@@ -35,8 +35,8 @@ public class Provider {
 	}
 	
 	public void addActivity(String activityName, Double price, ActivityType activityType,
-			ActivityRating activityRating, ActivityOtherInformation otherInfo) {
-		activities.add(new Activity(activityName, price, activityType, this, activityRating, otherInfo));
+			ActivityRating activityRating, ActivityOtherInformation otherInfo, ActivityAvailableDates availableDates) {
+		activities.add(new Activity(activityName, price, activityType, this, activityRating, otherInfo, availableDates));
 		
 		this.nOfferedActivities+=1;
 		
