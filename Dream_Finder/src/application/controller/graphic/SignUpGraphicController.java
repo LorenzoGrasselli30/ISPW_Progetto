@@ -1,7 +1,5 @@
 package application.controller.graphic;
 
-import java.io.IOException;
-
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;

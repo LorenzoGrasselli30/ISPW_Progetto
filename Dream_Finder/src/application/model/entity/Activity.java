@@ -13,7 +13,7 @@ public class Activity {
 	//Relazione di composizione quindi Activity deve mantenere un'istanza del provider associato
 	private Provider provider;
 	//Utilizzato per il controllo della disponibilità (Sarebbe più giusto creare un calendario con una serie di giornate e per ogni giorno ci sono una serie di posti disponibili ad una certa ora)
-	private Integer availablePlaces;
+	private ActivityAvaibleDates avaibleDates;
 	
 	public Activity(String activityName, Double price, ActivityType activityType, Provider provider, ActivityRating rating, 
 			ActivityOtherInformation otherInfo) {
