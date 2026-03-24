@@ -1,5 +1,6 @@
 package application.model.dao.demo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.stream.Collectors;
 
 import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
+import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
@@ -25,16 +27,19 @@ public class ProviderDAODemo implements ProviderDAO{
 	}
 
 	private void initializeProviderDemo() {
+		//Creazione di date di disponibilità
+		
+		
 		//Creazione del provider1
 		Provider provider1= new Provider(new User("luigi.verdi@mail.com", "LuigiVerdi1!", UserRole.PROVIDER), "LuigiSRL",ProviderType.COMPANY, 0, "Italia", "Luigi", "Verdi");
 		
 		//Associazione delle attività al provider1
 		provider1.addActivity("Roma: tour guidato del Colosseo", 30.0, ActivityType.CULTURE, new ActivityRating(4.8, 340), 
 				new ActivityOtherInformation("Visita il Colosseo, il più grande anfiteatro del mondo romano",
-				true, false, true, 1, false)); //duration, minutes, freecanc, paylater, skipline
+				true, false, true, 1, false), this.initializeAvailableDates(10)); 
 		provider1.addActivity("Roma: biglietto d'ingresso per Castel Sant'Angelo", 40.0, ActivityType.CULTURE, new ActivityRating(4.5, 200), 
 				new ActivityOtherInformation("Risparmia tempo durante il tuo viaggio a Roma con questo biglietto d'ingresso a Castel Sant'Angelo",
-				true, true, true, 2, false));
+				true, true, true, 2, false), this.initializeAvailableDates(10));
 		provider1.addActivity(
 		            "Roma: tour privato del Foro Romano e del Palatino",
 		            27.99,
@@ -47,7 +52,8 @@ public class ProviderDAODemo implements ProviderDAO{
 		                    false,
 		                    180,
 		                    true
-		            )
+		            ),
+		            this.initializeAvailableDates(10)
 		    );
 		
 		providers.put("luigi.verdi@mail.com", provider1);
@@ -68,7 +74,8 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    true,
 	                    1,
 	                    false
-	            )
+	            ),
+	            this.initializeAvailableDates(10)
 	    );
 		provider2.addActivity(
 	            "Parigi: laboratorio di pasticceria francese",
@@ -82,7 +89,8 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    false,
 	                    2,
 	                    false
-	            )
+	            ),
+	            this.initializeAvailableDates(10)
 	    );
 		provider2.addActivity(
 	            "Parigi: tour guidato di Notre-Dame",
@@ -96,7 +104,8 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    true,
 	                    75,
 	                    true
-	            )
+	            ),
+	            this.initializeAvailableDates(10)
 	    );
 		
 		providers.put("provider2@mail.com", provider2);
@@ -117,7 +126,8 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    true,
 	                    150,
 	                    true
-	            )
+	            ),
+	            this.initializeAvailableDates(10)
 	    );
 
 	    provider3.addActivity(
@@ -132,7 +142,8 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    true,
 	                    4,
 	                    false
-	            )
+	            ),
+	            this.initializeAvailableDates(10)
 	    );
 
 	    provider3.addActivity(
@@ -147,7 +158,8 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    true,
 	                    45,
 	                    true
-	            )
+	            ),
+	            this.initializeAvailableDates(10)
 	    );
 		
 		providers.put("giacomo.bianchi@mail.com", provider3);
@@ -168,7 +180,8 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    true,
 			                    2,
 			                    false
-			            )
+			            ),
+			            this.initializeAvailableDates(10)
 			    );
 
 			    provider4.addActivity(
@@ -183,7 +196,8 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    true,
 			                    3,
 			                    false
-			            )
+			            ),
+			            this.initializeAvailableDates(10)
 			    );
 
 			    provider4.addActivity(
@@ -198,7 +212,8 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    true,
 			                    2,
 			                    false
-			            )
+			            ),
+			            this.initializeAvailableDates(10)
 			    );
 				
 				providers.put("marco.marroni@mail.com", provider4);
@@ -219,7 +234,8 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    true,
 			                    2,
 			                    false
-			            )
+			            ),
+			            this.initializeAvailableDates(10)
 			    );
 
 			    provider5.addActivity(
@@ -234,7 +250,8 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    true,
 			                    120,
 			                    true
-			            )
+			            ),
+			            this.initializeAvailableDates(10)
 			    );
 
 			    provider5.addActivity(
@@ -249,7 +266,8 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    true,
 			                    30,
 			                    true
-			            )
+			            ),
+			            this.initializeAvailableDates(10)
 			    );
 				
 				providers.put("provider5@mail.com", provider5);	
@@ -257,6 +275,22 @@ public class ProviderDAODemo implements ProviderDAO{
 	
 	public List<Provider> providersList() {
 		return new ArrayList<>(providers.values());
+	}
+	
+	private ActivityAvailableDates initializeAvailableDates(Integer dailyPlaces) {
+		 Map<LocalDate, Integer> places = new HashMap<>();
+	     LocalDate current = java.time.LocalDate.now();
+	     int addedDays = 0;
+
+	        while (addedDays < 10) {
+	            current = current.plusDays(1); //Aumenta di un giorno
+	            if (current.getDayOfWeek() != java.time.DayOfWeek.SUNDAY) {
+	                places.put(current, dailyPlaces);
+	                addedDays++;
+	            }
+	        }
+
+	     return new ActivityAvailableDates(places);
 	}
 	
 	@Override
@@ -276,7 +310,5 @@ public class ProviderDAODemo implements ProviderDAO{
 		}
 		return null;
 	}
-	
-	
 	
 }
