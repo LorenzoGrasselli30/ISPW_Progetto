@@ -29,7 +29,7 @@ public class HomeApplicationController {
 		for (Activity activity: activities) {
 			ActivityDTO newActivity= new ActivityDTO();
 			newActivity.setActivityName(activity.getActivityName());
-			newActivity.setDescription(activity.getDescription());
+			newActivity.setDescription(activity.getOtherInfo().getDescription());
 			newActivity.setPrice(activity.getPrice());
 			newActivity.setRate(activity.getRating().getRate());
 			newActivity.setnRating(activity.getRating().getnRating());

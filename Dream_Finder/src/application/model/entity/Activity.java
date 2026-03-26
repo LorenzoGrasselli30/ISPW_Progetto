@@ -4,7 +4,6 @@ import application.model.enums.ActivityType;
 
 public class Activity {
 	private String activityName;
-	private String description;
 	private Double price;
 	private ActivityType activityType;
 	private ActivityOtherInformation otherInfo;
@@ -28,10 +27,6 @@ public class Activity {
 
 	public String getActivityName() {
 		return activityName;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 	public ActivityType getActivityType() {

@@ -57,7 +57,7 @@ public class BookingApplicationController {
 		ActivityDTO newActivityDTO= new ActivityDTO();
 		newActivityDTO.setActivityName(newActivityInfo.getActivityName());
 		newActivityDTO.setActivityType(newActivityInfo.getActivityType());
-		newActivityDTO.setDescription(newActivityInfo.getDescription());
+		newActivityDTO.setDescription(newActivityInfo.getOtherInfo().getDescription());
 		newActivityDTO.setDuration(newActivityInfo.getOtherInfo().getDuration());
 		newActivityDTO.setTimeInMinutes(newActivityInfo.getOtherInfo().getTimeInMinutes());
 		newActivityDTO.setnRating(newActivityInfo.getRating().getnRating());
@@ -80,7 +80,7 @@ public class BookingApplicationController {
 		for (Activity activity: newActivities) {
 			ActivityDTO newActivity= new ActivityDTO();
 			newActivity.setActivityName(activity.getActivityName());
-			newActivity.setDescription(activity.getDescription());
+			newActivity.setDescription(activity.getOtherInfo().getDescription());
 			newActivity.setnRating(activity.getRating().getnRating());
 			newActivity.setRate(activity.getRating().getRate());
 			newActivity.setPrice(activity.getPrice());
