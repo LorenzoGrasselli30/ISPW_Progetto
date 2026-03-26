@@ -31,4 +31,8 @@ public class ActivityAvailableDates {
 		
 		return false;
 	}
+
+	public Map<LocalDate, Integer> getAvaiblePlaces() {
+		return avaiblePlaces;
+	}
 }

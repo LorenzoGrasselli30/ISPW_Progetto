@@ -27,9 +27,6 @@ public class ProviderDAODemo implements ProviderDAO{
 	}
 
 	private void initializeProviderDemo() {
-		//Creazione di date di disponibilità
-		
-		
 		//Creazione del provider1
 		Provider provider1= new Provider(new User("luigi.verdi@mail.com", "LuigiVerdi1!", UserRole.PROVIDER), "LuigiSRL",ProviderType.COMPANY, 0, "Italia", "Luigi", "Verdi");
 		
@@ -47,11 +44,11 @@ public class ProviderDAODemo implements ProviderDAO{
 		            new ActivityRating(4.5, 300),
 		            new ActivityOtherInformation(
 		                    "Esplora il cuore dell'antica Roma con un tour del Foro Romano e del Palatino con una guida autorizzata",
-		                    true,
-		                    false,
-		                    false,
-		                    180,
-		                    true
+		                    true, //Cancellazione gratuita
+		                    false, //Prenota ora e paga dopo
+		                    false, //Salta la fila
+		                    180, //Durata dell'attività
+		                    true //Tempo in minuti
 		            ),
 		            this.initializeAvailableDates(10)
 		    );
@@ -277,6 +274,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		return new ArrayList<>(providers.values());
 	}
 	
+	//Creazione di date di disponibilità
 	private ActivityAvailableDates initializeAvailableDates(Integer dailyPlaces) {
 		 Map<LocalDate, Integer> places = new HashMap<>();
 	     LocalDate current = java.time.LocalDate.now();

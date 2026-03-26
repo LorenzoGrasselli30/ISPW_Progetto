@@ -1,5 +1,9 @@
 package application.model.bean;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+
 import application.model.enums.ActivityType;
 
 public class ActivityDTO {
@@ -14,6 +18,8 @@ public class ActivityDTO {
 	private Boolean skipLine;
 	private Integer nRating;
 	private Double rate;
+	private Map<LocalDate, Integer> avaiblePlaces = new HashMap<>();
+	
 	//Non è necessario mantenere tutti i dati del provider nella view
 	private String providerName;
 	
@@ -89,6 +95,10 @@ public class ActivityDTO {
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
 	}
-	
-	
+	public Map<LocalDate, Integer> getAvaiblePlaces() {
+		return avaiblePlaces;
+	}
+	public void setAvaiblePlaces(Map<LocalDate, Integer> avaiblePlaces) {
+		this.avaiblePlaces = avaiblePlaces;
+	}
 }

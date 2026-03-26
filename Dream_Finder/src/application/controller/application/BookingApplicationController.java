@@ -66,6 +66,7 @@ public class BookingApplicationController {
 		newActivityDTO.setFreeCancellation(newActivityInfo.getOtherInfo().getFreeCancellation());
 		newActivityDTO.setPayLater(newActivityInfo.getOtherInfo().getPayLater());
 		newActivityDTO.setProviderName(newActivityInfo.getProvider().getProviderName());
+		newActivityDTO.setAvaiblePlaces(newActivityInfo.getAvaibleDates().getAvaiblePlaces());
 		
 		return newActivityDTO;
 	}
