@@ -18,7 +18,7 @@ public class ActivityDTO {
 	private Boolean skipLine;
 	private Integer nRating;
 	private Double rate;
-	private Map<LocalDate, Integer> avaiblePlaces = new HashMap<>();
+	private Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 	
 	//Non è necessario mantenere tutti i dati del provider nella view
 	private String providerName;
@@ -96,9 +96,9 @@ public class ActivityDTO {
 		this.providerName = providerName;
 	}
 	public Map<LocalDate, Integer> getAvaiblePlaces() {
-		return avaiblePlaces;
+		return availablePlaces;
 	}
 	public void setAvaiblePlaces(Map<LocalDate, Integer> avaiblePlaces) {
-		this.avaiblePlaces = avaiblePlaces;
+		this.availablePlaces = avaiblePlaces;
 	}
 }

@@ -1,7 +1,10 @@
 package application.controller.graphic;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+
 import application.configuration.UserSession;
 import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
@@ -15,6 +18,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -88,6 +93,9 @@ public class ActivityGraphicController implements Observer{
     
     @FXML
     private HBox relatedContainer;
+    
+    @FXML
+    private DatePicker activityDatePicker;
     
     //Bottoni e Label per il form
     @FXML 
@@ -228,6 +236,9 @@ public class ActivityGraphicController implements Observer{
 				
 				populateRelatedSection(relatedInfo);
 				
+				// Configurazione DatePicker con sole date disponibili
+				configureActivityDatePicker(activityInfo.getAvaiblePlaces());
+				
 				//Registra l'ActivityGraphicController come Observer
 				subject.registerObserver(this);
 	}
@@ -267,6 +278,38 @@ public class ActivityGraphicController implements Observer{
 			);
 			relatedContainer.getChildren().add(activityCard);
 		}
+    }
+    
+    private void configureActivityDatePicker(Map<LocalDate, Integer> availablePlaces) {
+    	if (activityDatePicker == null) {
+    		return;
+    	}
+    	
+    	activityDatePicker.setValue(null);
+    	
+    	if (availablePlaces == null || availablePlaces.isEmpty()) {
+    		activityDatePicker.setDisable(true);
+    		return;
+    	}
+    	
+    	activityDatePicker.setDisable(false);
+    	
+    	activityDatePicker.setDayCellFactory(dp -> new DateCell() {
+    		@Override
+    		public void updateItem(LocalDate date, boolean empty) {
+    			super.updateItem(date, empty);
+    			
+    			if (empty || date == null) {
+    				setDisable(true);
+    				return;
+    			}
+    			
+    			Integer places = availablePlaces.get(date);
+    			boolean selectable = places != null && places > 0;
+    			
+    			setDisable(!selectable);
+    		}
+    	});
     }
     
     private void handleActivityClick(MouseEvent event, ActivityDTO activity) {
