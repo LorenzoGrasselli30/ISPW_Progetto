@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.configuration.UserSession;
+import application.exception.AvailabilityException;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.model.bean.BookingDTO;
@@ -106,7 +107,12 @@ public class BookingApplicationController {
 	}
 	
 	//Client che chiama l'istanza di Adapteer
-	public BookingContext makeBooking(BookingContext context) {
+	public BookingContext makeBooking(BookingContext context) throws AvailabilityException {
+		
+		Activity bookedActivity= activityDAO.findByProvider(context.getActivity().getActivityName(), context.getActivity().getProviderName());
+		if(!bookedActivity.getAvaibleDates().reservePlaces(context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()))) {
+			throw new AvailabilityException("La quantità di posti richiesti non è più disponibile");
+		}
 		
 		//Creo un oggetto della classe adaptee
 		StripePayment paymentAPI= new StripePayment();
@@ -127,7 +133,6 @@ public class BookingApplicationController {
 		}
 		
 		//Prenotazione dell'attività
-		Activity bookedActivity= activityDAO.findByProvider(context.getActivity().getActivityName(), context.getActivity().getProviderName());
 		Traveler currentTraveler= travelerDAO.findByEmail(UserSession.getInstance().getCurrentUser().getEmail());
 		
 		List<GuestInformation> guests= new ArrayList<>();

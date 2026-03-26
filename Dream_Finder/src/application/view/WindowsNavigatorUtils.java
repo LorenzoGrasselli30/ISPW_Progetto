@@ -287,6 +287,42 @@ public class WindowsNavigatorUtils {
     	modalStage.show();
 	}
 	
+	public static void closePaymentWindow(MouseEvent event, String fxmlPath, String title, BookingContext context) throws IOException {
+		//Stage corrente
+        Stage modalstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        //Parent window
+        Stage parentStage = (Stage) modalstage.getOwner();
+        
+        modalstage.close();
+        
+      //Salva le dimensioni e la posizione correnti
+        double currentWidth = parentStage.getWidth();
+        double currentHeight = parentStage.getHeight();
+        double currentX = parentStage.getX();
+        double currentY = parentStage.getY();
+        
+        //Carica il nuovo FXML
+        FXMLLoader loader = new FXMLLoader(WindowsNavigatorUtils.class.getResource(BASE_PATH + fxmlPath));
+        Parent root = loader.load();
+        
+        //Passa le informazioni dell'attività
+        ActivityGraphicController activityController= loader.getController();
+        activityController.selectActivityInfo(context.getActivity());
+        
+        //Imposta la nuova scena
+        parentStage.setScene(new Scene(root));
+        parentStage.setTitle(title);
+        
+        //Ripristina le dimensioni e la posizione
+        parentStage.setWidth(currentWidth);
+        parentStage.setHeight(currentHeight);
+        parentStage.setX(currentX);
+        parentStage.setY(currentY);
+        
+        parentStage.show();
+	}
+	
 	public static void openRecommendedActivitiesWindow(Event event, String fxmlPath, String title, BookingContext context) throws IOException {
 		//Stage corrente
         Stage modalstage = (Stage) ((Node) event.getSource()).getScene().getWindow();

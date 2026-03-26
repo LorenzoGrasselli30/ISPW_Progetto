@@ -2,10 +2,13 @@ package application.controller.graphic;
 
 import java.io.IOException;
 import application.controller.application.BookingApplicationController;
+import application.exception.AvailabilityException;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
+import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -142,16 +145,21 @@ public class PaymentGraphicController {
 			context.setExpiredDate(dateField.getValue().toString());
 		}
 		
-		BookingContext updatedContext= bookingController.makeBooking(context);
-		
-		System.out.println("Richiesta di pagamento inviata dall'utente: "+updatedContext.getOwnerName());
-		WindowsNavigatorUtils.openRecommendedActivitiesWindow(event, fxmlFile, title, updatedContext);
-		
+		BookingContext updatedContext;
+		try {
+			updatedContext = bookingController.makeBooking(context);
+			
+			System.out.println("Richiesta di pagamento inviata dall'utente: "+updatedContext.getOwnerName());
+			WindowsNavigatorUtils.openRecommendedActivitiesWindow(event, fxmlFile, title, updatedContext);
+			
+		} catch (AvailabilityException ae) {
+			AlertUtils.showAlert(Alert.AlertType.ERROR, "Errore durante la prenotazione", ae.getMessage());
+		}
    }
 	
 	@FXML
 	private void goBackPayment(MouseEvent event) throws IOException{
-		WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attivita'", context.getActivity());
+		WindowsNavigatorUtils.closePaymentWindow(event, "activityView.fxml", "Info Attivita'", context);
    }
 	
 }

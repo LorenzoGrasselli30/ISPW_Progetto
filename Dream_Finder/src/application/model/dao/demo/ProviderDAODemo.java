@@ -33,10 +33,10 @@ public class ProviderDAODemo implements ProviderDAO{
 		//Associazione delle attività al provider1
 		provider1.addActivity("Roma: tour guidato del Colosseo", 30.0, ActivityType.CULTURE, new ActivityRating(4.8, 340), 
 				new ActivityOtherInformation("Visita il Colosseo, il più grande anfiteatro del mondo romano",
-				true, false, true, 1, false), this.initializeAvailableDates(10)); 
+				true, false, true, 1, false), this.initializeAvailableDates(5)); 
 		provider1.addActivity("Roma: biglietto d'ingresso per Castel Sant'Angelo", 40.0, ActivityType.CULTURE, new ActivityRating(4.5, 200), 
 				new ActivityOtherInformation("Risparmia tempo durante il tuo viaggio a Roma con questo biglietto d'ingresso a Castel Sant'Angelo",
-				true, true, true, 2, false), this.initializeAvailableDates(10));
+				true, true, true, 2, false), this.initializeAvailableDates(5));
 		provider1.addActivity(
 		            "Roma: tour privato del Foro Romano e del Palatino",
 		            27.99,
@@ -50,7 +50,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		                    180, //Durata dell'attività
 		                    true //Tempo in minuti
 		            ),
-		            this.initializeAvailableDates(10)
+		            this.initializeAvailableDates(5)
 		    );
 		
 		providers.put("luigi.verdi@mail.com", provider1);
@@ -72,7 +72,7 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    1,
 	                    false
 	            ),
-	            this.initializeAvailableDates(10)
+	            this.initializeAvailableDates(5)
 	    );
 		provider2.addActivity(
 	            "Parigi: laboratorio di pasticceria francese",
@@ -87,7 +87,7 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    2,
 	                    false
 	            ),
-	            this.initializeAvailableDates(10)
+	            this.initializeAvailableDates(5)
 	    );
 		provider2.addActivity(
 	            "Parigi: tour guidato di Notre-Dame",
@@ -102,7 +102,7 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    75,
 	                    true
 	            ),
-	            this.initializeAvailableDates(10)
+	            this.initializeAvailableDates(5)
 	    );
 		
 		providers.put("provider2@mail.com", provider2);
@@ -124,7 +124,7 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    150,
 	                    true
 	            ),
-	            this.initializeAvailableDates(10)
+	            this.initializeAvailableDates(5)
 	    );
 
 	    provider3.addActivity(
@@ -140,7 +140,7 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    4,
 	                    false
 	            ),
-	            this.initializeAvailableDates(10)
+	            this.initializeAvailableDates(5)
 	    );
 
 	    provider3.addActivity(
@@ -156,7 +156,7 @@ public class ProviderDAODemo implements ProviderDAO{
 	                    45,
 	                    true
 	            ),
-	            this.initializeAvailableDates(10)
+	            this.initializeAvailableDates(5)
 	    );
 		
 		providers.put("giacomo.bianchi@mail.com", provider3);
@@ -178,7 +178,7 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    2,
 			                    false
 			            ),
-			            this.initializeAvailableDates(10)
+			            this.initializeAvailableDates(5)
 			    );
 
 			    provider4.addActivity(
@@ -194,7 +194,7 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    3,
 			                    false
 			            ),
-			            this.initializeAvailableDates(10)
+			            this.initializeAvailableDates(5)
 			    );
 
 			    provider4.addActivity(
@@ -210,7 +210,7 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    2,
 			                    false
 			            ),
-			            this.initializeAvailableDates(10)
+			            this.initializeAvailableDates(5)
 			    );
 				
 				providers.put("marco.marroni@mail.com", provider4);
@@ -232,7 +232,7 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    2,
 			                    false
 			            ),
-			            this.initializeAvailableDates(10)
+			            this.initializeAvailableDates(5)
 			    );
 
 			    provider5.addActivity(
@@ -248,7 +248,7 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    120,
 			                    true
 			            ),
-			            this.initializeAvailableDates(10)
+			            this.initializeAvailableDates(5)
 			    );
 
 			    provider5.addActivity(
@@ -264,7 +264,7 @@ public class ProviderDAODemo implements ProviderDAO{
 			                    30,
 			                    true
 			            ),
-			            this.initializeAvailableDates(10)
+			            this.initializeAvailableDates(5)
 			    );
 				
 				providers.put("provider5@mail.com", provider5);	
