@@ -14,6 +14,7 @@ public class BookingContext {
     private boolean guideService;
     private Double guidePrice;
     private Double totalPrice;
+    private LocalDate bookedDate;
     
     //Informazioni per la prenotazione 
     private List<GuestInformationDTO> guests;
@@ -164,6 +165,14 @@ public class BookingContext {
 
 	public void setBookingID(String bookingID) {
 		this.bookingID = bookingID;
+	}
+
+	public LocalDate getBookedDate() {
+		return bookedDate;
+	}
+
+	public void setBookedDate(LocalDate bookedDate) {
+		this.bookedDate = bookedDate;
 	}
   	
 }

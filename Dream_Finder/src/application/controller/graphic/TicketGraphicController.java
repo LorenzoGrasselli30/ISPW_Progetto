@@ -57,7 +57,7 @@ public class TicketGraphicController {
         	activityNameLabel.setText("- Nome dell'attività: " + booking.getActivityName());
         }
         if (dateLabel != null) {
-            dateLabel.setText("- Data: " + booking.getBookingDate());
+            dateLabel.setText("Il biglietto è valido per il giorno: " + booking.getBookedDate());
         }
         if (guideLabel != null) {
             guideLabel.setText("- Tour guidato: " + (booking.isGuideService() ? "Si" : "No"));

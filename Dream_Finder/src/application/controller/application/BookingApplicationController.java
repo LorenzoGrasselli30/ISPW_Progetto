@@ -150,7 +150,8 @@ public class BookingApplicationController {
 				context.isShuttleService(),
 				context.isGuideService(),
 				context.getTotalPrice()),
-				currentDateTime
+				currentDateTime,
+				context.getBookedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 				);
 		
 		String bookingResult= bookingDAO.confirmBooking(newBooking);
@@ -262,7 +263,7 @@ public class BookingApplicationController {
 		result.setShuttleService(bookingFounded.getPriceInformation().isShuttleService());
 		result.setGuideService(bookingFounded.getPriceInformation().isGuideService());
 		result.setTotalPrice(bookingFounded.getPriceInformation().getTotalPrice());
-		result.setBookingDate(bookingFounded.getBookingDate());
+		result.setBookedDate(bookingFounded.getBookedDate());
 		
 		return result;
 	}

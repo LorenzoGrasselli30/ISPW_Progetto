@@ -16,6 +16,7 @@ public class BookingDTO {
     private boolean guideService;
     private Double totalPrice;
     private String bookingDate;
+    private String bookedDate;
     
 	public String getBookingID() {
 		return bookingID;
@@ -103,6 +104,14 @@ public class BookingDTO {
 
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
+	}
+
+	public String getBookedDate() {
+		return bookedDate;
+	}
+
+	public void setBookedDate(String bookedDate) {
+		this.bookedDate = bookedDate;
 	}
     
 }

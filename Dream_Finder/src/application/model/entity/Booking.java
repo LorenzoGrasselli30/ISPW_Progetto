@@ -12,15 +12,17 @@ public class Booking {
 	private BookingPriceInformation priceInformation;
 	
     private String bookingDate;
+    private String bookedDate;
     
 	public Booking(String bookingID, Traveler traveler, List<GuestInformation> guests, Activity activity, 
-			BookingPriceInformation priceInformation, String bookingDate) {
+			BookingPriceInformation priceInformation, String bookingDate, String bookedDate) {
 		this.bookingID = bookingID;
 		this.traveler = traveler;
 		this.guests = guests;
 		this.activity = activity;
 		this.priceInformation = priceInformation;
 		this.bookingDate = bookingDate;
+		this.bookedDate = bookedDate;
 	}
 
 	public String getBookingID() {
@@ -70,5 +72,12 @@ public class Booking {
 	public void setPriceInformation(BookingPriceInformation priceInformation) {
 		this.priceInformation = priceInformation;
 	}
-	
+
+	public String getBookedDate() {
+		return bookedDate;
+	}
+
+	public void setBookedDate(String bookedDate) {
+		this.bookedDate = bookedDate;
+	}
 }

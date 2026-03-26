@@ -406,6 +406,7 @@ public class ActivityGraphicController implements Observer{
 		context.setnReducedTickets(reducedTicketCount);
 		context.setGuideService(guideTour);
 		context.setShuttleService(shuttleService);
+		context.setBookedDate(activityDatePicker.getValue());
 		
 		//Se non si muove l'observer non vengono calcolati i prezzi correttamente
 		recalculateTotal();
