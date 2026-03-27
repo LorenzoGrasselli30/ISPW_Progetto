@@ -7,6 +7,7 @@ import java.util.Map;
 
 import application.configuration.UserSession;
 import application.controller.application.BookingApplicationController;
+import application.exception.AvailabilityException;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.observer.Observer;
@@ -17,6 +18,7 @@ import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -399,38 +401,44 @@ public class ActivityGraphicController implements Observer{
 	
 	@FXML
 	public void submitActivityForm(MouseEvent event) throws IOException {
-		BookingContext context= new BookingContext();
 		
-		context.setActivity(currentActivity);
-		context.setnFullTickets(fullTicketCount);
-		context.setnReducedTickets(reducedTicketCount);
-		context.setGuideService(guideTour);
-		context.setShuttleService(shuttleService);
-		context.setBookedDate(activityDatePicker.getValue());
+		try {
+			bookingController.checkAvailability(currentActivity,activityDatePicker.getValue(), (fullTicketCount+reducedTicketCount));
 		
-		//Se non si muove l'observer non vengono calcolati i prezzi correttamente
-		recalculateTotal();
-		
-		// Prende i prezzi calcolati dal Subject
-		context.setTotalPrice(subject.getPrice()); 
-		context.setShuttlePrice(subject.getShuttlePrice());
-		context.setGuidePrice(subject.getGuidePrice());
-		
-		UserSession session = UserSession.getInstance();
-        
-        if (session.getCurrentUser() != null) { //Caso utente già loggato
-            String role = session.getCurrentUser().getUserRole().getStringName();
-            
-            if ("traveler".equals(role)) { 
-                WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Dati sui partecipanti", context);
-            } else {
-                AlertUtils.showAlert(javafx.scene.control.Alert.AlertType.WARNING, "Attenzione", "Per prenotare questa attivita' accedi o crea un account viaggiatore.");
-                WindowsNavigatorUtils.openWindow(event, HOMEPAGEPATH, HOMEPAGETITLE);
-            }
-        } else { //Caso utente non loggato
-            WindowsNavigatorUtils.openModalWindow(event, LOGINPATH, TITLELOGIN, context, null, null);
-        }
-        
+			BookingContext context= new BookingContext();
+			
+			context.setActivity(currentActivity);
+			context.setnFullTickets(fullTicketCount);
+			context.setnReducedTickets(reducedTicketCount);
+			context.setGuideService(guideTour);
+			context.setShuttleService(shuttleService);
+			context.setBookedDate(activityDatePicker.getValue());
+			
+			//Se non si muove l'observer non vengono calcolati i prezzi correttamente
+			recalculateTotal();
+			
+			// Prende i prezzi calcolati dal Subject
+			context.setTotalPrice(subject.getPrice()); 
+			context.setShuttlePrice(subject.getShuttlePrice());
+			context.setGuidePrice(subject.getGuidePrice());
+			
+			UserSession session = UserSession.getInstance();
+	        
+	        if (session.getCurrentUser() != null) { //Caso utente già loggato
+	            String role = session.getCurrentUser().getUserRole().getStringName();
+	            
+	            if ("traveler".equals(role)) { 
+	                WindowsNavigatorUtils.openFormWindow(event, "formView.fxml", "Dati sui partecipanti", context);
+	            } else {
+	                AlertUtils.showAlert(javafx.scene.control.Alert.AlertType.WARNING, "Attenzione", "Per prenotare questa attivita' accedi o crea un account viaggiatore.");
+	                WindowsNavigatorUtils.openWindow(event, HOMEPAGEPATH, HOMEPAGETITLE);
+	            }
+	        } else { //Caso utente non loggato
+	            WindowsNavigatorUtils.openModalWindow(event, LOGINPATH, TITLELOGIN, context, null, null);
+	        }
+		} catch (AvailabilityException ae) {
+			AlertUtils.showAlert(Alert.AlertType.WARNING, "Errore durante la prenotazione", ae.getMessage());
+		}
     }
 	
 }

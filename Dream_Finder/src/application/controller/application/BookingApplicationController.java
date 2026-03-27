@@ -1,5 +1,6 @@
 package application.controller.application;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -271,6 +272,14 @@ public class BookingApplicationController {
 		result.setBookedDate(bookingFounded.getBookedDate());
 		
 		return result;
+	}
+
+	public void checkAvailability(ActivityDTO currentActivity, LocalDate bookedDate, Integer nTicket) throws AvailabilityException {
+		Activity checkedActivity= activityDAO.findByProvider(currentActivity.getActivityName(), currentActivity.getProviderName());
+		
+		if(!checkedActivity.getAvaibleDates().hasRequiredPlaces(bookedDate, nTicket)) {
+			throw new AvailabilityException("La quantità di posti richiesti non è disponibile");
+		}
 	}
 	
 }

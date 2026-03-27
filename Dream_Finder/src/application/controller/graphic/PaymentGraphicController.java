@@ -154,6 +154,7 @@ public class PaymentGraphicController {
 			
 		} catch (AvailabilityException ae) {
 			AlertUtils.showAlert(Alert.AlertType.ERROR, "Errore durante la prenotazione", ae.getMessage());
+			WindowsNavigatorUtils.closePaymentWindow(event, "activityView.fxml", "Info Attivita'", context);
 		}
    }
 	
