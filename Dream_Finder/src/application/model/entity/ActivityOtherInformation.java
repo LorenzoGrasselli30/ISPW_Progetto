@@ -7,7 +7,7 @@ public class ActivityOtherInformation {
 	private Boolean skipLine;
 	
 	private Integer duration;
-	private Boolean timeInMinutes;
+	private Boolean timeInMinutes; //true il tempo è in minuti
 	
 	
 	

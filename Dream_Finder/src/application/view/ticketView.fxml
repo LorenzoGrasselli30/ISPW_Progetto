@@ -57,7 +57,7 @@
                   </HBox>
                   <VBox>
                      <children>
-                        <Label fx:id="dateLabel" text="Il biglietto è valido per il giorno : 99/99/9999">
+                        <Label fx:id="dateLabel" text="Il biglietto è valido per il giorno: 99/99/9999">
                            <font>
                               <Font size="18.0" />
                            </font>

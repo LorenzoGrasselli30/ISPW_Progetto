@@ -24,7 +24,7 @@ public class Booking {
 		this.bookingDate = bookingDate;
 		this.bookedDate = bookedDate;
 	}
-
+	
 	public String getBookingID() {
 		return bookingID;
 	}
