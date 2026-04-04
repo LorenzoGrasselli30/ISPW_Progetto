@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.time.LocalDate;
+import java.util.Map;
 
 import application.exception.DAOException;
 import application.model.dao.ActivityDAO;
@@ -15,10 +18,7 @@ import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
-import application.model.entity.User;
 import application.model.enums.ActivityType;
-import application.model.enums.ProviderType;
-import application.model.enums.UserRole;
 
 public class ActivityDAODB implements ActivityDAO {
 
@@ -32,6 +32,7 @@ public class ActivityDAODB implements ActivityDAO {
 		} catch (SQLException e) {
 			throw new DAOException("Errore di accesso al database");
 		}
+		
 		for (Provider provider : providers) {
 			try (PreparedStatement stmTopActivities = conn.prepareStatement(SQLQueries.FIND_TOP_ACTIVITIES);
 					PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES);) {
@@ -39,19 +40,21 @@ public class ActivityDAODB implements ActivityDAO {
 				stmTopActivities.setString(1, provider.getName());
 				ResultSet rsTopActivities = stmTopActivities.executeQuery();
 				
+				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
+				
 				while(rsTopActivities.next()) {
-					
-					ActivityAvailableDates availableDates;
 					
 					stmDates.setString(1, rsTopActivities.getString("activityName"));
 					stmDates.setString(2, provider.getProviderUser().getEmail());
 					ResultSet rsDates = stmDates.executeQuery();
 					
 					while(rsDates.next()) {
-						
+						   LocalDate date = rsDates.getDate("aDate").toLocalDate(); 
+						   Integer places = rsDates.getInt("nPlaces");              
+						   availablePlaces.put(date, places);
 					}
 						
-					availableDates = new ActivityAvailableDates();
+					ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
 					
 					Activity newActivity = new Activity(
 							rsTopActivities.getString("activityName"), 
@@ -63,12 +66,12 @@ public class ActivityDAODB implements ActivityDAO {
 									rsTopActivities.getInt("nRating")
 									), 
 							new ActivityOtherInformation (
-									rsTopActivities.getString("activityName"), 
-									rsTopActivities.getBoolean(""), 
-									rsTopActivities.getBoolean(""), 
-									rsTopActivities.getBoolean(""), 
-									rsTopActivities.getInt(""), 
-									rsTopActivities.getBoolean("")
+									rsTopActivities.getString("activityDescription"), 
+									rsTopActivities.getBoolean("freeCancellation"), 
+									rsTopActivities.getBoolean("payLater"), 
+									rsTopActivities.getBoolean("skipLine"), 
+									rsTopActivities.getInt("duration"), 
+									rsTopActivities.getBoolean("timeInMinutes")
 									), 
 							availableDates
 							);

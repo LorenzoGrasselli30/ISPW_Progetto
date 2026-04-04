@@ -5,8 +5,8 @@ package application.configuration;
 public class AppConfig {
 	private static AppConfig singletonIstance;
 	private String mode;
-
-	public AppConfig(String mode) {
+	
+	private AppConfig(String mode) {
 		this.mode = mode;
 	}
 	

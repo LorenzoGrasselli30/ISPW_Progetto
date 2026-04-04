@@ -1,5 +1,7 @@
 package application;
 	
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Scanner;
 
 import application.configuration.AppConfig;
@@ -48,8 +50,10 @@ public class Main extends Application {
 			while (true) {
 				mode = scanner.nextLine().trim().toLowerCase();
 				if (("db".equals(mode)) || ("demo".equals(mode)) || ("file".equals(mode)) || ("".equals(mode))) {
-					AppConfig startMode= AppConfig.getInstance();
+					if (!("".equals(mode))) {
 					AppConfig.initMode(mode);//Inizializzazione della modalità
+					}
+					AppConfig startMode= AppConfig.getInstance();
 					System.out.println("Avvio la modalità: " + startMode.getMode());
 					
 					break;

@@ -26,7 +26,7 @@ public class ProviderDAODB implements ProviderDAO {
 		List<Provider> providers= new ArrayList<>();
 		
 		try (Connection conn = DatabaseConnection.getConnection();
-				PreparedStatement stmTopProviders = conn.prepareStatement(SQLQueries.FIND_TOP_PROVIDERS);) {
+				PreparedStatement stmTopProviders = conn.prepareStatement(SQLQueries.FIND_TOP_PROVIDERS)) {
 			
 			ResultSet rsTopProviders = stmTopProviders.executeQuery();
 			
@@ -51,10 +51,6 @@ public class ProviderDAODB implements ProviderDAO {
 		} catch (SQLException e) {
 	    	throw new DAOException("Errore di ricerca del provider");
 	    }
-		
-		if(providers==null) {
-			throw new DAOException("Il provider richiesto non è stato trovato");
-		}
 		
 		return providers;
 	}
