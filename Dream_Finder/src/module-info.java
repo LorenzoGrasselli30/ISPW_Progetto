@@ -10,6 +10,11 @@ module Dream_Finder {
 	requires stripe.java;
     requires com.google.gson;
     
+ // JDBC driver modules
+ 	requires java.sql;
+ 	requires org.mariadb.jdbc;
+ 	//requires com.mysql.cj;
+    
 	opens application to javafx.graphics, javafx.fxml;
 	opens application.controller.graphic to javafx.fxml;
 }

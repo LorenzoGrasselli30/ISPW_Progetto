@@ -268,6 +268,14 @@ public class ProviderDAODemo implements ProviderDAO{
 			    );
 				
 				providers.put("provider5@mail.com", provider5);	
+				
+				/*
+				System.out.println("1: "+provider1.getProviderRate());
+				System.out.println("2: "+provider2.getProviderRate());
+				System.out.println("3: "+provider3.getProviderRate());
+				System.out.println("4: "+provider4.getProviderRate());
+				System.out.println("5: "+provider5.getProviderRate());
+				*/
 	}
 	
 	public List<Provider> providersList() {
