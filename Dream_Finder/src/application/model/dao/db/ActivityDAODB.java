@@ -90,8 +90,40 @@ public class ActivityDAODB implements ActivityDAO {
 
 	@Override
 	public Activity findByProvider(String activityName, String providerName) {
-		// TODO Auto-generated method stub
-		return null;
+		Activity activityFounded = null;
+		
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmActivityInfo = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_INFO);
+				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+			
+			stmActivityInfo.setString(1, activityName);
+			stmActivityInfo.setString(2, providerName);
+			ResultSet rsActivityInfo = stmActivityInfo.executeQuery();
+			
+			while(rsActivityInfo.next()) {
+				
+				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
+				
+				stmDates.setString(1, rsActivityInfo.getString("activityName"));
+				stmDates.setString(2, rsActivityInfo.getString("email"));
+				ResultSet rsDates = stmDates.executeQuery();
+				
+				while(rsDates.next()) {
+					   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
+					   Integer places = rsDates.getInt("nPlaces");              
+					   availablePlaces.put(date, places);
+				}
+					
+				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+				
+				
+			}
+			
+		} catch (SQLException e) {
+	    	throw new DAOException("Errore nel caricamento dell'attività corrispondente");
+	    }
+		
+		return activityFounded;
 	}
 
 	@Override
