@@ -22,4 +22,10 @@ public class SQLQueries {
 			+ " FROM ispw.AvailableDates"
 			+ " WHERE AvailableDates.activity = ?"
 			+ " AND AvailableDates.provider = ?;";
+	
+	public static final String FIND_USER =
+			"SELECT *"
+			+ "	FROM ispw.User"
+			+ "	WHERE User.email = ?;";
+	
 }
