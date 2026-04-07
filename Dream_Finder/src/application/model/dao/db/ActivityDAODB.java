@@ -35,14 +35,14 @@ public class ActivityDAODB implements ActivityDAO {
 		
 		for (Provider provider : providers) {
 			try (PreparedStatement stmTopActivities = conn.prepareStatement(SQLQueries.FIND_TOP_ACTIVITIES);
-					PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES);) {
+					PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
 				
 				stmTopActivities.setString(1, provider.getName());
 				ResultSet rsTopActivities = stmTopActivities.executeQuery();
 				
-				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
-				
 				while(rsTopActivities.next()) {
+					
+					Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 					
 					stmDates.setString(1, rsTopActivities.getString("activityName"));
 					stmDates.setString(2, provider.getProviderUser().getEmail());
@@ -55,6 +55,8 @@ public class ActivityDAODB implements ActivityDAO {
 					}
 						
 					ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+					
+					System.out.println("Date disponibili recuperate correttamente");
 					
 					Activity newActivity = new Activity(
 							rsTopActivities.getString("activityName"), 

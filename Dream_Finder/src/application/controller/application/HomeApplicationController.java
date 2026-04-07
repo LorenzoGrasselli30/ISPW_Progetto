@@ -23,7 +23,41 @@ public class HomeApplicationController {
 	//Chiama la factory per prendere una lista di activity DAO con rating più alto
 	public List<ActivityDTO> fetchActivities() {
 		List<Provider> providers= providerDAO.findTopProviders();
+		
+		for (Provider provider : providers) {
+			System.out.println("----------------------------------------------------------");
+			System.out.println(provider.getProviderUser().getEmail());
+			System.out.println(provider.getProviderUser().getPassword());
+			System.out.println(provider.getProviderUser().getUserRole());
+			System.out.println(provider.getProviderName());
+			System.out.println(provider.getProviderType());
+			System.out.println(provider.getnOfferedActivities());
+			System.out.println(provider.getLocation());
+			System.out.println(provider.getName());
+			System.out.println(provider.getSurname());
+			System.out.println(provider.getProviderRate());
+			System.out.println("----------------------------------------------------------");
+		}
+		
 		List<Activity> activities= activityDAO.findTopActivities(providers);
+		
+		for (Activity activity : activities) {
+			System.out.println("----------------------------------------------------------");
+			System.out.println(activity.getActivityName());
+			System.out.println(activity.getPrice());
+			System.out.println(activity.getActivityType());
+			System.out.println(activity.getOtherInfo());
+			System.out.println(activity.getOtherInfo());
+
+			System.out.println(activity.getOtherInfo());
+
+			System.out.println(activity.getOtherInfo());
+			System.out.println(activity.getOtherInfo());
+			System.out.println(activity.getOtherInfo());
+
+			System.out.println(activity.getRating());
+			System.out.println("----------------------------------------------------------");
+		}
 		
 		List<ActivityDTO> activityDTO= new ArrayList<>(); 
 		for (Activity activity: activities) {

@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item key="org.eclipse.jdt.ui.last.selected.jre.kind2" value="2"/>
 	<item key="org.eclipse.jdt.ui.last.selected.execution.enviroment" value="JavaSE-23"/>
-	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\loren\Desktop\Tor Vergata\ISPW\Progetto\ISPW_Progetto\Dream_Finder\libs\stripe-java-31.1.0"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\loren\Desktop\Tor Vergata\ISPW\Progetto\ISPW_Progetto\Dream_Finder\libs"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="2"/>
@@ -48,7 +48,7 @@
 	</section>
 	<section name="NewClassCreationWizard.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="698"/>
-		<item key="DIALOG_Y_ORIGIN" value="405"/>
+		<item key="DIALOG_Y_ORIGIN" value="381"/>
 		<item key="DIALOG_WIDTH" value="574"/>
 		<item key="DIALOG_HEIGHT" value="659"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
