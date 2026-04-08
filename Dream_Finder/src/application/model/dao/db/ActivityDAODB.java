@@ -18,7 +18,10 @@ import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
+import application.model.entity.User;
 import application.model.enums.ActivityType;
+import application.model.enums.ProviderType;
+import application.model.enums.UserRole;
 
 public class ActivityDAODB implements ActivityDAO {
 
@@ -96,6 +99,9 @@ public class ActivityDAODB implements ActivityDAO {
 				PreparedStatement stmActivityInfo = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_INFO);
 				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
 			
+			System.out.println(activityName);
+			System.out.println(providerName);
+			
 			stmActivityInfo.setString(1, activityName);
 			stmActivityInfo.setString(2, providerName);
 			ResultSet rsActivityInfo = stmActivityInfo.executeQuery();
@@ -116,6 +122,39 @@ public class ActivityDAODB implements ActivityDAO {
 					
 				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
 				
+				Provider provider = new Provider(
+						new User(
+								rsActivityInfo.getString("email"),
+								rsActivityInfo.getString("password"),
+								UserRole.fromString(rsActivityInfo.getString("ruolo"))
+						),
+						rsActivityInfo.getString("providerName"),
+						ProviderType.fromString(rsActivityInfo.getString("providerType")),
+						rsActivityInfo.getInt("nOfferedActivities"),
+						rsActivityInfo.getString("location"),
+						rsActivityInfo.getString("pname"),
+						rsActivityInfo.getString("psurname")
+				);
+				
+				activityFounded = new Activity(
+						rsActivityInfo.getString("activityName"), 
+						rsActivityInfo.getDouble("price"), 
+						ActivityType.fromString(rsActivityInfo.getString("activityType")), 
+						provider, 
+						new ActivityRating(
+								rsActivityInfo.getDouble("activityRate"), 
+								rsActivityInfo.getInt("nRating")
+								), 
+						new ActivityOtherInformation (
+								rsActivityInfo.getString("activityDescription"), 
+								rsActivityInfo.getBoolean("freeCancellation"), 
+								rsActivityInfo.getBoolean("payLater"), 
+								rsActivityInfo.getBoolean("skipLine"), 
+								rsActivityInfo.getInt("duration"), 
+								rsActivityInfo.getBoolean("timeInMinutes")
+								), 
+						availableDates
+						);
 				
 			}
 			

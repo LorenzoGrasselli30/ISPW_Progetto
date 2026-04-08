@@ -37,7 +37,7 @@ public class SQLQueries {
 			+ " p.pname, p.psurname, p.rate AS providerRate, p.nOfferedActivities,"
 			+ " -- Activity"
 			+ " a.activityName, a.price, a.activityType, a.activityDescription, a.freeCancellation, a.payLater, a.skipLine,"
-			+ " a.duration, a.timeInMinutes, a.rate AS activityRate, a.nRating, a.provider AS activityProvider,"
+			+ " a.duration, a.timeInMinutes, a.rate AS activityRate, a.nRating, a.provider AS activityProvider"
 			+ " FROM ispw.Activity a"
 			+ " JOIN ispw.Provider p"
 			+ " ON p.providerEmail = a.provider"

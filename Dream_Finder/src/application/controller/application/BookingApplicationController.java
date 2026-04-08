@@ -53,7 +53,7 @@ public class BookingApplicationController {
 	
 	public ActivityDTO fetchActivityInfo(String activityName, String providerName) {
 		
-		Activity newActivityInfo= activityDAO.findByProvider(activityName, providerName);
+		Activity newActivityInfo = activityDAO.findByProvider(activityName, providerName);
 		
 		ActivityDTO newActivityDTO= new ActivityDTO();
 		newActivityDTO.setActivityName(newActivityInfo.getActivityName());
@@ -75,7 +75,7 @@ public class BookingApplicationController {
 
 	public List<ActivityDTO> fetchRelatedInfo(String activityName, ActivityType activityType, String providerName) {
 		
-		List<Activity> newActivities= activityDAO.findRelatedActivities(activityName, activityType, providerName);
+		List<Activity> newActivities = activityDAO.findRelatedActivities(activityName, activityType, providerName);
 		
 		List<ActivityDTO> relatedActivity= new ArrayList<>();
 		for (Activity activity: newActivities) {

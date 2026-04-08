@@ -62,7 +62,7 @@ public class Provider {
 	public List<Activity> getActivities() {
 		return activities;
 	}
-
+	
 	public String getProviderName() {
 		return providerName;
 	}
