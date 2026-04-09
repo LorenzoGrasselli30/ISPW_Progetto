@@ -66,7 +66,7 @@ public class ActivityDAODemo implements ActivityDAO {
 		// Raccoglie tutte le attività disponibili
 		List<Activity> allActivities = new ArrayList<>();
 		for (Provider provider :  availableProviders) {
-			allActivities.addAll(provider. getActivities());
+			allActivities.addAll(provider.getActivities());
 		}
 		
 		// Rimuove l'attività passata come parametro

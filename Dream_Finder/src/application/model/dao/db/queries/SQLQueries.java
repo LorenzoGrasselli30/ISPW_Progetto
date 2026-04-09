@@ -30,12 +30,12 @@ public class SQLQueries {
 	
 	public static final String FIND_ACTIVITY_INFO =
 			" SELECT"
-			+ " -- User"
-			+ " u.*"
-			+ " -- Provider"
+			//User
+			+ " u.*,"
+			//Provider
 			+ " p.providerEmail, p.providerRuolo, p.providerName, p.providerType, p.location,"
 			+ " p.pname, p.psurname, p.rate AS providerRate, p.nOfferedActivities,"
-			+ " -- Activity"
+			//Activity
 			+ " a.activityName, a.price, a.activityType, a.activityDescription, a.freeCancellation, a.payLater, a.skipLine,"
 			+ " a.duration, a.timeInMinutes, a.rate AS activityRate, a.nRating, a.provider AS activityProvider"
 			+ " FROM ispw.Activity a"
@@ -45,9 +45,26 @@ public class SQLQueries {
 			+ " ON u.email = p.providerEmail"
 			+ " AND u.ruolo = p.providerRuolo"
 			+ " WHERE a.activityName = ?"
-			+ " AND p.providerName = ?"
-			+ " ;";
+			+ " AND p.providerName = ?;";
 	
-
+	public static final String FIND_RELATED =
+			" SELECT"
+			//User
+			+ " u.*,"
+			//Provider
+			+ " p.providerEmail, p.providerRuolo, p.providerName, p.providerType, p.location,"
+			+ " p.pname, p.psurname, p.rate AS providerRate, p.nOfferedActivities,"
+			//Activity
+			+ " a.activityName, a.price, a.activityType, a.activityDescription, a.freeCancellation, a.payLater, a.skipLine,"
+			+ " a.duration, a.timeInMinutes, a.rate AS activityRate, a.nRating, a.provider AS activityProvider"
+			+ " FROM ispw.Activity a"
+			+ " JOIN ispw.Provider p"
+			+ " ON p.providerEmail = a.provider"
+			+ " JOIN ispw.User u"
+			+ " ON u.email = p.providerEmail"
+			+ " AND u.ruolo = p.providerRuolo"
+			+ " WHERE NOT ("
+			+ " a.activityName = ? AND a.activityType = ? AND p.providerName = ?"
+			+ " );";
 	
 }
