@@ -67,4 +67,42 @@ public class SQLQueries {
 			+ " a.activityName = ? AND a.activityType = ? AND p.providerName = ?"
 			+ " );";
 	
+	public static final String FIND_TRAVELER_BY_EMAIL =
+			"SELECT User.email, User.password, User.ruolo,"
+			+ "	Traveler.username, Traveler.travelerName, Traveler.travelerSurname, Traveler.dob"
+			+ "	FROM ispw.Traveler JOIN ispw.User ON"
+			+ "	Traveler.travelerEmail = user.email"
+			+ " WHERE User.email = ?;";
+	
+	public static final String FIND_ALL_PROVIDER =
+			"SELECT User.email, User.password, User.ruolo,"
+			+ "	Provider.providerName,  Provider.providerType,  Provider.location,  Provider.pname,  Provider.psurname,  Provider.rate,  Provider.nOfferedActivities"
+			+ "	FROM ispw.Provider, ispw.User"
+			+ "	WHERE Provider.providerEmail = User.email;";
+	
+	public static final String FIND_ACTIVITY_BY_EMAIL =
+			"SELECT"
+			+ " Activity.activityName, Activity.price, Activity.activityType,"
+			+ " Activity.activityDescription, Activity.freeCancellation, Activity.payLater, Activity.skipLine, Activity.duration, Activity.timeInMinutes,"
+			+ " Activity.rate, Activity.nRating"
+			+ " FROM ispw.Activity JOIN ispw.Provider ON"
+			+ " Activity.provider = Provider.providerEmail"
+			+ " WHERE Provider.providerEmail = ?;";
+	
+	public static final String INSERT_BOOKING =
+			"INSERT INTO `ispw`.`booking` ("
+			+ "	`bookingID`, "
+			+ "	`bookingDate`, "
+			+ "	`bookedDate`, "
+			+ "	`nFullTickets`, "
+			+ "	`nReducedTickets`, "
+			+ "	`shuttleService`, "
+			+ "	`guideService`, "
+			+ "	`shuttlePrice`, "
+			+ "	`guidePrice`, "
+			+ "	`totalPrice`, "
+			+ "	`traveler`, "
+			+ "	`activity` "
+			+ "	) "
+			+ "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
 }

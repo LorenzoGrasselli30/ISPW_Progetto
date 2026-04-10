@@ -244,7 +244,7 @@ public class ActivityDAODB implements ActivityDAO {
 			}
 			
 		} catch (SQLException e) {
-	    	throw new DAOException("Errore nel caricamento dell'attività corrispondente");
+	    	throw new DAOException("Errore nel caricamento delle attività correlate");
 	    }
 		
 		relatedActivities.addAll(highScore);
