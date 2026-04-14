@@ -100,11 +100,21 @@ public class SQLQueries {
 			+ " Booking.*,"
 			+ " Activity.*,"
 			+ " Provider.*,"
+			+ " User.*,"
 			+ " Traveler.*"
-			+ " FROM `ispw`.`Booking` JOIN `ispw`.`Activity` ON Activity.activityName = Booking.activity"
-			+ " JOIN `ispw`.`Traveler` ON Traveler.travelerEmail = Booking.traveler"
-			+ " JOIN `ispw`.`User` ON User.email = Traveler.travelerEmail"
-			+ " WHERE Booking.bookingID = ?";
+			+ " FROM `ispw`.`Booking`"
+			+ " JOIN `ispw`.`Activity`"
+			+ " ON `ispw`.`Activity`.`activityName` = `ispw`.`Booking`.`activity`"
+			+ " JOIN `ispw`.`Traveler`"
+			+ " ON `ispw`.`Traveler`.`travelerEmail` = `ispw`.`Booking`.`traveler`"
+			+ " AND `ispw`.`Traveler`.`travelerRuolo` = 'traveler'"
+			+ " JOIN `ispw`.`User`"
+			+ " ON `ispw`.`User`.`email` = `ispw`.`Traveler`.`travelerEmail`"
+			+ " AND `ispw`.`User`.`ruolo` = 'traveler'"
+			+ " JOIN `ispw`.`Provider`"
+			+ " ON `ispw`.`Provider`.`providerEmail` = `ispw`.`Activity`.`provider`"
+			+ " AND `ispw`.`Provider`.`providerRuolo` = 'provider'"
+			+ " WHERE `ispw`.`Booking`.`bookingID` = ?";
 	
 	public static final String INSERT_BOOKING =
 			"INSERT INTO `ispw`.`booking` ("
