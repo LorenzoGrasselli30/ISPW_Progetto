@@ -23,6 +23,12 @@ public class SQLQueries {
 			+ " WHERE AvailableDates.activity = ?"
 			+ " AND AvailableDates.provider = ?;";
 	
+	public static final String FIND_GUESTS =
+			"SELECT Guest.*"
+			+ "	FROM ispw.Guest, ispw.Booking"
+			+ "	WHERE Booking.bookingID = ?;";
+	
+	
 	public static final String FIND_USER =
 			"SELECT *"
 			+ "	FROM ispw.User"
@@ -89,6 +95,17 @@ public class SQLQueries {
 			+ " Activity.provider = Provider.providerEmail"
 			+ " WHERE Provider.providerEmail = ?;";
 	
+	public static final String FIND_BOOKING = 
+			"SELECT"
+			+ " Booking.*,"
+			+ " Activity.*,"
+			+ " Provider.*,"
+			+ " Traveler.*"
+			+ " FROM `ispw`.`Booking` JOIN `ispw`.`Activity` ON Activity.activityName = Booking.activity"
+			+ " JOIN `ispw`.`Traveler` ON Traveler.travelerEmail = Booking.traveler"
+			+ " JOIN `ispw`.`User` ON User.email = Traveler.travelerEmail"
+			+ " WHERE Booking.bookingID = ?";
+	
 	public static final String INSERT_BOOKING =
 			"INSERT INTO `ispw`.`booking` ("
 			+ "	`bookingID`, "
@@ -105,4 +122,16 @@ public class SQLQueries {
 			+ "	`activity` "
 			+ "	) "
 			+ "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+	
+	public static final String INSERT_RECEIPT =
+			"INSERT INTO `ispw`.`receipt`"
+			+ "	`paymentID`, "
+			+ " `paymentDescription`, "
+			+ "	`paymentOutcome`, "
+			+ "	`cardNumber`, "
+			+ "	`expiredDate`, "
+			+ "	`ownerName`, "
+			+ "	`booking`"
+			+ "	) VALUES (?, ?, ?, ?, ?, ?, ?);";
+	
 }

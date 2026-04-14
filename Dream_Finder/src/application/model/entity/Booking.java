@@ -1,5 +1,6 @@
 package application.model.entity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Booking {
@@ -11,11 +12,11 @@ public class Booking {
 	
 	private BookingPriceInformation priceInformation;
 	
-    private String bookingDate;
-    private String bookedDate;
+    private LocalDate bookingDate;
+    private LocalDate bookedDate;
     
 	public Booking(String bookingID, Traveler traveler, List<GuestInformation> guests, Activity activity, 
-			BookingPriceInformation priceInformation, String bookingDate, String bookedDate) {
+			BookingPriceInformation priceInformation, LocalDate bookingDate, LocalDate bookedDate) {
 		this.bookingID = bookingID;
 		this.traveler = traveler;
 		this.guests = guests;
@@ -57,11 +58,11 @@ public class Booking {
 		this.activity = activity;
 	}
 
-	public String getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(String bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 
@@ -73,11 +74,11 @@ public class Booking {
 		this.priceInformation = priceInformation;
 	}
 
-	public String getBookedDate() {
+	public LocalDate getBookedDate() {
 		return bookedDate;
 	}
 
-	public void setBookedDate(String bookedDate) {
+	public void setBookedDate(LocalDate bookedDate) {
 		this.bookedDate = bookedDate;
 	}
 }

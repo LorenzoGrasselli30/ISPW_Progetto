@@ -144,7 +144,7 @@ public class BookingApplicationController {
 			guests.add(newGuest);
 		}
 		
-		String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		LocalDate currentDate = LocalDate.now();
 		
 		Booking newBooking= new Booking(
 				null,
@@ -156,24 +156,19 @@ public class BookingApplicationController {
 				context.isShuttleService(),
 				context.isGuideService(),
 				context.getTotalPrice()),
-				currentDateTime,
-				context.getBookedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+				currentDate,
+				context.getBookedDate()
 				);
 		
 		String bookingResult= bookingDAO.confirmBooking(newBooking);
+		newBooking.setBookingID(bookingResult);
 		
 		//Salvataggio della ricevuta
 		Provider currentProvider = providerDAO.findByActivity(bookedActivity);
 		
 		Receipt receipt= new Receipt(
 				currentProvider,
-				new BookingPriceInformation(
-				context.getnFullTickets(),
-				context.getnReducedTickets(),
-				context.getShuttlePrice(),
-				context.getGuidePrice(),
-				context.getTotalPrice()
-				),
+				newBooking,
 				new CardInformation(
 				context.getCardNumber(),
 				context.getExpiredDate(),
@@ -222,11 +217,11 @@ public class BookingApplicationController {
 		Receipt reciptFounded= receiptDAO.findByID(paymentID);
 		
 		result.setProviderName(reciptFounded.getProvider().getProviderName());
-		result.setnFullTicket(reciptFounded.getPriceInformation().getnFullTickets());
-		result.setnReducedTicket(reciptFounded.getPriceInformation().getnReducedTickets());
-		result.setTotalPrice(reciptFounded.getPriceInformation().getTotalPrice());
-		result.setGuidePrice(reciptFounded.getPriceInformation().getGuidePrice());
-		result.setShuttlePrice(reciptFounded.getPriceInformation().getShuttlePrice());
+		result.setnFullTicket(reciptFounded.getBookingInformation().getPriceInformation().getnFullTickets());
+		result.setnReducedTicket(reciptFounded.getBookingInformation().getPriceInformation().getnReducedTickets());
+		result.setTotalPrice(reciptFounded.getBookingInformation().getPriceInformation().getTotalPrice());
+		result.setGuidePrice(reciptFounded.getBookingInformation().getPriceInformation().getGuidePrice());
+		result.setShuttlePrice(reciptFounded.getBookingInformation().getPriceInformation().getShuttlePrice());
 		
 		result.setCardNumber(reciptFounded.getCard().getCardNumber());
 		result.setExpiredDate(reciptFounded.getCard().getExpiredDate());

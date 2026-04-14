@@ -5,7 +5,7 @@ public class Receipt {
 	private Provider provider;
 	
 	//Informazioni
-	private BookingPriceInformation priceInformation;
+	private Booking bookingInfo;
 	
 	//Informazioni della carta
 	private CardInformation card;
@@ -13,9 +13,9 @@ public class Receipt {
 	//Informazioni su Stripe
 	private StripeInformation stripe;
 	
-	public Receipt(Provider provider, BookingPriceInformation priceInformation, CardInformation card, StripeInformation stripe) {
+	public Receipt(Provider provider, Booking bookingInfo, CardInformation card, StripeInformation stripe) {
 		this.provider = provider;
-		this.priceInformation= priceInformation;
+		this.bookingInfo= bookingInfo;
 		this.card = card;
 		this.stripe = stripe;
 	}
@@ -32,7 +32,7 @@ public class Receipt {
 		return stripe;
 	}
 
-	public BookingPriceInformation getPriceInformation() {
-		return priceInformation;
+	public Booking getBookingInformation() {
+		return bookingInfo;
 	}
 }

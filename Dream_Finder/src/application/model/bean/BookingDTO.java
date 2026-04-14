@@ -1,5 +1,6 @@
 package application.model.bean;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class BookingDTO {
@@ -15,8 +16,8 @@ public class BookingDTO {
     private boolean shuttleService;
     private boolean guideService;
     private Double totalPrice;
-    private String bookingDate;
-    private String bookedDate;
+    private LocalDate bookingDate;
+    private LocalDate bookedDate;
     
 	public String getBookingID() {
 		return bookingID;
@@ -90,11 +91,11 @@ public class BookingDTO {
 		this.totalPrice = totalPrice;
 	}
 	
-	public String getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
 	
-	public void setBookingDate(String bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 
@@ -106,11 +107,11 @@ public class BookingDTO {
 		this.providerName = providerName;
 	}
 
-	public String getBookedDate() {
+	public LocalDate getBookedDate() {
 		return bookedDate;
 	}
 
-	public void setBookedDate(String bookedDate) {
+	public void setBookedDate(LocalDate bookedDate) {
 		this.bookedDate = bookedDate;
 	}
     
