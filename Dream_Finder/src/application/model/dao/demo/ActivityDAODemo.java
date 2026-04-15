@@ -1,5 +1,6 @@
 package application.model.dao.demo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -99,6 +100,12 @@ public class ActivityDAODemo implements ActivityDAO {
 		return relatedActivities.stream()
 			.limit(10)
 			.collect(Collectors.toList());
+	}
+
+	@Override
+	public boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

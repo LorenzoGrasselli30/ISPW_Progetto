@@ -1,5 +1,6 @@
 package application.model.dao.file;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import application.model.dao.ActivityDAO;
@@ -25,6 +26,12 @@ public class ActivityDAOFile implements ActivityDAO {
 	public List<Activity> findRelatedActivities(String activityName, ActivityType activityType, String providerName) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -256,4 +256,10 @@ public class ActivityDAODB implements ActivityDAO {
 			.limit(10)
 			.collect(Collectors.toList());
 	}
+
+	@Override
+	public boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

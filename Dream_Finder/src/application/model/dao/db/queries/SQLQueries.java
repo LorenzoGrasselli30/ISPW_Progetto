@@ -116,6 +116,11 @@ public class SQLQueries {
 			+ " AND `ispw`.`Provider`.`providerRuolo` = 'provider'"
 			+ " WHERE `ispw`.`Booking`.`bookingID` = ?";
 	
+	public static final String FIND_RECEIPT =
+			"SELECT *"
+			+ " FROM `ispw`.`Receipt`"
+			+ " WHERE Receipt.paymentID = ?";
+	
 	public static final String INSERT_BOOKING =
 			"INSERT INTO `ispw`.`booking` ("
 			+ "	`bookingID`, "

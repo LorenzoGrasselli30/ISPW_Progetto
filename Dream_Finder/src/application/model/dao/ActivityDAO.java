@@ -1,5 +1,6 @@
 package application.model.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import application.model.entity.Activity;
@@ -10,4 +11,5 @@ public interface ActivityDAO {
 	List<Activity> findTopActivities(List<Provider> providers);
 	Activity findByProvider(String activityName, String providerName);
 	List<Activity> findRelatedActivities(String activityName, ActivityType activityType, String providerName);
+	boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces);
 }

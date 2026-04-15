@@ -106,13 +106,17 @@ public class BookingDAODB implements BookingDAO {
 				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
 				
 				Provider provider = new Provider(
-						null, 
-						bookingID, 
-						null, 
-						null, 
-						bookingID, 
-						bookingID, 
-						bookingID
+						new User (
+								rsBooking.getString("providerEmail"), 
+								null, 
+								UserRole.PROVIDER
+								), 
+						rsBooking.getString("providerName"), 
+						ProviderType.fromString(rsBooking.getString("providerType")), 
+						rsBooking.getInt("nOfferedActivities"), 
+						rsBooking.getString("location"), 
+						rsBooking.getString("pname"), 
+						rsBooking.getString("psurname")
 				);
 				
 				Activity activity = new Activity(
@@ -138,23 +142,27 @@ public class BookingDAODB implements BookingDAO {
 				new Booking (
 						bookingID, 
 						new Traveler (
-								rsBooking, 
-								rsBooking, 
-								rsBooking, 
-								rsBooking, 
-								rsBooking
+								new User (
+										rsBooking.getString("email"), 
+										rsBooking.getString("password"), 
+										UserRole.TRAVELER
+										), 
+								rsBooking.getString("username"), 
+								rsBooking.getString("travelerName"), 
+								rsBooking.getString("travelerSurname"), 
+								rsBooking.getString("dob")
 								), 
 						guests, 
 						activity, 
 						new BookingPriceInformation (
-								rsBooking, 
-								rsBooking, 
-								rsBooking, 
-								rsBooking, 
-								rsBooking
+								rsBooking.getInt("nFullTickets"), 
+								rsBooking.getInt("nReducedTickets"), 
+								rsBooking.getDouble("shuttlePrice"), 
+								rsBooking.getDouble("guidePrice"), 
+								rsBooking.getDouble("totalPrice")
 								), 
-						rsBooking, 
-						rsBooking
+						rsBooking.getDate("bookingDate").toLocalDate(), 
+						rsBooking.getDate("bookedDate").toLocalDate()
 						);
 			}
 			

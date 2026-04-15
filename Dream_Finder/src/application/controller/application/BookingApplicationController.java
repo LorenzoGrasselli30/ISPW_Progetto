@@ -111,7 +111,7 @@ public class BookingApplicationController {
 	public BookingContext makeBooking(BookingContext context) throws AvailabilityException {
 		
 		Activity bookedActivity= activityDAO.findByProvider(context.getActivity().getActivityName(), context.getActivity().getProviderName());
-		if(!bookedActivity.getAvaibleDates().reservePlaces(context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()))) {
+		if(!bookedActivity.getAvaibleDates().hasRequiredPlaces(context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()))) {
 			throw new AvailabilityException("La quantità di posti richiesti non è più disponibile");
 		}
 		
@@ -182,6 +182,9 @@ public class BookingApplicationController {
 		
 		//Aggiungere un modo per controllare il risultato
 		Boolean receiptResult= receiptDAO.saveReceipt(receipt);
+		
+		//Vado a rendere i posti dell'attività scelta non disponibili
+		Boolean reserveResult= activityDAO.reservePlaces(bookedActivity, context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()));
 		
 		context.setPaymentID(paymentInfo.getPaymentID());
 		context.setBookingID(bookingResult);
