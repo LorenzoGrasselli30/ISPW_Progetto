@@ -26,7 +26,7 @@ public class ReceiptDAODB implements ReceiptDAO {
 			stmReceipt.setString(2, receipt.getStripe().getPaymentDescription());
 			stmReceipt.setString(3, receipt.getStripe().getPaymentOutcome());
 			stmReceipt.setString(4, receipt.getCard().getCardNumber());
-			stmReceipt.setDate(5, receipt.getCard().getExpiredDate());
+			stmReceipt.setDate(5, Date.valueOf(receipt.getCard().getExpiredDate()));
 			stmReceipt.setString(6, receipt.getCard().getOwnerName());
 			stmReceipt.setString(7, receipt.getBookingInformation().getBookingID());
 			

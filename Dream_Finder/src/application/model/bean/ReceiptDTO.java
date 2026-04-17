@@ -1,5 +1,7 @@
 package application.model.bean;
 
+import java.time.LocalDate;
+
 public class ReceiptDTO {
 	private String providerName;
 	private int nFullTicket;
@@ -9,7 +11,7 @@ public class ReceiptDTO {
 	private Double shuttlePrice;
 	
 	private String cardNumber;
-	private String expiredDate;
+	private LocalDate expiredDate;
 	private String ownerName;
 	
 	private String paymentID;
@@ -72,11 +74,11 @@ public class ReceiptDTO {
 		this.cardNumber = cardNumber;
 	}
 	
-	public String getExpiredDate() {
+	public LocalDate getExpiredDate() {
 		return expiredDate;
 	}
 	
-	public void setExpiredDate(String expiredDate) {
+	public void setExpiredDate(LocalDate expiredDate) {
 		this.expiredDate = expiredDate;
 	}
 	

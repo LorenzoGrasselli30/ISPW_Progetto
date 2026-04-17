@@ -22,7 +22,7 @@ public class BookingContext {
     //Informazioni della carta per la ricevuta
   	private String cardNumber;
   	private String cvv;
-  	private String expiredDate;
+  	private LocalDate expiredDate;
   	private String ownerName;
   	
   	private String paymentID;
@@ -122,25 +122,16 @@ public class BookingContext {
 		this.cvv = cvv;
 	}
 	
-	public String getExpiredDate() {
+	public LocalDate getExpiredDate() {
 		return expiredDate;
 	}
 	
-	public void setExpiredDate(String expiredDate) {
-		if (expiredDate == null || expiredDate.trim().isEmpty()) {
+	public void setExpiredDate(LocalDate expiredDate) {
+		if (expiredDate == null) {
 			throw new IllegalArgumentException("La data di nascita non può essere vuota.");
 		}
-
-		try {
-			LocalDate.parse(expiredDate, DateTimeFormatter.ISO_LOCAL_DATE);
-			
-			// Se il parsing ha successo assegno il valore
-			this.expiredDate = expiredDate;
-			
-		} catch (DateTimeParseException e) {
-			throw new IllegalArgumentException("Formato data non valido. Usare il formato YYYY-MM-DD.");
-		}
 		
+		this.expiredDate = expiredDate;
 	}
 	
 	public String getOwnerName() {

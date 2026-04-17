@@ -21,7 +21,7 @@ public class PaymentAdapter implements Target {
 	}
 	
 	@Override
-	public PaymentOutcomeDTO verifyPayment(String cardNumber, String expiredDate, String cvv, String activityName, String customerName,
+	public PaymentOutcomeDTO verifyPayment(String cardNumber, LocalDate expiredDate, String cvv, String activityName, String customerName,
 			String providerName, Double amount) {
 			
 		PaymentOutcomeDTO newOutcome = new PaymentOutcomeDTO();
@@ -29,10 +29,8 @@ public class PaymentAdapter implements Target {
 			//In base al Expired date e al card number si hanno diversi tipi di risultati del pagamento
 			String paymentResult = null;
 				
-			LocalDate expiration = LocalDate.parse(expiredDate);
-				
 			//Se la data di scadenza è prima di oggi (o fine mese corrente), è scaduta
-			if (expiration.isBefore(LocalDate.now())) {
+			if (expiredDate.isBefore(LocalDate.now())) {
 				paymentResult = EXPIRED;
 			} else {
 				if(cardNumber.trim().equals("4242424242424242") && cvv != null) {

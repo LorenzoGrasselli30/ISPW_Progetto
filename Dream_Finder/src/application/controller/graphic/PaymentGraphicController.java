@@ -142,7 +142,7 @@ public class PaymentGraphicController {
 		context.setOwnerName(ownerField.getText());
 		
 		if (dateField.getValue() != null) {
-			context.setExpiredDate(dateField.getValue().toString());
+			context.setExpiredDate(dateField.getValue());
 		}
 		
 		BookingContext updatedContext;

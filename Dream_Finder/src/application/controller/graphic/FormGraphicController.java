@@ -93,7 +93,7 @@ public class FormGraphicController {
                 }
                 
                 if (currentTraveler.getDob() != null) {
-                    datePicker.setValue(LocalDate.parse(currentTraveler.getDob()));
+                    datePicker.setValue(currentTraveler.getDob());
                 }
             }
             
@@ -160,7 +160,7 @@ public class FormGraphicController {
         	        GuestInformationDTO guest = new GuestInformationDTO();
         	        guest.setName(name);
         	        guest.setSurname(surname);
-        	        guest.setDateOfBirth(datePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        	        guest.setDateOfBirth(datePicker.getValue());
         	        
         	        guests.add(guest);
         	    }

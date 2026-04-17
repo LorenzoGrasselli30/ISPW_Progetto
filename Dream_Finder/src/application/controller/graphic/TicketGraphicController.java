@@ -1,5 +1,7 @@
 package application.controller.graphic;
 
+import java.time.LocalDate;
+
 import application.model.bean.BookingDTO;
 import application.model.bean.GuestInformationDTO;
 import javafx.fxml.FXML;
@@ -43,7 +45,7 @@ public class TicketGraphicController {
         */
  
         if (nameLabel != null) {
-            nameLabel.setText(booking.getTravelerName());
+            nameLabel.setText(booking.getTravelerName()+" "+booking.getTravelerSurname());
         }
         if (providerNameLabel != null) {
             providerNameLabel.setText(booking.getProviderName());
@@ -103,8 +105,8 @@ public class TicketGraphicController {
 
             String ticketType = "Intero";
             try {
-                java.time.LocalDate dob = java.time.LocalDate.parse(guest.getDateOfBirth());
-                java.time.LocalDate now = java.time.LocalDate.now();
+                LocalDate dob = guest.getDateOfBirth();
+                LocalDate now = LocalDate.now();
                 int age = java.time.Period.between(dob, now).getYears();
 
                 if (age <= 7) {

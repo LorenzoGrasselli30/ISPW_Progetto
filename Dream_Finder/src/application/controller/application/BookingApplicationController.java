@@ -155,6 +155,8 @@ public class BookingApplicationController {
 				context.getnReducedTickets(),
 				context.isShuttleService(),
 				context.isGuideService(),
+				context.getShuttlePrice(),
+				context.getGuidePrice(),
 				context.getTotalPrice()),
 				currentDate,
 				context.getBookedDate()
@@ -244,9 +246,12 @@ public class BookingApplicationController {
 		
 		result.setBookingID(bookingFounded.getBookingID());
 		
+		//Nome traveler e provider
 		result.setTravelerName(bookingFounded.getTraveler().getName());
+		result.setTravelerSurname(bookingFounded.getTraveler().getSurname());
 		result.setProviderName(bookingFounded.getActivity().getProvider().getProviderName());
 		
+		//Informazion i sui partecipanti 
 		List<GuestInformationDTO> guests= new ArrayList<>();
 		
 		for (GuestInformation guest: bookingFounded.getGuests()) {
@@ -260,8 +265,10 @@ public class BookingApplicationController {
 		}
 		result.setGuests(guests);
 		
+		//Informazioni sull'attività prenotata
 		result.setActivityName(bookingFounded.getActivity().getActivityName());
 		
+		//Informazioni della prenotazione
 		result.setnFullTickets(bookingFounded.getPriceInformation().getnFullTickets());
 		result.setnReducedTickets(bookingFounded.getPriceInformation().getnReducedTickets());
 		result.setShuttleService(bookingFounded.getPriceInformation().isShuttleService());

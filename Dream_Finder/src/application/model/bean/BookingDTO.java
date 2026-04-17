@@ -7,6 +7,7 @@ public class BookingDTO {
 	private String bookingID;
 	
 	private String travelerName;
+	private String travelerSurname;
 	private String providerName;
 	private List<GuestInformationDTO> guests;
 	private String activityName;
@@ -113,6 +114,14 @@ public class BookingDTO {
 
 	public void setBookedDate(LocalDate bookedDate) {
 		this.bookedDate = bookedDate;
+	}
+
+	public String getTravelerSurname() {
+		return travelerSurname;
+	}
+
+	public void setTravelerSurname(String travelerSurname) {
+		this.travelerSurname = travelerSurname;
 	}
     
 }

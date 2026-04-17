@@ -10,19 +10,11 @@ public class BookingPriceInformation {
     private Double totalPrice;
     
 	public BookingPriceInformation(int nFullTickets, int nReducedTickets, boolean shuttleService, boolean guideService,
-			Double totalPrice) {
+			Double shuttlePrice, Double guidePrice, Double totalPrice) {
 		this.nFullTickets = nFullTickets;
 		this.nReducedTickets = nReducedTickets;
 		this.shuttleService = shuttleService;
 		this.guideService = guideService;
-		this.totalPrice = totalPrice;
-	}
-	
-	
-	public BookingPriceInformation(int nFullTickets, int nReducedTickets, Double shuttlePrice, Double guidePrice,
-			Double totalPrice) {
-		this.nFullTickets = nFullTickets;
-		this.nReducedTickets = nReducedTickets;
 		this.shuttlePrice = shuttlePrice;
 		this.guidePrice = guidePrice;
 		this.totalPrice = totalPrice;

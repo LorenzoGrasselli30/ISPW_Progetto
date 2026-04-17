@@ -1,9 +1,11 @@
 package application.model.bean;
 
+import java.time.LocalDate;
+
 public class GuestInformationDTO {
 	private String name;
 	private String surname;
-	private String dateOfBirth;
+	private LocalDate dateOfBirth;
 	
 	public String getName() {
 		return name;
@@ -21,11 +23,11 @@ public class GuestInformationDTO {
 		this.surname = surname;
 	}
 	
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 	
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 }

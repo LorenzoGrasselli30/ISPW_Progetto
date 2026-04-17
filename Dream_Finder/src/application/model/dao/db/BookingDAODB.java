@@ -156,7 +156,9 @@ public class BookingDAODB implements BookingDAO {
 						activity, 
 						new BookingPriceInformation (
 								rsBooking.getInt("nFullTickets"), 
-								rsBooking.getInt("nReducedTickets"), 
+								rsBooking.getInt("nReducedTickets"),
+								rsBooking.getBoolean("shuttleService"),
+								rsBooking.getBoolean("guideService"),
 								rsBooking.getDouble("shuttlePrice"), 
 								rsBooking.getDouble("guidePrice"), 
 								rsBooking.getDouble("totalPrice")

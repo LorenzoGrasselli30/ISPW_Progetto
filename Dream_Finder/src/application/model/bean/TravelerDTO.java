@@ -8,7 +8,7 @@ public class TravelerDTO {
 	private String username;
 	private String name;
 	private String surname;
-	private String dob;
+	private LocalDate dob;
 	
 	public String getUsername() {
 		return username;
@@ -34,24 +34,16 @@ public class TravelerDTO {
 		this.surname = surname;
 	}
 	
-	public String getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 	
-	public void setDob(String dob) {
-		if (dob == null || dob.trim().isEmpty()) {
+	public void setDob(LocalDate dob) {
+		if (dob == null) {
 			throw new IllegalArgumentException("La data di nascita non può essere vuota.");
 		}
-
-		try {
-			LocalDate.parse(dob, DateTimeFormatter.ISO_LOCAL_DATE);
-			
-			// Se il parsing ha successo assegno il valore
-			this.dob = dob;
-			
-		} catch (DateTimeParseException e) {
-			throw new IllegalArgumentException("Formato data non valido. Usare il formato YYYY-MM-DD.");
-		}
+		
+		this.dob = dob;	
 	}
 	
 }
