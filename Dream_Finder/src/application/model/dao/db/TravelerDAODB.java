@@ -34,7 +34,7 @@ public class TravelerDAODB implements TravelerDAO {
 						rsTraveler.getString("username"),
 						rsTraveler.getString("travelerName"),
 						rsTraveler.getString("travelerSurname"),
-						rsTraveler.getString("dob")
+						rsTraveler.getDate("dob").toLocalDate()
 						);
 			}
 			

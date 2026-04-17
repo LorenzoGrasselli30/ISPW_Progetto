@@ -85,7 +85,7 @@ public class BookingDAODB implements BookingDAO {
 					GuestInformation guest = new GuestInformation(
 							rsGuests.getString("guestName"), 
 							rsGuests.getString("guestSurname"), 
-							rsGuests.getString("dob")
+							rsGuests.getDate("dob").toLocalDate()
 							);
 					
 					guests.add(guest);
@@ -150,7 +150,7 @@ public class BookingDAODB implements BookingDAO {
 								rsBooking.getString("username"), 
 								rsBooking.getString("travelerName"), 
 								rsBooking.getString("travelerSurname"), 
-								rsBooking.getString("dob")
+								rsBooking.getDate("dob").toLocalDate()
 								), 
 						guests, 
 						activity, 
