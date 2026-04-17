@@ -1,11 +1,13 @@
 package application.model.entity;
 
+import java.time.LocalDate;
+
 public class CardInformation {
 	private String cardNumber;
-	private String expiredDate;
+	private LocalDate expiredDate;
 	private String ownerName;
 	
-	public CardInformation(String cardNumber, String expiredDate, String ownerName) {
+	public CardInformation(String cardNumber, LocalDate expiredDate, String ownerName) {
 		this.cardNumber = cardNumber;
 		this.expiredDate = expiredDate;
 		this.ownerName = ownerName;
@@ -19,11 +21,11 @@ public class CardInformation {
 		this.cardNumber = cardNumber;
 	}
 
-	public String getExpiredDate() {
+	public LocalDate getExpiredDate() {
 		return expiredDate;
 	}
 
-	public void setExpiredDate(String expiredDate) {
+	public void setExpiredDate(LocalDate expiredDate) {
 		this.expiredDate = expiredDate;
 	}
 

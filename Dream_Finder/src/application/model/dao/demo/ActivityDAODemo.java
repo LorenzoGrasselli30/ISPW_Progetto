@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import application.model.dao.ActivityDAO;
 import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
+import application.model.entity.ActivityAvailableDates;
 import application.model.entity.Provider;
 import application.model.enums.ActivityType;
 
@@ -104,8 +105,42 @@ public class ActivityDAODemo implements ActivityDAO {
 
 	@Override
 	public boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces) {
-		// TODO Auto-generated method stub
-		return false;
+		// Validazioni input
+	    if (activity == null || day == null || requestedPlaces == null || requestedPlaces <= 0) {
+	        return false;
+	    }
+	    
+	    List<Provider> providers = providerDAO.providersList();
+	    
+	    //Ricerca dell'attività 
+	    Activity targetActivity = null;
+	    for (Provider provider : providers) {
+	        for (Activity a : provider.getActivities()) {
+	            boolean sameName = a.getActivityName().equals(activity.getActivityName());
+	            boolean sameProvider = a.getProvider().getProviderName()
+	                    .equals(activity.getProvider().getProviderName());
+
+	            if (sameName && sameProvider) {
+	                targetActivity = a;
+	                break;
+	            }
+	        }
+	        if (targetActivity != null) {
+	            break;
+	        }
+	    }
+	    
+	    // Attività non trovata nella lista
+	    if (targetActivity == null) {
+	        return false;
+	    }
+
+	    ActivityAvailableDates dates = targetActivity.getAvaibleDates();
+	    
+	    Integer current = dates.getAvaiblePlaces().get(day);
+	    dates.getAvaiblePlaces().put(day, current - requestedPlaces);
+
+	    return true;
 	}
 	
 }

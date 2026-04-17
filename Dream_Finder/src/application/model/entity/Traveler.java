@@ -1,16 +1,18 @@
 package application.model.entity;
 
+import java.time.LocalDate;
+
 public class Traveler {
 	
 	private User travelerUser;
 	private String username;
 	private String name;
 	private String surname;
-	private String dob;
+	private LocalDate dob;
 	
 	//private List<Activity> favActivities;
 	
-	public Traveler(User travelerUser, String username, String name, String surname, String dob) {
+	public Traveler(User travelerUser, String username, String name, String surname, LocalDate dob) {
 		this.setTravelerUser(travelerUser);
 		this.username = username;
 		this.name= name;
@@ -27,11 +29,11 @@ public class Traveler {
 		this.username = username;
 	}
 
-	public String getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(String dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
