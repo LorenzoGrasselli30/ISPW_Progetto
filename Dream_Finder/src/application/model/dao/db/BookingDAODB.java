@@ -38,11 +38,12 @@ public class BookingDAODB implements BookingDAO {
 		String result= booking.getBookingID();
 		
 		try (Connection conn = DatabaseConnection.getConnection();
-				PreparedStatement stmBooking = conn.prepareStatement(SQLQueries.INSERT_BOOKING)) {
+				PreparedStatement stmBooking = conn.prepareStatement(SQLQueries.INSERT_BOOKING);
+				PreparedStatement stmGuests = conn.prepareStatement(SQLQueries.INSERT_GUEST)) {
 			
 			stmBooking.setString(1, result);
 			stmBooking.setDate(2, Date.valueOf(booking.getBookingDate()));
-			stmBooking.setDate(3, Date.valueOf(booking.getBookingDate()));
+			stmBooking.setDate(3, Date.valueOf(booking.getBookedDate()));
 			stmBooking.setInt(4, booking.getPriceInformation().getnFullTickets());
 			stmBooking.setInt(5, booking.getPriceInformation().getnReducedTickets());
 			stmBooking.setBoolean(6, booking.getPriceInformation().isShuttleService());
@@ -55,8 +56,17 @@ public class BookingDAODB implements BookingDAO {
 			
 			stmBooking.executeUpdate();
 			
+			for (GuestInformation guest : booking.getGuests()) {
+				stmGuests.setString(1, result);
+				stmGuests.setString(2, guest.getName());
+				stmGuests.setString(3, guest.getSurname());
+				stmGuests.setDate(4, Date.valueOf(guest.getDateOfBirth()));
+				
+				stmGuests.executeUpdate();
+			}
+			
 		} catch (SQLException e) {
-	    	throw new DAOException("Errore nel salvataggio della prenotazione");
+			throw new DAOException("Errore nel salvataggio della prenotazione");
 	    }
 		
 		return result;

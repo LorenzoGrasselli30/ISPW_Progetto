@@ -138,8 +138,12 @@ public class SQLQueries {
 			+ "	) "
 			+ "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
 	
+	public static final String INSERT_GUEST =
+			"INSERT INTO `ispw`.`guest` (`booking`, `guestName`, `guestSurname`, `dob`)"
+			+ " VALUES (?, ?, ?, ?);";
+	
 	public static final String INSERT_RECEIPT =
-			"INSERT INTO `ispw`.`receipt`"
+			"INSERT INTO `ispw`.`receipt` ("
 			+ "	`paymentID`, "
 			+ " `paymentDescription`, "
 			+ "	`paymentOutcome`, "
@@ -148,5 +152,9 @@ public class SQLQueries {
 			+ "	`ownerName`, "
 			+ "	`booking`"
 			+ "	) VALUES (?, ?, ?, ?, ?, ?, ?);";
+	
+	public static final String UPDATE_PLACES =
+			"UPDATE `ispw`.`availabledates` SET `nPlaces` = ? "
+			+ "WHERE ((`activity` = ?) and (`provider` = ?) and (`aDay` = ?))";
 	
 }

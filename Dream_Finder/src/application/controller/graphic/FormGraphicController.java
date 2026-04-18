@@ -81,6 +81,16 @@ public class FormGraphicController {
             DatePicker datePicker = new DatePicker();
             datePicker.setPromptText("Seleziona");
             datePicker.setPrefHeight(30);
+            datePicker.setEditable(false);    
+            
+            // Impedisce la selezione di date future nel datepicker
+            datePicker.setDayCellFactory(dp -> new javafx.scene.control.DateCell() {
+                @Override
+                public void updateItem(LocalDate item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setDisable(empty || item.isAfter(LocalDate.now()));
+                }
+            });
             
             //I campi delle informazioni del primo partecipante vengono inserite automaticamente
             if (i == 1) {

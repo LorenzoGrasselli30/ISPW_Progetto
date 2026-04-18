@@ -1,6 +1,10 @@
 package application.controller.graphic;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+
 import application.controller.application.BookingApplicationController;
 import application.exception.AvailabilityException;
 import application.model.bean.ActivityDTO;
@@ -13,6 +17,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.util.StringConverter;
 
 public class PaymentGraphicController {
 	
@@ -128,6 +133,23 @@ public class PaymentGraphicController {
 	    if (cardNumberField != null) {
 	        cardNumberField.setText("4242424242424242");
 	    }
+	    
+	    //mm/yy nel DatePicker
+	    DateTimeFormatter mmYyFormatter = DateTimeFormatter.ofPattern("MM/yy");
+	    dateField.setConverter(new StringConverter<LocalDate>() {
+	        @Override
+	        public String toString(LocalDate date) {
+	            return (date == null) ? "" : mmYyFormatter.format(date);
+	        }
+
+	        @Override
+	        public LocalDate fromString(String text) {
+	            if (text == null || text.trim().isEmpty()) return null;
+	            YearMonth ym = YearMonth.parse(text, mmYyFormatter);
+	            return ym.atDay(1); // giorno tecnico fisso
+	        }
+	    });
+	    
 	}
 	
 	@FXML

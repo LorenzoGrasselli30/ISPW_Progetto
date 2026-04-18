@@ -1,6 +1,7 @@
 package application.model.dao.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -259,7 +260,22 @@ public class ActivityDAODB implements ActivityDAO {
 
 	@Override
 	public boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces) {
-		// TODO Auto-generated method stub
-		return false;
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmReservePlaces = conn.prepareStatement(SQLQueries.UPDATE_PLACES)) {
+			
+			Integer currentPlaces = activity.getAvaibleDates().getAvaiblePlaces().get(day);
+			
+			stmReservePlaces.setInt(1, (currentPlaces - requestedPlaces));
+			stmReservePlaces.setString(2, activity.getActivityName());
+			stmReservePlaces.setString(3, activity.getProvider().getProviderUser().getEmail());
+			stmReservePlaces.setDate(4, Date.valueOf(day));
+			
+			
+			stmReservePlaces.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DAOException("Errore il giorno o l'attività richiesta per la prenotazione non è stata trovata");
+	    }
+		return true;
 	}
 }

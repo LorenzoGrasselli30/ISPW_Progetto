@@ -33,9 +33,10 @@ public class ReceiptDAODB implements ReceiptDAO {
 			stmReceipt.executeUpdate();
 			
 		} catch (SQLException e) {
-	    	throw new DAOException("Errore nella generazione della ricevuta");
+			e.printStackTrace(); // temporaneo
+		    throw new DAOException("Errore di ricerca del provider: " + e.getMessage());
+	    	//throw new DAOException("Errore nella generazione della ricevuta");
 	    }
-		
 		return true;
 	}
 

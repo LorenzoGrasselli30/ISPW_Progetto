@@ -88,6 +88,7 @@ public class ProviderDAODB implements ProviderDAO {
 						rsProviders.getString("pSurname")
 						);
 				
+				System.out.println(rsProviders.getString("email"));
 				stmActivities.setString(1, rsProviders.getString("email"));
 				ResultSet rsActivities = stmActivities.executeQuery();
 				
@@ -95,7 +96,7 @@ public class ProviderDAODB implements ProviderDAO {
 					Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 					
 					stmDates.setString(1, rsActivities.getString("activityName"));
-					stmDates.setString(2, rsActivities.getString("email"));
+					stmDates.setString(2, rsProviders.getString("email"));
 					ResultSet rsDates = stmDates.executeQuery();
 					
 					while(rsDates.next()) {

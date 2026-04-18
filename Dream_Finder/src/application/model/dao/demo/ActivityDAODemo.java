@@ -137,8 +137,8 @@ public class ActivityDAODemo implements ActivityDAO {
 
 	    ActivityAvailableDates dates = targetActivity.getAvaibleDates();
 	    
-	    Integer current = dates.getAvaiblePlaces().get(day);
-	    dates.getAvaiblePlaces().put(day, current - requestedPlaces);
+	    Integer currentPlaces = dates.getAvaiblePlaces().get(day);
+	    dates.getAvaiblePlaces().put(day, currentPlaces - requestedPlaces);
 
 	    return true;
 	}
