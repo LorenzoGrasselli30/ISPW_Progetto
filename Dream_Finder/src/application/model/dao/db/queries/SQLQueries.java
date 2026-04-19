@@ -25,9 +25,8 @@ public class SQLQueries {
 	
 	public static final String FIND_GUESTS =
 			"SELECT Guest.*"
-			+ "	FROM ispw.Guest, ispw.Booking"
+			+ "	FROM ispw.Guest JOIN ispw.Booking ON Booking.bookingID = Guest.booking"
 			+ "	WHERE Booking.bookingID = ?;";
-	
 	
 	public static final String FIND_USER =
 			"SELECT *"

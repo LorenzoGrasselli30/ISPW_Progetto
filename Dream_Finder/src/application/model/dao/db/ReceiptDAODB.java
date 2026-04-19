@@ -48,23 +48,28 @@ public class ReceiptDAODB implements ReceiptDAO {
 			stmReceipt.setString(1, paymentID);
 			ResultSet rsReceipt = stmReceipt.executeQuery();
 			
-			while(rsReceipt.next()) {
+			if(rsReceipt.next()) {
+				
+				CardInformation cardInformation = new CardInformation (
+						rsReceipt.getString("cardNumber"), 
+						rsReceipt.getDate("expiredDate").toLocalDate(), 
+						rsReceipt.getString("ownerName")
+						);
+				
+				StripeInformation stripeInformation = new StripeInformation (
+						rsReceipt.getString("paymentID"), 
+						rsReceipt.getString("paymentDescription"), 
+						rsReceipt.getString("paymentOutcome")
+						);
+				
 				BookingDAODB bookingDAO = new BookingDAODB();
 				Booking booking = bookingDAO.findByID(rsReceipt.getString("booking"));
 				
 				newReceipt = new Receipt(
 						booking.getActivity().getProvider(), 
 						booking, 
-						new CardInformation (
-								rsReceipt.getString("cardNumber"), 
-								rsReceipt.getDate("expiredDate").toLocalDate(), 
-								rsReceipt.getString("ownerName")
-								), 
-						new StripeInformation (
-								rsReceipt.getString("paymentID"), 
-								rsReceipt.getString("paymentDescription"), 
-								rsReceipt.getString("paymentOutcome")
-								)
+						cardInformation, 
+						stripeInformation
 						);
 			}
 			
