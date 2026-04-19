@@ -99,6 +99,7 @@ public class SQLQueries {
 			"SELECT"
 			+ " Booking.*,"
 			+ " Activity.*,"
+			+ " Activity.rate AS activityRate,"
 			+ " Provider.*,"
 			+ " User.*,"
 			+ " Traveler.*"

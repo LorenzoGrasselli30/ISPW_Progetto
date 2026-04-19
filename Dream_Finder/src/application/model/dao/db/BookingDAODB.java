@@ -102,9 +102,9 @@ public class BookingDAODB implements BookingDAO {
 				}
 				
 				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
-				
+			
 				stmDates.setString(1, rsBooking.getString("activityName"));
-				stmDates.setString(2, rsBooking.getString("email"));
+				stmDates.setString(2, rsBooking.getString("providerEmail"));
 				ResultSet rsDates = stmDates.executeQuery();
 				
 				while(rsDates.next()) {
@@ -149,7 +149,7 @@ public class BookingDAODB implements BookingDAO {
 						availableDates
 						);
 				
-				new Booking (
+				newBooking = new Booking (
 						bookingID, 
 						new Traveler (
 								new User (
