@@ -158,20 +158,38 @@ public class PaymentGraphicController {
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		
-		context.setCardNumber(cardNumberField.getText().trim());
-		context.setCvv(cvvField.getText().trim());
-		
-		context.setOwnerName(ownerField.getText());
-		
-		if (dateField.getValue() != null) {
-			context.setExpiredDate(dateField.getValue());
+		if (!cardNumberField.getText().trim().matches("\\d{16}")) {
+			AlertUtils.showAlert(Alert.AlertType.WARNING, "Dati pagamento non validi", "Il numero della carta deve contenere esattamente 16 cifre.");
+			return;
 		}
 		
+		if (!cvvField.getText().trim().matches("\\d{3}")) {
+			AlertUtils.showAlert(Alert.AlertType.WARNING, "Dati pagamento non validi", "Il CVV deve contenere esattamente 3 cifre.");
+			return;
+		}
+		
+		if (dateField.getValue() == null) {
+			AlertUtils.showAlert(Alert.AlertType.WARNING, "Dati pagamento non validi", "Inserisci una data di scadenza.");
+			return;
+		}
+		
+		if (ownerField.getText().isEmpty()) {
+			AlertUtils.showAlert(Alert.AlertType.WARNING, "Dati pagamento non validi", "Inserisci il nome del titolare carta.");
+			return;
+		}
+		
+		
+		context.setCardNumber(cardNumberField.getText().trim());
+		context.setCvv(cvvField.getText().trim());
+		context.setExpiredDate(dateField.getValue());
+		context.setOwnerName(ownerField.getText());
+		
 		BookingContext updatedContext;
+		
 		try {
 			updatedContext = bookingController.makeBooking(context);
 			
-			System.out.println("Richiesta di pagamento inviata dall'utente: "+updatedContext.getOwnerName());
+			System.out.println("Richiesta di pagamento inviata dall'utente: " + updatedContext.getOwnerName());
 			WindowsNavigatorUtils.openRecommendedActivitiesWindow(event, fxmlFile, title, updatedContext);
 			
 		} catch (AvailabilityException ae) {
