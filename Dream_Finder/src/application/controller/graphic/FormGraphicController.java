@@ -186,15 +186,15 @@ public class FormGraphicController {
         	        LocalDate now = LocalDate.now();
     	        	int age = Period.between(datePicker.getValue(), now).getYears(); 
     	        	
-        	        if (i <= context.getnFullTickets()) {
+        	        if (i < context.getnFullTickets()) {
         	        	if (age <= 12) {
-        	        		AlertUtils.showAlert(AlertType.WARNING, "Dati errati", "I biglietti ridotti NON valgono per utenti con un età superiore ai 12 anni.");
+        	        		AlertUtils.showAlert(AlertType.WARNING, "Dati errati", "I biglietti interi NON valgono per partecipanti con un età minore o uguale ai 12 anni.");
             	            allFieldsFilled = false;
             	            break;
         	        	}
         	        } else {
         	        	if (age > 12) {
-        	        		AlertUtils.showAlert(AlertType.WARNING, "Dati errati", "I biglietti interi NON valgono per utenti con un età minore o uguale ai 12 anni.");
+        	        		AlertUtils.showAlert(AlertType.WARNING, "Dati errati", "I biglietti ridotti NON valgono per partecipanti con un età superiore ai 12 anni.");
             	            allFieldsFilled = false;
             	            break;
         	        	}
@@ -205,6 +205,7 @@ public class FormGraphicController {
         	        guest.setSurname(surname);
         	        guest.setDateOfBirth(datePicker.getValue());
         	        
+        	        i++;
         	        guests.add(guest);
         	    }
         	}
