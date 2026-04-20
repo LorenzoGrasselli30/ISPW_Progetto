@@ -88,11 +88,17 @@
                      <children>
                         <VBox style="-fx-background-color: #E7EFD6;">
                            <children>
-                              <Label text="Informazioni 1° partecipante:">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
+                              <HBox>
+                                 <children>
+                                    <Label text="Informazioni 1° partecipante:">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label text="Biglietto intero" />
+                                 </children>
+                              </HBox>
                               <Label text="Nome partecipante">
                                  <font>
                                     <Font size="18.0" />
@@ -122,11 +128,17 @@
                         </VBox>
                         <VBox style="-fx-background-color: #E7EFD6;">
                            <children>
-                              <Label text="Informazioni 2° partecipante:">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
+                              <HBox>
+                                 <children>
+                                    <Label text="Informazioni 2° partecipante:">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label text="Biglietto intero" />
+                                 </children>
+                              </HBox>
                               <Label text="Nome partecipante">
                                  <font>
                                     <Font size="18.0" />
