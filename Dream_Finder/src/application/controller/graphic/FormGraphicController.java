@@ -2,6 +2,7 @@ package application.controller.graphic;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -57,10 +61,21 @@ public class FormGraphicController {
             participantBox.setPadding(new Insets(5, 10, 5, 10));
             participantBox.setSpacing(5);
 
-            //Titolo
+            // HBox intestazione: titolo partecipante + tipo biglietto
+            HBox headerBox = new HBox();
+            //headerBox.setAlignment(Pos.CENTER_LEFT);
+      
             Label titleLabel = new Label("Informazioni " + i + "° partecipante:");
             titleLabel.setFont(Font.font("System", FontWeight.BOLD, 18));
+            
+            Region spacer = new Region();
+            HBox.setHgrow(spacer, Priority.ALWAYS);
+            
+            String ticketTypeText = (i <= context.getnFullTickets()) ? "Biglietto intero" : "Biglietto ridotto";
+            Label ticketTypeLabel = new Label(ticketTypeText);
 
+            headerBox.getChildren().addAll(titleLabel, spacer, ticketTypeLabel);
+            
             //Label e TextField Nome
             Label nameLabel = new Label("Nome partecipante");
             nameLabel.setFont(new Font(18));
@@ -109,7 +124,7 @@ public class FormGraphicController {
             
             //Aggiunta degli elementi al box del partecipante
             participantBox.getChildren().addAll(
-                titleLabel, 
+            	headerBox, 
                 nameLabel, nameField, 
                 surnameLabel, surnameField, 
                 dateLabel, datePicker
@@ -141,10 +156,11 @@ public class FormGraphicController {
         	List<GuestInformationDTO> guests = new ArrayList<>();
         	boolean allFieldsFilled = true;
         	
+        	int i=0;
         	// Iterazione su ogni VBox nel participantsContainer
         	for (Node node : participantsContainer.getChildren()) {
         	    if (node instanceof VBox) { //L'oggetto contenuto nella variabile node è un'istanza della classe VBox di una sua sottoclasse
-        	        VBox box = (VBox) node;
+        	    	VBox box = (VBox) node;
         	        
         	        // Estrazione dei controlli dal VBox
         	        // Gli indici dipendono dall'ordine di aggiunta in initForm:
@@ -167,6 +183,23 @@ public class FormGraphicController {
         	            break;
         	        }
         	        
+        	        LocalDate now = LocalDate.now();
+    	        	int age = Period.between(datePicker.getValue(), now).getYears(); 
+    	        	
+        	        if (i <= context.getnFullTickets()) {
+        	        	if (age <= 12) {
+        	        		AlertUtils.showAlert(AlertType.WARNING, "Dati errati", "I biglietti ridotti NON valgono per utenti con un età superiore ai 12 anni.");
+            	            allFieldsFilled = false;
+            	            break;
+        	        	}
+        	        } else {
+        	        	if (age > 12) {
+        	        		AlertUtils.showAlert(AlertType.WARNING, "Dati errati", "I biglietti interi NON valgono per utenti con un età minore o uguale ai 12 anni.");
+            	            allFieldsFilled = false;
+            	            break;
+        	        	}
+        	        }
+        	        	
         	        GuestInformationDTO guest = new GuestInformationDTO();
         	        guest.setName(name);
         	        guest.setSurname(surname);

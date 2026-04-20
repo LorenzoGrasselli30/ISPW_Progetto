@@ -109,7 +109,7 @@ public class TicketGraphicController {
                 LocalDate now = LocalDate.now();
                 int age = java.time.Period.between(dob, now).getYears();
 
-                if (age <= 7) {
+                if (age <= 12) {
                     ticketType = "Ridotto";
                 }
             } catch (Exception e) {
