@@ -1,6 +1,7 @@
 package application.controller.graphic;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import application.model.bean.BookingDTO;
 import application.model.bean.GuestInformationDTO;
@@ -12,6 +13,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class TicketGraphicController {
+	
+	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	@FXML
     private Label nameLabel;
@@ -59,7 +62,7 @@ public class TicketGraphicController {
         	activityNameLabel.setText("- Nome dell'attività: " + booking.getActivityName());
         }
         if (dateLabel != null) {
-            dateLabel.setText("Il biglietto è valido per il giorno: " + booking.getBookedDate());
+            dateLabel.setText("Il biglietto è valido per il giorno: " + booking.getBookedDate().format(DATE_FORMATTER));
         }
         if (guideLabel != null) {
             guideLabel.setText("- Tour guidato: " + (booking.isGuideService() ? "Si" : "No"));
@@ -100,7 +103,7 @@ public class TicketGraphicController {
             Label surnameLbl = new Label("Cognome: " + guest.getSurname());
             surnameLbl.setFont(new Font(18));
 
-            Label dobLbl = new Label("Data di nascita: " + guest.getDateOfBirth());
+            Label dobLbl = new Label("Data di nascita: " + guest.getDateOfBirth().format(DATE_FORMATTER));
             dobLbl.setFont(new Font(18));
 
             String ticketType = "Intero";

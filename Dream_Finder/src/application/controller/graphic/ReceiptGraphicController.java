@@ -1,10 +1,14 @@
 package application.controller.graphic;
 
+import java.time.format.DateTimeFormatter;
+
 import application.model.bean.ReceiptDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class ReceiptGraphicController {
+	
+	private static final DateTimeFormatter CARD_DATE_FORMATTER = DateTimeFormatter.ofPattern("MM/yyyy");
 	
 	@FXML
     private Label nameLabel;
@@ -71,7 +75,7 @@ public class ReceiptGraphicController {
         }
         
         if (expireLabel != null) {
-            expireLabel.setText("Data di scadenza della carta: " + receipt.getExpiredDate());
+            expireLabel.setText("Data di scadenza della carta: " + receipt.getExpiredDate().format(CARD_DATE_FORMATTER));
         }
 
         // Imposta info prodotto

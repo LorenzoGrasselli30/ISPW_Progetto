@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 
+import application.exception.PaymentProcessingException;
 import application.model.bean.PaymentOutcomeDTO;
+import application.model.enums.PaymentErrorReason;
 import application.payment.StripePayment;
 
 public class PaymentAdapter implements Target {
@@ -22,7 +24,7 @@ public class PaymentAdapter implements Target {
 	
 	@Override
 	public PaymentOutcomeDTO verifyPayment(String cardNumber, LocalDate expiredDate, String cvv, String activityName, String customerName,
-			String providerName, Double amount) {
+			String providerName, Double amount) throws PaymentProcessingException {
 			
 		PaymentOutcomeDTO newOutcome = new PaymentOutcomeDTO();
 		
@@ -58,11 +60,35 @@ public class PaymentAdapter implements Target {
 				newOutcome.setPaymentOutcome(paymentIntent.getStatus());
 				
 			} catch (StripeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				this.handlePaymentException(e.getCode());
 			} 
 			
 		return newOutcome;	
 	}
-
+	
+	private void handlePaymentException(String outcomeCode) throws PaymentProcessingException {
+		if (outcomeCode.equals(PaymentErrorReason.CARD_EXPIRED.getStringReason())) {
+			throw new PaymentProcessingException("Errore di pagamento: La carta inserita è scaduta");
+		}
+		
+		if (outcomeCode.equals(PaymentErrorReason.CARD_DECLINED.getStringReason())) {
+			throw new PaymentProcessingException("Errore di pagamento: La carta è stata rifiutata o fondi insufficienti");
+		}
+		
+		if (outcomeCode.equals(PaymentErrorReason.INVALID_CVV.getStringReason())) {
+			throw new PaymentProcessingException("Errore di pagamento: Il CVV inserito non è valido");
+		}
+		
+		if (outcomeCode.equals(PaymentErrorReason.NETWORK_ERROR.getStringReason())) {
+			throw new PaymentProcessingException("Errore di pagamento: Connessione a internet instabile");
+		}
+		
+		if (outcomeCode.equals(PaymentErrorReason.TEMPORARY_ERROR.getStringReason())) {
+			throw new PaymentProcessingException("Errore di pagamento: Errore temporaneo riprova più tardi");
+		}
+		
+		if (outcomeCode.equals(PaymentErrorReason.UNKNOWN_ERROR.getStringReason())) {
+			throw new PaymentProcessingException("Errore di pagamento: Errore sconosciuto");
+		}
+	}
 }

@@ -6,8 +6,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.stripe.exception.StripeException;
+
 import application.configuration.UserSession;
 import application.exception.AvailabilityException;
+import application.exception.PaymentProcessingException;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.model.bean.BookingDTO;
@@ -108,7 +111,7 @@ public class BookingApplicationController {
 	}
 	
 	//Client che chiama l'istanza di Adapteer
-	public BookingContext makeBooking(BookingContext context) throws AvailabilityException {
+	public BookingContext makeBooking(BookingContext context) throws AvailabilityException, PaymentProcessingException {
 		
 		Activity bookedActivity= activityDAO.findByProvider(context.getActivity().getActivityName(), context.getActivity().getProviderName());
 		if(!bookedActivity.getAvaibleDates().hasRequiredPlaces(context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()))) {

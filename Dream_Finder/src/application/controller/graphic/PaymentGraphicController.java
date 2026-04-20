@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import application.controller.application.BookingApplicationController;
 import application.exception.AvailabilityException;
+import application.exception.PaymentProcessingException;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.view.AlertUtils;
@@ -195,6 +196,8 @@ public class PaymentGraphicController {
 		} catch (AvailabilityException ae) {
 			AlertUtils.showAlert(Alert.AlertType.ERROR, "Errore durante la prenotazione", ae.getMessage());
 			WindowsNavigatorUtils.closePaymentWindow(event, "activityView.fxml", "Info Attivita'", context);
+		} catch (PaymentProcessingException pe) {
+			AlertUtils.showAlert(Alert.AlertType.ERROR, "Errore durante la transazione", pe.getMessage());
 		}
    }
 	
