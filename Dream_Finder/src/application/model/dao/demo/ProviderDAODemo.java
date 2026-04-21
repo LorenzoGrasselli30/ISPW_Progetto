@@ -19,7 +19,7 @@ import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
 import application.model.enums.UserRole;
 
-public class ProviderDAODemo implements ProviderDAO {
+public class ProviderDAODemo implements ProviderDAO{
 	
 	private Map<String, Provider> providers = new HashMap<>();
 	

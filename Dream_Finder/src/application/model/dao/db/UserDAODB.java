@@ -24,12 +24,19 @@ public class UserDAODB implements UserDAO {
 			stmUser.setString(1, formattedEmail);
 			ResultSet rsUser = stmUser.executeQuery();
 			
-			while(rsUser.next()) {
-				newUser = new User(
-						rsUser.getString("email"),
-						rsUser.getString("password"),
-						UserRole.fromString(rsUser.getString("ruolo"))
-						);
+			if (rsUser.next()) {
+				UserRole role = UserRole.fromString(rsUser.getString("ruolo"));
+
+	            switch (role) {
+	                case TRAVELER:
+	                    newUser = new TravelerDAODB().findByEmail(formattedEmail);
+	                    break;
+	                case PROVIDER:
+	                    newUser = new ProviderDAODB().findByEmail(formattedEmail);
+	                    break;
+	                default:
+	                    throw new DAOException("Ruolo utente non supportato");
+	            }
 			}
 			
 		} catch (SQLException e) {

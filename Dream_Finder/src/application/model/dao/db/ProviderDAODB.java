@@ -144,8 +144,72 @@ public class ProviderDAODB implements ProviderDAO {
 
 	@Override
 	public Provider findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		Provider newProvider = null;
+		
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmProvider = conn.prepareStatement(SQLQueries.FIND_PROVIDER_BY_EMAIL);
+				PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL);
+				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+			
+				stmProvider.setString(1, email);
+				ResultSet rsProvider = stmProvider.executeQuery();
+				
+				while (rsProvider.next()) {
+					newProvider = new Provider(
+							rsProvider.getString("email"), 
+							rsProvider.getString("password"), 
+							rsProvider.getString("providerName"), 
+							ProviderType.fromString(rsProvider.getString("providerType")), 
+							rsProvider.getInt("nOfferedActivities"), 
+							rsProvider.getString("location"), 
+							rsProvider.getString("pName"), 
+							rsProvider.getString("pSurname")
+							);
+					
+					stmActivities.setString(1, email);
+					ResultSet rsActivities= stmActivities.executeQuery();
+					
+					while(rsActivities.next()) {
+						Map<LocalDate, Integer> availablePlaces = new HashMap<>();
+						
+						stmDates.setString(1, rsActivities.getString("activityName"));
+						stmDates.setString(2, email);
+						ResultSet rsDates = stmDates.executeQuery();
+						
+						while(rsDates.next()) {
+							   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
+							   Integer places = rsDates.getInt("nPlaces");              
+							   availablePlaces.put(date, places);
+						}
+							
+						ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+						
+						newProvider.addActivity(
+								rsActivities.getString("activityName"), 
+								rsActivities.getDouble("price"), 
+								ActivityType.fromString(rsActivities.getString("activityType")), 
+								new ActivityRating(
+										rsActivities.getDouble("rate"), 
+										rsActivities.getInt("nRating")
+										), 
+								new ActivityOtherInformation(
+										rsActivities.getString("activityDescription"), 
+										rsActivities.getBoolean("freeCancellation"), 
+										rsActivities.getBoolean("payLater"), 
+										rsActivities.getBoolean("skipLine"), 
+										rsActivities.getInt("duration"), 
+										rsActivities.getBoolean("timeInMinutes")
+										), 
+								availableDates
+								);
+					}
+				}
+		} catch (SQLException e) {
+	    	throw new DAOException("Errore di ricerca del provider");
+	    }
+		
+		return newProvider;
 	}
+	
 
 }

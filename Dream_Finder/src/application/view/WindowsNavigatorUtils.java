@@ -191,7 +191,8 @@ public class WindowsNavigatorUtils {
         	if ("Homepage".equals(parentStage.getTitle()) && ("newActivityButton".equals(parentTitle))) {
         		WindowsNavigatorUtils.openWindow(event, "newActivityView.fxml", "Nuova attivita'");
         	} else {
-        		WindowsNavigatorUtils.changeParentWindow(event, "homeProviderView.fxml", "Homepage");
+        		//WindowsNavigatorUtils.changeParentWindow(event, "homeProviderView.fxml", "Homepage");
+        		WindowsNavigatorUtils.closeWindow(event);
         	}
         	
         }

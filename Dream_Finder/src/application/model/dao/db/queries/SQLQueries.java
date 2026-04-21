@@ -79,6 +79,12 @@ public class SQLQueries {
 			+ "	Traveler.travelerEmail = user.email"
 			+ " WHERE User.email = ?;";
 	
+	public static final String FIND_PROVIDER_BY_EMAIL =
+			"Select User.*, Provider.*"
+			+ " FROM ispw.Traveler JOIN ispw.User ON"
+			+ "	Provider.providerEmail = User.email"
+			+ "	WHERE User.email = ?;";
+	
 	public static final String FIND_ALL_PROVIDER =
 			"SELECT User.email, User.password, User.ruolo,"
 			+ "	Provider.providerName,  Provider.providerType,  Provider.location,  Provider.pname,  Provider.psurname,  Provider.rate,  Provider.nOfferedActivities"
