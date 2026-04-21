@@ -26,4 +26,10 @@ public class ProviderDAOFile implements ProviderDAO {
 		return null;
 	}
 
+	@Override
+	public Provider findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

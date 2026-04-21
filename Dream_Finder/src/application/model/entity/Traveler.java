@@ -2,9 +2,10 @@ package application.model.entity;
 
 import java.time.LocalDate;
 
-public class Traveler {
+import application.model.enums.UserRole;
+
+public class Traveler extends User {
 	
-	private User travelerUser;
 	private String username;
 	private String name;
 	private String surname;
@@ -12,8 +13,9 @@ public class Traveler {
 	
 	//private List<Activity> favActivities;
 	
-	public Traveler(User travelerUser, String username, String name, String surname, LocalDate dob) {
-		this.setTravelerUser(travelerUser);
+	public Traveler(String email, String password, String username, String name, String surname, LocalDate dob) {
+		
+		super(email, password, UserRole.TRAVELER);
 		this.username = username;
 		this.name= name;
 		this.surname= surname;
@@ -51,14 +53,6 @@ public class Traveler {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public User getTravelerUser() {
-		return travelerUser;
-	}
-
-	public void setTravelerUser(User travelerUser) {
-		this.travelerUser = travelerUser;
 	}
 
 }

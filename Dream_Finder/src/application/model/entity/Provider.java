@@ -5,12 +5,11 @@ import java.util.List;
 
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
+import application.model.enums.UserRole;
 
-public class Provider {
+public class Provider extends User {
 	//Composizione con Activity
 	private List<Activity> activities;
-	
-	private User providerUser;
 	
 	private String providerName;
 	private ProviderType providerType;
@@ -21,10 +20,11 @@ public class Provider {
 	
 	private Double providerRate;
 
-	public Provider(User providerUser, String providerName,
+	public Provider(String email, String password, String providerName,
 			ProviderType providerType, Integer nOfferedActivities, String location, String name, String surname) {
+		
+		super(email, password, UserRole.PROVIDER);
 		this.activities = new ArrayList<>();
-		this.setProviderUser(providerUser);
 		this.providerName = providerName;
 		this.providerType = providerType;
 		this.nOfferedActivities = nOfferedActivities;
@@ -86,13 +86,4 @@ public class Provider {
 	public String getSurname() {
 		return surname;
 	}
-
-	public User getProviderUser() {
-		return providerUser;
-	}
-
-	public void setProviderUser(User providerUser) {
-		this.providerUser = providerUser;
-	}
-
 }

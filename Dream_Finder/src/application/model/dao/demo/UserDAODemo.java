@@ -1,37 +1,40 @@
 package application.model.dao.demo;
 
-import java.util.HashMap;
 import java.util.Map;
 
+import application.model.dao.ProviderDAO;
+import application.model.dao.TravelerDAO;
 import application.model.dao.UserDAO;
+import application.model.entity.Provider;
+import application.model.entity.Traveler;
 import application.model.entity.User;
-import application.model.enums.UserRole;
 
 public class UserDAODemo implements UserDAO {
 	
-	private Map<String, User> users = new HashMap<>();
+	private final TravelerDAO travelerDAO;
+    private final ProviderDAO providerDAO;
 
-    public UserDAODemo() {
-    	initializeUsersDemo();
+    // Dependency Injection: più testabile e O.O.
+    public UserDAODemo(TravelerDAO travelerDAO, ProviderDAO providerDAO) {
+        this.travelerDAO = travelerDAO;
+        this.providerDAO = providerDAO;
     }
-    
-    private void initializeUsersDemo() {
-    	// Inizializzazione traveler nella demo
-    	users.put("mario.rossi@mail.com", new User("mario.rossi@mail.com", "Mariorossi1!", UserRole.TRAVELER));
-    	users.put("utente1@mail.com", new User("utente1@mail.com", "Utente1!", UserRole.TRAVELER));
-    	users.put("utente2@mail.com", new User("utente2@mail.com", "Utente2!", UserRole.TRAVELER));
-    	users.put("utente3@mail.com", new User("utente3@mail.com", "Utente3!", UserRole.TRAVELER));
-    	
-    	//Inizializzazione provider nella demo
-    	users.put("luigi.verdi@mail.com", new User("luigi.verdi@mail.com", "Luigiverdi1!", UserRole.PROVIDER));
-    	users.put("fornitore1@mail.com", new User("fornitore1@mail.com", "Fornitore1!", UserRole.PROVIDER));
-    	users.put("fornitore2@mail.com", new User("fornitore2@mail.com", "Fornitore2!", UserRole.PROVIDER));
-    	users.put("foenitore3@mail.com", new User("foenitore3@mail.com", "Fornitore3!", UserRole.PROVIDER));
-    } 
 
     @Override
     public User findByEmail(String email) {
-        return users.get(email);
+        // 1) cerco tra i traveler
+        Traveler traveler = travelerDAO.findByEmail(email);
+        if (traveler != null) {
+            return traveler; 
+        }
+
+        // 2) se non trovato, cerco tra i provider
+        Provider provider = providerDAO.findByEmail(email);
+        if (provider != null) {
+            return provider; 
+        }
+
+        // 3) non trovato
+        return null;
     }
-	
 }

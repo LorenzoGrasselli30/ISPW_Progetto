@@ -50,7 +50,7 @@ public class ActivityDAODB implements ActivityDAO {
 					Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 					
 					stmDates.setString(1, rsTopActivities.getString("activityName"));
-					stmDates.setString(2, provider.getProviderUser().getEmail());
+					stmDates.setString(2, provider.getEmail());
 					ResultSet rsDates = stmDates.executeQuery();
 					
 					while(rsDates.next()) {
@@ -122,11 +122,8 @@ public class ActivityDAODB implements ActivityDAO {
 				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
 				
 				Provider provider = new Provider(
-						new User(
-								rsActivityInfo.getString("email"),
-								rsActivityInfo.getString("password"),
-								UserRole.fromString(rsActivityInfo.getString("ruolo"))
-						),
+						rsActivityInfo.getString("email"),
+						rsActivityInfo.getString("password"),
 						rsActivityInfo.getString("providerName"),
 						ProviderType.fromString(rsActivityInfo.getString("providerType")),
 						rsActivityInfo.getInt("nOfferedActivities"),
@@ -201,11 +198,8 @@ public class ActivityDAODB implements ActivityDAO {
 				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
 				
 				Provider provider = new Provider(
-						new User(
-								rsActivityRelated.getString("email"),
-								rsActivityRelated.getString("password"),
-								UserRole.fromString(rsActivityRelated.getString("ruolo"))
-						),
+						rsActivityRelated.getString("email"),
+						rsActivityRelated.getString("password"),
 						rsActivityRelated.getString("providerName"),
 						ProviderType.fromString(rsActivityRelated.getString("providerType")),
 						rsActivityRelated.getInt("nOfferedActivities"),
@@ -267,7 +261,7 @@ public class ActivityDAODB implements ActivityDAO {
 			
 			stmReservePlaces.setInt(1, (currentPlaces - requestedPlaces));
 			stmReservePlaces.setString(2, activity.getActivityName());
-			stmReservePlaces.setString(3, activity.getProvider().getProviderUser().getEmail());
+			stmReservePlaces.setString(3, activity.getProvider().getEmail());
 			stmReservePlaces.setDate(4, Date.valueOf(day));
 			
 			

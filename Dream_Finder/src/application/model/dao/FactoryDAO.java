@@ -47,7 +47,7 @@ public class FactoryDAO {
 	    	
 		if (MODE_DEMO.equals(mode) || "".equals(mode)) { 
 	    	    if (userIstance == null) {  
-	    	    	userIstance = new UserDAODemo();
+	    	    	userIstance = new UserDAODemo(this.getTravelerDAO(), this.getProviderDAO());
 	    	    }
 	    	    return userIstance;           
 	    	    

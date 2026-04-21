@@ -9,4 +9,5 @@ public interface ProviderDAO {
 	List<Provider> findTopProviders();
 	List<Provider> providersList();
 	Provider findByActivity(Activity activity);
+	Provider findByEmail(String email);
 }

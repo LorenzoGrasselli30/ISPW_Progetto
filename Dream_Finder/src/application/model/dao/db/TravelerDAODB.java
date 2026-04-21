@@ -26,11 +26,8 @@ public class TravelerDAODB implements TravelerDAO {
 			
 			while(rsTraveler.next()) {
 				newTraveler = new Traveler (
-						new User (
-								rsTraveler.getString("email"), 
-								rsTraveler.getString("password"), 
-								UserRole.fromString(rsTraveler.getString("ruolo"))
-								),
+						rsTraveler.getString("email"), 
+						rsTraveler.getString("password"), 
 						rsTraveler.getString("username"),
 						rsTraveler.getString("travelerName"),
 						rsTraveler.getString("travelerSurname"),

@@ -51,7 +51,7 @@ public class BookingDAODB implements BookingDAO {
 			stmBooking.setDouble(8, booking.getPriceInformation().getShuttlePrice());
 			stmBooking.setDouble(9, booking.getPriceInformation().getGuidePrice());
 			stmBooking.setDouble(10, booking.getPriceInformation().getTotalPrice());
-			stmBooking.setString(11, booking.getTraveler().getTravelerUser().getEmail());
+			stmBooking.setString(11, booking.getTraveler().getEmail());
 			stmBooking.setString(12, booking.getActivity().getActivityName());
 			
 			stmBooking.executeUpdate();
@@ -116,11 +116,8 @@ public class BookingDAODB implements BookingDAO {
 				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
 				
 				Provider provider = new Provider(
-						new User (
-								rsBooking.getString("providerEmail"), 
-								null, 
-								UserRole.PROVIDER
-								), 
+						rsBooking.getString("providerEmail"), 
+						null,
 						rsBooking.getString("providerName"), 
 						ProviderType.fromString(rsBooking.getString("providerType")), 
 						rsBooking.getInt("nOfferedActivities"), 
@@ -152,11 +149,8 @@ public class BookingDAODB implements BookingDAO {
 				newBooking = new Booking (
 						bookingID, 
 						new Traveler (
-								new User (
-										rsBooking.getString("email"), 
-										rsBooking.getString("password"), 
-										UserRole.TRAVELER
-										), 
+								rsBooking.getString("email"), 
+								rsBooking.getString("password"), 
 								rsBooking.getString("username"), 
 								rsBooking.getString("travelerName"), 
 								rsBooking.getString("travelerSurname"), 

@@ -39,11 +39,8 @@ public class ProviderDAODB implements ProviderDAO {
 			
 			while(rsTopProviders.next()) {
 				Provider newProvider = new Provider(
-						new User(
-								rsTopProviders.getString("email"), 
-								rsTopProviders.getString("password"), 
-								UserRole.fromString(rsTopProviders.getString("ruolo"))	
-								), 
+						rsTopProviders.getString("email"), 
+						rsTopProviders.getString("password"), 
 						rsTopProviders.getString("providerName"), 
 						ProviderType.fromString(rsTopProviders.getString("providerType")), 
 						rsTopProviders.getInt("nOfferedActivities"), 
@@ -75,11 +72,8 @@ public class ProviderDAODB implements ProviderDAO {
 			
 			while(rsProviders.next()) {
 				Provider newProvider = new Provider(
-						new User(
-								rsProviders.getString("email"), 
-								rsProviders.getString("password"), 
-								UserRole.fromString(rsProviders.getString("ruolo"))	
-								), 
+						rsProviders.getString("email"), 
+						rsProviders.getString("password"), 
 						rsProviders.getString("providerName"), 
 						ProviderType.fromString(rsProviders.getString("providerType")), 
 						rsProviders.getInt("nOfferedActivities"), 
@@ -145,6 +139,12 @@ public class ProviderDAODB implements ProviderDAO {
 				return provider;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public Provider findByEmail(String email) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
