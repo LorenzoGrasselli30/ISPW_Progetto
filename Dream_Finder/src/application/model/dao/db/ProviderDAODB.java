@@ -38,16 +38,7 @@ public class ProviderDAODB implements ProviderDAO {
 			ResultSet rsTopProviders = stmTopProviders.executeQuery();
 			
 			while(rsTopProviders.next()) {
-				Provider newProvider = new Provider(
-						rsTopProviders.getString("email"), 
-						rsTopProviders.getString("password"), 
-						rsTopProviders.getString("providerName"), 
-						ProviderType.fromString(rsTopProviders.getString("providerType")), 
-						rsTopProviders.getInt("nOfferedActivities"), 
-						rsTopProviders.getString("location"), 
-						rsTopProviders.getString("pName"), 
-						rsTopProviders.getString("pSurname")
-						);
+				Provider newProvider = this.providerHelper(rsTopProviders);
 				
 				providers.add(newProvider);
 			}
@@ -71,35 +62,19 @@ public class ProviderDAODB implements ProviderDAO {
 			ResultSet rsProviders = stmProviders.executeQuery();
 			
 			while(rsProviders.next()) {
-				Provider newProvider = new Provider(
-						rsProviders.getString("email"), 
-						rsProviders.getString("password"), 
-						rsProviders.getString("providerName"), 
-						ProviderType.fromString(rsProviders.getString("providerType")), 
-						rsProviders.getInt("nOfferedActivities"), 
-						rsProviders.getString("location"), 
-						rsProviders.getString("pName"), 
-						rsProviders.getString("pSurname")
-						);
+				Provider newProvider = this.providerHelper(rsProviders);
 				
 				System.out.println(rsProviders.getString("email"));
 				stmActivities.setString(1, rsProviders.getString("email"));
 				ResultSet rsActivities = stmActivities.executeQuery();
 				
 				while(rsActivities.next()) {
-					Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 					
 					stmDates.setString(1, rsActivities.getString("activityName"));
 					stmDates.setString(2, rsProviders.getString("email"));
 					ResultSet rsDates = stmDates.executeQuery();
-					
-					while(rsDates.next()) {
-						   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-						   Integer places = rsDates.getInt("nPlaces");              
-						   availablePlaces.put(date, places);
-					}
 						
-					ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+					ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
 					
 					newProvider.addActivity(
 							rsActivities.getString("activityName"), 
@@ -155,34 +130,18 @@ public class ProviderDAODB implements ProviderDAO {
 				ResultSet rsProvider = stmProvider.executeQuery();
 				
 				while (rsProvider.next()) {
-					newProvider = new Provider(
-							rsProvider.getString("email"), 
-							rsProvider.getString("password"), 
-							rsProvider.getString("providerName"), 
-							ProviderType.fromString(rsProvider.getString("providerType")), 
-							rsProvider.getInt("nOfferedActivities"), 
-							rsProvider.getString("location"), 
-							rsProvider.getString("pName"), 
-							rsProvider.getString("pSurname")
-							);
+					newProvider = this.providerHelper(rsProvider);
 					
 					stmActivities.setString(1, email);
 					ResultSet rsActivities= stmActivities.executeQuery();
 					
 					while(rsActivities.next()) {
-						Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 						
 						stmDates.setString(1, rsActivities.getString("activityName"));
 						stmDates.setString(2, email);
 						ResultSet rsDates = stmDates.executeQuery();
-						
-						while(rsDates.next()) {
-							   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-							   Integer places = rsDates.getInt("nPlaces");              
-							   availablePlaces.put(date, places);
-						}
 							
-						ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+						ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
 						
 						newProvider.addActivity(
 								rsActivities.getString("activityName"), 
@@ -211,5 +170,30 @@ public class ProviderDAODB implements ProviderDAO {
 		return newProvider;
 	}
 	
-
+	//Helpers
+	
+	private Provider providerHelper(ResultSet rs) throws SQLException {
+        return new Provider(
+            rs.getString("email"),
+            rs.getString("password"),
+            rs.getString("providerName"),
+            ProviderType.fromString(rs.getString("providerType")),
+            rs.getInt("nOfferedActivities"),
+            rs.getString("location"),
+            rs.getString("pname"),
+            rs.getString("psurname")
+        );
+    }
+	
+	private ActivityAvailableDates availableDatesHelper(ResultSet rs) throws SQLException {
+		Map<LocalDate, Integer> availablePlaces = new HashMap<>();
+		
+		while(rs.next()) {
+			   LocalDate date = rs.getDate("aDay").toLocalDate(); 
+			   Integer places = rs.getInt("nPlaces");              
+			   availablePlaces.put(date, places);
+		}
+			
+		return new ActivityAvailableDates(availablePlaces);
+    }
 }

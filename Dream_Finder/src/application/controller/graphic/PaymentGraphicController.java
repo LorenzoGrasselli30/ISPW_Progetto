@@ -155,27 +155,28 @@ public class PaymentGraphicController {
 	
 	@FXML
 	private void doPayment(MouseEvent event) throws IOException{
+		final String PAYMENT_WARNIG_TITLE = "Dati pagamento non validi";
 		
 		String fxmlFile = "recommendedActivitiesView.fxml";
 		String title = "Attività Consigliate";
 		
 		if (!cardNumberField.getText().trim().matches("\\d{16}")) {
-			AlertUtils.showAlert(Alert.AlertType.WARNING, "Dati pagamento non validi", "Il numero della carta deve contenere esattamente 16 cifre.");
+			AlertUtils.showAlert(Alert.AlertType.WARNING, PAYMENT_WARNIG_TITLE, "Il numero della carta deve contenere esattamente 16 cifre.");
 			return;
 		}
 		
 		if (!cvvField.getText().trim().matches("\\d{3}")) {
-			AlertUtils.showAlert(Alert.AlertType.WARNING, "Dati pagamento non validi", "Il CVV deve contenere esattamente 3 cifre.");
+			AlertUtils.showAlert(Alert.AlertType.WARNING, PAYMENT_WARNIG_TITLE, "Il CVV deve contenere esattamente 3 cifre.");
 			return;
 		}
 		
 		if (dateField.getValue() == null) {
-			AlertUtils.showAlert(Alert.AlertType.WARNING, "Dati pagamento non validi", "Inserisci una data di scadenza.");
+			AlertUtils.showAlert(Alert.AlertType.WARNING, PAYMENT_WARNIG_TITLE, "Inserisci una data di scadenza.");
 			return;
 		}
 		
 		if (ownerField.getText().isEmpty()) {
-			AlertUtils.showAlert(Alert.AlertType.WARNING, "Dati pagamento non validi", "Inserisci il nome del titolare carta.");
+			AlertUtils.showAlert(Alert.AlertType.WARNING, PAYMENT_WARNIG_TITLE, "Inserisci il nome del titolare carta.");
 			return;
 		}
 		

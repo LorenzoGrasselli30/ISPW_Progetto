@@ -26,6 +26,10 @@ import application.model.enums.ProviderType;
 import application.model.enums.UserRole;
 
 public class ActivityDAODB implements ActivityDAO {
+	
+	private static final String activityName_STRING = "activityName";
+	private static final String nPlaces_STRING = "nPlaces";
+	//private static final String nPlaces_STRING = "nPlaces";
 
 	@Override
 	public List<Activity> findTopActivities(List<Provider> providers) {
@@ -49,20 +53,20 @@ public class ActivityDAODB implements ActivityDAO {
 					
 					Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 					
-					stmDates.setString(1, rsTopActivities.getString("activityName"));
+					stmDates.setString(1, rsTopActivities.getString(activityName_STRING));
 					stmDates.setString(2, provider.getEmail());
 					ResultSet rsDates = stmDates.executeQuery();
 					
 					while(rsDates.next()) {
 						   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-						   Integer places = rsDates.getInt("nPlaces");              
+						   Integer places = rsDates.getInt(nPlaces_STRING);              
 						   availablePlaces.put(date, places);
 					}
 						
 					ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
 					
 					Activity newActivity = new Activity(
-							rsTopActivities.getString("activityName"), 
+							rsTopActivities.getString(activityName_STRING), 
 							rsTopActivities.getDouble("price"), 
 							ActivityType.fromString(rsTopActivities.getString("activityType")), 
 							provider, 
@@ -109,13 +113,13 @@ public class ActivityDAODB implements ActivityDAO {
 				
 				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 				
-				stmDates.setString(1, rsActivityInfo.getString("activityName"));
+				stmDates.setString(1, rsActivityInfo.getString(activityName_STRING));
 				stmDates.setString(2, rsActivityInfo.getString("email"));
 				ResultSet rsDates = stmDates.executeQuery();
 				
 				while(rsDates.next()) {
 					   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-					   Integer places = rsDates.getInt("nPlaces");              
+					   Integer places = rsDates.getInt(nPlaces_STRING);              
 					   availablePlaces.put(date, places);
 				}
 					
@@ -133,7 +137,7 @@ public class ActivityDAODB implements ActivityDAO {
 				);
 				
 				activityFounded = new Activity(
-						rsActivityInfo.getString("activityName"), 
+						rsActivityInfo.getString(activityName_STRING), 
 						rsActivityInfo.getDouble("price"), 
 						ActivityType.fromString(rsActivityInfo.getString("activityType")), 
 						provider, 
@@ -185,13 +189,13 @@ public class ActivityDAODB implements ActivityDAO {
 				
 				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 				
-				stmDates.setString(1, rsActivityRelated.getString("activityName"));
+				stmDates.setString(1, rsActivityRelated.getString(activityName_STRING));
 				stmDates.setString(2, rsActivityRelated.getString("email"));
 				ResultSet rsDates = stmDates.executeQuery();
 				
 				while(rsDates.next()) {
 					   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-					   Integer places = rsDates.getInt("nPlaces");              
+					   Integer places = rsDates.getInt(nPlaces_STRING);              
 					   availablePlaces.put(date, places);
 				}
 					
@@ -209,7 +213,7 @@ public class ActivityDAODB implements ActivityDAO {
 				);
 				
 				Activity activity = new Activity(
-						rsActivityRelated.getString("activityName"), 
+						rsActivityRelated.getString(activityName_STRING), 
 						rsActivityRelated.getDouble("price"), 
 						ActivityType.fromString(rsActivityRelated.getString("activityType")), 
 						provider, 
