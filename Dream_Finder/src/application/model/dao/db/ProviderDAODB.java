@@ -26,6 +26,8 @@ import application.model.enums.UserRole;
 
 public class ProviderDAODB implements ProviderDAO {
 	
+	private static final String ACTIVITY_NAME_STRING = "activityName";
+	
 	//Va a trovare i 5 provider che hanno il rate più alto 
 	@Override
 	public List<Provider> findTopProviders() {
@@ -64,20 +66,19 @@ public class ProviderDAODB implements ProviderDAO {
 			while(rsProviders.next()) {
 				Provider newProvider = this.providerHelper(rsProviders);
 				
-				System.out.println(rsProviders.getString("email"));
 				stmActivities.setString(1, rsProviders.getString("email"));
 				ResultSet rsActivities = stmActivities.executeQuery();
 				
 				while(rsActivities.next()) {
 					
-					stmDates.setString(1, rsActivities.getString("activityName"));
+					stmDates.setString(1, rsActivities.getString(ACTIVITY_NAME_STRING));
 					stmDates.setString(2, rsProviders.getString("email"));
 					ResultSet rsDates = stmDates.executeQuery();
 						
 					ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
 					
 					newProvider.addActivity(
-							rsActivities.getString("activityName"), 
+							rsActivities.getString(ACTIVITY_NAME_STRING), 
 							rsActivities.getDouble("price"), 
 							ActivityType.fromString(rsActivities.getString("activityType")), 
 							new ActivityRating(
@@ -137,14 +138,14 @@ public class ProviderDAODB implements ProviderDAO {
 					
 					while(rsActivities.next()) {
 						
-						stmDates.setString(1, rsActivities.getString("activityName"));
+						stmDates.setString(1, rsActivities.getString(ACTIVITY_NAME_STRING));
 						stmDates.setString(2, email);
 						ResultSet rsDates = stmDates.executeQuery();
 							
 						ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
 						
 						newProvider.addActivity(
-								rsActivities.getString("activityName"), 
+								rsActivities.getString(ACTIVITY_NAME_STRING), 
 								rsActivities.getDouble("price"), 
 								ActivityType.fromString(rsActivities.getString("activityType")), 
 								new ActivityRating(
