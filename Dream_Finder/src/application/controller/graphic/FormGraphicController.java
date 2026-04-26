@@ -162,11 +162,6 @@ public class FormGraphicController {
         	    if (node instanceof VBox) { //L'oggetto contenuto nella variabile node è un'istanza della classe VBox di una sua sottoclasse
         	    	VBox box = (VBox) node;
         	        
-        	        // Estrazione dei controlli dal VBox
-        	        // Gli indici dipendono dall'ordine di aggiunta in initForm:
-        	        // 0: titleLabel, 1: nameLabel, 2: nameField, 
-        	        // 3: surnameLabel, 4: surnameField, 5: dateLabel, 6: datePicker
-        	        
         	        TextField nameField = (TextField) box.getChildren().get(2);
         	        TextField surnameField = (TextField) box.getChildren().get(4);
         	        DatePicker datePicker = (DatePicker) box.getChildren().get(6);
@@ -174,32 +169,13 @@ public class FormGraphicController {
         	        String name = nameField.getText();
         	        String surname = surnameField.getText();
         	        
-        	        if (name == null || name.trim().isEmpty() || 
-        	            surname == null || surname.trim().isEmpty() || 
-        	            datePicker.getValue() == null) {
-        	            
-        	        	AlertUtils.showAlert(AlertType.WARNING, "Dati mancanti", "Per favore, compila tutti i campi richiesti.");
-        	            allFieldsFilled = false;
-        	            break;
+        	        allFieldsFilled = this.validateFieldsFilled(name, surname, datePicker.getValue());
+        	        allFieldsFilled = this.validateAgeForTicket(datePicker.getValue(), i);
+        	        
+        	        if (allFieldsFilled == false) {
+        	        	break;
         	        }
         	        
-        	        LocalDate now = LocalDate.now();
-    	        	int age = Period.between(datePicker.getValue(), now).getYears(); 
-    	        	
-        	        if (i < context.getnFullTickets()) {
-        	        	if (age <= 12) {
-        	        		AlertUtils.showAlert(AlertType.WARNING, "Dati errati", "I biglietti interi NON valgono per partecipanti con un età minore o uguale ai 12 anni.");
-            	            allFieldsFilled = false;
-            	            break;
-        	        	}
-        	        } else {
-        	        	if (age > 12) {
-        	        		AlertUtils.showAlert(AlertType.WARNING, "Dati errati", "I biglietti ridotti NON valgono per partecipanti con un età superiore ai 12 anni.");
-            	            allFieldsFilled = false;
-            	            break;
-        	        	}
-        	        }
-        	        	
         	        GuestInformationDTO guest = new GuestInformationDTO();
         	        guest.setName(name);
         	        guest.setSurname(surname);
@@ -222,5 +198,37 @@ public class FormGraphicController {
         	break;
         	
     	}
+    }
+    
+    private boolean validateFieldsFilled(String name, String surname, LocalDate dob) {
+    		if (name == null || name.trim().isEmpty() || 
+	            surname == null || surname.trim().isEmpty() || 
+	            dob == null) {
+	            
+	        	AlertUtils.showAlert(AlertType.WARNING, "Dati mancanti", "Per favore, compila tutti i campi richiesti.");
+	            
+	            return false;
+	        }
+    	
+        return true;
+    }
+
+    private boolean validateAgeForTicket(LocalDate dob, int participantIndex) {
+        int age = Period.between(dob, LocalDate.now()).getYears();
+        boolean isFullTicket = participantIndex < context.getnFullTickets();
+
+        if (isFullTicket && age <= 12) {
+            AlertUtils.showAlert(AlertType.WARNING, "Dati errati",
+                "I biglietti interi NON valgono per partecipanti con un età minore o uguale ai 12 anni.");
+            return false;
+        }
+
+        if (!isFullTicket && age > 12) {
+            AlertUtils.showAlert(AlertType.WARNING, "Dati errati",
+                "I biglietti ridotti NON valgono per partecipanti con un età superiore ai 12 anni.");
+            return false;
+        }
+
+        return true;
     }
 }
