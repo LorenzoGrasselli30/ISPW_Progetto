@@ -77,44 +77,20 @@ public class BookingDAODB implements BookingDAO {
 	public Booking findByID(String bookingID) {
 		Booking newBooking = null;
 		
-		try (Connection conn = DatabaseConnection.getConnection();
-				PreparedStatement stmBooking = conn.prepareStatement(SQLQueries.FIND_BOOKING);
-				PreparedStatement stmGuests = conn.prepareStatement(SQLQueries.FIND_GUESTS);
-				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+		Connection conn;
+		try {
+			conn = DatabaseConnection.getConnection();
+		} catch (SQLException e) {
+			throw new DAOException("Errore di accesso al database");
+		}
+		
+		try (PreparedStatement stmBooking = conn.prepareStatement(SQLQueries.FIND_BOOKING)) {
 			
 			stmBooking.setString(1, bookingID);
 			ResultSet rsBooking = stmBooking.executeQuery();
 			
-			while(rsBooking.next()) {
-				
-				stmGuests.setString(1, bookingID);
-				ResultSet rsGuests = stmGuests.executeQuery();
-				
-				List<GuestInformation> guests= new ArrayList<>();
-				
-				while(rsGuests.next()) {
-					GuestInformation guest = new GuestInformation(
-							rsGuests.getString("guestName"), 
-							rsGuests.getString("guestSurname"), 
-							rsGuests.getDate("dob").toLocalDate()
-							);
-					
-					guests.add(guest);
-				}
-				
-				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 			
-				stmDates.setString(1, rsBooking.getString("activityName"));
-				stmDates.setString(2, rsBooking.getString("providerEmail"));
-				ResultSet rsDates = stmDates.executeQuery();
-				
-				while(rsDates.next()) {
-					   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-					   Integer places = rsDates.getInt("nPlaces");              
-					   availablePlaces.put(date, places);
-				}
-					
-				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+			while(rsBooking.next()) {
 				
 				Provider provider = new Provider(
 						rsBooking.getString("providerEmail"), 
@@ -144,7 +120,7 @@ public class BookingDAODB implements BookingDAO {
 								rsBooking.getInt("duration"), 
 								rsBooking.getBoolean("timeInMinutes")
 								), 
-						availableDates
+						null
 						);
 				
 				newBooking = new Booking (
@@ -157,7 +133,7 @@ public class BookingDAODB implements BookingDAO {
 								rsBooking.getString("travelerSurname"), 
 								rsBooking.getDate("dob").toLocalDate()
 								), 
-						guests, 
+						null, 
 						activity, 
 						new BookingPriceInformation (
 								rsBooking.getInt("nFullTickets"), 
@@ -177,6 +153,49 @@ public class BookingDAODB implements BookingDAO {
 	    	throw new DAOException("Errore di ricerca della prenotazione");
 	    }
 		
+		//Recupero dei partecipanti
+		try (PreparedStatement stmGuests = conn.prepareStatement(SQLQueries.FIND_GUESTS)) {
+			List<GuestInformation> guests= new ArrayList<>();
+			
+			stmGuests.setString(1, bookingID);
+			ResultSet rsGuests = stmGuests.executeQuery();
+			
+			while(rsGuests.next()) {
+				GuestInformation guest = new GuestInformation(
+						rsGuests.getString("guestName"), 
+						rsGuests.getString("guestSurname"), 
+						rsGuests.getDate("dob").toLocalDate()
+						);
+				
+				guests.add(guest);
+			}
+			
+			newBooking.setGuests(guests);
+		} catch (SQLException e) {
+	    	throw new DAOException("Errore di ricerca della prenotazione");
+	    }
+		
+		//Recupero delle date disponibili
+		try (PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+			Map<LocalDate, Integer> availablePlaces = new HashMap<>();
+			
+			stmDates.setString(1, newBooking.getActivity().getActivityName());
+			stmDates.setString(2, newBooking.getActivity().getProvider().getEmail());
+			ResultSet rsDates = stmDates.executeQuery();
+			
+			while(rsDates.next()) {
+				   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
+				   Integer places = rsDates.getInt("nPlaces");              
+				   availablePlaces.put(date, places);
+			}
+				
+			newBooking.getActivity().setAvaibleDates(new ActivityAvailableDates(availablePlaces));
+			
+			
+		} catch (SQLException e) {
+	    	throw new DAOException("Errore di ricerca della prenotazione");
+	    }
+
 		return newBooking;
 	}
 }
