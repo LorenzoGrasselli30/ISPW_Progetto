@@ -53,7 +53,7 @@ public class SQLQueries {
 			+ " AND p.providerName = ?;";
 	
 	public static final String FIND_RELATED =
-			" SELECT"
+			"SELECT"
 			//User
 			+ " u.*,"
 			//Provider
@@ -74,22 +74,22 @@ public class SQLQueries {
 	
 	public static final String FIND_TRAVELER_BY_EMAIL =
 			"SELECT User.email, User.password, User.ruolo,"
-			+ "	Traveler.username, Traveler.travelerName, Traveler.travelerSurname, Traveler.dob"
-			+ "	FROM ispw.Traveler JOIN ispw.User ON"
-			+ "	Traveler.travelerEmail = user.email"
+			+ " Traveler.username, Traveler.travelerName, Traveler.travelerSurname, Traveler.dob"
+			+ " FROM ispw.Traveler JOIN ispw.User ON"
+			+ " Traveler.travelerEmail = user.email"
 			+ " WHERE User.email = ?;";
 	
 	public static final String FIND_PROVIDER_BY_EMAIL =
 			"Select User.*, Provider.*"
 			+ " FROM ispw.Traveler JOIN ispw.User ON"
-			+ "	Provider.providerEmail = User.email"
-			+ "	WHERE User.email = ?;";
+			+ " Provider.providerEmail = User.email"
+			+ " WHERE User.email = ?;";
 	
 	public static final String FIND_ALL_PROVIDER =
 			"SELECT User.email, User.password, User.ruolo,"
-			+ "	Provider.providerName,  Provider.providerType,  Provider.location,  Provider.pname,  Provider.psurname,  Provider.rate,  Provider.nOfferedActivities"
-			+ "	FROM ispw.Provider, ispw.User"
-			+ "	WHERE Provider.providerEmail = User.email;";
+			+ " Provider.providerName,  Provider.providerType,  Provider.location,  Provider.pname,  Provider.psurname,  Provider.rate,  Provider.nOfferedActivities"
+			+ " FROM ispw.Provider, ispw.User"
+			+ " WHERE Provider.providerEmail = User.email;";
 	
 	public static final String FIND_ACTIVITY_BY_EMAIL =
 			"SELECT"
@@ -129,20 +129,20 @@ public class SQLQueries {
 	
 	public static final String INSERT_BOOKING =
 			"INSERT INTO `ispw`.`booking` ("
-			+ "	`bookingID`, "
-			+ "	`bookingDate`, "
-			+ "	`bookedDate`, "
-			+ "	`nFullTickets`, "
-			+ "	`nReducedTickets`, "
-			+ "	`shuttleService`, "
-			+ "	`guideService`, "
-			+ "	`shuttlePrice`, "
-			+ "	`guidePrice`, "
-			+ "	`totalPrice`, "
-			+ "	`traveler`, "
-			+ "	`activity` "
-			+ "	) "
-			+ "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+			+ " `bookingID`, "
+			+ " `bookingDate`, "
+			+ " `bookedDate`, "
+			+ " `nFullTickets`, "
+			+ " `nReducedTickets`, "
+			+ " `shuttleService`, "
+			+ " `guideService`, "
+			+ " `shuttlePrice`, "
+			+ " `guidePrice`, "
+			+ " `totalPrice`, "
+			+ " `traveler`, "
+			+ " `activity` "
+			+ " ) "
+			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
 	
 	public static final String INSERT_GUEST =
 			"INSERT INTO `ispw`.`guest` (`booking`, `guestName`, `guestSurname`, `dob`)"
@@ -150,17 +150,17 @@ public class SQLQueries {
 	
 	public static final String INSERT_RECEIPT =
 			"INSERT INTO `ispw`.`receipt` ("
-			+ "	`paymentID`, "
+			+ " `paymentID`, "
 			+ " `paymentDescription`, "
-			+ "	`paymentOutcome`, "
-			+ "	`cardNumber`, "
-			+ "	`expiredDate`, "
-			+ "	`ownerName`, "
-			+ "	`booking`"
-			+ "	) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			+ " `paymentOutcome`, "
+			+ " `cardNumber`, "
+			+ " `expiredDate`, "
+			+ " `ownerName`, "
+			+ " `booking`"
+			+ " ) VALUES (?, ?, ?, ?, ?, ?, ?);";
 	
 	public static final String UPDATE_PLACES =
 			"UPDATE `ispw`.`availabledates` SET `nPlaces` = ? "
-			+ "WHERE ((`activity` = ?) and (`provider` = ?) and (`aDay` = ?))";
+			+ " WHERE ((`activity` = ?) and (`provider` = ?) and (`aDay` = ?))";
 	
 }
