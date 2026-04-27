@@ -27,8 +27,8 @@ import application.model.enums.UserRole;
 
 public class ActivityDAODB implements ActivityDAO {
 	
-	private static final String activityName_STRING = "activityName";
-	private static final String nPlaces_STRING = "nPlaces";
+	//private static final String activityName_STRING = "activityName";
+	//private static final String nPlaces_STRING = "nPlaces";
 	//private static final String nPlaces_STRING = "nPlaces";
 
 	@Override
@@ -51,39 +51,13 @@ public class ActivityDAODB implements ActivityDAO {
 				
 				while(rsTopActivities.next()) {
 					
-					Map<LocalDate, Integer> availablePlaces = new HashMap<>();
-					
-					stmDates.setString(1, rsTopActivities.getString(activityName_STRING));
+					stmDates.setString(1, rsTopActivities.getString("activityName"));
 					stmDates.setString(2, provider.getEmail());
 					ResultSet rsDates = stmDates.executeQuery();
-					
-					while(rsDates.next()) {
-						   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-						   Integer places = rsDates.getInt(nPlaces_STRING);              
-						   availablePlaces.put(date, places);
-					}
 						
-					ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+					ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
 					
-					Activity newActivity = new Activity(
-							rsTopActivities.getString(activityName_STRING), 
-							rsTopActivities.getDouble("price"), 
-							ActivityType.fromString(rsTopActivities.getString("activityType")), 
-							provider, 
-							new ActivityRating(
-									rsTopActivities.getDouble("rate"), 
-									rsTopActivities.getInt("nRating")
-									), 
-							new ActivityOtherInformation (
-									rsTopActivities.getString("activityDescription"), 
-									rsTopActivities.getBoolean("freeCancellation"), 
-									rsTopActivities.getBoolean("payLater"), 
-									rsTopActivities.getBoolean("skipLine"), 
-									rsTopActivities.getInt("duration"), 
-									rsTopActivities.getBoolean("timeInMinutes")
-									), 
-							availableDates
-							);
+					Activity newActivity = this.activityHelper(rsTopActivities, provider, availableDates);
 					
 					topActivities.add(newActivity);
 				}
@@ -111,50 +85,15 @@ public class ActivityDAODB implements ActivityDAO {
 			
 			while(rsActivityInfo.next()) {
 				
-				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
-				
-				stmDates.setString(1, rsActivityInfo.getString(activityName_STRING));
+				stmDates.setString(1, rsActivityInfo.getString("activityName"));
 				stmDates.setString(2, rsActivityInfo.getString("email"));
 				ResultSet rsDates = stmDates.executeQuery();
-				
-				while(rsDates.next()) {
-					   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-					   Integer places = rsDates.getInt(nPlaces_STRING);              
-					   availablePlaces.put(date, places);
-				}
 					
-				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+				ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
 				
-				Provider provider = new Provider(
-						rsActivityInfo.getString("email"),
-						rsActivityInfo.getString("password"),
-						rsActivityInfo.getString("providerName"),
-						ProviderType.fromString(rsActivityInfo.getString("providerType")),
-						rsActivityInfo.getInt("nOfferedActivities"),
-						rsActivityInfo.getString("location"),
-						rsActivityInfo.getString("pname"),
-						rsActivityInfo.getString("psurname")
-				);
+				Provider provider = this.providerHelper(rsActivityInfo);
 				
-				activityFounded = new Activity(
-						rsActivityInfo.getString(activityName_STRING), 
-						rsActivityInfo.getDouble("price"), 
-						ActivityType.fromString(rsActivityInfo.getString("activityType")), 
-						provider, 
-						new ActivityRating(
-								rsActivityInfo.getDouble("activityRate"), 
-								rsActivityInfo.getInt("nRating")
-								), 
-						new ActivityOtherInformation (
-								rsActivityInfo.getString("activityDescription"), 
-								rsActivityInfo.getBoolean("freeCancellation"), 
-								rsActivityInfo.getBoolean("payLater"), 
-								rsActivityInfo.getBoolean("skipLine"), 
-								rsActivityInfo.getInt("duration"), 
-								rsActivityInfo.getBoolean("timeInMinutes")
-								), 
-						availableDates
-						);
+				activityFounded = this.activityHelper(rsActivityInfo, provider, availableDates);
 				
 			}
 			
@@ -187,50 +126,15 @@ public class ActivityDAODB implements ActivityDAO {
 			
 			while(rsActivityRelated.next()) {
 				
-				Map<LocalDate, Integer> availablePlaces = new HashMap<>();
-				
-				stmDates.setString(1, rsActivityRelated.getString(activityName_STRING));
+				stmDates.setString(1, rsActivityRelated.getString("activityName"));
 				stmDates.setString(2, rsActivityRelated.getString("email"));
 				ResultSet rsDates = stmDates.executeQuery();
 				
-				while(rsDates.next()) {
-					   LocalDate date = rsDates.getDate("aDay").toLocalDate(); 
-					   Integer places = rsDates.getInt(nPlaces_STRING);              
-					   availablePlaces.put(date, places);
-				}
-					
-				ActivityAvailableDates availableDates = new ActivityAvailableDates(availablePlaces);
+				ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
 				
-				Provider provider = new Provider(
-						rsActivityRelated.getString("email"),
-						rsActivityRelated.getString("password"),
-						rsActivityRelated.getString("providerName"),
-						ProviderType.fromString(rsActivityRelated.getString("providerType")),
-						rsActivityRelated.getInt("nOfferedActivities"),
-						rsActivityRelated.getString("location"),
-						rsActivityRelated.getString("pname"),
-						rsActivityRelated.getString("psurname")
-				);
+				Provider provider = this.providerHelper(rsActivityRelated);
 				
-				Activity activity = new Activity(
-						rsActivityRelated.getString(activityName_STRING), 
-						rsActivityRelated.getDouble("price"), 
-						ActivityType.fromString(rsActivityRelated.getString("activityType")), 
-						provider, 
-						new ActivityRating(
-								rsActivityRelated.getDouble("activityRate"), 
-								rsActivityRelated.getInt("nRating")
-								), 
-						new ActivityOtherInformation (
-								rsActivityRelated.getString("activityDescription"), 
-								rsActivityRelated.getBoolean("freeCancellation"), 
-								rsActivityRelated.getBoolean("payLater"), 
-								rsActivityRelated.getBoolean("skipLine"), 
-								rsActivityRelated.getInt("duration"), 
-								rsActivityRelated.getBoolean("timeInMinutes")
-								), 
-						availableDates
-						);
+				Activity activity = this.activityHelper(rsActivityRelated, provider, availableDates);
 				
 				if (activity.calculateRelevanceScore(activity, activityType, providerName)==2) {
 					highScore.add(activity);
@@ -276,4 +180,54 @@ public class ActivityDAODB implements ActivityDAO {
 	    }
 		return true;
 	}
+	
+	//Helpers
+	
+	private Provider providerHelper(ResultSet rs) throws SQLException {
+        return new Provider(
+            rs.getString("email"),
+            rs.getString("password"),
+            rs.getString("providerName"),
+            ProviderType.fromString(rs.getString("providerType")),
+            rs.getInt("nOfferedActivities"),
+            rs.getString("location"),
+            rs.getString("pname"),
+            rs.getString("psurname")
+        );
+    }
+	
+	private ActivityAvailableDates availableDatesHelper(ResultSet rs) throws SQLException {
+		Map<LocalDate, Integer> availablePlaces = new HashMap<>();
+		
+		while(rs.next()) {
+			   LocalDate date = rs.getDate("aDay").toLocalDate(); 
+			   Integer places = rs.getInt("nPlaces");              
+			   availablePlaces.put(date, places);
+		}
+			
+		return new ActivityAvailableDates(availablePlaces);
+    }
+	
+	private Activity activityHelper(ResultSet rs, Provider provider, ActivityAvailableDates availableDates) throws SQLException {
+		return new Activity(
+				rs.getString("activityName"), 
+				rs.getDouble("price"), 
+				ActivityType.fromString(rs.getString("activityType")), 
+				provider, 
+				new ActivityRating(
+						rs.getDouble("rate"), 
+						rs.getInt("nRating")
+						), 
+				new ActivityOtherInformation (
+						rs.getString("activityDescription"), 
+						rs.getBoolean("freeCancellation"), 
+						rs.getBoolean("payLater"), 
+						rs.getBoolean("skipLine"), 
+						rs.getInt("duration"), 
+						rs.getBoolean("timeInMinutes")
+						), 
+				availableDates
+				); 
+	}
+	
 }
