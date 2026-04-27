@@ -42,21 +42,14 @@ public class ActivityDAODB implements ActivityDAO {
 		}
 		
 		for (Provider provider : providers) {
-			try (PreparedStatement stmTopActivities = conn.prepareStatement(SQLQueries.FIND_TOP_ACTIVITIES);
-					PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+			
+			try (PreparedStatement stmTopActivities = conn.prepareStatement(SQLQueries.FIND_TOP_ACTIVITIES)) {
 				
 				stmTopActivities.setString(1, provider.getProviderName());
 				ResultSet rsTopActivities = stmTopActivities.executeQuery();
 				
 				while(rsTopActivities.next()) {
-					
-					stmDates.setString(1, rsTopActivities.getString(ACTIVITY_NAME_STRING));
-					stmDates.setString(2, provider.getEmail());
-					ResultSet rsDates = stmDates.executeQuery();
-						
-					ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
-					
-					Activity newActivity = this.activityHelper(rsTopActivities, provider, availableDates);
+					Activity newActivity = this.activityHelper(rsTopActivities, provider);
 					
 					topActivities.add(newActivity);
 				}
@@ -66,7 +59,20 @@ public class ActivityDAODB implements ActivityDAO {
 		    }
 		}
 		
-		
+		for (Activity activity : topActivities) {
+			
+			try (PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+				stmDates.setString(1, activity.getActivityName());
+				stmDates.setString(2, activity.getProvider().getEmail());
+				ResultSet rsDates = stmDates.executeQuery();
+				
+				activity.setAvaibleDates(this.availableDatesHelper(rsDates));
+				
+			} catch (SQLException e) {
+		    	throw new DAOException("Errore di ricerca delle attività");
+		    }
+		}
+
 		return topActivities;
 	}
 
@@ -207,7 +213,7 @@ public class ActivityDAODB implements ActivityDAO {
 		return new ActivityAvailableDates(availablePlaces);
     }
 	
-	private Activity activityHelper(ResultSet rs, Provider provider, ActivityAvailableDates availableDates) throws SQLException {
+	private Activity activityHelper(ResultSet rs, Provider provider) throws SQLException {
 		return new Activity(
 				rs.getString("activityName"), 
 				rs.getDouble("price"), 
@@ -225,7 +231,7 @@ public class ActivityDAODB implements ActivityDAO {
 						rs.getInt("duration"), 
 						rs.getBoolean("timeInMinutes")
 						), 
-				availableDates
+				null
 				); 
 	}
 	

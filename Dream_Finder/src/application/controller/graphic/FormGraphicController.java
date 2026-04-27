@@ -171,7 +171,8 @@ public class FormGraphicController {
         	        String surname = surnameField.getText();
         	        
         	        allFieldsFilled = this.validateFieldsFilled(name, surname, datePicker.getValue());
-        	        allFieldsFilled = this.validateAgeForTicket(datePicker.getValue(), i);
+        	        
+        	        validAgeForTicket = this.validateAgeForTicket(datePicker.getValue(), i);
         	        
         	        if (allFieldsFilled == false || validAgeForTicket == false) {
         	        	break;

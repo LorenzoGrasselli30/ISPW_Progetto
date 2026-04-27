@@ -21,18 +21,9 @@ public class ActivityAvailableDates {
 		return (available != null && available >= requestedPlaces);
 	}
 	
-	/*
-	public boolean reservePlaces(LocalDate day, Integer requestedPlaces) {
-		Integer available = avaiblePlaces.get(day);
+	public void addAvailableDates (){
 		
-		if (this.hasRequiredPlaces(day, requestedPlaces)) {
-			avaiblePlaces.put(day, available - requestedPlaces);
-			return true;
-		}
-		
-		return false;
 	}
-	 */
 	public Map<LocalDate, Integer> getAvaiblePlaces() {
 		return avaiblePlaces;
 	}

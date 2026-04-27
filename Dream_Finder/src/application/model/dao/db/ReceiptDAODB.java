@@ -76,7 +76,6 @@ public class ReceiptDAODB implements ReceiptDAO {
 		} catch (SQLException e) {
 			e.printStackTrace(); // temporaneo
 		    throw new DAOException("Errore di ricerca del provider: " + e.getMessage());
-	    	//throw new DAOException("Errore nella ricerca della ricevuta");
 	    }
 		
 		return newReceipt;

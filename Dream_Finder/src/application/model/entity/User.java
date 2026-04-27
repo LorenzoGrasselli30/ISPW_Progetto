@@ -9,7 +9,7 @@ public abstract class User {
 	private UserRole userRole;
 	
 	//Costruttore
-	public User(String email, String password, UserRole userRole) {
+	protected User(String email, String password, UserRole userRole) {
 		this.email = email;
 		this.password = password;
 		this.userRole = userRole;
