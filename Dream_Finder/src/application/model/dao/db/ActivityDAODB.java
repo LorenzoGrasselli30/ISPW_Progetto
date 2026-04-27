@@ -27,9 +27,8 @@ import application.model.enums.UserRole;
 
 public class ActivityDAODB implements ActivityDAO {
 	
-	//private static final String activityName_STRING = "activityName";
-	//private static final String nPlaces_STRING = "nPlaces";
-	//private static final String nPlaces_STRING = "nPlaces";
+	private static final String ACTIVITY_NAME_STRING = "activityName";
+	private static final String EMAIL_STRING = "email";
 
 	@Override
 	public List<Activity> findTopActivities(List<Provider> providers) {
@@ -51,7 +50,7 @@ public class ActivityDAODB implements ActivityDAO {
 				
 				while(rsTopActivities.next()) {
 					
-					stmDates.setString(1, rsTopActivities.getString("activityName"));
+					stmDates.setString(1, rsTopActivities.getString(ACTIVITY_NAME_STRING));
 					stmDates.setString(2, provider.getEmail());
 					ResultSet rsDates = stmDates.executeQuery();
 						
@@ -85,8 +84,8 @@ public class ActivityDAODB implements ActivityDAO {
 			
 			while(rsActivityInfo.next()) {
 				
-				stmDates.setString(1, rsActivityInfo.getString("activityName"));
-				stmDates.setString(2, rsActivityInfo.getString("email"));
+				stmDates.setString(1, rsActivityInfo.getString(ACTIVITY_NAME_STRING));
+				stmDates.setString(2, rsActivityInfo.getString(EMAIL_STRING));
 				ResultSet rsDates = stmDates.executeQuery();
 					
 				ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
@@ -126,8 +125,8 @@ public class ActivityDAODB implements ActivityDAO {
 			
 			while(rsActivityRelated.next()) {
 				
-				stmDates.setString(1, rsActivityRelated.getString("activityName"));
-				stmDates.setString(2, rsActivityRelated.getString("email"));
+				stmDates.setString(1, rsActivityRelated.getString(ACTIVITY_NAME_STRING));
+				stmDates.setString(2, rsActivityRelated.getString(EMAIL_STRING));
 				ResultSet rsDates = stmDates.executeQuery();
 				
 				ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
@@ -215,7 +214,7 @@ public class ActivityDAODB implements ActivityDAO {
 				ActivityType.fromString(rs.getString("activityType")), 
 				provider, 
 				new ActivityRating(
-						rs.getDouble("rate"), 
+						rs.getDouble("activityRate"), 
 						rs.getInt("nRating")
 						), 
 				new ActivityOtherInformation (

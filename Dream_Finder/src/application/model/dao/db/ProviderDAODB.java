@@ -27,6 +27,7 @@ import application.model.enums.UserRole;
 public class ProviderDAODB implements ProviderDAO {
 	
 	private static final String ACTIVITY_NAME_STRING = "activityName";
+	private static final String EMAIL_STRING = "email";
 	
 	//Va a trovare i 5 provider che hanno il rate più alto 
 	@Override
@@ -66,13 +67,13 @@ public class ProviderDAODB implements ProviderDAO {
 			while(rsProviders.next()) {
 				Provider newProvider = this.providerHelper(rsProviders);
 				
-				stmActivities.setString(1, rsProviders.getString("email"));
+				stmActivities.setString(1, rsProviders.getString(EMAIL_STRING));
 				ResultSet rsActivities = stmActivities.executeQuery();
 				
 				while(rsActivities.next()) {
 					
 					stmDates.setString(1, rsActivities.getString(ACTIVITY_NAME_STRING));
-					stmDates.setString(2, rsProviders.getString("email"));
+					stmDates.setString(2, rsProviders.getString(EMAIL_STRING));
 					ResultSet rsDates = stmDates.executeQuery();
 						
 					ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);

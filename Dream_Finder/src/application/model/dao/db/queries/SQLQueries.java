@@ -10,7 +10,7 @@ public class SQLQueries {
 			+ " ORDER BY rate DESC LIMIT 5;";
 	
 	public static final String FIND_TOP_ACTIVITIES =
-			"SELECT Activity.*"
+			"SELECT Activity.*, Activity.rate AS activityRate"
 			+ " FROM ispw.Activity JOIN ispw.Provider"
 			+ " ON Activity.provider = Provider.providerEmail"
 			+ " WHERE Provider.providerName = ?"

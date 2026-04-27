@@ -155,6 +155,7 @@ public class FormGraphicController {
         case "confirmFormButton":
         	List<GuestInformationDTO> guests = new ArrayList<>();
         	boolean allFieldsFilled = true;
+        	boolean validAgeForTicket = true;
         	
         	int i=0;
         	// Iterazione su ogni VBox nel participantsContainer
@@ -172,7 +173,7 @@ public class FormGraphicController {
         	        allFieldsFilled = this.validateFieldsFilled(name, surname, datePicker.getValue());
         	        allFieldsFilled = this.validateAgeForTicket(datePicker.getValue(), i);
         	        
-        	        if (allFieldsFilled == false) {
+        	        if (allFieldsFilled == false || validAgeForTicket == false) {
         	        	break;
         	        }
         	        
@@ -186,7 +187,7 @@ public class FormGraphicController {
         	    }
         	}
         	
-        	if (allFieldsFilled) {
+        	if (allFieldsFilled && validAgeForTicket) {
         		//Inserisco la lista degli ospiti nel booking context
         	    context.setGuests(guests);
         	    
