@@ -56,8 +56,9 @@ public class BookingDAODB implements BookingDAO {
 			
 			stmBooking.executeUpdate();
 			
+			stmGuests.setString(1, result);
+			
 			for (GuestInformation guest : booking.getGuests()) {
-				stmGuests.setString(1, result);
 				stmGuests.setString(2, guest.getName());
 				stmGuests.setString(3, guest.getSurname());
 				stmGuests.setDate(4, Date.valueOf(guest.getDateOfBirth()));

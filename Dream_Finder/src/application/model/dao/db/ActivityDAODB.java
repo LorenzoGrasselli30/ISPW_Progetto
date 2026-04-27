@@ -80,32 +80,40 @@ public class ActivityDAODB implements ActivityDAO {
 	public Activity findByProvider(String activityName, String providerName) {
 		Activity activityFounded = null;
 		
-		try (Connection conn = DatabaseConnection.getConnection();
-				PreparedStatement stmActivityInfo = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_INFO);
-				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+		Connection conn;
+		try {
+			conn = DatabaseConnection.getConnection();
+		} catch (SQLException e) {
+			throw new DAOException("Errore di accesso al database");
+		}
+		
+		try (PreparedStatement stmActivityInfo = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_INFO)) {
 			
 			stmActivityInfo.setString(1, activityName);
 			stmActivityInfo.setString(2, providerName);
 			ResultSet rsActivityInfo = stmActivityInfo.executeQuery();
 			
-			while(rsActivityInfo.next()) {
+				while(rsActivityInfo.next()) {
+					Provider provider = this.providerHelper(rsActivityInfo);
 				
-				stmDates.setString(1, rsActivityInfo.getString(ACTIVITY_NAME_STRING));
-				stmDates.setString(2, rsActivityInfo.getString(EMAIL_STRING));
-				ResultSet rsDates = stmDates.executeQuery();
-					
-				ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
+					activityFounded = this.activityHelper(rsActivityInfo, provider);
 				
-				Provider provider = this.providerHelper(rsActivityInfo);
-				
-				activityFounded = this.activityHelper(rsActivityInfo, provider, availableDates);
-				
+				}
+			} catch (SQLException e) {
+				throw new DAOException("Errore nel caricamento dell'attività corrispondente");
 			}
-			
-		} catch (SQLException e) {
-	    	throw new DAOException("Errore nel caricamento dell'attività corrispondente");
-	    }
 		
+		try (PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+			stmDates.setString(1, activityFounded.getActivityName());
+			stmDates.setString(2, activityFounded.getProvider().getEmail());
+			ResultSet rsDates = stmDates.executeQuery();
+				
+			activityFounded.setAvaibleDates(this.availableDatesHelper(rsDates));
+				
+			} catch (SQLException e) {
+		    	throw new DAOException("Errore nel caricamento dell'attività corrispondente");
+			}
+
 		return activityFounded;
 	}
 
@@ -119,9 +127,14 @@ public class ActivityDAODB implements ActivityDAO {
 		List<Activity> mediumScore = new ArrayList<>(); // Solo stesso provider o stesso tipo
 		List<Activity> others = new ArrayList<>(); // Tutte le altre
 		
-		try (Connection conn = DatabaseConnection.getConnection();
-				PreparedStatement stmActivityRelated = conn.prepareStatement(SQLQueries.FIND_RELATED);
-				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+		Connection conn;
+		try {
+			conn = DatabaseConnection.getConnection();
+		} catch (SQLException e) {
+			throw new DAOException("Errore di accesso al database");
+		}
+		
+		try (PreparedStatement stmActivityRelated = conn.prepareStatement(SQLQueries.FIND_RELATED)) {
 			
 			stmActivityRelated.setString(1, activityName);
 			stmActivityRelated.setString(2, activityType.toString());
@@ -130,16 +143,9 @@ public class ActivityDAODB implements ActivityDAO {
 			ResultSet rsActivityRelated = stmActivityRelated.executeQuery();
 			
 			while(rsActivityRelated.next()) {
-				
-				stmDates.setString(1, rsActivityRelated.getString(ACTIVITY_NAME_STRING));
-				stmDates.setString(2, rsActivityRelated.getString(EMAIL_STRING));
-				ResultSet rsDates = stmDates.executeQuery();
-				
-				ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
-				
 				Provider provider = this.providerHelper(rsActivityRelated);
 				
-				Activity activity = this.activityHelper(rsActivityRelated, provider, availableDates);
+				Activity activity = this.activityHelper(rsActivityRelated, provider);
 				
 				if (activity.calculateRelevanceScore(activity, activityType, providerName)==2) {
 					highScore.add(activity);
@@ -160,9 +166,23 @@ public class ActivityDAODB implements ActivityDAO {
 		relatedActivities.addAll(others);
 		
 		// Limita a 10 attività
-		return relatedActivities.stream()
-			.limit(10)
-			.collect(Collectors.toList());
+		relatedActivities.stream().limit(10).collect(Collectors.toList());
+		
+		for (Activity activity : relatedActivities) {
+			
+			try (PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+				stmDates.setString(1, activity.getActivityName());
+				stmDates.setString(2, activity.getProvider().getEmail());
+				ResultSet rsDates = stmDates.executeQuery();
+				
+				activity.setAvaibleDates(this.availableDatesHelper(rsDates));
+				
+			} catch (SQLException e) {
+		    	throw new DAOException("Errore nel caricamento delle attività correlate");
+		    }
+		}
+		
+		return relatedActivities;
 	}
 
 	@Override
