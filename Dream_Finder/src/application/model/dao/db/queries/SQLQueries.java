@@ -25,16 +25,16 @@ public class SQLQueries {
 	
 	public static final String FIND_GUESTS =
 			"SELECT Guest.*"
-			+ "	FROM ispw.Guest JOIN ispw.Booking ON Booking.bookingID = Guest.booking"
-			+ "	WHERE Booking.bookingID = ?;";
+			+ " FROM ispw.Guest JOIN ispw.Booking ON Booking.bookingID = Guest.booking"
+			+ " WHERE Booking.bookingID = ?;";
 	
 	public static final String FIND_USER =
 			"SELECT *"
-			+ "	FROM ispw.User"
-			+ "	WHERE User.email = ?;";
+			+ " FROM ispw.User"
+			+ " WHERE User.email = ?;";
 	
 	public static final String FIND_ACTIVITY_INFO =
-			" SELECT"
+			"SELECT"
 			//User
 			+ " u.*,"
 			//Provider
