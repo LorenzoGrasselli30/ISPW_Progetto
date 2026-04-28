@@ -73,13 +73,12 @@ public class ProviderDAODB implements ProviderDAO {
 		} catch (SQLException e) {
 	    	throw new DAOException("Errore di ricerca del provider");
 	    }
-		
-		try (PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL)) {
 			
-			for (Provider provider: providers) {
+		for (Provider provider: providers) {
+			try (PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL)) {
 				stmActivities.setString(1, provider.getEmail());
 				ResultSet rsActivities = stmActivities.executeQuery();
-				
+					
 				while (rsActivities.next()) {
 				provider.addActivity(
 						rsActivities.getString(ACTIVITY_NAME_STRING), 
@@ -98,21 +97,24 @@ public class ProviderDAODB implements ProviderDAO {
 								rsActivities.getBoolean("timeInMinutes")
 								), 
 						null
-						);
+						);	
 				}
-				
-				/*
-				for (Activity activity: provider.getActivities()) {
+			}	catch (SQLException e) {
+		    	throw new DAOException("Errore di ricerca del provider");
+		    }
+			
+			for (Activity activity: provider.getActivities()) {
+				try (PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
 					stmDates.setString(1, activity.getActivityName());
 					stmDates.setString(2, activity.getProvider().getEmail());
 					ResultSet rsDates = stmDates.executeQuery();
-					
+						
 					activity.setAvaibleDates(this.availableDatesHelper(rsDates));
-				}*/
+				} catch (SQLException e) {
+				    throw new DAOException("Errore di ricerca del provider");
+				}
 			}
-		} catch (SQLException e) {
-	    	throw new DAOException("Errore di ricerca del provider");
-	    }
+		} 
 		
 		return providers;
 	}

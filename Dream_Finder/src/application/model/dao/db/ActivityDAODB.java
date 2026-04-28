@@ -25,7 +25,7 @@ import application.model.enums.ProviderType;
 
 public class ActivityDAODB implements ActivityDAO {
 	
-	//private static final String ACTIVITY_NAME_STRING = "activityName";
+	private static final String ACTIVITY_NAME_STRING = "activityName";
 	//private static final String EMAIL_STRING = "email";
 
 	@Override
@@ -233,7 +233,7 @@ public class ActivityDAODB implements ActivityDAO {
 	
 	private Activity activityHelper(ResultSet rs, Provider provider) throws SQLException {
 		return new Activity(
-				rs.getString("activityName"), 
+				rs.getString(ACTIVITY_NAME_STRING), 
 				rs.getDouble("price"), 
 				ActivityType.fromString(rs.getString("activityType")), 
 				provider, 
