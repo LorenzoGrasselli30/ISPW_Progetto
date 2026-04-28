@@ -8,16 +8,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import application.model.dao.ProviderDAO;
-import application.model.dao.UserDAO;
 import application.model.entity.Activity;
 import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
-import application.model.entity.User;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
-import application.model.enums.UserRole;
 
 public class ProviderDAODemo implements ProviderDAO{
 	

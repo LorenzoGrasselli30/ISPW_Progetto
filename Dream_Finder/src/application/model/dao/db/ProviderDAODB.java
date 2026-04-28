@@ -161,7 +161,7 @@ public class ProviderDAODB implements ProviderDAO {
 			
 			while (rsActivities.next()) {
 				newProvider.addActivity(
-					rsActivities.getString("activityName"), 
+					rsActivities.getString(ACTIVITY_NAME_STRING), 
 					rsActivities.getDouble("price"), 
 					ActivityType.fromString(rsActivities.getString("activityType")), 
 					new ActivityRating(

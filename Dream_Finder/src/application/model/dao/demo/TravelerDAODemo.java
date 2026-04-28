@@ -5,10 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import application.model.dao.TravelerDAO;
-import application.model.dao.UserDAO;
 import application.model.entity.Traveler;
-import application.model.entity.User;
-import application.model.enums.UserRole;
 
 public class TravelerDAODemo implements TravelerDAO {
 	

@@ -21,9 +21,6 @@ public class ActivityAvailableDates {
 		return (available != null && available >= requestedPlaces);
 	}
 	
-	public void addAvailableDates (){
-		
-	}
 	public Map<LocalDate, Integer> getAvaiblePlaces() {
 		return avaiblePlaces;
 	}

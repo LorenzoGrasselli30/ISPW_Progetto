@@ -1,12 +1,8 @@
 package application.controller.application;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.stripe.exception.StripeException;
 
 import application.configuration.UserSession;
 import application.exception.AvailabilityException;

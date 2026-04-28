@@ -1,7 +1,5 @@
 package application.model.dao.demo;
 
-import java.util.Map;
-
 import application.model.dao.ProviderDAO;
 import application.model.dao.TravelerDAO;
 import application.model.dao.UserDAO;

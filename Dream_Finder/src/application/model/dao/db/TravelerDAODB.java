@@ -9,8 +9,6 @@ import application.exception.DAOException;
 import application.model.dao.TravelerDAO;
 import application.model.dao.db.queries.SQLQueries;
 import application.model.entity.Traveler;
-import application.model.entity.User;
-import application.model.enums.UserRole;
 
 public class TravelerDAODB implements TravelerDAO {
 

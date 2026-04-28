@@ -26,7 +26,6 @@ import application.model.enums.ProviderType;
 public class ActivityDAODB implements ActivityDAO {
 	
 	private static final String ACTIVITY_NAME_STRING = "activityName";
-	//private static final String EMAIL_STRING = "email";
 
 	@Override
 	public List<Activity> findTopActivities(List<Provider> providers) {
