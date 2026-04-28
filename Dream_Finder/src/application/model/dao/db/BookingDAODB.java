@@ -24,10 +24,8 @@ import application.model.entity.BookingPriceInformation;
 import application.model.entity.GuestInformation;
 import application.model.entity.Provider;
 import application.model.entity.Traveler;
-import application.model.entity.User;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
-import application.model.enums.UserRole;
 
 public class BookingDAODB implements BookingDAO {
 
@@ -56,15 +54,16 @@ public class BookingDAODB implements BookingDAO {
 			
 			stmBooking.executeUpdate();
 			
-			stmGuests.setString(1, result);
-			
 			for (GuestInformation guest : booking.getGuests()) {
+				stmGuests.setString(1, result);
 				stmGuests.setString(2, guest.getName());
 				stmGuests.setString(3, guest.getSurname());
 				stmGuests.setDate(4, Date.valueOf(guest.getDateOfBirth()));
 				
-				stmGuests.executeUpdate();
+				stmGuests.addBatch();
 			}
+			
+			stmGuests.executeBatch();
 			
 		} catch (SQLException e) {
 			throw new DAOException("Errore nel salvataggio della prenotazione");
