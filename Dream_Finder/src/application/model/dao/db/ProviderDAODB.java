@@ -23,8 +23,8 @@ import application.model.enums.ProviderType;
 
 public class ProviderDAODB implements ProviderDAO {
 	
-	private static final String ACTIVITY_NAME_STRING = "activityName";
-	private static final String EMAIL_STRING = "email";
+	//private static final String ACTIVITY_NAME_STRING = "activityName";
+	//private static final String EMAIL_STRING = "email";
 	
 	//Va a trovare i 5 provider che hanno il rate più alto 
 	@Override
