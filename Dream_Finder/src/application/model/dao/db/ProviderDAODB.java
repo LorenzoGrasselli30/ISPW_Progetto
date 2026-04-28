@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import application.exception.DAOException;
-import application.model.bean.ActivityDTO;
 import application.model.dao.ProviderDAO;
 import application.model.dao.db.queries.SQLQueries;
 import application.model.entity.Activity;
@@ -19,10 +18,8 @@ import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
-import application.model.entity.User;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
-import application.model.enums.UserRole;
 
 public class ProviderDAODB implements ProviderDAO {
 	
@@ -57,50 +54,63 @@ public class ProviderDAODB implements ProviderDAO {
 	public List<Provider> providersList() {
 		List<Provider> providers= new ArrayList<>();
 		
-		try (Connection conn = DatabaseConnection.getConnection();
-				PreparedStatement stmProviders = conn.prepareStatement(SQLQueries.FIND_ALL_PROVIDER);
-				PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL);
-				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+		Connection conn;
+		try {
+			conn = DatabaseConnection.getConnection();
+		} catch (SQLException e) {
+			throw new DAOException("Errore di accesso al database");
+		}
+		
+		try (PreparedStatement stmProviders = conn.prepareStatement(SQLQueries.FIND_ALL_PROVIDER)) {
 			
 			ResultSet rsProviders = stmProviders.executeQuery();
 			
 			while(rsProviders.next()) {
 				Provider newProvider = this.providerHelper(rsProviders);
 				
-				stmActivities.setString(1, rsProviders.getString(EMAIL_STRING));
-				ResultSet rsActivities = stmActivities.executeQuery();
-				
-				while(rsActivities.next()) {
-					
-					stmDates.setString(1, rsActivities.getString(ACTIVITY_NAME_STRING));
-					stmDates.setString(2, rsProviders.getString(EMAIL_STRING));
-					ResultSet rsDates = stmDates.executeQuery();
-						
-					ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
-					
-					newProvider.addActivity(
-							rsActivities.getString(ACTIVITY_NAME_STRING), 
-							rsActivities.getDouble("price"), 
-							ActivityType.fromString(rsActivities.getString("activityType")), 
-							new ActivityRating(
-									rsActivities.getDouble("rate"), 
-									rsActivities.getInt("nRating")
-									), 
-							new ActivityOtherInformation(
-									rsActivities.getString("activityDescription"), 
-									rsActivities.getBoolean("freeCancellation"), 
-									rsActivities.getBoolean("payLater"), 
-									rsActivities.getBoolean("skipLine"), 
-									rsActivities.getInt("duration"), 
-									rsActivities.getBoolean("timeInMinutes")
-									), 
-							availableDates
-							);
-				}
-				
 				providers.add(newProvider);
 			}
 			
+		} catch (SQLException e) {
+	    	throw new DAOException("Errore di ricerca del provider");
+	    }
+		
+		try (PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL);
+				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+			
+			for (Provider provider: providers) {
+				stmActivities.setString(1, provider.getEmail());
+				ResultSet rsActivities = stmActivities.executeQuery();
+				
+				while (rsActivities.next()) {
+				provider.addActivity(
+						rsActivities.getString(ACTIVITY_NAME_STRING), 
+						rsActivities.getDouble("price"), 
+						ActivityType.fromString(rsActivities.getString("activityType")), 
+						new ActivityRating(
+								rsActivities.getDouble("rate"), 
+								rsActivities.getInt("nRating")
+								), 
+						new ActivityOtherInformation(
+								rsActivities.getString("activityDescription"), 
+								rsActivities.getBoolean("freeCancellation"), 
+								rsActivities.getBoolean("payLater"), 
+								rsActivities.getBoolean("skipLine"), 
+								rsActivities.getInt("duration"), 
+								rsActivities.getBoolean("timeInMinutes")
+								), 
+						null
+						);
+				}
+				
+				for (Activity activity: provider.getActivities()) {
+					stmDates.setString(1, activity.getActivityName());
+					stmDates.setString(2, activity.getProvider().getEmail());
+					ResultSet rsDates = stmDates.executeQuery();
+					
+					activity.setAvaibleDates(this.availableDatesHelper(rsDates));
+				}
+			}
 		} catch (SQLException e) {
 	    	throw new DAOException("Errore di ricerca del provider");
 	    }
@@ -123,48 +133,61 @@ public class ProviderDAODB implements ProviderDAO {
 	public Provider findByEmail(String email) {
 		Provider newProvider = null;
 		
-		try (Connection conn = DatabaseConnection.getConnection();
-				PreparedStatement stmProvider = conn.prepareStatement(SQLQueries.FIND_PROVIDER_BY_EMAIL);
-				PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL);
-				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+		Connection conn;
+		try {
+			conn = DatabaseConnection.getConnection();
+		} catch (SQLException e) {
+			throw new DAOException("Errore di accesso al database");
+		}
+		
+		try (PreparedStatement stmProvider = conn.prepareStatement(SQLQueries.FIND_PROVIDER_BY_EMAIL);) {
 			
 				stmProvider.setString(1, email);
 				ResultSet rsProvider = stmProvider.executeQuery();
 				
 				while (rsProvider.next()) {
 					newProvider = this.providerHelper(rsProvider);
-					
-					stmActivities.setString(1, email);
-					ResultSet rsActivities= stmActivities.executeQuery();
-					
-					while(rsActivities.next()) {
-						
-						stmDates.setString(1, rsActivities.getString(ACTIVITY_NAME_STRING));
-						stmDates.setString(2, email);
-						ResultSet rsDates = stmDates.executeQuery();
-							
-						ActivityAvailableDates availableDates = this.availableDatesHelper(rsDates);
-						
-						newProvider.addActivity(
-								rsActivities.getString(ACTIVITY_NAME_STRING), 
-								rsActivities.getDouble("price"), 
-								ActivityType.fromString(rsActivities.getString("activityType")), 
-								new ActivityRating(
-										rsActivities.getDouble("rate"), 
-										rsActivities.getInt("nRating")
-										), 
-								new ActivityOtherInformation(
-										rsActivities.getString("activityDescription"), 
-										rsActivities.getBoolean("freeCancellation"), 
-										rsActivities.getBoolean("payLater"), 
-										rsActivities.getBoolean("skipLine"), 
-										rsActivities.getInt("duration"), 
-										rsActivities.getBoolean("timeInMinutes")
-										), 
-								availableDates
-								);
-					}
 				}
+				
+		} catch (SQLException e) {
+	    	throw new DAOException("Errore di ricerca del provider");
+	    }
+		
+		try (PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL);
+				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+			
+				stmActivities.setString(1, newProvider.getEmail());
+				ResultSet rsActivities = stmActivities.executeQuery();
+				
+				while (rsActivities.next()) {
+					newProvider.addActivity(
+						rsActivities.getString(ACTIVITY_NAME_STRING), 
+						rsActivities.getDouble("price"), 
+						ActivityType.fromString(rsActivities.getString("activityType")), 
+						new ActivityRating(
+								rsActivities.getDouble("rate"), 
+								rsActivities.getInt("nRating")
+								), 
+						new ActivityOtherInformation(
+								rsActivities.getString("activityDescription"), 
+								rsActivities.getBoolean("freeCancellation"), 
+								rsActivities.getBoolean("payLater"), 
+								rsActivities.getBoolean("skipLine"), 
+								rsActivities.getInt("duration"), 
+								rsActivities.getBoolean("timeInMinutes")
+								), 
+						null
+						);
+				}
+				
+				for (Activity activity: newProvider.getActivities()) {
+					stmDates.setString(1, activity.getActivityName());
+					stmDates.setString(2, activity.getProvider().getEmail());
+					ResultSet rsDates = stmDates.executeQuery();
+					
+					activity.setAvaibleDates(this.availableDatesHelper(rsDates));
+				}
+
 		} catch (SQLException e) {
 	    	throw new DAOException("Errore di ricerca del provider");
 	    }
