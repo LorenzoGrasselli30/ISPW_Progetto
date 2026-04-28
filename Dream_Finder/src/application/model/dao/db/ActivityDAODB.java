@@ -20,15 +20,13 @@ import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
-import application.model.entity.User;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
-import application.model.enums.UserRole;
 
 public class ActivityDAODB implements ActivityDAO {
 	
-	private static final String ACTIVITY_NAME_STRING = "activityName";
-	private static final String EMAIL_STRING = "email";
+	//private static final String ACTIVITY_NAME_STRING = "activityName";
+	//private static final String EMAIL_STRING = "email";
 
 	@Override
 	public List<Activity> findTopActivities(List<Provider> providers) {
@@ -166,7 +164,7 @@ public class ActivityDAODB implements ActivityDAO {
 		relatedActivities.addAll(others);
 		
 		// Limita a 10 attività
-		relatedActivities.stream().limit(10);
+		relatedActivities.stream().limit(10).collect(Collectors.toList());
 		
 		for (Activity activity : relatedActivities) {
 			
