@@ -23,8 +23,7 @@ import application.model.enums.ProviderType;
 
 public class ProviderDAODB implements ProviderDAO {
 	
-	//private static final String ACTIVITY_NAME_STRING = "activityName";
-	//private static final String EMAIL_STRING = "email";
+	private static final String ACTIVITY_NAME_STRING = "activityName";
 	
 	//Va a trovare i 5 provider che hanno il rate più alto 
 	@Override
@@ -75,8 +74,7 @@ public class ProviderDAODB implements ProviderDAO {
 	    	throw new DAOException("Errore di ricerca del provider");
 	    }
 		
-		try (PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL);
-				PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) {
+		try (PreparedStatement stmActivities = conn.prepareStatement(SQLQueries.FIND_ACTIVITY_BY_EMAIL)) {
 			
 			for (Provider provider: providers) {
 				stmActivities.setString(1, provider.getEmail());
@@ -103,13 +101,14 @@ public class ProviderDAODB implements ProviderDAO {
 						);
 				}
 				
+				/*
 				for (Activity activity: provider.getActivities()) {
 					stmDates.setString(1, activity.getActivityName());
 					stmDates.setString(2, activity.getProvider().getEmail());
 					ResultSet rsDates = stmDates.executeQuery();
 					
 					activity.setAvaibleDates(this.availableDatesHelper(rsDates));
-				}
+				}*/
 			}
 		} catch (SQLException e) {
 	    	throw new DAOException("Errore di ricerca del provider");
@@ -161,7 +160,7 @@ public class ProviderDAODB implements ProviderDAO {
 				
 				while (rsActivities.next()) {
 					newProvider.addActivity(
-						rsActivities.getString(ACTIVITY_NAME_STRING), 
+						rsActivities.getString("activityName"), 
 						rsActivities.getDouble("price"), 
 						ActivityType.fromString(rsActivities.getString("activityType")), 
 						new ActivityRating(

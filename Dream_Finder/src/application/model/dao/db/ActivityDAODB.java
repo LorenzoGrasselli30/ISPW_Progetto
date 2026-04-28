@@ -164,7 +164,7 @@ public class ActivityDAODB implements ActivityDAO {
 		relatedActivities.addAll(others);
 		
 		// Limita a 10 attività
-		relatedActivities.stream().limit(10).collect(Collectors.toList());
+		relatedActivities = relatedActivities.stream().limit(10).collect(Collectors.toList());
 		
 		for (Activity activity : relatedActivities) {
 			
