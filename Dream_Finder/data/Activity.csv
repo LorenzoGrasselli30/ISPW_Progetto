@@ -1,4 +1,4 @@
-providerEmail,activityName,price,activityType,ratingScore,ratingCount,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes
+providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes
 luigi.verdi@mail.com,Roma: tour guidato del Colosseo,30.0,CULTURE,4.8,340,Visita il Colosseo il più grande anfiteatro del mondo romano,true,false,true,1,false
 luigi.verdi@mail.com,Roma: biglietto d'ingresso per Castel Sant'Angelo,40.0,CULTURE,4.5,200,Risparmia tempo durante il tuo viaggio a Roma con questo biglietto d'ingresso a Castel Sant'Angelo,true,true,true,2,false
 luigi.verdi@mail.com,Roma: tour privato del Foro Romano e del Palatino,27.99,CULTURE,4.5,300,Esplora il cuore dell'antica Roma con un tour del Foro Romano e del Palatino con una guida autorizzata,true,false,false,180,true

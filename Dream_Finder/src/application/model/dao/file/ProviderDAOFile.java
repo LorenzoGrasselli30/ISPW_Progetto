@@ -3,6 +3,8 @@ package application.model.dao.file;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,18 +35,7 @@ public class ProviderDAOFile implements ProviderDAO {
             String line;
             while ((line = reader.readLine()) != null) {
             	String[] parts = line.split(",");
-            	Provider provider = new Provider(
-            			parts[0], 
-            			parts[1], 
-            			parts[2],
-            			ProviderType.fromString(parts[3]),
-            			Integer.parseInt(parts[4]),
-            			new ProviderPersonalInfo(
-            					parts[5], 
-                    			parts[6], 
-                    			parts[7]
-            					)
-            			);
+            	Provider provider = this.providerHelper(parts);
             	
             	providers.add(provider);
             }
@@ -76,4 +67,20 @@ public class ProviderDAOFile implements ProviderDAO {
 		return null;
 	}
 	
+	//Helpers
+	
+	private Provider providerHelper(String[] parts) {
+        return new Provider(
+        		parts[0], 
+    			parts[1], 
+    			parts[2],
+    			ProviderType.fromString(parts[3]),
+    			Integer.parseInt(parts[4]),
+    			new ProviderPersonalInfo(
+    					parts[5], 
+            			parts[6], 
+            			parts[7]
+    					)
+    			);
+    }
 }

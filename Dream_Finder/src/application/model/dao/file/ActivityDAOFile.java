@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import application.exception.DAOException;
 import application.model.dao.ActivityDAO;
@@ -22,7 +24,7 @@ import application.model.enums.ProviderType;
 public class ActivityDAOFile implements ActivityDAO {
 
 	private static final String FILE_PATH = "data/Activity.csv";
-    private static final String HEADER = "providerEmail,activityName,price,activityType,ratingScore,ratingCount,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
+    private static final String HEADER = "providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
     
     public ActivityDAOFile() {
     	UtilsFile.ensureFileExists(FILE_PATH, HEADER);
@@ -38,13 +40,22 @@ public class ActivityDAOFile implements ActivityDAO {
             	while ((line = reader.readLine()) != null) {
             		String[] parts = line.split(",");
                     if (parts[0].equals(provider.getEmail())) { 
+                    	Activity activity = this.activityHelper(parts, provider);
                     	
+                    	topActivities.add(activity);
                     }
                 }
             }
         } catch (IOException e) {
         	throw new DAOException("Errore di ricerca del provider");
         }
+		
+		topActivities = topActivities.stream()
+				.sorted((a1, a2) -> Double.compare(a2.getRating().getRate(), a1.getRating().getRate()))
+				.limit(2)
+				.collect(Collectors.toList());
+		
+		Collections.shuffle(topActivities);
 		
 		return topActivities;
 	}
@@ -71,21 +82,21 @@ public class ActivityDAOFile implements ActivityDAO {
 	
 	private Activity activityHelper(String[] parts, Provider provider) {
 		return new Activity(
-				parts[1], 
-				Double.parseDouble(parts[2]), 
-				ActivityType.fromString(parts[3]), 
+				parts[1], //activityName
+				Double.parseDouble(parts[2]), //price
+				ActivityType.fromString(parts[3]), //activityType
 				provider, 
 				new ActivityRating(
-						Double.parseDouble(parts[4]), 
-						Integer.parseInt(parts[4])
+						Double.parseDouble(parts[4]), //rate
+						Integer.parseInt(parts[5]) //nRating
 						), 
 				new ActivityOtherInformation (
-						parts[6], 
-						parts[7], 
-						parts[8], 
-						parts[9], 
-						Integer.parseInt(parts[10]), 
-						parts[11]
+						parts[6], //description
+						Boolean.parseBoolean(parts[7]),  // freeCancellation
+						Boolean.parseBoolean(parts[8]),  // bookNowPayLater
+						Boolean.parseBoolean(parts[9]),  // skipTheLine
+						Integer.parseInt(parts[10]),     // duration
+						Boolean.parseBoolean(parts[11])  // durationInMinutes
 						), 
 				null
 				); 
