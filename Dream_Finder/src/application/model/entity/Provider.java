@@ -13,24 +13,21 @@ public class Provider extends User {
 	
 	private String providerName;
 	private ProviderType providerType;
-	private Integer nOfferedActivities;
-	private String location;
-	private String name;
-	private String surname;
 	
+	private ProviderPersonalInfo personalInfo;
+	
+	private Integer nOfferedActivities;
 	private Double providerRate;
 
 	public Provider(String email, String password, String providerName,
-			ProviderType providerType, Integer nOfferedActivities, String location, String name, String surname) {
+			ProviderType providerType, Integer nOfferedActivities, ProviderPersonalInfo personalInfo) {
 		
 		super(email, password, UserRole.PROVIDER);
 		this.activities = new ArrayList<>();
 		this.providerName = providerName;
 		this.providerType = providerType;
 		this.nOfferedActivities = nOfferedActivities;
-		this.location = location;
-		this.name = name;
-		this.surname = surname;
+		this.personalInfo = personalInfo;
 		this.providerRate= 0.0;
 	}
 	
@@ -75,15 +72,8 @@ public class Provider extends User {
 		return nOfferedActivities;
 	}
 
-	public String getLocation() {
-		return location;
+	public ProviderPersonalInfo getPersonalInfo() {
+		return personalInfo;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
 }

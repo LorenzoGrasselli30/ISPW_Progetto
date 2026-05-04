@@ -173,7 +173,7 @@ public class FormGraphicController {
         	        
         	        validAgeForTicket = this.validateAgeForTicket(datePicker.getValue(), i);
         	        
-        	        if (allFieldsFilled == false || validAgeForTicket == false) {
+        	        if (allFieldsFilled || validAgeForTicket) {
         	        	break;
         	        }
         	        

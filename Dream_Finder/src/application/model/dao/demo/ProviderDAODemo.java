@@ -13,6 +13,7 @@ import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
+import application.model.entity.ProviderPersonalInfo;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
 
@@ -26,7 +27,7 @@ public class ProviderDAODemo implements ProviderDAO{
 
 	private void initializeProviderDemo() {
 		//Creazione del provider1
-		Provider provider1= new Provider("luigi.verdi@mail.com", "LuigiVerdi1!", "LuigiSRL", ProviderType.COMPANY, 0, "Italia", "Luigi", "Verdi");
+		Provider provider1= new Provider("luigi.verdi@mail.com", "LuigiVerdi1!", "LuigiSRL", ProviderType.COMPANY, 0, new ProviderPersonalInfo("Italia", "Luigi", "Verdi"));
 		
 		//Associazione delle attività al provider1
 		provider1.addActivity("Roma: tour guidato del Colosseo", 30.0, ActivityType.CULTURE, new ActivityRating(4.8, 340), 
@@ -54,7 +55,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		providers.put("luigi.verdi@mail.com", provider1);
 		
 		//Creazione del provider2
-		Provider provider2= new Provider("provider2@mail.com", "Provider2!", "Provider2Group", ProviderType.INDIVIDUAL, 0, "Francia", "Provider2", "Provider2");
+		Provider provider2= new Provider("provider2@mail.com", "Provider2!", "Provider2Group", ProviderType.INDIVIDUAL, 0, new ProviderPersonalInfo("Francia", "Provider2", "Provider2"));
 				
 		//Associazione delle attività al provider2
 		provider2.addActivity(
@@ -106,7 +107,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		providers.put("provider2@mail.com", provider2);
 				
 		//Creazione del provider3
-		Provider provider3= new Provider("giacomo.bianchi@mail.com", "GiacomoBianchi1!", "BianchiCorp", ProviderType.EDU, 0, "Spagna", "Giacomo", "Bianchi");
+		Provider provider3= new Provider("giacomo.bianchi@mail.com", "GiacomoBianchi1!", "BianchiCorp", ProviderType.EDU, 0, new ProviderPersonalInfo("Spagna", "Giacomo", "Bianchi"));
 				
 		//Associazione delle attività al provider3
 		provider3.addActivity(
@@ -160,7 +161,7 @@ public class ProviderDAODemo implements ProviderDAO{
 		providers.put("giacomo.bianchi@mail.com", provider3);
 		
 		//Creazione del provider4
-				Provider provider4= new Provider("marco.marroni@mail.com", "Marcomarroni1!", "MarcoTravel", ProviderType.EDU, 0, "Germania", "Marco", "Marroni");
+				Provider provider4= new Provider("marco.marroni@mail.com", "Marcomarroni1!", "MarcoTravel", ProviderType.EDU, 0, new ProviderPersonalInfo("Germania", "Marco", "Marroni"));
 						
 		//Associazione delle attività al provider4
 				provider4.addActivity(
@@ -214,7 +215,7 @@ public class ProviderDAODemo implements ProviderDAO{
 				providers.put("marco.marroni@mail.com", provider4);
 		
 		//Creazione del provider5
-				Provider provider5= new Provider("provider5@mail.com", "Provider5!", "Provider5Group", ProviderType.INDIVIDUAL, 0, "Italia", "Provider5", "Provider5");
+				Provider provider5= new Provider("provider5@mail.com", "Provider5!", "Provider5Group", ProviderType.INDIVIDUAL, 0, new ProviderPersonalInfo("Italia", "Provider5", "Provider5"));
 						
 				//Associazione delle attività al provider5
 				provider5.addActivity(

@@ -11,6 +11,7 @@ public class Activity {
 	
 	//Relazione di composizione quindi Activity deve mantenere un'istanza del provider associato
 	private Provider provider;
+	
 	//Utilizzato per il controllo della disponibilità 
 	private ActivityAvailableDates availableDates;
 	

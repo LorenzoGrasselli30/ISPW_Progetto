@@ -18,6 +18,7 @@ import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
+import application.model.entity.ProviderPersonalInfo;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
 
@@ -179,22 +180,20 @@ public class ProviderDAODB implements ProviderDAO {
 					null
 					);
 			}
-			
-			for (Activity activity: newProvider.getActivities()) {
-				try (PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) { 
-					stmDates.setString(1, activity.getActivityName());
-					stmDates.setString(2, activity.getProvider().getEmail());
-					ResultSet rsDates = stmDates.executeQuery();
-					
-					activity.setAvaibleDates(this.availableDatesHelper(rsDates));
-				} catch (SQLException e) {
-			    	throw new DAOException("Errore di ricerca del provider");
-				}
-			}
-
-			
 		} catch (SQLException e) {
 		    	throw new DAOException("Errore di ricerca del provider");
+		}
+		
+		for (Activity activity: newProvider.getActivities()) {
+			try (PreparedStatement stmDates = conn.prepareStatement(SQLQueries.FIND_AVAILABLE_DATES)) { 
+				stmDates.setString(1, activity.getActivityName());
+				stmDates.setString(2, activity.getProvider().getEmail());
+				ResultSet rsDates = stmDates.executeQuery();
+				
+				activity.setAvaibleDates(this.availableDatesHelper(rsDates));
+			} catch (SQLException e) {
+		    	throw new DAOException("Errore di ricerca del provider");
+			}
 		}
 		
 		return newProvider;
@@ -209,9 +208,11 @@ public class ProviderDAODB implements ProviderDAO {
             rs.getString("providerName"),
             ProviderType.fromString(rs.getString("providerType")),
             rs.getInt("nOfferedActivities"),
+            new ProviderPersonalInfo (
             rs.getString("location"),
             rs.getString("pname"),
             rs.getString("psurname")
+            )
         );
     }
 	

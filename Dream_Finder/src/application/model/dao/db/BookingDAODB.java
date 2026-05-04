@@ -23,6 +23,7 @@ import application.model.entity.Booking;
 import application.model.entity.BookingPriceInformation;
 import application.model.entity.GuestInformation;
 import application.model.entity.Provider;
+import application.model.entity.ProviderPersonalInfo;
 import application.model.entity.Traveler;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
@@ -97,9 +98,11 @@ public class BookingDAODB implements BookingDAO {
 						rsBooking.getString("providerName"), 
 						ProviderType.fromString(rsBooking.getString("providerType")), 
 						rsBooking.getInt("nOfferedActivities"), 
+						new ProviderPersonalInfo (
 						rsBooking.getString("location"), 
 						rsBooking.getString("pname"), 
 						rsBooking.getString("psurname")
+						)
 				);
 				
 				Activity activity = new Activity(

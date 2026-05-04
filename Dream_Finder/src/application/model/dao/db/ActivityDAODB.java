@@ -20,6 +20,7 @@ import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
+import application.model.entity.ProviderPersonalInfo;
 import application.model.enums.ActivityType;
 import application.model.enums.ProviderType;
 
@@ -212,9 +213,11 @@ public class ActivityDAODB implements ActivityDAO {
             rs.getString("providerName"),
             ProviderType.fromString(rs.getString("providerType")),
             rs.getInt("nOfferedActivities"),
-            rs.getString("location"),
-            rs.getString("pname"),
-            rs.getString("psurname")
+            new ProviderPersonalInfo (
+            		rs.getString("location"),
+                    rs.getString("pname"),
+                    rs.getString("psurname")
+            		)
         );
     }
 	
