@@ -34,20 +34,21 @@ public class ActivityDAOFile implements ActivityDAO {
 	public List<Activity> findTopActivities(List<Provider> providers) {
 		List<Activity> topActivities = new ArrayList<>();
 		
-		
-		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String line;
+        String line;
             for (Provider provider: providers) {
             	System.out.println(provider.getEmail());
             	List<Activity> providerTopActivities = new ArrayList<>();
-            	
-            	while ((line = reader.readLine()) != null) {
-            		String[] parts = line.split(",");
-                    if (parts[0].equals(provider.getEmail())) { 
-                    	Activity activity = this.activityHelper(parts, provider);
-                    	
-                    	providerTopActivities.add(activity);
+            	try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            		while ((line = reader.readLine()) != null) {
+                		String[] parts = line.split(",");
+                        if (parts[0].equals(provider.getEmail())) { 
+                        	Activity activity = this.activityHelper(parts, provider);
+                        	
+                        	providerTopActivities.add(activity);
+                        }
                     }
+            	} catch (IOException e) {
+                	throw new DAOException("Errore di ricerca del provider");
                 }
             	
             	providerTopActivities = providerTopActivities.stream()
@@ -57,10 +58,7 @@ public class ActivityDAOFile implements ActivityDAO {
             	
             	topActivities.addAll(providerTopActivities);
             }
-        } catch (IOException e) {
-        	throw new DAOException("Errore di ricerca del provider");
-        }
-		
+            
 		Collections.shuffle(topActivities);
 		
 		return topActivities;
