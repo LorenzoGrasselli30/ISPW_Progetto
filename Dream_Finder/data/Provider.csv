@@ -1,0 +1,6 @@
+email,password,providerName,providerType,nOfferedActivities,location,name,surname
+luigi.verdi@mail.com,LuigiVerdi1!,LuigiSRL,COMPANY,3,Italia,Luigi,Verdi
+provider2@mail.com,Provider2!,Provider2Group,INDIVIDUAL,3,Francia,Provider2,Provider2
+giacomo.bianchi@mail.com,GiacomoBianchi1!,BianchiCorp,EDU,3,Spagna,Giacomo,Bianchi
+marco.marroni@mail.com,Marcomarroni1!,MarcoTravel,EDU,3,Germania,Marco,Marroni
+provider5@mail.com,Provider5!,Provider5Group,INDIVIDUAL,3,Italia,Provider5,Provider5

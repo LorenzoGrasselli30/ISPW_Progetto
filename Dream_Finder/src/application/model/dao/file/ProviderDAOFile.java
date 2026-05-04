@@ -18,7 +18,7 @@ import application.model.enums.ProviderType;
 
 public class ProviderDAOFile implements ProviderDAO {
 	
-	private static final String FILE_PATH = "data/provider.csv";
+	private static final String FILE_PATH = "data/Provider.csv";
     private static final String HEADER = "email,password,providerName,providerType,nOfferedActivities,location,name,surname";
     
     public ProviderDAOFile() {
@@ -52,7 +52,7 @@ public class ProviderDAOFile implements ProviderDAO {
         	throw new DAOException("Errore di ricerca del provider");
         }
 		
-		return providers.values().stream()
+		return providers.stream()
 				.sorted((p1, p2) -> Double.compare(p2.getProviderRate(), p1.getProviderRate()))
 				.limit(5)
 				.collect(Collectors.toList());
@@ -75,5 +75,5 @@ public class ProviderDAOFile implements ProviderDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }

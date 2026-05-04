@@ -11,7 +11,7 @@ import application.model.entity.Traveler;
 
 public class TravelerDAOFile implements TravelerDAO {
 	
-	private static final String FILE_PATH = "data/traveler.csv";
+	private static final String FILE_PATH = "data/Traveler.csv";
     private static final String HEADER = "email,password,username,name,surname,dob";
     
     public TravelerDAOFile() {
