@@ -59,7 +59,7 @@ public class ReceiptGraphicController {
 
         // Imposta info transazione
         if (receiptIDLabel != null) {
-            receiptIDLabel.setText("- ID: " + receipt.getPaymentID());
+            receiptIDLabel.setText("- ID: " + receipt.getPaymentOutcome().getPaymentID());
         }
         if (paymentOutcomeLabel != null) {
             paymentOutcomeLabel.setText("- Stato: " + receipt.getPaymentOutcome());
@@ -79,8 +79,8 @@ public class ReceiptGraphicController {
         }
 
         // Imposta info prodotto
-        if(receipt.getPaymentDescription() != null && !receipt.getPaymentDescription().isEmpty()) {
-        	activityNameLabel.setText(receipt.getPaymentDescription());
+        if(receipt.getPaymentOutcome().getPaymentDescription() != null && !receipt.getPaymentOutcome().getPaymentDescription().isEmpty()) {
+        	activityNameLabel.setText(receipt.getPaymentOutcome().getPaymentDescription());
         }
         
         if (infoLabel != null) {

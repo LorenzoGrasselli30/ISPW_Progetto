@@ -231,9 +231,12 @@ public class BookingApplicationController {
 		result.setExpiredDate(reciptFounded.getCard().getExpiredDate());
 		result.setOwnerName(reciptFounded.getCard().getOwnerName());
 		
-		result.setPaymentID(reciptFounded.getStripe().getPaymentID());
-		result.setPaymentDescription(reciptFounded.getStripe().getPaymentDescription());
-		result.setPaymentOutcome(reciptFounded.getStripe().getPaymentOutcome());
+		PaymentOutcomeDTO paymentResult = new PaymentOutcomeDTO();
+		paymentResult.setPaymentID(reciptFounded.getStripe().getPaymentID());
+		paymentResult.setPaymentDescription(reciptFounded.getStripe().getPaymentDescription());
+		paymentResult.setPaymentOutcome(reciptFounded.getStripe().getPaymentOutcome());
+		
+		result.setPaymentOutcome(paymentResult);
 		
 		return result;
 	}

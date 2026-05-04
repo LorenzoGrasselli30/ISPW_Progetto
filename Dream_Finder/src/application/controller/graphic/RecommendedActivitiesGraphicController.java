@@ -127,7 +127,7 @@ public class RecommendedActivitiesGraphicController {
     	        	currentReceipt= bookingController.fetchCurrentReceipt(context.getPaymentID());
     	        	}
     	        	
-    	        	WindowsNavigatorUtils.openModalWindow(event, "receiptView.fxml", "Ricevuta: "+currentReceipt.getPaymentID(), null, currentReceipt, null);
+    	        	WindowsNavigatorUtils.openModalWindow(event, "receiptView.fxml", "Ricevuta: "+currentReceipt.getPaymentOutcome().getPaymentID(), null, currentReceipt, null);
     	        	
     	        	break;
     	        case "ticketButton":

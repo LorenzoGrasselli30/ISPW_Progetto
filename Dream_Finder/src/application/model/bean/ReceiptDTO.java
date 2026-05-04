@@ -14,9 +14,7 @@ public class ReceiptDTO {
 	private LocalDate expiredDate;
 	private String ownerName;
 	
-	private String paymentID;
-	private String paymentDescription;
-	private String paymentOutcome;
+	private PaymentOutcomeDTO paymentOutcome;
 	
 	public String getProviderName() {
 		return providerName;
@@ -89,28 +87,12 @@ public class ReceiptDTO {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
-	
-	public String getPaymentID() {
-		return paymentID;
-	}
-	
-	public void setPaymentID(String paymentID) {
-		this.paymentID = paymentID;
-	}
-	
-	public String getPaymentDescription() {
-		return paymentDescription;
-	}
-	
-	public void setPaymentDescription(String paymentDescription) {
-		this.paymentDescription = paymentDescription;
-	}
-	
-	public String getPaymentOutcome() {
+
+	public PaymentOutcomeDTO getPaymentOutcome() {
 		return paymentOutcome;
 	}
-	
-	public void setPaymentOutcome(String paymentOutcome) {
+
+	public void setPaymentOutcome(PaymentOutcomeDTO paymentOutcome) {
 		this.paymentOutcome = paymentOutcome;
 	}
 	
