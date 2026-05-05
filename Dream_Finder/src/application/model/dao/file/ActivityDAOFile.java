@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 import application.exception.DAOException;
 import application.model.dao.ActivityDAO;
+import application.model.dao.FactoryDAO;
+import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
 import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
@@ -21,7 +23,7 @@ import application.model.entity.Provider;
 import application.model.enums.ActivityType;
 
 public class ActivityDAOFile implements ActivityDAO {
-
+		
 	private static final String ACTIVITY_FILE_PATH = "data/Activity.csv";
     private static final String ACTIVITY_HEADER = "providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
     private static final String DATES_FILE_PATH = "data/AvailableDates.csv";
@@ -76,8 +78,10 @@ public class ActivityDAOFile implements ActivityDAO {
 
 	@Override
 	public Activity findByProvider(String activityName, String providerName) {
-		// TODO Auto-generated method stub
-		return null;
+		ProviderDAO providerDAO = FactoryDAO.getFactoryInstance().getProviderDAO();
+		List<Provider> availableProviders = providerDAO.providersList();
+		
+		
 	}
 
 	@Override
