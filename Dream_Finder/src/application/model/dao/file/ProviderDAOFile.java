@@ -109,15 +109,23 @@ public class ProviderDAOFile implements ProviderDAO {
 	}
 
 	@Override
-	public Provider findByActivity(Activity activity) {
-		// TODO Auto-generated method stub
+	public Provider findByActivity(Activity activity) {		
+		List<Provider> providers= this.providersList();
+		
+		for(Provider provider : providers) {
+			if(provider.getActivities().contains(activity)) {
+				return provider;
+			}
+		}
 		return null;
+		
 	}
 
 	@Override
 	public Provider findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Provider> providers= this.providersList();
+		
+		return providers.get(email);
 	}
 	
 	//Helpers

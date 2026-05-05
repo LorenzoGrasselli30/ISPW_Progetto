@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import application.exception.DAOException;
 import application.model.dao.ActivityDAO;
-import application.model.dao.FactoryDAO;
 import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
 import application.model.entity.ActivityAvailableDates;
