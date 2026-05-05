@@ -32,8 +32,7 @@ public class ProviderDAOFile implements ProviderDAO {
 		List<Provider> providers= new ArrayList<>();
 		
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String line;
-            reader.readLine(); //Viene letta la riga di intestazione per saltarla
+            String line = reader.readLine(); //Viene letta la riga di intestazione per saltarla
             
             while ((line = reader.readLine()) != null) {
             	String[] parts = line.split(",");

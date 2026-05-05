@@ -8,26 +8,30 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import application.exception.DAOException;
 import application.model.dao.ActivityDAO;
 import application.model.entity.Activity;
+import application.model.entity.ActivityAvailableDates;
 import application.model.entity.ActivityOtherInformation;
 import application.model.entity.ActivityRating;
 import application.model.entity.Provider;
-import application.model.entity.ProviderPersonalInfo;
 import application.model.enums.ActivityType;
-import application.model.enums.ProviderType;
 
 public class ActivityDAOFile implements ActivityDAO {
 
-	private static final String FILE_PATH = "data/Activity.csv";
-    private static final String HEADER = "providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
+	private static final String ACTIVITY_FILE_PATH = "data/Activity.csv";
+    private static final String ACTIVITY_HEADER = "providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
+    private static final String DATES_FILE_PATH = "data/AvailableDates.csv";
+    private static final String DATES_HEADER = "activityName,providerEmail,aDay,nPlaces";
     
     public ActivityDAOFile() {
-    	UtilsFile.ensureFileExists(FILE_PATH, HEADER);
+    	UtilsFile.ensureFileExists(ACTIVITY_FILE_PATH, ACTIVITY_HEADER);
+    	UtilsFile.ensureFileExists(DATES_FILE_PATH, DATES_HEADER);
     }
     
 	@Override
@@ -36,10 +40,9 @@ public class ActivityDAOFile implements ActivityDAO {
 		
         String line;
             for (Provider provider: providers) {
-            	System.out.println(provider.getEmail());
             	List<Activity> providerTopActivities = new ArrayList<>();
-            	try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            		while ((line = reader.readLine()) != null) {
+            	try (BufferedReader activityReader = new BufferedReader(new FileReader(ACTIVITY_FILE_PATH))) {
+            		while ((line = activityReader.readLine()) != null) {
                 		String[] parts = line.split(",");
                         if (parts[0].equals(provider.getEmail())) { 
                         	Activity activity = this.activityHelper(parts, provider);
@@ -48,7 +51,7 @@ public class ActivityDAOFile implements ActivityDAO {
                         }
                     }
             	} catch (IOException e) {
-                	throw new DAOException("Errore di ricerca del provider");
+                	throw new DAOException("Errore di ricerca delle attività");
                 }
             	
             	providerTopActivities = providerTopActivities.stream()
@@ -58,6 +61,26 @@ public class ActivityDAOFile implements ActivityDAO {
             	
             	topActivities.addAll(providerTopActivities);
             }
+            
+            for (Activity activity : topActivities) {
+            	Map<LocalDate, Integer> availablePlaces = new HashMap<>();
+            	
+            	try (BufferedReader datesReader = new BufferedReader(new FileReader(DATES_FILE_PATH))) {
+            		while ((line = datesReader.readLine()) != null) {
+                		String[] parts = line.split(",");
+                        if (parts[0].equals(activity.getActivityName()) && parts[1].equals(activity.getProvider().getEmail())) { 
+                        	LocalDate date = LocalDate.parse(parts[2]);
+             			    Integer places = Integer.parseInt(parts[3]);
+             			    availablePlaces.put(date, places);
+                        }
+                    }
+            	} catch (IOException e) {
+                	throw new DAOException("Errore di ricerca delle attività");
+                }
+            	
+            	activity.setAvaibleDates(new ActivityAvailableDates(availablePlaces));
+            }
+            
             
 		Collections.shuffle(topActivities);
 		
@@ -105,4 +128,5 @@ public class ActivityDAOFile implements ActivityDAO {
 				null
 				); 
 	}
+	
 }
