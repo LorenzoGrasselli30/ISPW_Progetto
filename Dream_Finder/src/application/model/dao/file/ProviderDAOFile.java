@@ -48,7 +48,7 @@ public class ProviderDAOFile implements ProviderDAO {
             
             while ((line = reader.readLine()) != null) {
             	String[] parts = line.split(",");
-            	Provider provider = this.providerHelper(parts);
+            	Provider provider = UtilsFile.providerHelper(parts);
             	
             	providers.add(provider);
             }
@@ -71,7 +71,7 @@ public class ProviderDAOFile implements ProviderDAO {
             
             while ((line = reader.readLine()) != null) {
             	String[] parts = line.split(",");
-            	Provider provider = this.providerHelper(parts);
+            	Provider provider = UtilsFile.providerHelper(parts);
             	
             	providers.add(provider);
             }
@@ -87,8 +87,8 @@ public class ProviderDAOFile implements ProviderDAO {
             		String[] parts = line.split(",");
                     if (parts[0].equals(provider.getEmail())) {
                     	
-                    	Activity activity = this.activityHelper(parts, provider);
-                    	activity.setAvaibleDates(this.availableDatesHelper(activity));
+                    	Activity activity = UtilsFile.activityHelper(parts, provider);
+                    	activity.setAvaibleDates(UtilsFile.availableDatesHelper(activity));
                     	
                     	provider.addActivity(
                     			activity.getActivityName(), 
@@ -123,12 +123,57 @@ public class ProviderDAOFile implements ProviderDAO {
 
 	@Override
 	public Provider findByEmail(String email) {
-		List<Provider> providers= this.providersList();
+		Provider provider = null;
 		
-		return providers.get(email);
+		// 1. Cerca il provider nel file Provider.csv
+		try (BufferedReader reader = new BufferedReader(new FileReader(PROVIDER_FILE_PATH))) {
+			String line = reader.readLine(); // Salta la riga di intestazione
+			
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				// parts[0] è l'email
+				if (parts[0].equals(email)) {
+					provider = UtilsFile.providerHelper(parts);
+					break; // Interruzione della ricerca dopo aver trovato il provider
+				}
+			}
+		} catch (IOException e) {
+			throw new DAOException("Errore di ricerca del provider per email");
+		}
+		
+		// Se il provider non è stato trovato, ritorniamo null
+		if (provider == null) {
+			return null;
+		}
+		
+		// 2. Carica le attività associate a questo provider dal file Activity.csv
+		try (BufferedReader activityReader = new BufferedReader(new FileReader(ACTIVITY_FILE_PATH))) {
+			String line = activityReader.readLine(); // Salta la riga di intestazione
+			
+			while ((line = activityReader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts[0].equals(provider.getEmail())) {
+					Activity activity = UtilsFile.activityHelper(parts, provider);
+					activity.setAvaibleDates(UtilsFile.availableDatesHelper(activity));
+					
+					provider.addActivity(
+							activity.getActivityName(), 
+							activity.getPrice(), 
+							activity.getActivityType(), 
+							activity.getRating(), 
+							activity.getOtherInfo(), 
+							activity.getAvaibleDates()
+					);
+				}
+			}
+		} catch (IOException e) {
+			throw new DAOException("Errore di ricerca delle attività associate al provider");
+		}
+		
+		return provider;
 	}
 	
-	//Helpers
+	/*
 	
 	private Provider providerHelper(String[] parts) {
         return new Provider(
@@ -184,4 +229,5 @@ public class ProviderDAOFile implements ProviderDAO {
     	
 		return new ActivityAvailableDates(availablePlaces);
 	}	
+	*/
 }

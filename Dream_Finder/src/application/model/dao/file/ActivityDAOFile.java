@@ -49,7 +49,7 @@ public class ActivityDAOFile implements ActivityDAO {
             		while ((line = activityReader.readLine()) != null) {
                 		String[] parts = line.split(",");
                         if (parts[0].equals(provider.getEmail())) { 
-                        	Activity activity = this.activityHelper(parts, provider);
+                        	Activity activity = UtilsFile.activityHelper(parts, provider);
                         	
                         	providerTopActivities.add(activity);
                         }
@@ -68,7 +68,7 @@ public class ActivityDAOFile implements ActivityDAO {
             
             for (Activity activity : topActivities) {
             	try {
-					activity.setAvaibleDates(this.availableDatesHelper(activity));
+					activity.setAvaibleDates(UtilsFile.availableDatesHelper(activity));
 				} catch (IOException e) {
 					throw new DAOException("Errore di ricerca delle attività");
 				}
@@ -158,7 +158,7 @@ public class ActivityDAOFile implements ActivityDAO {
 		return false;
 	}
 	
-	//Helpers
+	/*
 	
 	private Activity activityHelper(String[] parts, Provider provider) {
 		return new Activity(
@@ -199,4 +199,5 @@ public class ActivityDAOFile implements ActivityDAO {
     	
 		return new ActivityAvailableDates(availablePlaces);
     }
+    */
 }
