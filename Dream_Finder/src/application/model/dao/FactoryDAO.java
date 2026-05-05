@@ -68,12 +68,12 @@ public class FactoryDAO {
 	    	
 		if (MODE_DEMO.equals(mode) || "".equals(mode)) { 
 	    	    if (activityDAO == null) {  
-	    	    	activityDAO = new ActivityDAODemo(providerDAO);
+	    	    	activityDAO = new ActivityDAODemo(this.getProviderDAO());
 	    	    }
 	    	    return activityDAO;           
 	    	    
 	    	} else if (MODE_FILE.equals(mode)) {
-	    		return new ActivityDAOFile();
+	    		return new ActivityDAOFile(this.getProviderDAO());
 	    		
 	    	} else {
 	        	return new ActivityDAODB();

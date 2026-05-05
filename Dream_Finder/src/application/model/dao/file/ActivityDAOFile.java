@@ -23,13 +23,18 @@ import application.model.entity.Provider;
 import application.model.enums.ActivityType;
 
 public class ActivityDAOFile implements ActivityDAO {
+	
+	//Dependency Injection di ProviderDAO
+	private ProviderDAO providerDAO;
 		
 	private static final String ACTIVITY_FILE_PATH = "data/Activity.csv";
     private static final String ACTIVITY_HEADER = "providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
     private static final String DATES_FILE_PATH = "data/AvailableDates.csv";
     private static final String DATES_HEADER = "activityName,providerEmail,aDay,nPlaces";
     
-    public ActivityDAOFile() {
+    public ActivityDAOFile(ProviderDAO providerDAO) {
+    	this.providerDAO = providerDAO;
+    	
     	UtilsFile.ensureFileExists(ACTIVITY_FILE_PATH, ACTIVITY_HEADER);
     	UtilsFile.ensureFileExists(DATES_FILE_PATH, DATES_HEADER);
     }
@@ -78,16 +83,74 @@ public class ActivityDAOFile implements ActivityDAO {
 
 	@Override
 	public Activity findByProvider(String activityName, String providerName) {
-		ProviderDAO providerDAO = FactoryDAO.getFactoryInstance().getProviderDAO();
+		/* Trovare una spiegazione del perche è fatto cosi 
+		//Dependency Injection di ProviderDAO
+		private ProviderDAO providerDAO;
+			
+		public ActivityDAODemo(ProviderDAO providerDAO) {
+			this.providerDAO = providerDAO;
+		}
+		*/
 		List<Provider> availableProviders = providerDAO.providersList();
 		
-		
+		Provider targetProvider = availableProviders.stream()
+				.filter(p -> p.getProviderName().equals(providerName))
+				.findFirst()
+				.orElse(null);
+				
+			// Caso provider non trovato
+			if (targetProvider == null) {
+				return null; 
+			}
+					
+			// Ritorna l'attività corrispondente o null se non trovata
+			return targetProvider.getActivities().stream()
+				.filter(a -> a.getActivityName().equals(activityName))
+				.findFirst()
+				.orElse(null);
 	}
 
 	@Override
 	public List<Activity> findRelatedActivities(String activityName, ActivityType activityType, String providerName) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Activity> activities = new ArrayList<>();
+		
+		List<Provider> availableProviders = providerDAO.providersList();
+		
+		// Raccoglie tutte le attività disponibili
+		for (Provider provider :  availableProviders) {
+			activities.addAll(provider.getActivities());
+		}
+				
+		// Rimuove l'attività passata come parametro
+		activities = activities.stream()
+			.filter(a -> !a. getActivityName().equals(activityName) || ! a.getProvider().getProviderName().equals(providerName))
+			.collect(Collectors.toList());
+				
+		// Divide le attività in tre gruppi di priorità
+		List<Activity> highScore = new ArrayList<>(); // Stesso provider e stesso tipo
+		List<Activity> mediumScore = new ArrayList<>(); // Solo stesso provider o stesso tipo
+		List<Activity> others = new ArrayList<>();   // Tutte le altre
+				
+		for (Activity activity : activities) {
+			if (activity.calculateRelevanceScore(activity, activityType, providerName)==2) {
+				highScore.add(activity);
+			} else if (activity.calculateRelevanceScore(activity, activityType, providerName)==1) {
+				mediumScore.add(activity);
+			} else {
+				others.add(activity);
+			}
+		}
+				
+		// Costruisce la lista finale rispettando le priorità
+		List<Activity> relatedActivities = new ArrayList<>();
+		relatedActivities.addAll(highScore);
+		relatedActivities.addAll(mediumScore);
+		relatedActivities.addAll(others);
+				
+		// Limita a 10 attività
+		return relatedActivities.stream()
+			.limit(10)
+			.collect(Collectors.toList());
 	}
 
 	@Override
