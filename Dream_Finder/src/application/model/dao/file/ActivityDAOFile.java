@@ -121,16 +121,17 @@ public class ActivityDAOFile implements ActivityDAO {
 	private ActivityAvailableDates availableDatesHelper(Activity activity) throws IOException {
 		Map<LocalDate, Integer> availablePlaces = new HashMap<>();
 		String line;
-		BufferedReader datesReader = new BufferedReader(new FileReader(DATES_FILE_PATH));
 		
-		while ((line = datesReader.readLine()) != null) {
-    		String[] parts = line.split(",");
-            if (parts[0].equals(activity.getActivityName()) && parts[1].equals(activity.getProvider().getEmail())) { 
-            	LocalDate date = LocalDate.parse(parts[2]);
-     			Integer places = Integer.parseInt(parts[3]);
-     			availablePlaces.put(date, places);
-            }
-        }
+		try (BufferedReader datesReader = new BufferedReader(new FileReader(DATES_FILE_PATH))) {
+			while ((line = datesReader.readLine()) != null) {
+	    		String[] parts = line.split(",");
+	            if (parts[0].equals(activity.getActivityName()) && parts[1].equals(activity.getProvider().getEmail())) { 
+	            	LocalDate date = LocalDate.parse(parts[2]);
+	     			Integer places = Integer.parseInt(parts[3]);
+	     			availablePlaces.put(date, places);
+	            }
+	        }
+		}
     	
 		return new ActivityAvailableDates(availablePlaces);
     }
