@@ -1,7 +1,9 @@
 package application.model.dao.file;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -154,10 +156,45 @@ public class ActivityDAOFile implements ActivityDAO {
 
 	@Override
 	public boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces) {
-		// TODO Auto-generated method stub
-		return false;
+		List<Provider> availableProviders = providerDAO.providersList();
+		boolean updated = false;
+		
+		//Prendere in String[] tutto il file AvailableDates poi fare le modifiche e successivamente riscrivere tutto il file
+		
+		for (Provider provider : availableProviders) {
+			 for (Activity a : provider.getActivities()) {
+		            if ((activity.getActivityName().equals(a.getActivityName())) && activity.getProvider().equals(a.getProvider())) {
+		            	Integer currentPlaces = activity.getAvaibleDates().getAvaiblePlaces().get(day);
+		            	a.getAvaibleDates().getAvaiblePlaces().put(day, currentPlaces - requestedPlaces);
+		                
+		                updated = true; 
+		            }
+		        }
+		}
+		
+		if (updated) {
+            overwriteFile(availableProviders); // Riscrive il file con le modifiche
+        }  
+		
+		return updated;
 	}
 	
+	private void overwriteFile(List<Provider> availableProviders) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATES_FILE_PATH))) {
+            writer.write(DATES_HEADER + "\n"); 
+            for (Provider provider : availableProviders) {
+   			 	for (Activity activity : provider.getActivities()) {
+   			 		writer.write(activity.getActivityName() + "," 
+   			 			 + provider.getEmail() + "," 
+   			 			 + activity.getAvaibleDates().getAvaiblePlaces() + "," 
+   			 			 + activity.getAvaibleDates().getAvaiblePlaces().get(day) + "\n");
+   		        }
+            }
+            
+        } catch (IOException e) {
+        	throw new DAOException("Errore nella prenotazione dei posti");
+        }
+    }
 	/*
 	
 	private Activity activityHelper(String[] parts, Provider provider) {
