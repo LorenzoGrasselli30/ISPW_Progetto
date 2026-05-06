@@ -184,10 +184,15 @@ public class ActivityDAOFile implements ActivityDAO {
             writer.write(DATES_HEADER + "\n"); 
             for (Provider provider : availableProviders) {
    			 	for (Activity activity : provider.getActivities()) {
-   			 		writer.write(activity.getActivityName() + "," 
-   			 			 + provider.getEmail() + "," 
-   			 			 + activity.getAvaibleDates().getAvaiblePlaces() + "," 
-   			 			 + activity.getAvaibleDates().getAvaiblePlaces().get(day) + "\n");
+   			 		for (Map.Entry<LocalDate, Integer> entry : activity.getAvaibleDates().getAvaiblePlaces().entrySet()) {
+   			 		LocalDate date = entry.getKey();
+                    Integer places = entry.getValue();
+                    
+                    writer.write(activity.getActivityName() + "," 
+      			 			 + provider.getEmail() + "," 
+      			 			 + date.toString() + "," 
+      			 			 + places + "\n");
+   			 		}
    		        }
             }
             
