@@ -65,10 +65,10 @@ public class TicketGraphicController {
             dateLabel.setText("Il biglietto è valido per il giorno: " + booking.getBookedDate().format(DATE_FORMATTER));
         }
         if (guideLabel != null) {
-            guideLabel.setText("- Tour guidato: " + (booking.isGuideService() ? "Si" : "No"));
+            guideLabel.setText("- Tour guidato: " + (booking.getGuideService() ? "Si" : "No"));
         }
         if (shuttleLabel != null) {
-            shuttleLabel.setText("- Servizio navetta: " + (booking.isShuttleService() ? "Si" : "No"));
+            shuttleLabel.setText("- Servizio navetta: " + (booking.getShuttleService() ? "Si" : "No"));
         }
 
         // Popola la lista dei partecipanti

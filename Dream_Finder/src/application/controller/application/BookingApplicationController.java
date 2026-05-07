@@ -271,11 +271,11 @@ public class BookingApplicationController {
 		result.setActivityName(bookingFounded.getActivity().getActivityName());
 		
 		//Informazioni della prenotazione
-		result.setnFullTickets(bookingFounded.getPriceInformation().getnFullTickets());
-		result.setnReducedTickets(bookingFounded.getPriceInformation().getnReducedTickets());
+		result.setNumFullTickets(bookingFounded.getPriceInformation().getnFullTickets());
+		result.setNumReducedTickets(bookingFounded.getPriceInformation().getnReducedTickets());
 		result.setShuttleService(bookingFounded.getPriceInformation().isShuttleService());
 		result.setGuideService(bookingFounded.getPriceInformation().isGuideService());
-		result.setTotalPrice(bookingFounded.getPriceInformation().getTotalPrice());
+		result.setTotal(bookingFounded.getPriceInformation().getTotalPrice());
 		result.setBookedDate(bookingFounded.getBookedDate());
 		
 		return result;
