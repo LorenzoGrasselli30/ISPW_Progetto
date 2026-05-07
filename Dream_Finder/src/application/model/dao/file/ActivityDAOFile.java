@@ -115,6 +115,7 @@ public class ActivityDAOFile implements ActivityDAO {
 
 	@Override
 	public List<Activity> findRelatedActivities(String activityName, ActivityType activityType, String providerName) {
+		List<Activity> relatedActivities = new ArrayList<>();
 		List<Activity> activities = new ArrayList<>();
 		
 		List<Provider> availableProviders = providerDAO.providersList();
@@ -145,7 +146,6 @@ public class ActivityDAOFile implements ActivityDAO {
 		}
 				
 		// Costruisce la lista finale rispettando le priorità
-		List<Activity> relatedActivities = new ArrayList<>();
 		relatedActivities.addAll(highScore);
 		relatedActivities.addAll(mediumScore);
 		relatedActivities.addAll(others);
