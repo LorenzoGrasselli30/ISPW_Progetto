@@ -55,9 +55,9 @@ public class PaymentAdapter implements Target {
 						amountInCents
 					);
 				
-				newOutcome.setPaymentID(paymentIntent.getId());
-				newOutcome.setPaymentDescription(paymentIntent.getDescription());
-				newOutcome.setPaymentOutcome(paymentIntent.getStatus());
+				newOutcome.setID(paymentIntent.getId());
+				newOutcome.setDescription(paymentIntent.getDescription());
+				newOutcome.setOutcome(paymentIntent.getStatus());
 				
 			} catch (StripeException e) {
 				this.handlePaymentException(e.getCode());

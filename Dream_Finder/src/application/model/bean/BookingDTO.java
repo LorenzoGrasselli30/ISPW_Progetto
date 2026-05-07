@@ -52,23 +52,23 @@ public class BookingDTO {
 		this.activityName = activityName;
 	}
 	
-	public int getnFullTickets() {
+	public int getFullTickets() {
 		return nFullTickets;
 	}
 	
-	public void setnFullTickets(int nFullTickets) {
+	public void setNumFullTickets(int nFullTickets) {
 		this.nFullTickets = nFullTickets;
 	}
 	
-	public int getnReducedTickets() {
+	public int getNumReducedTickets() {
 		return nReducedTickets;
 	}
 	
-	public void setnReducedTickets(int nReducedTickets) {
+	public void setNumReducedTickets(int nReducedTickets) {
 		this.nReducedTickets = nReducedTickets;
 	}
 	
-	public boolean isShuttleService() {
+	public boolean getShuttleService() {
 		return shuttleService;
 	}
 	
@@ -76,7 +76,7 @@ public class BookingDTO {
 		this.shuttleService = shuttleService;
 	}
 	
-	public boolean isGuideService() {
+	public boolean getGuideService() {
 		return guideService;
 	}
 	
@@ -84,11 +84,11 @@ public class BookingDTO {
 		this.guideService = guideService;
 	}
 	
-	public Double getTotalPrice() {
+	public Double getTotal() {
 		return totalPrice;
 	}
 	
-	public void setTotalPrice(Double totalPrice) {
+	public void setTotal(Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	

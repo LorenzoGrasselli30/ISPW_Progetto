@@ -127,7 +127,7 @@ public class BookingApplicationController {
 		System.out.println(paymentInfo.getPaymentOutcome());
 		*/
 		
-		if (!paymentInfo.getPaymentOutcome().equals("succeeded")) {
+		if (!paymentInfo.getOutcome().equals("succeeded")) {
 			//Fai qualcosa per tornare indietro nella prenotazione 
 			return null;
 		}
@@ -176,9 +176,9 @@ public class BookingApplicationController {
 				context.getOwnerName()
 				),
 				new StripeInformation(
-				paymentInfo.getPaymentID(),
-				paymentInfo.getPaymentDescription(),
-				paymentInfo.getPaymentOutcome())
+				paymentInfo.getID(),
+				paymentInfo.getDescription(),
+				paymentInfo.getOutcome())
 				);
 		
 		//Aggiungere un modo per controllare il risultato
@@ -187,7 +187,7 @@ public class BookingApplicationController {
 		//Vado a rendere i posti dell'attività scelta non disponibili
 		Boolean reserveResult= activityDAO.reservePlaces(bookedActivity, context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()));
 		
-		context.setPaymentID(paymentInfo.getPaymentID());
+		context.setPaymentID(paymentInfo.getID());
 		context.setBookingID(bookingResult);
 		
 		/*
@@ -232,9 +232,9 @@ public class BookingApplicationController {
 		result.setOwnerName(reciptFounded.getCard().getOwnerName());
 		
 		PaymentOutcomeDTO paymentResult = new PaymentOutcomeDTO();
-		paymentResult.setPaymentID(reciptFounded.getStripe().getPaymentID());
-		paymentResult.setPaymentDescription(reciptFounded.getStripe().getPaymentDescription());
-		paymentResult.setPaymentOutcome(reciptFounded.getStripe().getPaymentOutcome());
+		paymentResult.setID(reciptFounded.getStripe().getPaymentID());
+		paymentResult.setDescription(reciptFounded.getStripe().getPaymentDescription());
+		paymentResult.setOutcome(reciptFounded.getStripe().getPaymentOutcome());
 		
 		result.setPaymentOutcome(paymentResult);
 		
