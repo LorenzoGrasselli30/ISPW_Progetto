@@ -200,46 +200,4 @@ public class ActivityDAOFile implements ActivityDAO {
         	throw new DAOException("Errore nella prenotazione dei posti");
         }
     }
-	/*
-	
-	private Activity activityHelper(String[] parts, Provider provider) {
-		return new Activity(
-				parts[1], //activityName
-				Double.parseDouble(parts[2]), //price
-				ActivityType.fromString(parts[3]), //activityType
-				provider, 
-				new ActivityRating(
-						Double.parseDouble(parts[4]), //rate
-						Integer.parseInt(parts[5]) //nRating
-						), 
-				new ActivityOtherInformation (
-						parts[6], //description
-						Boolean.parseBoolean(parts[7]),  // freeCancellation
-						Boolean.parseBoolean(parts[8]),  // bookNowPayLater
-						Boolean.parseBoolean(parts[9]),  // skipTheLine
-						Integer.parseInt(parts[10]),     // duration
-						Boolean.parseBoolean(parts[11])  // durationInMinutes
-						), 
-				null
-				); 
-	}
-	
-	private ActivityAvailableDates availableDatesHelper(Activity activity) throws IOException {
-		Map<LocalDate, Integer> availablePlaces = new HashMap<>();
-		String line;
-		
-		try (BufferedReader datesReader = new BufferedReader(new FileReader(DATES_FILE_PATH))) {
-			while ((line = datesReader.readLine()) != null) {
-	    		String[] parts = line.split(",");
-	            if (parts[0].equals(activity.getActivityName()) && parts[1].equals(activity.getProvider().getEmail())) { 
-	            	LocalDate date = LocalDate.parse(parts[2]);
-	     			Integer places = Integer.parseInt(parts[3]);
-	     			availablePlaces.put(date, places);
-	            }
-	        }
-		}
-    	
-		return new ActivityAvailableDates(availablePlaces);
-    }
-    */
 }

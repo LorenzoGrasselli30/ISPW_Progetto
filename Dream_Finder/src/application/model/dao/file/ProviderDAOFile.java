@@ -86,18 +86,7 @@ public class ProviderDAOFile implements ProviderDAO {
         		while ((line = activityReader.readLine()) != null) {
             		String[] parts = line.split(",");
                     if (parts[0].equals(provider.getEmail())) {
-                    	
-                    	Activity activity = UtilsFile.activityHelper(parts, provider);
-                    	activity.setAvaibleDates(UtilsFile.availableDatesHelper(activity));
-                    	
-                    	provider.addActivity(
-                    			activity.getActivityName(), 
-                    			activity.getPrice(), 
-                    			activity.getActivityType(), 
-                    			activity.getRating(), 
-                    			activity.getOtherInfo(), 
-                    			activity.getAvaibleDates()
-                    			);
+                    	this.addActivityHelper(parts, provider);
                     }
                 }
         	} catch (IOException e) {
@@ -153,17 +142,7 @@ public class ProviderDAOFile implements ProviderDAO {
 			while ((line = activityReader.readLine()) != null) {
 				String[] parts = line.split(",");
 				if (parts[0].equals(provider.getEmail())) {
-					Activity activity = UtilsFile.activityHelper(parts, provider);
-					activity.setAvaibleDates(UtilsFile.availableDatesHelper(activity));
-					
-					provider.addActivity(
-							activity.getActivityName(), 
-							activity.getPrice(), 
-							activity.getActivityType(), 
-							activity.getRating(), 
-							activity.getOtherInfo(), 
-							activity.getAvaibleDates()
-					);
+					this.addActivityHelper(parts, provider);
 				}
 			}
 		} catch (IOException e) {
@@ -173,61 +152,19 @@ public class ProviderDAOFile implements ProviderDAO {
 		return provider;
 	}
 	
-	/*
+	//Helpers 
 	
-	private Provider providerHelper(String[] parts) {
-        return new Provider(
-        		parts[0], 
-    			parts[1], 
-    			parts[2],
-    			ProviderType.fromString(parts[3]),
-    			Integer.parseInt(parts[4]),
-    			new ProviderPersonalInfo(
-    					parts[5], 
-            			parts[6], 
-            			parts[7]
-    					)
-    			);
-    }
-	
-	private Activity activityHelper(String[] parts, Provider provider) {
-		return new Activity(
-				parts[1], //activityName
-				Double.parseDouble(parts[2]), //price
-				ActivityType.fromString(parts[3]), //activityType
-				provider, 
-				new ActivityRating(
-						Double.parseDouble(parts[4]), //rate
-						Integer.parseInt(parts[5]) //nRating
-						), 
-				new ActivityOtherInformation (
-						parts[6], //description
-						Boolean.parseBoolean(parts[7]),  // freeCancellation
-						Boolean.parseBoolean(parts[8]),  // bookNowPayLater
-						Boolean.parseBoolean(parts[9]),  // skipTheLine
-						Integer.parseInt(parts[10]),     // duration
-						Boolean.parseBoolean(parts[11])  // durationInMinutes
-						), 
-				null
-				); 
-	}
-	
-	private ActivityAvailableDates availableDatesHelper(Activity activity) throws IOException {
-		Map<LocalDate, Integer> availablePlaces = new HashMap<>();
-		String line;
+	private void addActivityHelper(String[] parts, Provider provider) throws IOException {
+		Activity activity = UtilsFile.activityHelper(parts, provider);
+		activity.setAvaibleDates(UtilsFile.availableDatesHelper(activity));
 		
-		try (BufferedReader datesReader = new BufferedReader(new FileReader(DATES_FILE_PATH))) {
-			while ((line = datesReader.readLine()) != null) {
-	    		String[] parts = line.split(",");
-	            if (parts[0].equals(activity.getActivityName()) && parts[1].equals(activity.getProvider().getEmail())) { 
-	            	LocalDate date = LocalDate.parse(parts[2]);
-	     			Integer places = Integer.parseInt(parts[3]);
-	     			availablePlaces.put(date, places);
-	            }
-	        }
-		}
-    	
-		return new ActivityAvailableDates(availablePlaces);
-	}	
-	*/
+		provider.addActivity(
+				activity.getActivityName(), 
+				activity.getPrice(), 
+				activity.getActivityType(), 
+				activity.getRating(), 
+				activity.getOtherInfo(), 
+				activity.getAvaibleDates()
+		);
+	}
 }
