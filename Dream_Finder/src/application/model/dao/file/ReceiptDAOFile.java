@@ -12,6 +12,7 @@ public class ReceiptDAOFile implements ReceiptDAO {
 	
 	private static final String RECEIPT_FILE_PATH = "data/Receipt.csv";
 	private static final String RECEIPT_HEADER = "providerEmail,bookingID,cardNumber,expiredDate,ownerName,paymentID,paymentDescription,paymentOutcome";
+	/*
 	private static final String BOOKING_FILE_PATH = "data/Booking.csv";
     private static final String BOOKING_HEADER = "bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName";
     private static final String GUEST_FILE_PATH = "data/Guest.csv";
@@ -22,7 +23,7 @@ public class ReceiptDAOFile implements ReceiptDAO {
     private static final String ACTIVITY_HEADER = "providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
     private static final String DATES_FILE_PATH = "data/AvailableDates.csv";
     private static final String DATES_HEADER = "activityName,providerEmail,aDay,nPlaces";
-	
+	*/
     public ReceiptDAOFile() {
     	UtilsFile.ensureFileExists(RECEIPT_FILE_PATH, RECEIPT_HEADER);
     }
@@ -30,7 +31,7 @@ public class ReceiptDAOFile implements ReceiptDAO {
 	@Override
 	public Boolean saveReceipt(Receipt receipt) {
 		
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKING_FILE_PATH))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(RECEIPT_FILE_PATH))) {
             writer.write(receipt.getProvider().getEmail() + "," + receipt.getBookingInformation().getBookingID() 
             		+ "," + receipt.getCard().getCardNumber() + "," + receipt.getCard().getExpiredDate().toString() + "," + receipt.getCard().getOwnerName()
             		+ "," + receipt.getStripe().getPaymentID() + "," + receipt.getStripe().getPaymentDescription() + "," + receipt.getStripe().getPaymentOutcome());
