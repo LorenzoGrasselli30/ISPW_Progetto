@@ -167,10 +167,10 @@ public class BookingDAOFile implements BookingDAO {
 			//Recupero delle date disponibili dell'attività
 			activity.setAvaibleDates(UtilsFile.availableDatesHelper(activity));
 			
-			newBooking.setActivity(activity);
-			newBooking.setGuests(guests);
 			newBooking.setTraveler(traveler);
-			
+			newBooking.setGuests(guests);
+			newBooking.setActivity(activity);
+
     	} catch (IOException e) {
         	throw new DAOException("");
         }
