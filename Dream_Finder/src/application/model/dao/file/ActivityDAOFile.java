@@ -92,23 +92,25 @@ public class ActivityDAOFile implements ActivityDAO {
 			this.providerDAO = providerDAO;
 		}
 		*/
-		List<Provider> availableProviders = providerDAO.providersList();
+		List<Provider> availableProviders = new ArrayList<>();
+		
+		availableProviders = providerDAO.providersList();
 		
 		Provider targetProvider = availableProviders.stream()
 				.filter(p -> p.getProviderName().equals(providerName))
-				.findFirst()
-				.orElse(null);
+				.findFirst();
+				.orElse(null)
 				
-			// Caso provider non trovato
-			if (targetProvider == null) {
-				return null; 
-			}
+		// Caso provider non trovato
+		if (targetProvider == null) {
+			return null; 
+		}
 					
-			// Ritorna l'attività corrispondente o null se non trovata
-			return targetProvider.getActivities().stream()
-				.filter(a -> a.getActivityName().equals(activityName))
-				.findFirst()
-				.orElse(null);
+		// Ritorna l'attività corrispondente o null se non trovata
+		return targetProvider.getActivities().stream()
+			.filter(a -> a.getActivityName().equals(activityName))
+			.findFirst()
+			.orElse(null);
 	}
 
 	@Override
