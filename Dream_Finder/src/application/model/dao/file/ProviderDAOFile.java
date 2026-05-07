@@ -167,4 +167,17 @@ public class ProviderDAOFile implements ProviderDAO {
 				activity.getAvaibleDates()
 		);
 	}
+	
+	private List<Provider> loadAllProviders() {
+	    List<Provider> providers = new ArrayList<>();
+	    try (BufferedReader reader = new BufferedReader(new FileReader(PROVIDER_FILE_PATH))) {
+	        String line = reader.readLine(); // Salta l'intestazione
+	        while ((line = reader.readLine()) != null) {
+	            providers.add(UtilsFile.providerHelper(line.split(",")));
+	        }
+	    } catch (IOException e) {
+	        throw new DAOException("Errore di ricerca del provider");
+	    }
+	    return providers;
+	}
 }

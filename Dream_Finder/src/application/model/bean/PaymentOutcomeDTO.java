@@ -5,27 +5,27 @@ public class PaymentOutcomeDTO {
 	private String paymentDescription;
 	private String paymentOutcome;
 	
-	public String getPaymentID() {
+	public String getID() {
 		return paymentID;
 	}
 	
-	public void setPaymentID(String paymentID) {
+	public void setID(String paymentID) {
 		this.paymentID = paymentID;
 	}
 	
-	public String getPaymentDescription() {
+	public String getDescription() {
 		return paymentDescription;
 	}
 	
-	public void setPaymentDescription(String paymentDescription) {
+	public void setDescription(String paymentDescription) {
 		this.paymentDescription = paymentDescription;
 	}
 	
-	public String getPaymentOutcome() {
+	public String getOutcome() {
 		return paymentOutcome;
 	}
 	
-	public void setPaymentOutcome(String paymentOutcome) {
+	public void setOutcome(String paymentOutcome) {
 		this.paymentOutcome = paymentOutcome;
 	}
 
