@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import application.view.cli.*;
 
 
 public class Main extends Application {
@@ -58,18 +59,18 @@ public class Main extends Application {
 				}
 				System.out.println("Inserisci un'interfaccia valida: db/demo/file");	
 			}
-			
-			if ("GUI".equals(visual)) {
-				launch(args); //Chiama il metodo start della GUI
-			} else if ("".equals(visual)) {
-				launch(args); //Chiama il metodo start della GUI
-			} else {
-				System.out.println("Funzione non ancora implementata");
-				//Creare un metodo start della CLI
-			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		
+		if ("GUI".equals(visual)) {
+			launch(args); //Chiama il metodo start della GUI
+		} else if ("".equals(visual)) {
+			launch(args); //Chiama il metodo start della GUI
+		} else {
+			NavigatorCLI navigator = new NavigatorCLIImplementation();
+			new HomepageCLIView(navigator).start();
 		}
 	}
 }

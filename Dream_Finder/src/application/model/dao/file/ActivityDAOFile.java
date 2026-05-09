@@ -98,8 +98,8 @@ public class ActivityDAOFile implements ActivityDAO {
 		
 		Provider targetProvider = availableProviders.stream()
 				.filter(p -> p.getProviderName().equals(providerName))
-				.findFirst();
-				.orElse(null)
+				.findFirst()
+				.orElse(null);
 				
 		// Caso provider non trovato
 		if (targetProvider == null) {
@@ -115,7 +115,7 @@ public class ActivityDAOFile implements ActivityDAO {
 
 	@Override
 	public List<Activity> findRelatedActivities(String activityName, ActivityType activityType, String providerName) {
-		List<Activity> relatedActivities = new ArrayList<>();
+		List<Activity> relatedActivities = null;
 		List<Activity> activities = new ArrayList<>();
 		
 		List<Provider> availableProviders = providerDAO.providersList();
