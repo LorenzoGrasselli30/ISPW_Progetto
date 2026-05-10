@@ -6,9 +6,11 @@ import java.util.Scanner;
 import application.controller.application.HomeApplicationController;
 import application.model.bean.ActivityDTO;
 
-//System.out* CLI-related smells are allowed
+//Dalle istruzioni del progetto: System.out* CLI-related smells are allowed
 @SuppressWarnings("java:S106")
 public class HomepageCLIView implements StartCLI {
+	
+	private static final String COMING_SOON = "Funzionalità in fase di sviluppo...";
 	
 	private HomeApplicationController homeController;
 	private Scanner scanner; 
@@ -22,7 +24,7 @@ public class HomepageCLIView implements StartCLI {
 
 	@Override
 	public void start() {
-		Boolean running = true;
+		boolean running = true;
 		
 		while (running) {
 			System.out.println("\n");
@@ -44,27 +46,21 @@ public class HomepageCLIView implements StartCLI {
 				choiceActivityCLI(activities);
 				break;
 			case "2":
-				navigator.navigateToRecommendedActivities();
-				break;
 			case "3":
-				System.out.println("Funzionalità in fase di sviluppo...");
+				System.out.println(COMING_SOON);
 				pause();
 				break;
 			case "4":
 				navigator.navigateToLogin(null);
 				break;
 			case "5":
-				System.out.println("Funzionalità in fase di sviluppo...");
-				pause();
-				break;
 			case "6":
-				System.out.println("Funzionalità in fase di sviluppo...");
+				System.out.println(COMING_SOON);
 				pause();
 				break;
 			case "7":
 				System.out.println("Uscita dal programma in corso. A presto!");
 				running = false; 
-				System.exit(0);
 				break;
 			default:
 				System.out.println("Scelta non valida. Riprova.");
@@ -72,7 +68,7 @@ public class HomepageCLIView implements StartCLI {
 			}
 		}
 		
-		
+		System.exit(0);
 	}
 	
 	private void pause() {

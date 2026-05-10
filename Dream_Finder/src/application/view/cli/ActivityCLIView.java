@@ -16,6 +16,7 @@ import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.scene.input.MouseEvent;
 
+//Dalle istruzioni del progetto: System.out* CLI-related smells are allowed
 @SuppressWarnings("java:S106")
 public class ActivityCLIView implements StartCLI, Observer {
 	
