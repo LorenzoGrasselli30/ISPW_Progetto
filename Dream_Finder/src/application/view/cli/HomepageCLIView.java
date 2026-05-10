@@ -1,13 +1,19 @@
 package application.view.cli;
 
+import java.util.List;
 import java.util.Scanner;
+
+import application.controller.application.HomeApplicationController;
+import application.model.bean.ActivityDTO;
 
 public class HomepageCLIView implements StartCLI {
 	
+	private HomeApplicationController homeController;
 	private Scanner scanner; 
 	private final NavigatorCLI navigator;
 	
 	public HomepageCLIView(NavigatorCLI navigator) {
+		this.homeController= new HomeApplicationController();
 		this.scanner = new Scanner(System.in);
 		this.navigator = navigator;
 	}
@@ -32,7 +38,7 @@ public class HomepageCLIView implements StartCLI {
 			
 			switch (choice) {
 			case "1":
-				navigator.navigateToActivity();
+				List<ActivityDTO> activities= homeController.fetchActivities();
 				break;
 			case "2":
 				navigator.navigateToRecommendedActivities();
@@ -71,5 +77,24 @@ public class HomepageCLIView implements StartCLI {
 	    if (scanner.hasNextLine()) {
 	        scanner.nextLine();
 	    }
+	}
+	
+	private Activity choiceActivityCLI(List<ActivityDTO> activities) {
+		Boolean running = true;
+		int i = 0;
+		while (running) {
+			System.out.println("\n");
+			System.out.println("|#### Homepage ####|");
+			for (ActivityDTO activity : activities) {
+				System.out.println(i + ")" + activity.getActivityName());
+				i++;
+			}
+			
+		}
+		System.out.println("Inserisci la tua scelta:");
+		
+		String choice = scanner.nextLine();
+		
+		return activities[Integer.parseInt(choice)];
 	}
 }
