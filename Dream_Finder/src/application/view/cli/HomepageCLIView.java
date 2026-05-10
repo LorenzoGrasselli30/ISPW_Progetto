@@ -49,7 +49,7 @@ public class HomepageCLIView implements StartCLI {
 				pause();
 				break;
 			case "4":
-				navigator.navigateToLogin();
+				navigator.navigateToLogin(null);
 				break;
 			case "5":
 				System.out.println("Funzionalità in fase di sviluppo...");

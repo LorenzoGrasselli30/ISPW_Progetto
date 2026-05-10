@@ -1,6 +1,7 @@
 package application.view.cli;
 
 import application.model.bean.ActivityDTO;
+import application.model.bean.BookingContext;
 
 public class NavigatorCLIImplementation implements NavigatorCLI {
 
@@ -10,9 +11,8 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 	}
 
 	@Override
-	public void navigateToLogin() {
-		// TODO Auto-generated method stub
-		
+	public void navigateToLogin(BookingContext context) {
+		new LoginCLIView(this, context).start();
 	}
 
 	@Override
@@ -27,9 +27,8 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 	}
 
 	@Override
-	public void navigateToForm() {
-		// TODO Auto-generated method stub
-		
+	public void navigateToForm(BookingContext context) {
+		new FormCLIView(this, context).start();
 	}
 
 	@Override

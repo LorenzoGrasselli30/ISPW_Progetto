@@ -42,7 +42,7 @@ public class ActivityGraphicController implements Observer{
 	 
 	
 	//Pattern observer
-	private PriceCalculator subject= new PriceCalculator();
+	private PriceCalculator subject;
 	
 	//Variabili per le immagini
 	@FXML
@@ -132,6 +132,7 @@ public class ActivityGraphicController implements Observer{
     
     public ActivityGraphicController() {
     	bookingController= new BookingApplicationController();		
+    	subject = new PriceCalculator();
 	}
 	
 	public void initialize() {
