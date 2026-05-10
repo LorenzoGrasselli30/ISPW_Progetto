@@ -6,6 +6,8 @@ import java.util.Scanner;
 import application.controller.application.HomeApplicationController;
 import application.model.bean.ActivityDTO;
 
+//System.out* CLI-related smells are allowed
+@SuppressWarnings("java:S106")
 public class HomepageCLIView implements StartCLI {
 	
 	private HomeApplicationController homeController;

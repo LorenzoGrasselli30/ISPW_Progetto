@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import application.view.cli.*;
 
-
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {

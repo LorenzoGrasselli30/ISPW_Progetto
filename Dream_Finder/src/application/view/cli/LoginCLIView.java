@@ -2,6 +2,7 @@ package application.view.cli;
 
 import application.model.bean.BookingContext;
 
+@SuppressWarnings("java:S106")
 public class LoginCLIView implements StartCLI {
 
 	public LoginCLIView(NavigatorCLI navigatorCLIImplementation, BookingContext context) {

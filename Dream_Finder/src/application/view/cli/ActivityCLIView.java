@@ -16,6 +16,7 @@ import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.scene.input.MouseEvent;
 
+@SuppressWarnings("java:S106")
 public class ActivityCLIView implements StartCLI, Observer {
 	
 	private BookingApplicationController bookingController;
