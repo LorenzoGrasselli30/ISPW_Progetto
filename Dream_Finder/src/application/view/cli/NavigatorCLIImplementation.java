@@ -1,5 +1,7 @@
 package application.view.cli;
 
+import application.model.bean.ActivityDTO;
+
 public class NavigatorCLIImplementation implements NavigatorCLI {
 
 	@Override
@@ -20,9 +22,8 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 	}
 
 	@Override
-	public void navigateToActivity() {
-		// TODO Auto-generated method stub
-		
+	public void navigateToActivity(ActivityDTO activity) {
+		new ActivityCLIView(this, activity).start();
 	}
 
 	@Override

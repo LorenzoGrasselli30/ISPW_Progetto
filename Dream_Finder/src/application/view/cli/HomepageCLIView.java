@@ -39,6 +39,7 @@ public class HomepageCLIView implements StartCLI {
 			switch (choice) {
 			case "1":
 				List<ActivityDTO> activities= homeController.fetchActivities();
+				choiceActivityCLI(activities);
 				break;
 			case "2":
 				navigator.navigateToRecommendedActivities();
@@ -72,29 +73,39 @@ public class HomepageCLIView implements StartCLI {
 		
 	}
 	
-	public void pause() {
+	private void pause() {
 	    System.out.println("Premi Invio per continuare...");
 	    if (scanner.hasNextLine()) {
 	        scanner.nextLine();
 	    }
 	}
 	
-	private Activity choiceActivityCLI(List<ActivityDTO> activities) {
-		Boolean running = true;
-		int i = 0;
-		while (running) {
-			System.out.println("\n");
-			System.out.println("|#### Homepage ####|");
-			for (ActivityDTO activity : activities) {
-				System.out.println(i + ")" + activity.getActivityName());
-				i++;
-			}
-			
+	private void choiceActivityCLI(List<ActivityDTO> activities) {
+		int i = 1;
+		
+		System.out.println("\n");
+		System.out.println("|#### Homepage ####|");
+		for (ActivityDTO activity : activities) {
+			System.out.println(i + ")" + activity.getActivityName());
+			i++;
 		}
+		System.out.println(i + ")Indietro");
 		System.out.println("Inserisci la tua scelta:");
+			
+		String choice = scanner.nextLine().trim();
+			
+		//Controlla se l'utente ha inserito una scelta valida 
+		if (i < Integer.parseInt(choice)) {
+			System.out.println("La tua scelta non è valida");
+			pause();
+			return;
+		}
 		
-		String choice = scanner.nextLine();
-		
-		return activities[Integer.parseInt(choice)];
+		//Controlla se l'utente ha cliccato indietro
+		if (i == Integer.parseInt(choice)) {
+			return;
+		}
+			
+		new ActivityCLIView(navigator, activities.get(Integer.parseInt(choice))).start();
 	}
 }

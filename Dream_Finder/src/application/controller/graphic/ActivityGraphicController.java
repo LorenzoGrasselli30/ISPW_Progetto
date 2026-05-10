@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import application.configuration.UserSession;
 import application.controller.application.BookingApplicationController;
@@ -130,7 +131,7 @@ public class ActivityGraphicController implements Observer{
     private String selectedLanguage;
     
     public ActivityGraphicController() {
-    	bookingController= new BookingApplicationController();
+    	bookingController= new BookingApplicationController();		
 	}
 	
 	public void initialize() {
