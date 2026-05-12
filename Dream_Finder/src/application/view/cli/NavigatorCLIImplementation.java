@@ -32,8 +32,8 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 	}
 
 	@Override
-	public void navigateToPayment() {
-		// TODO Auto-generated method stub
+	public void navigateToPayment(BookingContext context) {
+		new PaymentCLIView(this, context).start();
 		
 	}
 

@@ -1,8 +1,6 @@
 package application.view.cli;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
 import application.configuration.UserSession;
@@ -12,9 +10,6 @@ import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
 import application.observer.Observer;
 import application.observer.PriceCalculator;
-import application.view.AlertUtils;
-import application.view.WindowsNavigatorUtils;
-import javafx.scene.input.MouseEvent;
 
 //Dalle istruzioni del progetto: System.out* CLI-related smells are allowed
 @SuppressWarnings("java:S106")
@@ -98,7 +93,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 						System.out.println("2) Inglese");
 						System.out.println("3) Spagnolo");
 						System.out.println("Seleziona una lingua disponibile");
-						String languange = scanner.nextLine().trim();
+						confirm = scanner.nextLine().trim();
 					}
 					System.out.println("Desideri di usufruire del servizio navetta? [y: si, n: no]");
 					confirm = scanner.nextLine().trim();

@@ -9,7 +9,7 @@ public interface NavigatorCLI {
 	void navigateToSignup();
 	void navigateToActivity(ActivityDTO activity);
 	void navigateToForm(BookingContext context);
-	void navigateToPayment();
+	void navigateToPayment(BookingContext context);
 	void navigateToReceipt();
 	void navigateToRecommendedActivities();
 	void navigateToTicket();

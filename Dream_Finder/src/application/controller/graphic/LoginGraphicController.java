@@ -134,8 +134,6 @@ public class LoginGraphicController implements Initializable {
 	    catch (Exception e) {
 	    	AlertUtils.showAlert(Alert.AlertType.ERROR, "Error", "Qualcosa è andato storto, riprova più tardi.");		
 	    }
-
 	}
-
 }
 
