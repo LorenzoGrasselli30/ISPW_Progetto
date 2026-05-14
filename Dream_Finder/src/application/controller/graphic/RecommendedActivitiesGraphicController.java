@@ -36,9 +36,9 @@ public class RecommendedActivitiesGraphicController {
 	@FXML
     private Label activityNameLabel;
 	
-	ReceiptDTO currentReceipt;
+	private ReceiptDTO currentReceipt;
 	
-	BookingDTO currentBooking;
+	private BookingDTO currentBooking;
 	
 	public RecommendedActivitiesGraphicController() {
 		bookingController= new BookingApplicationController();

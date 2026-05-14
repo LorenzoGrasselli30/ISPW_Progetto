@@ -6,13 +6,20 @@ import java.util.Scanner;
 import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
+import application.model.bean.BookingDTO;
+import application.model.bean.ReceiptDTO;
 
+//Dalle istruzioni del progetto: System.out* CLI-related smells are allowed
+@SuppressWarnings("java:S106")
 public class RecommendedActivitiesCLIView implements StartCLI {
 	
 	private BookingContext context;
 	private BookingApplicationController bookingController;
 	private Scanner scanner;
 	private NavigatorCLI navigator;
+	
+	private ReceiptDTO currentReceipt;
+	private BookingDTO currentBooking;
 	
 	public RecommendedActivitiesCLIView(NavigatorCLI navigator, BookingContext context) {
 		this.bookingController = new BookingApplicationController(); 
@@ -71,13 +78,17 @@ public class RecommendedActivitiesCLIView implements StartCLI {
 				
 				break;
 			case "2":
+				currentBooking= bookingController.fetchCurrentTicket(context.getBookingID());
 				
+				navigator.navigateToTicket(currentBooking);
 				break;
 			case "3":
+				currentReceipt= bookingController.fetchCurrentReceipt(context.getPaymentID());
 				
+				navigator.navigateToReceipt(currentReceipt);
 				break;
 			case "4":
-				navigator.navigateToLogin(null);
+				navigator.navigateToHomepage();
 				break;
 			default:
 				System.out.println("Scelta non valida. Riprova.");

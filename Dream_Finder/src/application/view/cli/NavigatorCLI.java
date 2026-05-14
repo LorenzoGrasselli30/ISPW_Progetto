@@ -2,6 +2,8 @@ package application.view.cli;
 
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
+import application.model.bean.BookingDTO;
+import application.model.bean.ReceiptDTO;
 
 public interface NavigatorCLI {
 	void navigateToHomepage();
@@ -10,7 +12,7 @@ public interface NavigatorCLI {
 	void navigateToActivity(ActivityDTO activity);
 	void navigateToForm(BookingContext context);
 	void navigateToPayment(BookingContext context);
-	void navigateToReceipt();
+	void navigateToReceipt(ReceiptDTO receipt);
 	void navigateToRecommendedActivities(BookingContext context);
-	void navigateToTicket();
+	void navigateToTicket(BookingDTO booking);
 }

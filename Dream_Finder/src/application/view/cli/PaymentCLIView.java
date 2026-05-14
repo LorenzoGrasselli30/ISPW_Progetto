@@ -8,6 +8,8 @@ import application.exception.AvailabilityException;
 import application.exception.PaymentProcessingException;
 import application.model.bean.BookingContext;
 
+//Dalle istruzioni del progetto: System.out* CLI-related smells are allowed
+@SuppressWarnings("java:S106")
 public class PaymentCLIView implements StartCLI {
 	
 	private BookingContext context;

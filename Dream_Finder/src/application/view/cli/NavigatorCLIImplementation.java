@@ -2,6 +2,8 @@ package application.view.cli;
 
 import application.model.bean.ActivityDTO;
 import application.model.bean.BookingContext;
+import application.model.bean.BookingDTO;
+import application.model.bean.ReceiptDTO;
 
 public class NavigatorCLIImplementation implements NavigatorCLI {
 
@@ -38,8 +40,8 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 	}
 
 	@Override
-	public void navigateToReceipt() {
-		// TODO Auto-generated method stub
+	public void navigateToReceipt(ReceiptDTO receipt) {
+		new ReceiptCLIView(this, receipt).start();
 		
 	}
 
@@ -49,8 +51,8 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 	}
 
 	@Override
-	public void navigateToTicket() {
-		// TODO Auto-generated method stub
+	public void navigateToTicket(BookingDTO booking) {
+		new TicketCLIView(this, booking).start();
 		
 	}
 
