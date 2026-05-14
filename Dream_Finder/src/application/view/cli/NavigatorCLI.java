@@ -11,6 +11,6 @@ public interface NavigatorCLI {
 	void navigateToForm(BookingContext context);
 	void navigateToPayment(BookingContext context);
 	void navigateToReceipt();
-	void navigateToRecommendedActivities();
+	void navigateToRecommendedActivities(BookingContext context);
 	void navigateToTicket();
 }

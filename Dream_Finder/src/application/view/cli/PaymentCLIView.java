@@ -24,37 +24,40 @@ public class PaymentCLIView implements StartCLI {
 
 	@Override
 	public void start() {
-		
-		System.out.println("\n");
-		System.out.println("|#### Schermata di pagamento ####|");
-		
-		System.out.println("Resoconto del pagamento:");
-		System.out.println("x" + context.getnFullTickets() + " Biglietto intero " + context.getActivity().getPrice()*context.getnFullTickets() + "€");
-		System.out.println("x" + context.getnReducedTickets() + " Biglietto ridotto " + (context.getActivity().getPrice()/3.0)*context.getnReducedTickets() + "€");
-		
-		if (context.isShuttleService() && context.getShuttlePrice() != null) {
-			System.out.println("Servizio navetta: " + context.getShuttlePrice() + "€");
-		} else {
-			System.out.println("Servizio navetta: No");
-		}
-		
-		if (context.isGuideService() && context.getGuidePrice() != null) {
-			System.out.println("Tour guidato: " + context.getGuidePrice() + "€");
-		} else {
-			System.out.println("Tour guidato: No");
-		}
-		
-		System.out.println("Totale: " + context.getTotalPrice() + "€");
-		System.out.println("Procedere con il pagamento? [y: si, n: no]");
-		String confirm = scanner.nextLine();
-		
-		if (confirm.equals("y")) {
-			doPayment();
-		} else if (confirm.equals("n")) {
-			navigator.navigateToActivity(context.getActivity());
-		} else {
-			System.out.println("Inserisci una scelta valida");
-			pause();
+		while (true) {
+			System.out.println("\n");
+			System.out.println("|#### Schermata di pagamento ####|");
+			
+			System.out.println("Resoconto del pagamento:");
+			System.out.println("x" + context.getnFullTickets() + " Biglietto intero " + context.getActivity().getPrice()*context.getnFullTickets() + "€");
+			System.out.println("x" + context.getnReducedTickets() + " Biglietto ridotto " + (context.getActivity().getPrice()/3.0)*context.getnReducedTickets() + "€");
+			
+			if (context.isShuttleService() && context.getShuttlePrice() != null) {
+				System.out.println("Servizio navetta: " + context.getShuttlePrice() + "€");
+			} else {
+				System.out.println("Servizio navetta: No");
+			}
+			
+			if (context.isGuideService() && context.getGuidePrice() != null) {
+				System.out.println("Tour guidato: " + context.getGuidePrice() + "€");
+			} else {
+				System.out.println("Tour guidato: No");
+			}
+			
+			System.out.println("Totale: " + context.getTotalPrice() + "€");
+			System.out.println("Procedere con il pagamento? [y: si, n: no]");
+			String confirm = scanner.nextLine();
+			
+			if (confirm.equals("y")) {
+				doPayment();
+				break;
+			} else if (confirm.equals("n")) {
+				navigator.navigateToActivity(context.getActivity());
+				break;
+			} else {
+				System.out.println("Inserisci una scelta valida");
+				pause();
+			}
 		}
 	}
 	
@@ -65,54 +68,58 @@ public class PaymentCLIView implements StartCLI {
 		String ownerName = null;
 		LocalDate expiredDate = null;
 		
-		System.out.println("Vuoi utilizzare la carta salvata? [y: si, n: no]");
-		String confirm = scanner.nextLine();
-		
-		if (confirm.equals("y")) {
+		while (true) {
+			System.out.println("Vuoi utilizzare la carta salvata? [y: si, n: no]");
+			String confirm = scanner.nextLine();
 			
-			cardNumber = "4242424242424242";
-			ownerName = "Mario Rossi";
-			expiredDate = LocalDate.parse("2029-08-01");
+			if (confirm.equals("y")) {
+				
+				cardNumber = "4242424242424242";
+				ownerName = "Mario Rossi";
+				expiredDate = LocalDate.parse("2029-08-01");
+				
+				System.out.println("Inserisci il cvv");
+				cvv = scanner.nextLine().trim();
+				
+				break;
+			} else if (confirm.equals("n")) {
+				
+				System.out.println("Inserisci il numero della carta");
+				cardNumber = scanner.nextLine().trim();
+				System.out.println("Inserisci la data di scadenza della carta");
+				expiredDate = LocalDate.parse(scanner.nextLine().trim());
+				System.out.println("Inserisci il cvv");
+				cvv = scanner.nextLine().trim();
+				System.out.println("Inserisci il nome del proprietario della carta");
+				ownerName = scanner.nextLine().trim();
+				
+				break;
+			} else {
+				
+				System.out.println("Inserisci una scelta valida");
+				pause();
+				
+			}
 			
-			System.out.println("Inserisci il cvv");
-			cvv = scanner.nextLine().trim();
+			if (!cardNumber.trim().matches("\\d{16}")) {
+				System.out.println("Il numero della carta deve contenere esattamente 16 cifre.");
+				pause();
+			}
 			
-		} else if (confirm.equals("n")) {
+			if (!cvv.trim().matches("\\d{3}")) {
+				System.out.println("Il CVV deve contenere esattamente 3 cifre.");
+				pause();
+			}
 			
-			System.out.println("Inserisci il numero della carta");
-			cardNumber = scanner.nextLine().trim();
-			System.out.println("Inserisci la data di scadenza della carta");
-			expiredDate = LocalDate.parse(scanner.nextLine().trim());
-			System.out.println("Inserisci il cvv");
-			cvv = scanner.nextLine().trim();
-			System.out.println("Inserisci il nome del proprietario della carta");
-			ownerName = scanner.nextLine().trim();
+			if (expiredDate == null) {
+				System.out.println("Inserisci una data di scadenza.");
+				pause();
+			}
 			
-		} else {
-			
-			System.out.println("Inserisci una scelta valida");
-			pause();
-			
-		}
-		
-		if (!cardNumber.trim().matches("\\d{16}")) {
-			System.out.println("Il numero della carta deve contenere esattamente 16 cifre.");
-			pause();
-		}
-		
-		if (!cvv.trim().matches("\\d{3}")) {
-			System.out.println("Il CVV deve contenere esattamente 3 cifre.");
-			pause();
-		}
-		
-		if (expiredDate == null) {
-			System.out.println("Inserisci una data di scadenza.");
-			pause();
-		}
-		
-		if (ownerName.isEmpty()) {
-			System.out.println("Inserisci il nome del titolare carta.");
-			pause();
+			if (ownerName.isEmpty()) {
+				System.out.println("Inserisci il nome del titolare carta.");
+				pause();
+			}
 		}
 		
 		context.setCardNumber(cardNumber.trim());
@@ -134,7 +141,8 @@ public class PaymentCLIView implements StartCLI {
 		}
 		
 		System.out.println("Richiesta di pagamento inviata dall'utente: " + updatedContext.getOwnerName());
-		//WindowsNavigatorUtils.openRecommendedActivitiesWindow(event, fxmlFile, title, updatedContext);
+
+		navigator.navigateToRecommendedActivities(updatedContext);
 	}
 	
 	private void pause() {

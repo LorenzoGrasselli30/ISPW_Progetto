@@ -44,9 +44,8 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 	}
 
 	@Override
-	public void navigateToRecommendedActivities() {
-		// TODO Auto-generated method stub
-		
+	public void navigateToRecommendedActivities(BookingContext context) {
+		new RecommendedActivitiesCLIView(this, context).start();	
 	}
 
 	@Override
