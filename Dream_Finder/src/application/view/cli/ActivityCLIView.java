@@ -51,13 +51,13 @@ public class ActivityCLIView implements StartCLI, Observer {
 			System.out.println("\n-----Informazioni sull'attività-----");
 			String unit = Boolean.TRUE.equals(currentActivity.getTimeInMinutes()) ? "minuti" : "ore";
 			System.out.println("Durata dell'attività: " + currentActivity.getDuration() + " " + unit);
-			if (currentActivity.getFreeCancellation() == true) {
+			if (Boolean.TRUE.equals(currentActivity.getFreeCancellation())) {
 				System.out.println("Cancellazione gratuita fino a 24 ore prima");
 			}
-			if (currentActivity.getPayLater() == true) {
+			if (Boolean.TRUE.equals(currentActivity.getPayLater())) {
 				System.out.println("Prenota ora e paga dopo");
 			}
-			if (currentActivity.getSkipLine() == true) {
+			if (Boolean.TRUE.equals(currentActivity.getSkipLine())) {
 				System.out.println("Salta la fila per la biglietteria");
 			}
 		
