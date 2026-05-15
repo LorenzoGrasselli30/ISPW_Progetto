@@ -13,14 +13,14 @@ import application.model.bean.GuestInformationDTO;
 //Dalle istruzioni del progetto: System.out* CLI-related smells are allowed
 @SuppressWarnings("java:S106")
 public class FormCLIView implements StartCLI {
-
-	private BookingApplicationController bookingController;
+	
+	private static final String PARTECIPANTE = "° partecipante";
+	
 	private BookingContext context;
 	private Scanner scanner;
 	private NavigatorCLI navigator;
 	
 	public FormCLIView(NavigatorCLI navigator, BookingContext context) {
-		this.bookingController = new BookingApplicationController(); 
 		this.scanner = new Scanner(System.in);
 		this.navigator = navigator;
 		this.context = context;
@@ -35,7 +35,8 @@ public class FormCLIView implements StartCLI {
 		System.out.println("\n");
 		System.out.println("|#### Dati sui partecipanti ####|");
 		
-		for (int i=1;i<=(context.getnFullTickets()+context.getnReducedTickets()); i++) {
+		int i=1;		
+		while (i <= (context.getnFullTickets()+context.getnReducedTickets())) {
 			GuestInformationDTO guest = new GuestInformationDTO();
 			
 			if (i <= context.getnFullTickets()) {
@@ -44,28 +45,29 @@ public class FormCLIView implements StartCLI {
 				System.out.println("Tipo partecipante: Biglietto ridotto");
 			}
 			
-			System.out.println("Inserisci il nome del " + i + "° partecipante");
+			System.out.println("Inserisci il nome del " + i + "PARTICIPANT");
 			guest.setName(scanner.nextLine());
-			System.out.println("Inserisci il cognome del " + i + "° partecipante");
+			System.out.println("Inserisci il cognome del " + i + "PARTICIPANT");
 			guest.setSurname(scanner.nextLine());
-			System.out.println("Inserisci la data di nascita del " + i + "° partecipante");
+			System.out.println("Inserisci la data di nascita del " + i + "PARTICIPANT");
 			guest.setDateOfBirth(LocalDate.parse(scanner.nextLine()));
 				
 			allFieldsFilled = this.validateFieldsFilled(guest.getName(), guest.getSurname(), guest.getDateOfBirth());
 			validAgeForTicket = this.validateAgeForTicket(guest.getDateOfBirth(), i);
 			
-			if (allFieldsFilled != true || validAgeForTicket != true) {
+			if (allFieldsFilled || validAgeForTicket) {
 				pause();
-				i--;
 				continue;
 			}
 			
 			guests.add(guest);
+			i++;
 		}
 		
 		//Inserisco la lista degli ospiti nel booking context
 	    context.setGuests(guests);
 	    
+	    navigator.navigateToPayment(context);
 	}
 	
 	private boolean validateFieldsFilled(String name, String surname, LocalDate dob) {
