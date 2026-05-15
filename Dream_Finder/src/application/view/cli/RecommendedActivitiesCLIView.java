@@ -18,9 +18,6 @@ public class RecommendedActivitiesCLIView implements StartCLI {
 	private Scanner scanner;
 	private NavigatorCLI navigator;
 	
-	private ReceiptDTO currentReceipt;
-	private BookingDTO currentBooking;
-	
 	public RecommendedActivitiesCLIView(NavigatorCLI navigator, BookingContext context) {
 		this.bookingController = new BookingApplicationController(); 
 		this.scanner = new Scanner(System.in);
@@ -30,6 +27,9 @@ public class RecommendedActivitiesCLIView implements StartCLI {
 	
 	@Override
 	public void start() {
+		ReceiptDTO currentReceipt;
+		BookingDTO currentBooking;
+		
 		List<ActivityDTO> relatedInfo= bookingController.fetchRelatedInfo(
 				context.getActivity().getActivityName(), 
 				context.getActivity().getActivityType(),
