@@ -37,7 +37,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 		
 		//Registra l'ActivityGraphicController come Observer
 		subject.registerObserver(this);
-		Boolean running = true;
+		boolean running = true;
 		while (running) {
 			
 			System.out.println("\n");
@@ -106,7 +106,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 				LocalDate date = LocalDate.parse(scanner.nextLine().trim());
 				System.out.println("Desideri il servizio di visita guidata? [y: si, n: no]");
 				String confirm = scanner.nextLine().trim();
-				Boolean guideTour = false;
+				boolean guideTour = false;
 				if (confirm.equals("y")) {
 					guideTour = true;
 					
@@ -115,11 +115,11 @@ public class ActivityCLIView implements StartCLI, Observer {
 					System.out.println("2) Inglese");
 					System.out.println("3) Spagnolo");
 					System.out.println("Seleziona una lingua disponibile");
-					confirm = scanner.nextLine().trim();
+					scanner.nextLine();
 				}
 				System.out.println("Desideri di usufruire del servizio navetta? [y: si, n: no]");
 				confirm = scanner.nextLine().trim();
-				Boolean shuttleService = false;
+				boolean shuttleService = false;
 				if (confirm.equals("y")) {
 					shuttleService = true;
 				} 
@@ -140,9 +140,6 @@ public class ActivityCLIView implements StartCLI, Observer {
 				
 				return false;
 			case "2":
-				System.out.println("Funzionalità in fase di sviluppo...");
-				pause();
-				break;
 			case "3":
 				System.out.println("Funzionalità in fase di sviluppo...");
 				pause();
@@ -158,7 +155,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 	}
 	
 	private void submitActivityForm(LocalDate date, Integer fullTicketCount, Integer reducedTicketCount,
-			Boolean guideTour, Boolean shuttleService) throws AvailabilityException {
+			boolean guideTour, boolean shuttleService) throws AvailabilityException {
 		if (fullTicketCount < 1) {
 			throw new AvailabilityException("Attenzione: La prenotazione deve comprendere almeno un biglietto intero");
 		}

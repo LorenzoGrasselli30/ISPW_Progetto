@@ -45,11 +45,11 @@ public class FormCLIView implements StartCLI {
 				System.out.println("Tipo partecipante: Biglietto ridotto");
 			}
 			
-			System.out.println("Inserisci il nome del " + i + "PARTICIPANT");
+			System.out.println("Inserisci il nome del " + i + PARTECIPANTE);
 			guest.setName(scanner.nextLine());
-			System.out.println("Inserisci il cognome del " + i + "PARTICIPANT");
+			System.out.println("Inserisci il cognome del " + i + PARTECIPANTE);
 			guest.setSurname(scanner.nextLine());
-			System.out.println("Inserisci la data di nascita del " + i + "PARTICIPANT");
+			System.out.println("Inserisci la data di nascita del " + i + PARTECIPANTE);
 			guest.setDateOfBirth(LocalDate.parse(scanner.nextLine()));
 				
 			allFieldsFilled = this.validateFieldsFilled(guest.getName(), guest.getSurname(), guest.getDateOfBirth());
