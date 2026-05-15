@@ -61,78 +61,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 				System.out.println("Salta la fila per la biglietteria");
 			}
 		
-		
-			System.out.println("");
-			System.out.println("1) Verifica la disponibilità");
-			System.out.println("2) Aggiungi ai preferiti");
-			System.out.println("3) Visualizza attività correlate");
-			System.out.println("4) Torna alla homepage");
-			System.out.println("Inserisci la tua scelta:");
-			
-			String choice = scanner.nextLine().trim();
-			
-			switch (choice) {
-				case "1":
-					System.out.println("Inserisci il numero di biglietti interi");
-					Integer fullTicketCount = Integer.parseInt(scanner.nextLine().trim());
-					System.out.println("Inserisci il numero di biglietti ridotti");
-					Integer reducedTicketCount = Integer.parseInt(scanner.nextLine().trim());
-					for (LocalDate date : currentActivity.getAvaiblePlaces().keySet()) {
-						System.out.print(" |" + date.toString() + "| ");
-					}
-					System.out.println("\nInserisci la data di prenotazione");
-					LocalDate date = LocalDate.parse(scanner.nextLine().trim());
-					System.out.println("Desideri il servizio di visita guidata? [y: si, n: no]");
-					String confirm = scanner.nextLine().trim();
-					Boolean guideTour = false;
-					if (confirm.equals("y")) {
-						guideTour = true;
-						
-						System.out.println("Lingue disponibili: ");
-						System.out.println("1) Italiano");
-						System.out.println("2) Inglese");
-						System.out.println("3) Spagnolo");
-						System.out.println("Seleziona una lingua disponibile");
-						confirm = scanner.nextLine().trim();
-					}
-					System.out.println("Desideri di usufruire del servizio navetta? [y: si, n: no]");
-					confirm = scanner.nextLine().trim();
-					Boolean shuttleService = false;
-					if (confirm.equals("y")) {
-						shuttleService = true;
-					} 
-					
-					recalculateTotal(fullTicketCount, reducedTicketCount, guideTour, shuttleService);
-					confirm = scanner.nextLine().trim();
-					if (confirm.equals("y")) {
-						try {
-							submitActivityForm(date, fullTicketCount, fullTicketCount, guideTour, shuttleService);
-						} catch (AvailabilityException e) {
-							System.out.println(e.getMessage());
-							pause();
-							break;
-						}
-					} else {
-						break;
-					}
-					
-					running = false;
-					break;
-				case "2":
-					System.out.println("Funzionalità in fase di sviluppo...");
-					pause();
-					break;
-				case "3":
-					System.out.println("Funzionalità in fase di sviluppo...");
-					pause();
-					break;
-				case "4":
-					running = false;
-					break;
-				default:
-					System.out.println("Scelta non valida. Riprova.");
-					pause();
-			}
+			running = useActivityCLI();
 		}
 	}
 	
@@ -154,7 +83,81 @@ public class ActivityCLIView implements StartCLI, Observer {
 	    }
 	}
 	
-	public void submitActivityForm(LocalDate date, Integer fullTicketCount, Integer reducedTicketCount,
+	private Boolean useActivityCLI() {
+		System.out.println("");
+		System.out.println("1) Verifica la disponibilità");
+		System.out.println("2) Aggiungi ai preferiti");
+		System.out.println("3) Visualizza attività correlate");
+		System.out.println("4) Torna alla homepage");
+		System.out.println("Inserisci la tua scelta:");
+		
+		String choice = scanner.nextLine().trim();
+		
+		switch (choice) {
+			case "1":
+				System.out.println("Inserisci il numero di biglietti interi");
+				Integer fullTicketCount = Integer.parseInt(scanner.nextLine().trim());
+				System.out.println("Inserisci il numero di biglietti ridotti");
+				Integer reducedTicketCount = Integer.parseInt(scanner.nextLine().trim());
+				for (LocalDate date : currentActivity.getAvaiblePlaces().keySet()) {
+					System.out.print(" |" + date.toString() + "| ");
+				}
+				System.out.println("\nInserisci la data di prenotazione");
+				LocalDate date = LocalDate.parse(scanner.nextLine().trim());
+				System.out.println("Desideri il servizio di visita guidata? [y: si, n: no]");
+				String confirm = scanner.nextLine().trim();
+				Boolean guideTour = false;
+				if (confirm.equals("y")) {
+					guideTour = true;
+					
+					System.out.println("Lingue disponibili: ");
+					System.out.println("1) Italiano");
+					System.out.println("2) Inglese");
+					System.out.println("3) Spagnolo");
+					System.out.println("Seleziona una lingua disponibile");
+					confirm = scanner.nextLine().trim();
+				}
+				System.out.println("Desideri di usufruire del servizio navetta? [y: si, n: no]");
+				confirm = scanner.nextLine().trim();
+				Boolean shuttleService = false;
+				if (confirm.equals("y")) {
+					shuttleService = true;
+				} 
+				
+				recalculateTotal(fullTicketCount, reducedTicketCount, guideTour, shuttleService);
+				confirm = scanner.nextLine().trim();
+				if (confirm.equals("y")) {
+					try {
+						submitActivityForm(date, fullTicketCount, fullTicketCount, guideTour, shuttleService);
+					} catch (AvailabilityException e) {
+						System.out.println(e.getMessage());
+						pause();
+						break;
+					}
+				} else {
+					break;
+				}
+				
+				return false;
+			case "2":
+				System.out.println("Funzionalità in fase di sviluppo...");
+				pause();
+				break;
+			case "3":
+				System.out.println("Funzionalità in fase di sviluppo...");
+				pause();
+				break;
+			case "4":
+				return false;
+			default:
+				System.out.println("Scelta non valida. Riprova.");
+				pause();
+		}
+		
+		return true;
+	}
+	
+	private void submitActivityForm(LocalDate date, Integer fullTicketCount, Integer reducedTicketCount,
 			Boolean guideTour, Boolean shuttleService) throws AvailabilityException {
 		if (fullTicketCount < 1) {
 			throw new AvailabilityException("Attenzione: La prenotazione deve comprendere almeno un biglietto intero");
