@@ -41,7 +41,7 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 
 	@Override
 	public void navigateToReceipt(ReceiptDTO receipt) {
-		new ReceiptCLIView(this, receipt).start();
+		new ReceiptCLIView(receipt).start();
 		
 	}
 

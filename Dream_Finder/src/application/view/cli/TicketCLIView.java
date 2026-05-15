@@ -5,18 +5,17 @@ import java.util.Scanner;
 import application.controller.application.BookingApplicationController;
 import application.model.bean.BookingContext;
 import application.model.bean.BookingDTO;
+import application.model.bean.GuestInformationDTO;
 
+//Dalle istruzioni del progetto: System.out* CLI-related smells are allowed
+@SuppressWarnings("java:S106")
 public class TicketCLIView implements StartCLI {
 	
 	private BookingDTO currentBooking;
-	private BookingApplicationController bookingController;
 	private Scanner scanner;
-	private NavigatorCLI navigator;
 	
 	public TicketCLIView(NavigatorCLI navigator, BookingDTO booking) {
-		this.bookingController = new BookingApplicationController(); 
 		this.scanner = new Scanner(System.in);
-		this.navigator = navigator;
 		this.currentBooking = booking;
 	}
 
@@ -24,8 +23,39 @@ public class TicketCLIView implements StartCLI {
 	public void start() {
 		System.out.println("\n");
 		System.out.println("|#### Ticket: " + currentBooking.getBookingID() + "####|");
+		System.out.println("Nome traveler: " + currentBooking.getTravelerName());
+		System.out.println("Nome provider: " + currentBooking.getProviderName());
+		System.out.println("Il biglietto è valido per il giorno: " + currentBooking.getBookedDate());
 		
+		System.out.println("\nInformazoni sull'attività");
+		System.out.println("ID: " + currentBooking.getBookingID());
+		System.out.println("Nome attività: " + currentBooking.getActivityName());
+		if (currentBooking.getGuideService()) {
+			System.out.println("Tour guidato: SI");
+		} else {
+			System.out.println("Tour guidato: NO");
+		}
+		if (currentBooking.getShuttleService()) {
+			System.out.println("Servizio navetta: SI");
+		} else {
+			System.out.println("Servizio navetta: NO");
+		}
 		
+		System.out.println("\nInformazioni sui partecipanti");
+		int i=1;
+		for (GuestInformationDTO guest : currentBooking.getGuests()) {
+			System.out.println("Informazioni " + i + "° partecipante");
+			System.out.println("Nome: " + guest.getName());
+			System.out.println("Cognome: " + guest.getSurname());
+			System.out.println("Data di nascita: " + guest.getDateOfBirth());
+			if (currentBooking.getFullTickets() <= i) {
+				System.out.println("Tipologia di biglietto: Intero");
+			} else {
+				System.out.println("Tipologia di biglietto: Ridotto");
+			}
+		}
+		
+		pause();
 	}
 
 	private void pause() {
