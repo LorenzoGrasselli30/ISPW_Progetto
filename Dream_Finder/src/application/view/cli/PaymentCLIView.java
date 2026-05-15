@@ -26,7 +26,8 @@ public class PaymentCLIView implements StartCLI {
 
 	@Override
 	public void start() {
-		while (true) {
+		boolean running = true; 
+		while (running) {
 			System.out.println("\n");
 			System.out.println("|#### Schermata di pagamento ####|");
 			
@@ -52,10 +53,10 @@ public class PaymentCLIView implements StartCLI {
 			
 			if (confirm.equals("y")) {
 				doPayment();
-				break;
+				running = false;
 			} else if (confirm.equals("n")) {
 				navigator.navigateToActivity(context.getActivity());
-				break;
+				running = false;
 			} else {
 				System.out.println("Inserisci una scelta valida");
 				pause();
@@ -64,13 +65,13 @@ public class PaymentCLIView implements StartCLI {
 	}
 	
 	private void doPayment() {
-
 		String cardNumber = null;
 		String cvv = null;
 		String ownerName = null;
 		LocalDate expiredDate = null;
 		
-		while (true) {
+		boolean running = true; 
+		while (running) {
 			System.out.println("Vuoi utilizzare la carta salvata? [y: si, n: no]");
 			String confirm = scanner.nextLine();
 			
@@ -83,7 +84,7 @@ public class PaymentCLIView implements StartCLI {
 				System.out.println("Inserisci il cvv");
 				cvv = scanner.nextLine().trim();
 				
-				break;
+				running = false;
 			} else if (confirm.equals("n")) {
 				
 				System.out.println("Inserisci il numero della carta");
@@ -95,7 +96,7 @@ public class PaymentCLIView implements StartCLI {
 				System.out.println("Inserisci il nome del proprietario della carta");
 				ownerName = scanner.nextLine().trim();
 				
-				break;
+				running = false;
 			} else {
 				
 				System.out.println("Inserisci una scelta valida");
@@ -106,22 +107,26 @@ public class PaymentCLIView implements StartCLI {
 			if (!cardNumber.trim().matches("\\d{16}")) {
 				System.out.println("Il numero della carta deve contenere esattamente 16 cifre.");
 				pause();
+				running = true;
 			}
 			
 			if (!cvv.trim().matches("\\d{3}")) {
 				System.out.println("Il CVV deve contenere esattamente 3 cifre.");
 				pause();
+				running = true;
 			}
 			
 			if (expiredDate == null) {
 				System.out.println("Inserisci una data di scadenza.");
 				pause();
+				running = true;
 			}
 			
 			if (ownerName.isEmpty()) {
 				System.out.println("Inserisci il nome del titolare carta.");
 				pause();
-			}
+				running = true;
+			}	
 		}
 		
 		context.setCardNumber(cardNumber.trim());
