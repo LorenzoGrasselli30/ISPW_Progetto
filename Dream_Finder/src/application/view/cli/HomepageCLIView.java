@@ -45,14 +45,11 @@ public class HomepageCLIView implements StartCLI {
 				List<ActivityDTO> activities= homeController.fetchActivities();
 				choiceActivityCLI(activities);
 				break;
-			case "2":
-			case "3":
-				System.out.println(COMING_SOON);
-				pause();
-				break;
 			case "4":
 				navigator.navigateToLogin(null);
 				break;
+			case "2":
+			case "3":
 			case "5":
 			case "6":
 				System.out.println(COMING_SOON);
