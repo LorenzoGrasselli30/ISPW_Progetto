@@ -1,1 +1,2 @@
 providerEmail,bookingID,cardNumber,expiredDate,ownerName,paymentID,paymentDescription,paymentOutcome
+luigi.verdi@mail.com,76cce30a-b007-4ca2-a261-5ce967b32f8d,4242424242424242,2026-07-22,Prova File ,pi_3TYZ5uIBVjqjBXXm0XNk9i8H,Roma: biglietto d'ingresso per Castel Sant'Angelo,succeeded

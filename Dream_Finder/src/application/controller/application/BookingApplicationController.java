@@ -110,20 +110,6 @@ public class BookingApplicationController {
 	//Client che chiama l'istanza di Adapteer
 	public BookingContext makeBooking(BookingContext context) throws AvailabilityException, PaymentProcessingException {
 		
-		System.out.println("\nBooking context");
-		System.out.println(context.getBookingID());
-		System.out.println(context.getTotalPrice());
-		System.out.println(context.getActivity().getActivityName());
-		System.out.println(context.getActivity().getProviderName());
-		System.out.println(context.getCardNumber());
-		for (GuestInformationDTO guest: context.getGuests()) {
-			System.out.println(guest.getName());
-		}
-		
-		System.out.println("\n");
-		
-		pause();
-		
 		Activity bookedActivity= activityDAO.findByProvider(context.getActivity().getActivityName(), context.getActivity().getProviderName());
 		if(!bookedActivity.getAvaibleDates().hasRequiredPlaces(context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()))) {
 			throw new AvailabilityException("La quantità di posti richiesti non è più disponibile");
@@ -182,17 +168,6 @@ public class BookingApplicationController {
 		
 		//Salvataggio della ricevuta
 		Provider currentProvider = providerDAO.findByActivity(bookedActivity);
-		
-		if (currentProvider != null) {
-			System.out.println("\nprovider trovato");
-			System.out.println(currentProvider.getEmail());
-			System.out.println(currentProvider.getProviderName());
-			System.out.println(currentProvider.getActivities());
-			System.out.println("\n");
-		}
-		
-		
-		pause();
 		
 		Receipt receipt= new Receipt(
 				currentProvider,
@@ -314,13 +289,5 @@ public class BookingApplicationController {
 		if(!checkedActivity.getAvaibleDates().hasRequiredPlaces(bookedDate, nTicket)) {
 			throw new AvailabilityException("La quantità di posti richiesti non è disponibile");
 		}
-	}
-	
-	private void pause() {
-		Scanner scanner = new Scanner(System.in);
-	    System.out.println("Premi Invio per continuare...");
-	    if (scanner.hasNextLine()) {
-	        scanner.nextLine();
-	    }
 	}
 }

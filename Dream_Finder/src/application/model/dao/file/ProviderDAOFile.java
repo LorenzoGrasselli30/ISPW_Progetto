@@ -102,8 +102,10 @@ public class ProviderDAOFile implements ProviderDAO {
 		List<Provider> providers= this.providersList();
 		
 		for(Provider provider : providers) {
-			if(provider.getActivities().contains(activity)) {
-				return provider;
+			for (Activity a : provider.getActivities()) {
+				if (a.getActivityName().equals(activity.getActivityName())) {
+					return provider;
+				}
 			}
 		}
 		return null;

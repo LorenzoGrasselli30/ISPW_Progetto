@@ -1,1 +1,1 @@
-bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName
+bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName76cce30a-b007-4ca2-a261-5ce967b32f8d,2026-05-18,2026-08-01,2,2,false,false,0.0,0.0,106.66666666666667,mario.rossi@mail.com,Roma: biglietto d'ingresso per Castel Sant'Angelo
