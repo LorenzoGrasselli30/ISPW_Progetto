@@ -40,8 +40,10 @@ public class LoginCLIView implements StartCLI {
 			isAuthenticated = loginController.authenticate(email, password);
 		} catch (ValidationException ve) {
 			System.out.println("Errore durante il login: " + ve.getMessage());
+			retryLogin();
 		} catch (Exception e) {
-			System.out.println("Qualcosa è andato storto, riprova più tardi.");		
+			System.out.println("Qualcosa è andato storto, riprova più tardi.");	
+			retryLogin();
 	    }
         
         if (isAuthenticated) {
@@ -54,5 +56,25 @@ public class LoginCLIView implements StartCLI {
         		navigator.navigateToHomepage();
         	}
         }        
+	}
+	
+	private void retryLogin() {
+		System.out.println("Vuoi riprovare il login? [y: si, n: no]");
+		String confirm = scanner.nextLine().trim();
+		if (confirm.equals("y")) {
+			navigator.navigateToLogin(context);
+		} else if (confirm.equals("n")) {
+			return;
+		} else {
+			System.out.println("Inserisci una scelta valida");
+			pause();
+		}
+	}
+	
+	private void pause() {
+	    System.out.println("Premi Invio per continuare...");
+	    if (scanner.hasNextLine()) {
+	        scanner.nextLine();
+	    }
 	}
 }

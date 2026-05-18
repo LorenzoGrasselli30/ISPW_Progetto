@@ -2,6 +2,7 @@ package application.view.cli;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.Scanner;
 
 import application.configuration.UserSession;
@@ -103,8 +104,10 @@ public class ActivityCLIView implements StartCLI, Observer {
 				Integer fullTicketCount = Integer.parseInt(scanner.nextLine().trim());
 				System.out.println("Inserisci il numero di biglietti ridotti");
 				Integer reducedTicketCount = Integer.parseInt(scanner.nextLine().trim());
-				for (LocalDate date : currentActivity.getAvaiblePlaces().keySet()) {
-					System.out.print(" |" + date.format(formatter) + "| ");
+				for (Map.Entry<LocalDate, Integer> entry : currentActivity.getAvaiblePlaces().entrySet()) {
+					if (entry.getValue() != null && entry.getValue() > 0) {
+						System.out.print(" |" + entry.getKey().format(formatter) + "| ");
+					}
 				}
 				System.out.println("\nInserisci la data di prenotazione");
 				LocalDate date = LocalDate.parse(scanner.nextLine().trim(), formatter);

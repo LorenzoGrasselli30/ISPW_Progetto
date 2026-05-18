@@ -52,7 +52,7 @@ public class FactoryDAO {
 	    	    return userIstance;           
 	    	    
 	    	} else if (MODE_FILE.equals(mode)) {
-	    		return new UserDAOFile();
+	    		return new UserDAOFile(this.getTravelerDAO(), this.getProviderDAO());
 	    		
 	    	} else {
 	        	return new UserDAODB();
