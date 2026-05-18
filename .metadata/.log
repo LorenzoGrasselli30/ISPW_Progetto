@@ -9014,3 +9014,24 @@ java.net.SocketException: Socket closed
 	at java.base/java.net.ServerSocket.accept(ServerSocket.java:540)
 	at org.eclipse.eclemma.internal.core.launching.AgentServer.run(AgentServer.java:109)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface 2 0 2026-05-18 19:09:33.506
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2026-05-18 19:09:33.506
+!MESSAGE A conflict occurred for CTRL+SHIFT+I:
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.eclipse.jdt.debug.ui.commands.Inspect,Inspect,
+		Inspect result of evaluating selected text,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.jdt.debug.ui.commands.Inspect"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(com.tabnine.eclipse.commands.openChat,Open Tabnine Chat,
+		Open Tabnine Chat,
+		Category(com.tabnine.eclipse.category.chat,Tabnine - Editor,Tabnine chat category,true),
+		WorkbenchHandlerServiceHandler("com.tabnine.eclipse.commands.openChat"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)

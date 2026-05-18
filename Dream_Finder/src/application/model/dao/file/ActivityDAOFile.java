@@ -115,7 +115,7 @@ public class ActivityDAOFile implements ActivityDAO {
 
 	@Override
 	public List<Activity> findRelatedActivities(String activityName, ActivityType activityType, String providerName) {
-		List<Activity> relatedActivities = null;
+		List<Activity> relatedActivities = new ArrayList<>();
 		List<Activity> activities = new ArrayList<>();
 		
 		List<Provider> availableProviders = providerDAO.providersList();
