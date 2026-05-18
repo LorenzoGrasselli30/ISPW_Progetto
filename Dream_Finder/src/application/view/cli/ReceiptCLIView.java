@@ -1,5 +1,6 @@
 package application.view.cli;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import application.controller.application.BookingApplicationController;
@@ -20,25 +21,28 @@ public class ReceiptCLIView implements StartCLI {
 
 	@Override
 	public void start() {
+		//Formatter utilizzato per la date mm/yy
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
+		
 		String maskedCard = "************";
 		maskedCard += currentReceipt.getCardNumber().substring(currentReceipt.getCardNumber().length() - 4);
 		
 		System.out.println("\n");
-		System.out.println("|#### Ricevuta: " + currentReceipt.getPaymentOutcome().getID() + "####|");
+		System.out.println("|#### Ricevuta: " + currentReceipt.getPaymentOutcome().getID() + " ####|");
 		
 		System.out.println("Nominativo cliente: " + currentReceipt.getOwnerName());
 		System.out.println("Nominativo esercente: " + currentReceipt.getProviderName());
 		System.out.println("ID della transazione: " + currentReceipt.getPaymentOutcome().getID());
-		System.out.println("Stato della transazione: " + currentReceipt.getPaymentOutcome());
+		System.out.println("Stato della transazione: " + currentReceipt.getPaymentOutcome().getOutcome());
 		System.out.println("\nInformazioni della carta");
 		System.out.println("Numero: " + maskedCard);
-		System.out.println("Data di scadenza: " + currentReceipt.getExpiredDate());
+		System.out.println("Data di scadenza: " + currentReceipt.getExpiredDate().format(formatter));
 		System.out.println("\nInformazioni sul prodotto acquistato");
 		System.out.println("Nome dell'attività: " + currentReceipt.getPaymentOutcome().getDescription());
 		System.out.println("Ingresso intero: " + currentReceipt.getnFullTicket() + " | Ingresso ridotto: " + currentReceipt.getnReducedTicket());
-		System.out.println("Servizio navetta: " + currentReceipt.getShuttlePrice());
-		System.out.println("Tour guidato: " + currentReceipt.getGuidePrice());
-		System.out.println("Totale: " + currentReceipt.getTotalPrice());
+		System.out.println("Servizio navetta: " + currentReceipt.getShuttlePrice() + "€");
+		System.out.println("Tour guidato: " + currentReceipt.getGuidePrice() + "€");
+		System.out.println("Totale: " + currentReceipt.getTotalPrice() + "€");
 		
 		pause();
 	}

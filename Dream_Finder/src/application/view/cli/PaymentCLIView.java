@@ -1,6 +1,8 @@
 package application.view.cli;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import application.controller.application.BookingApplicationController;
@@ -65,6 +67,7 @@ public class PaymentCLIView implements StartCLI {
 	}
 	
 	private void doPayment() {
+		
 		String cardNumber = null;
 		String cvv = null;
 		String ownerName = null;
@@ -90,7 +93,7 @@ public class PaymentCLIView implements StartCLI {
 				System.out.println("Inserisci il numero della carta");
 				cardNumber = scanner.nextLine().trim();
 				System.out.println("Inserisci la data di scadenza della carta");
-				expiredDate = LocalDate.parse(scanner.nextLine().trim());
+				expiredDate = fromString(scanner.nextLine().trim());
 				System.out.println("Inserisci il cvv");
 				cvv = scanner.nextLine().trim();
 				System.out.println("Inserisci il nome del proprietario della carta");
@@ -117,13 +120,13 @@ public class PaymentCLIView implements StartCLI {
 			}
 			
 			if (expiredDate == null) {
-				System.out.println("Inserisci una data di scadenza.");
+				System.out.println("Inserisci una data di scadenza della carta.");
 				pause();
 				running = true;
 			}
 			
 			if (ownerName.isEmpty()) {
-				System.out.println("Inserisci il nome del titolare carta.");
+				System.out.println("Inserisci il nome del titolare della carta.");
 				pause();
 				running = true;
 			}	
@@ -158,4 +161,13 @@ public class PaymentCLIView implements StartCLI {
 	        scanner.nextLine();
 	    }
 	}
+	
+	private LocalDate fromString(String text) {
+		//Formatter utilizzato per la date mm/yy
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
+		
+        if (text == null || text.trim().isEmpty()) return null;
+        YearMonth ym = YearMonth.parse(text, formatter);
+        return ym.atDay(1); // giorno tecnico fisso
+    }
 }

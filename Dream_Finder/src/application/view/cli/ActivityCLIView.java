@@ -1,6 +1,7 @@
 package application.view.cli;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import application.configuration.UserSession;
@@ -72,7 +73,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 		System.out.println("Il totale della prenotazione ammonta a: " + observerState + "€ continuare? [y: si, n: no]");
 	}
 	
-	private void recalculateTotal(Integer fullTicketCount, Integer reducedTicketCount, Boolean guideTour, Boolean shuttleService) {
+	private void recalculateTotal(Integer fullTicketCount, Integer reducedTicketCount, boolean guideTour, boolean shuttleService) {
 		subject.calculatePrice(currentActivity, fullTicketCount, reducedTicketCount, guideTour, shuttleService);
 	}
 	
@@ -83,7 +84,10 @@ public class ActivityCLIView implements StartCLI, Observer {
 	    }
 	}
 	
-	private Boolean useActivityCLI() {
+	private boolean useActivityCLI() {
+		//Formatter utilizzato per la date dd/mm/aaaa
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
 		System.out.println("");
 		System.out.println("1) Verifica la disponibilità");
 		System.out.println("2) Aggiungi ai preferiti");
@@ -100,10 +104,10 @@ public class ActivityCLIView implements StartCLI, Observer {
 				System.out.println("Inserisci il numero di biglietti ridotti");
 				Integer reducedTicketCount = Integer.parseInt(scanner.nextLine().trim());
 				for (LocalDate date : currentActivity.getAvaiblePlaces().keySet()) {
-					System.out.print(" |" + date.toString() + "| ");
+					System.out.print(" |" + date.format(formatter) + "| ");
 				}
 				System.out.println("\nInserisci la data di prenotazione");
-				LocalDate date = LocalDate.parse(scanner.nextLine().trim());
+				LocalDate date = LocalDate.parse(scanner.nextLine().trim(), formatter);
 				System.out.println("Desideri il servizio di visita guidata? [y: si, n: no]");
 				String confirm = scanner.nextLine().trim();
 				boolean guideTour = false;
@@ -128,7 +132,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 				confirm = scanner.nextLine().trim();
 				if (confirm.equals("y")) {
 					try {
-						submitActivityForm(date, fullTicketCount, fullTicketCount, guideTour, shuttleService);
+						submitActivityForm(date, fullTicketCount, reducedTicketCount, guideTour, shuttleService);
 					} catch (AvailabilityException e) {
 						System.out.println(e.getMessage());
 						pause();
@@ -145,6 +149,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 				pause();
 				break;
 			case "4":
+				navigator.navigateToHomepage();
 				return false;
 			default:
 				System.out.println("Scelta non valida. Riprova.");

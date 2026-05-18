@@ -46,6 +46,7 @@ public class RecommendedActivitiesCLIView implements StartCLI {
 			System.out.println("2) Visualizza il biblietto");
 			System.out.println("3) Visualizza la ricevuta");
 			System.out.println("4) Torna alla homepage");
+			System.out.println("Inserisci la tua scelta:");
 			String choice = scanner.nextLine().trim();
 			
 			switch (choice) {
@@ -74,7 +75,7 @@ public class RecommendedActivitiesCLIView implements StartCLI {
 					break;
 				}
 				
-				navigator.navigateToActivity(relatedInfo.get(Integer.parseInt(choice)));
+				navigator.navigateToActivity(relatedInfo.get(Integer.parseInt(choice) - 1));
 				
 				break;
 			case "2":

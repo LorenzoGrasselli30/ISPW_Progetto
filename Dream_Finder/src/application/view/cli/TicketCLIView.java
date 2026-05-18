@@ -1,5 +1,6 @@
 package application.view.cli;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import application.controller.application.BookingApplicationController;
@@ -21,11 +22,14 @@ public class TicketCLIView implements StartCLI {
 
 	@Override
 	public void start() {
+		//Formatter utilizzato per la date dd/mm/aaaa
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
 		System.out.println("\n");
-		System.out.println("|#### Ticket: " + currentBooking.getBookingID() + "####|");
-		System.out.println("Nome traveler: " + currentBooking.getTravelerName());
+		System.out.println("|#### Ticket: " + currentBooking.getBookingID() + " ####|");
+		System.out.println("Nome traveler: " + currentBooking.getTravelerName() + " " + currentBooking.getTravelerSurname());
 		System.out.println("Nome provider: " + currentBooking.getProviderName());
-		System.out.println("Il biglietto è valido per il giorno: " + currentBooking.getBookedDate());
+		System.out.println("Il biglietto è valido per il giorno: " + currentBooking.getBookedDate().format(formatter));
 		
 		System.out.println("\nInformazoni sull'attività");
 		System.out.println("ID: " + currentBooking.getBookingID());
@@ -47,8 +51,8 @@ public class TicketCLIView implements StartCLI {
 			System.out.println("Informazioni " + i + "° partecipante");
 			System.out.println("Nome: " + guest.getName());
 			System.out.println("Cognome: " + guest.getSurname());
-			System.out.println("Data di nascita: " + guest.getDateOfBirth());
-			if (currentBooking.getFullTickets() <= i) {
+			System.out.println("Data di nascita: " + guest.getDateOfBirth().format(formatter));
+			if (currentBooking.getFullTickets() >= i) {
 				System.out.println("Tipologia di biglietto: Intero");
 			} else {
 				System.out.println("Tipologia di biglietto: Ridotto");

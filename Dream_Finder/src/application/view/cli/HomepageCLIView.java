@@ -101,6 +101,6 @@ public class HomepageCLIView implements StartCLI {
 			return;
 		}
 			
-		new ActivityCLIView(navigator, activities.get(Integer.parseInt(choice))).start();
+		new ActivityCLIView(navigator, activities.get(Integer.parseInt(choice) - 1)).start();
 	}
 }

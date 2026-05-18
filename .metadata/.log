@@ -8982,3 +8982,35 @@ org.eclipse.core.runtime.OperationCanceledException
 		at org.eclipse.jdt.internal.ui.util.SelectionUtil.logException(SelectionUtil.java:150)
 		at org.eclipse.jdt.internal.ui.text.java.hover.AbstractJavaEditorTextHover.getJavaElementsAt(AbstractJavaEditorTextHover.java:124)
 		... 10 more
+
+!ENTRY org.eclipse.jdt.core.manipulation 4 10001 2026-05-15 17:37:01.385
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Error in Java Model (code 1009): Unknown javadoc format for Ticket {key=Lsun/security/krb5/internal/Ticket;} [in Ticket.class [in sun.security.krb5.internal [in <module:java.security.jgss>]]]
+	at org.eclipse.jdt.internal.core.JavadocContents.getTypeDoc(JavadocContents.java:92)
+	at org.eclipse.jdt.internal.core.BinaryType.getAttachedJavadoc(BinaryType.java:1043)
+	at org.eclipse.jdt.core.manipulation.internal.javadoc.CoreJavadocAccess.getHTMLContent(CoreJavadocAccess.java:234)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:49)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:799)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:717)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:709)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1009 2026-05-15 17:37:01.386
+!MESSAGE Unknown javadoc format for Ticket {key=Lsun/security/krb5/internal/Ticket;} [in Ticket.class [in sun.security.krb5.internal [in <module:java.security.jgss>]]]
+
+!ENTRY org.eclipse.eclemma.core 4 5013 2026-05-18 15:50:49.440
+!MESSAGE Error while dumping coverage data (code 5013).
+!STACK 0
+java.net.SocketException: Socket closed
+	at java.base/sun.nio.ch.NioSocketImpl.endAccept(NioSocketImpl.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:755)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:694)
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:659)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:635)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:581)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:540)
+	at org.eclipse.eclemma.internal.core.launching.AgentServer.run(AgentServer.java:109)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

@@ -2,6 +2,7 @@ package application.view.cli;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,6 +29,9 @@ public class FormCLIView implements StartCLI {
 
 	@Override
 	public void start() {
+		//Formatter utilizzato per la date dd/mm/aaaa
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				
 		List<GuestInformationDTO> guests = new ArrayList<>();
 		boolean allFieldsFilled = true;
     	boolean validAgeForTicket = true;
@@ -50,12 +54,12 @@ public class FormCLIView implements StartCLI {
 			System.out.println("Inserisci il cognome del " + i + PARTECIPANTE);
 			guest.setSurname(scanner.nextLine());
 			System.out.println("Inserisci la data di nascita del " + i + PARTECIPANTE);
-			guest.setDateOfBirth(LocalDate.parse(scanner.nextLine()));
+			guest.setDateOfBirth(LocalDate.parse(scanner.nextLine(), formatter));
 				
 			allFieldsFilled = this.validateFieldsFilled(guest.getName(), guest.getSurname(), guest.getDateOfBirth());
 			validAgeForTicket = this.validateAgeForTicket(guest.getDateOfBirth(), i);
 			
-			if (allFieldsFilled || validAgeForTicket) {
+			if (!allFieldsFilled || !validAgeForTicket) {
 				pause();
 				continue;
 			}
