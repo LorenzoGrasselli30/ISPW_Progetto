@@ -129,12 +129,6 @@ public class BookingApplicationController {
 			throw new AvailabilityException("La quantità di posti richiesti non è più disponibile");
 		}
 		
-		System.out.println("\nAttività trovata");
-		System.out.println(bookedActivity.getActivityName());
-		
-		System.out.println("\n");
-		
-		pause();
 		//Creo un oggetto della classe adaptee
 		StripePayment paymentAPI= new StripePayment();
 		//Interfaccia target utilizzata dal client
@@ -188,6 +182,17 @@ public class BookingApplicationController {
 		
 		//Salvataggio della ricevuta
 		Provider currentProvider = providerDAO.findByActivity(bookedActivity);
+		
+		if (currentProvider != null) {
+			System.out.println("\nprovider trovato");
+			System.out.println(currentProvider.getEmail());
+			System.out.println(currentProvider.getProviderName());
+			System.out.println(currentProvider.getActivities());
+			System.out.println("\n");
+		}
+		
+		
+		pause();
 		
 		Receipt receipt= new Receipt(
 				currentProvider,

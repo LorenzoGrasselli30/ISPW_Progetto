@@ -33,7 +33,8 @@ public class ReceiptDAOFile implements ReceiptDAO {
 	@Override
 	public Boolean saveReceipt(Receipt receipt) {
 		
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(RECEIPT_FILE_PATH))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(RECEIPT_FILE_PATH, true))) {
+			writer.newLine();
             writer.write(receipt.getProvider().getEmail() + "," + receipt.getBookingInformation().getBookingID() 
             		+ "," + receipt.getCard().getCardNumber() + "," + receipt.getCard().getExpiredDate().toString() + "," + receipt.getCard().getOwnerName()
             		+ "," + receipt.getStripe().getPaymentID() + "," + receipt.getStripe().getPaymentDescription() + "," + receipt.getStripe().getPaymentOutcome());

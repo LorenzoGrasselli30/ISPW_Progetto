@@ -50,7 +50,7 @@ public class BookingDAOFile implements BookingDAO {
 		
 		String result= booking.getBookingID();
 				
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKING_FILE_PATH))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKING_FILE_PATH, true))) {
             writer.write(booking.getBookingID() + "," + booking.getBookingDate().toString() + "," + booking.getBookedDate().toString()
             + "," + booking.getPriceInformation().getnFullTickets() + "," + booking.getPriceInformation().getnReducedTickets()
             + "," + booking.getPriceInformation().isShuttleService() + "," + booking.getPriceInformation().isGuideService()
@@ -61,7 +61,7 @@ public class BookingDAOFile implements BookingDAO {
         }
 		
 		for (GuestInformation guest : booking.getGuests()) {
-			try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKING_FILE_PATH))) {
+			try (BufferedWriter writer = new BufferedWriter(new FileWriter(GUEST_FILE_PATH, true))) {
 	            writer.write(booking.getBookingID() + "," + guest.getName() + "," + guest.getSurname()  + "," + guest.getDateOfBirth().toString() + "\n");
 	        } catch (IOException e) {
 	        	throw new DAOException("");

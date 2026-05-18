@@ -105,6 +105,11 @@ public class ActivityDAOFile implements ActivityDAO {
 		if (targetProvider == null) {
 			return null; 
 		}
+		
+		// Caso attività del provider non trovate
+		if (targetProvider.getActivities() == null) {
+				return null; 
+			}
 					
 		// Ritorna l'attività corrispondente o null se non trovata
 		return targetProvider.getActivities().stream()
