@@ -34,22 +34,22 @@ public class PaymentCLIView implements StartCLI {
 			System.out.println("|#### Schermata di pagamento ####|");
 			
 			System.out.println("Resoconto del pagamento:");
-			System.out.println("x" + context.getnFullTickets() + " Biglietto intero " + context.getActivity().getPrice()*context.getnFullTickets() + "€");
-			System.out.println("x" + context.getnReducedTickets() + " Biglietto ridotto " + (context.getActivity().getPrice()/3.0)*context.getnReducedTickets() + "€");
+			System.out.println("x" + context.getnFullTickets() + " Biglietto intero " + String.format("%.2f", context.getActivity().getPrice()*context.getnFullTickets()) + "€");
+			System.out.println("x" + context.getnReducedTickets() + " Biglietto ridotto " + String.format("%.2f", (context.getActivity().getPrice()/3.0)*context.getnReducedTickets()) + "€");
 			
 			if (context.isShuttleService() && context.getShuttlePrice() != null) {
-				System.out.println("Servizio navetta: " + context.getShuttlePrice() + "€");
+				System.out.println("Servizio navetta: " + String.format("%.2f", context.getShuttlePrice()) + "€");
 			} else {
 				System.out.println("Servizio navetta: No");
 			}
 			
 			if (context.isGuideService() && context.getGuidePrice() != null) {
-				System.out.println("Tour guidato: " + context.getGuidePrice() + "€");
+				System.out.println("Tour guidato: " + String.format("%.2f", context.getGuidePrice()) + "€");
 			} else {
 				System.out.println("Tour guidato: No");
 			}
 			
-			System.out.println("Totale: " + context.getTotalPrice() + "€");
+			System.out.println("Totale: " + String.format("%.2f", context.getTotalPrice()) + "€");
 			System.out.println("Procedere con il pagamento? [y: si, n: no]");
 			String confirm = scanner.nextLine();
 			

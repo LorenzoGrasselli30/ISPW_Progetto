@@ -90,7 +90,12 @@ public class FormCLIView implements StartCLI {
 	private boolean validateAgeForTicket(LocalDate dob, int participantIndex) {
 		int age = Period.between(dob, LocalDate.now()).getYears();
 		boolean isFullTicket = participantIndex <= context.getnFullTickets();
-
+		
+		if (age <= 0) {
+			System.out.println("Dati errati: Inserisci una data di nascita valida");
+			return false;
+		}
+		
 		if (isFullTicket && age <= 12) {
 			System.out.println("Dati errati: I biglietti interi NON valgono per partecipanti con un età minore o uguale ai 12 anni.");
 			return false;

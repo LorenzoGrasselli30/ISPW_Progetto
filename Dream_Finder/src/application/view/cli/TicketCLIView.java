@@ -52,11 +52,12 @@ public class TicketCLIView implements StartCLI {
 			System.out.println("Nome: " + guest.getName());
 			System.out.println("Cognome: " + guest.getSurname());
 			System.out.println("Data di nascita: " + guest.getDateOfBirth().format(formatter));
-			if (currentBooking.getFullTickets() >= i) {
+			if (currentBooking.getNumFullTickets() >= i) {
 				System.out.println("Tipologia di biglietto: Intero");
 			} else {
 				System.out.println("Tipologia di biglietto: Ridotto");
 			}
+			i++;
 		}
 		
 		pause();

@@ -70,7 +70,7 @@ public class ActivityCLIView implements StartCLI, Observer {
 	@Override
 	public void update() {
 		Double observerState = subject.getPrice();
-		System.out.println("Il totale della prenotazione ammonta a: " + observerState + "€ continuare? [y: si, n: no]");
+		System.out.println("Il totale della prenotazione ammonta a: " + String.format("%.2f", observerState) + "€ continuare? [y: si, n: no]");
 	}
 	
 	private void recalculateTotal(Integer fullTicketCount, Integer reducedTicketCount, boolean guideTour, boolean shuttleService) {

@@ -40,9 +40,9 @@ public class ReceiptCLIView implements StartCLI {
 		System.out.println("\nInformazioni sul prodotto acquistato");
 		System.out.println("Nome dell'attività: " + currentReceipt.getPaymentOutcome().getDescription());
 		System.out.println("Ingresso intero: " + currentReceipt.getnFullTicket() + " | Ingresso ridotto: " + currentReceipt.getnReducedTicket());
-		System.out.println("Servizio navetta: " + currentReceipt.getShuttlePrice() + "€");
-		System.out.println("Tour guidato: " + currentReceipt.getGuidePrice() + "€");
-		System.out.println("Totale: " + currentReceipt.getTotalPrice() + "€");
+		System.out.println("Servizio navetta: " + String.format("%.2f", currentReceipt.getShuttlePrice()) + "€");
+		System.out.println("Tour guidato: " + String.format("%.2f", currentReceipt.getGuidePrice()) + "€");
+		System.out.println("Totale: " + String.format("%.2f", currentReceipt.getTotalPrice()) + "€");
 		
 		pause();
 	}

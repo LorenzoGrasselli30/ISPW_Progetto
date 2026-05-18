@@ -52,7 +52,7 @@ public class BookingDTO {
 		this.activityName = activityName;
 	}
 	
-	public int getFullTickets() {
+	public int getNumFullTickets() {
 		return nFullTickets;
 	}
 	
