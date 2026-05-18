@@ -3,6 +3,7 @@ package application.controller.application;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import application.configuration.UserSession;
 import application.exception.AvailabilityException;
@@ -109,6 +110,19 @@ public class BookingApplicationController {
 	//Client che chiama l'istanza di Adapteer
 	public BookingContext makeBooking(BookingContext context) throws AvailabilityException, PaymentProcessingException {
 		
+		System.out.println("\nBooking context");
+		System.out.println(context.getBookingID());
+		System.out.println(context.getTotalPrice());
+		System.out.println(context.getActivity().getActivityName());
+		System.out.println(context.getCardNumber());
+		for (GuestInformationDTO guest: context.getGuests()) {
+			System.out.println(guest.getName());
+		}
+		
+		System.out.println("\n");
+		
+		pause();
+		
 		Activity bookedActivity= activityDAO.findByProvider(context.getActivity().getActivityName(), context.getActivity().getProviderName());
 		if(!bookedActivity.getAvaibleDates().hasRequiredPlaces(context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()))) {
 			throw new AvailabilityException("La quantità di posti richiesti non è più disponibile");
@@ -149,16 +163,17 @@ public class BookingApplicationController {
 				null,
 				currentTraveler,
 				guests,
-				bookedActivity, new BookingPriceInformation(
-				context.getnFullTickets(),
-				context.getnReducedTickets(),
-				context.isShuttleService(),
-				context.isGuideService(),
-				context.getShuttlePrice(),
-				context.getGuidePrice(),
-				context.getTotalPrice()),
-				currentDate,
-				context.getBookedDate()
+				bookedActivity, 
+				new BookingPriceInformation(
+					context.getnFullTickets(),
+					context.getnReducedTickets(),
+					context.isShuttleService(),
+					context.isGuideService(),
+					context.getShuttlePrice(),
+					context.getGuidePrice(),
+					context.getTotalPrice()),
+					currentDate,
+					context.getBookedDate()
 				);
 		
 		String bookingResult= bookingDAO.confirmBooking(newBooking);
@@ -289,4 +304,11 @@ public class BookingApplicationController {
 		}
 	}
 	
+	private void pause() {
+		Scanner scanner = new Scanner(System.in);
+	    System.out.println("Premi Invio per continuare...");
+	    if (scanner.hasNextLine()) {
+	        scanner.nextLine();
+	    }
+	}
 }

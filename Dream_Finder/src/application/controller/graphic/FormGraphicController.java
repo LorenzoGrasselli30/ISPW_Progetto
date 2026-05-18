@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import application.configuration.UserSession;
 import application.controller.application.BookingApplicationController;
@@ -187,6 +188,16 @@ public class FormGraphicController {
         	    }
         	}
         	
+        	i = 1;
+        	for (GuestInformationDTO guest: guests) {
+    			System.out.println(i + " " + guest.getName());
+    			i++;
+    		}
+    		
+    		System.out.println("\n");
+    		
+    		pause();
+        	
         	if (allFieldsFilled && validAgeForTicket) {
         		//Inserisco la lista degli ospiti nel booking context
         	    context.setGuests(guests);
@@ -232,4 +243,12 @@ public class FormGraphicController {
 
         return true;
     }
+    
+    private void pause() {
+		Scanner scanner = new Scanner(System.in);
+	    System.out.println("Premi Invio per continuare...");
+	    if (scanner.hasNextLine()) {
+	        scanner.nextLine();
+	    }
+	}
 }
