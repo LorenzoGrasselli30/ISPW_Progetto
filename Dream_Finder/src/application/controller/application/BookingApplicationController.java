@@ -114,6 +114,7 @@ public class BookingApplicationController {
 		System.out.println(context.getBookingID());
 		System.out.println(context.getTotalPrice());
 		System.out.println(context.getActivity().getActivityName());
+		System.out.println(context.getActivity().getProviderName());
 		System.out.println(context.getCardNumber());
 		for (GuestInformationDTO guest: context.getGuests()) {
 			System.out.println(guest.getName());
@@ -128,6 +129,12 @@ public class BookingApplicationController {
 			throw new AvailabilityException("La quantità di posti richiesti non è più disponibile");
 		}
 		
+		System.out.println("\nAttività trovata");
+		System.out.println(bookedActivity.getActivityName());
+		
+		System.out.println("\n");
+		
+		pause();
 		//Creo un oggetto della classe adaptee
 		StripePayment paymentAPI= new StripePayment();
 		//Interfaccia target utilizzata dal client

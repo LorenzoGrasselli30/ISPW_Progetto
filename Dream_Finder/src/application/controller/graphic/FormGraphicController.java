@@ -174,7 +174,7 @@ public class FormGraphicController {
         	        
         	        validAgeForTicket = this.validateAgeForTicket(datePicker.getValue(), i);
         	        
-        	        if (allFieldsFilled || validAgeForTicket) {
+        	        if (!allFieldsFilled || !validAgeForTicket) {
         	        	break;
         	        }
         	        
@@ -187,16 +187,6 @@ public class FormGraphicController {
         	        guests.add(guest);
         	    }
         	}
-        	
-        	i = 1;
-        	for (GuestInformationDTO guest: guests) {
-    			System.out.println(i + " " + guest.getName());
-    			i++;
-    		}
-    		
-    		System.out.println("\n");
-    		
-    		pause();
         	
         	if (allFieldsFilled && validAgeForTicket) {
         		//Inserisco la lista degli ospiti nel booking context
@@ -243,12 +233,4 @@ public class FormGraphicController {
 
         return true;
     }
-    
-    private void pause() {
-		Scanner scanner = new Scanner(System.in);
-	    System.out.println("Premi Invio per continuare...");
-	    if (scanner.hasNextLine()) {
-	        scanner.nextLine();
-	    }
-	}
 }
