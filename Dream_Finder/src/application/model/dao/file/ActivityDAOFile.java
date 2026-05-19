@@ -170,7 +170,7 @@ public class ActivityDAOFile implements ActivityDAO {
 		
 		for (Provider provider : availableProviders) {
 			 for (Activity a : provider.getActivities()) {
-		            if ((activity.getActivityName().equals(a.getActivityName())) && activity.getProvider().equals(a.getProvider())) {
+		            if ((activity.getActivityName().equals(a.getActivityName())) && activity.getProvider().getEmail().equals(a.getProvider().getEmail())) {
 		            	Integer currentPlaces = activity.getAvaibleDates().getAvaiblePlaces().get(day);
 		            	a.getAvaibleDates().getAvaiblePlaces().put(day, currentPlaces - requestedPlaces);
 		                
@@ -204,7 +204,7 @@ public class ActivityDAOFile implements ActivityDAO {
             }
             
         } catch (IOException e) {
-        	throw new DAOException("Errore nella prenotazione dei posti");
+        	throw new DAOException("Errore: il giorno o l'attività richiesta per la prenotazione non è stata trovata");
         }
     }
 }

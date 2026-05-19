@@ -28,7 +28,7 @@ public class ReceiptDAOFile implements ReceiptDAO {
             		+ "," + receipt.getCard().getCardNumber() + "," + receipt.getCard().getExpiredDate().toString() + "," + receipt.getCard().getOwnerName()
             		+ "," + receipt.getStripe().getPaymentID() + "," + receipt.getStripe().getPaymentDescription() + "," + receipt.getStripe().getPaymentOutcome());
         } catch (IOException e) {
-        	throw new DAOException("");
+        	throw new DAOException("Errore nella generazione della ricevuta");
         }
 		
 		return true;

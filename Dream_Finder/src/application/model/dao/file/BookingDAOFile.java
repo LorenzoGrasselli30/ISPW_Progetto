@@ -20,13 +20,15 @@ import application.model.entity.Booking;
 import application.model.entity.BookingPriceInformation;
 import application.model.entity.GuestInformation;
 import application.model.entity.Provider;
+import application.model.entity.ProviderPersonalInfo;
 import application.model.entity.Traveler;
 import application.model.enums.ActivityType;
+import application.model.enums.ProviderType;
 
 public class BookingDAOFile implements BookingDAO {
 	
 	private static final String BOOKING_FILE_PATH = "data/Booking.csv";
-    private static final String BOOKING_HEADER = "bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName";
+    private static final String BOOKING_HEADER = "bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName,providerEmail";
     private static final String GUEST_FILE_PATH = "data/Guest.csv";
     private static final String GUEST_HEADER = "booking,guestName,guestSurname,dob";
 	private static final String TRAVELER_FILE_PATH = "data/Traveler.csv";
@@ -35,6 +37,8 @@ public class BookingDAOFile implements BookingDAO {
     private static final String ACTIVITY_HEADER = "providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
     private static final String DATES_FILE_PATH = "data/AvailableDates.csv";
     private static final String DATES_HEADER = "activityName,providerEmail,aDay,nPlaces";
+    private static final String PROVIDER_FILE_PATH = "data/Provider.csv";
+    private static final String PROVIDER_HEADER = "email,password,providerName,providerType,nOfferedActivities,location,name,surname";
     
 	public BookingDAOFile() {
     	UtilsFile.ensureFileExists(BOOKING_FILE_PATH, BOOKING_HEADER);
@@ -42,6 +46,7 @@ public class BookingDAOFile implements BookingDAO {
     	UtilsFile.ensureFileExists(TRAVELER_FILE_PATH, TRAVELER_HEADER);
     	UtilsFile.ensureFileExists(ACTIVITY_FILE_PATH, ACTIVITY_HEADER);
     	UtilsFile.ensureFileExists(DATES_FILE_PATH, DATES_HEADER);
+    	UtilsFile.ensureFileExists(PROVIDER_FILE_PATH, PROVIDER_HEADER);
     }
 
 	@Override
@@ -56,9 +61,9 @@ public class BookingDAOFile implements BookingDAO {
             + "," + booking.getPriceInformation().getnFullTickets() + "," + booking.getPriceInformation().getnReducedTickets()
             + "," + booking.getPriceInformation().isShuttleService() + "," + booking.getPriceInformation().isGuideService()
             + "," + booking.getPriceInformation().getShuttlePrice() + "," + booking.getPriceInformation().getGuidePrice() + "," + booking.getPriceInformation().getTotalPrice()
-            + "," + booking.getTraveler().getEmail() + "," + booking.getActivity().getActivityName());
+            + "," + booking.getTraveler().getEmail() + "," + booking.getActivity().getActivityName() + "," + booking.getActivity().getProvider().getEmail());
         } catch (IOException e) {
-        	throw new DAOException("");
+        	throw new DAOException("Errore nel salvataggio della prenotazione");
         }
 		
 		for (GuestInformation guest : booking.getGuests()) {
@@ -66,7 +71,7 @@ public class BookingDAOFile implements BookingDAO {
 				writer.newLine();
 	            writer.write(booking.getBookingID() + "," + guest.getName() + "," + guest.getSurname()  + "," + guest.getDateOfBirth().toString());
 	        } catch (IOException e) {
-	        	throw new DAOException("");
+	        	throw new DAOException("Errore nel salvataggio della prenotazione");
 	        }
 		}
 		
@@ -83,17 +88,20 @@ public class BookingDAOFile implements BookingDAO {
 				BufferedReader guestsReader = new BufferedReader(new FileReader(GUEST_FILE_PATH));
 				BufferedReader travelerReader = new BufferedReader(new FileReader(TRAVELER_FILE_PATH));
 				BufferedReader activityReader = new BufferedReader(new FileReader(ACTIVITY_FILE_PATH));
-				BufferedReader datesReader = new BufferedReader(new FileReader(DATES_FILE_PATH))) {
+				BufferedReader providerReader = new BufferedReader(new FileReader(PROVIDER_FILE_PATH))
+				) {
 			
 			String travelerEmail = null;
 			String activityName = null;
+			String providerEmail = null;
 			
 			while ((line = bookingReader.readLine()) != null) {
             	String[] parts = line.split(",");
             	if (parts[0].equals(bookingID)) {
             		travelerEmail = parts[10];
             		activityName = parts[11];
-            				
+            		providerEmail = parts[12];
+            		
             		newBooking = new Booking(
             				bookingID, 
             				null, //traveler
@@ -139,6 +147,26 @@ public class BookingDAOFile implements BookingDAO {
 				}
 			}
 			
+			//Recupero delle informazioni del provider
+			Provider provider = null;
+			while ((line = providerReader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts[0].equals(providerEmail)) {
+					provider = new Provider(
+							parts[0], //email
+							parts[1], //password
+							parts[2], //providerName
+							ProviderType.fromString(parts[3]), //providerType
+							Integer.parseInt(parts[4]), //nofferedActivities
+							new ProviderPersonalInfo(
+									parts[5], 
+									parts[6], 
+									parts[7]
+									) //Personal info
+							);
+				}
+			}
+			
 			//Recupero dell'attività prenotata
 			Activity activity = null;
 			while ((line = activityReader.readLine()) != null) {
@@ -148,7 +176,7 @@ public class BookingDAOFile implements BookingDAO {
 							parts[1], //activityName
 							Double.parseDouble(parts[2]), //price
 							ActivityType.fromString(parts[3]), //activityType
-							null, 
+							provider, //Provider
 							new ActivityRating(
 									Double.parseDouble(parts[4]), //rate
 									Integer.parseInt(parts[5]) //nRating
@@ -161,7 +189,7 @@ public class BookingDAOFile implements BookingDAO {
 									Integer.parseInt(parts[10]),     // duration
 									Boolean.parseBoolean(parts[11])  // durationInMinutes
 									), 
-							null
+							null //availabledates
 							); 
 				}
 			}
@@ -174,7 +202,7 @@ public class BookingDAOFile implements BookingDAO {
 			newBooking.setActivity(activity);
 
     	} catch (IOException e) {
-        	throw new DAOException("");
+        	throw new DAOException("Errore di ricerca della prenotazione");
         }
 		
 		return newBooking;

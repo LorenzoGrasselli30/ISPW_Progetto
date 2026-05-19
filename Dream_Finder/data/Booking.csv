@@ -1,2 +1,7 @@
-bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName
-85d8f9b3-428f-42a3-aad3-a0ed366b4bac,2026-05-19,2026-08-01,2,0,true,false,10.0,0.0,70.0,mario.rossi@mail.com,Roma: tour guidato del Colosseo
+bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName,providerEmail
+01cd39a7-9efe-4b85-b3cf-4b10cb86bdae,2026-05-19,2026-08-01,1,0,false,false,0.0,0.0,30.0,mario.rossi@mail.com,Roma: tour guidato del Colosseo,luigi.verdi@mail.com
+cbe06d36-85be-4c90-b0f5-19b6eb68d2a0,2026-05-19,2026-08-01,2,2,true,false,20.0,0.0,100.0,mario.rossi@mail.com,Roma: tour guidato del Colosseo,luigi.verdi@mail.com
+ae9d4ebd-d82b-45f9-b2f2-4d4ca046ced8,2026-05-19,2026-08-08,1,0,true,false,5.0,0.0,35.0,utente1@mail.com,Roma: tour guidato del Colosseo,luigi.verdi@mail.com
+293ca7a5-d028-444e-a8d0-f121369e829b,2026-05-19,2026-08-08,1,0,false,false,0.0,0.0,15.0,mario.rossi@mail.com,Londra: tour rapido del Museo di storia naturale,provider5@mail.com
+fb4aebed-3cc0-480d-a891-b3b9fe44e265,2026-05-19,2026-08-08,1,0,false,false,0.0,0.0,55.0,mario.rossi@mail.com,Londra: esperienza di Buckingham Palace e cambio della guardia,provider5@mail.com
+31dc7e38-bec7-4781-b8a5-e18b68681b26,2026-05-19,2026-08-08,1,0,false,false,0.0,0.0,59.99,mario.rossi@mail.com,Parigi: crociera sulla Senna,provider2@mail.com
