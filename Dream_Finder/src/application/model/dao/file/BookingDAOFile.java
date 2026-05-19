@@ -123,51 +123,13 @@ public class BookingDAOFile implements BookingDAO {
             	}
             }
 			
-			//Recupero informazioni dei partecipanti
-			List<GuestInformation> guests = new ArrayList<>();
-			while ((line = guestsReader.readLine()) != null) {
-				String[] parts = line.split(",");
-				if (parts[0].equals(bookingID)) {
-					GuestInformation guest = new GuestInformation(
-							parts[1], 
-							parts[2], 
-							LocalDate.parse(parts[3])
-							);
-					
-					guests.add(guest);
-				}
-			}
+			Traveler traveler = this.fetchTraveler(travelerReader, travelerEmail);
 			
-			//Recupero del traveler che ha prenotato
-			Traveler traveler = null;
-			while ((line = travelerReader.readLine()) != null) {
-				String[] parts = line.split(",");
-				if (parts[0].equals(travelerEmail)) {
-					traveler = new Traveler(parts[0], parts[1], parts[2], parts[3], parts[4], LocalDate.parse(parts[5]));
-				}
-			}
+			List<GuestInformation> guests = this.fetchGuests(guestsReader, bookingID);
 			
-			//Recupero delle informazioni del provider
-			Provider provider = null;
-			while ((line = providerReader.readLine()) != null) {
-				String[] parts = line.split(",");
-				if (parts[0].equals(providerEmail)) {
-					provider = new Provider(
-							parts[0], //email
-							parts[1], //password
-							parts[2], //providerName
-							ProviderType.fromString(parts[3]), //providerType
-							Integer.parseInt(parts[4]), //nofferedActivities
-							new ProviderPersonalInfo(
-									parts[5], 
-									parts[6], 
-									parts[7]
-									) //Personal info
-							);
-				}
-			}
+			Provider provider = this.fetchProvider(providerReader, providerEmail);
 			
-			//Recupero dell'attività prenotata
+			//Recupero dati dell'attività prenotata
 			Activity activity = null;
 			while ((line = activityReader.readLine()) != null) {
 				String[] parts = line.split(",");
@@ -206,5 +168,67 @@ public class BookingDAOFile implements BookingDAO {
         }
 		
 		return newBooking;
+	}
+	
+	private Traveler fetchTraveler(BufferedReader travelerReader, String travelerEmail) throws IOException {
+		//Recupero del traveler che ha prenotato
+		String line;
+		while ((line = travelerReader.readLine()) != null) {
+			String[] parts = line.split(",");
+			if (parts[0].equals(travelerEmail)) {
+				return new Traveler(
+						parts[0], 
+						parts[1], 
+						parts[2], 
+						parts[3], 
+						parts[4], 
+						LocalDate.parse(parts[5])
+						);
+			}
+		}
+		
+		return null;
+	}
+	
+	private List<GuestInformation> fetchGuests(BufferedReader guestsReader, String bookingID) throws IOException {
+		//Recupero informazioni dei partecipanti
+		List<GuestInformation> guests = new ArrayList<>();
+		String line;
+		while ((line = guestsReader.readLine()) != null) {
+			String[] parts = line.split(",");
+			if (parts[0].equals(bookingID)) {
+				GuestInformation guest = new GuestInformation(
+						parts[1], 
+						parts[2], 
+						LocalDate.parse(parts[3])
+						);
+				
+				guests.add(guest);
+			}
+		}
+		return guests;
+	}
+	
+	private Provider fetchProvider(BufferedReader providerReader, String providerEmail) throws IOException {
+		//Recupero delle informazioni del provider
+		String line;
+		while ((line = providerReader.readLine()) != null) {
+			String[] parts = line.split(",");
+			if (parts[0].equals(providerEmail)) {
+				return new Provider(
+						parts[0], //email
+						parts[1], //password
+						parts[2], //providerName
+						ProviderType.fromString(parts[3]), //providerType
+						Integer.parseInt(parts[4]), //nofferedActivities
+						new ProviderPersonalInfo(
+								parts[5], 
+								parts[6], 
+								parts[7]
+								) //Personal info
+						);
+			}
+		}
+		return null;
 	}
 }

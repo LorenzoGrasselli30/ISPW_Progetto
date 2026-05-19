@@ -92,9 +92,8 @@ public class ActivityDAOFile implements ActivityDAO {
 			this.providerDAO = providerDAO;
 		}
 		*/
-		List<Provider> availableProviders = new ArrayList<>();
 		
-		availableProviders = providerDAO.providersList();
+		List<Provider> availableProviders = providerDAO.providersList();
 		
 		Provider targetProvider = availableProviders.stream()
 				.filter(p -> p.getProviderName().equals(providerName))

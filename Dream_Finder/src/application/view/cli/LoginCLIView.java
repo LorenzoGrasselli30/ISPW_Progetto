@@ -64,7 +64,7 @@ public class LoginCLIView implements StartCLI {
 		if (confirm.equals("y")) {
 			navigator.navigateToLogin(context);
 		} else if (confirm.equals("n")) {
-			return;
+			//Il metodo termina e il login torna alla homepage
 		} else {
 			System.out.println("Inserisci una scelta valida");
 			pause();

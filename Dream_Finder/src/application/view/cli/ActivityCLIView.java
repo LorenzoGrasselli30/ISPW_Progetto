@@ -104,11 +104,10 @@ public class ActivityCLIView implements StartCLI, Observer {
 				Integer fullTicketCount = Integer.parseInt(scanner.nextLine().trim());
 				System.out.println("Inserisci il numero di biglietti ridotti");
 				Integer reducedTicketCount = Integer.parseInt(scanner.nextLine().trim());
-				for (Map.Entry<LocalDate, Integer> entry : currentActivity.getAvaiblePlaces().entrySet()) {
-					if (entry.getValue() != null && entry.getValue() > 0) {
-						System.out.print(" |" + entry.getKey().format(formatter) + "| ");
-					}
-				}
+				
+				//Stampa tutte le date prenotabili dell'attività scelta
+				printAvailableDates(); 
+				
 				System.out.println("\nInserisci la data di prenotazione");
 				LocalDate date = LocalDate.parse(scanner.nextLine().trim(), formatter);
 				System.out.println("Desideri il servizio di visita guidata? [y: si, n: no]");
@@ -198,6 +197,16 @@ public class ActivityCLIView implements StartCLI, Observer {
         } else { //Caso utente non loggato
         	navigator.navigateToLogin(context);
         }
+	}
+	
+	private void printAvailableDates() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				
+		for (Map.Entry<LocalDate, Integer> entry : currentActivity.getAvaiblePlaces().entrySet()) {
+			if (entry.getValue() != null && entry.getValue() > 0) {
+				System.out.print(" |" + entry.getKey().format(formatter) + "| ");
+			}
+		}
 	}
 }
 
