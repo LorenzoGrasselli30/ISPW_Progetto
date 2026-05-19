@@ -173,62 +173,74 @@ public class BookingDAOFile implements BookingDAO {
 	private Traveler fetchTraveler(BufferedReader travelerReader, String travelerEmail) throws IOException {
 		//Recupero del traveler che ha prenotato
 		String line;
-		while ((line = travelerReader.readLine()) != null) {
-			String[] parts = line.split(",");
-			if (parts[0].equals(travelerEmail)) {
-				return new Traveler(
-						parts[0], 
-						parts[1], 
-						parts[2], 
-						parts[3], 
-						parts[4], 
-						LocalDate.parse(parts[5])
-						);
+		try {
+			while ((line = travelerReader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts[0].equals(travelerEmail)) {
+					return new Traveler(
+							parts[0], 
+							parts[1], 
+							parts[2], 
+							parts[3], 
+							parts[4], 
+							LocalDate.parse(parts[5])
+							);
+				}
 			}
-		}
-		
-		return null;
+			
+			return null;
+		} catch (IOException e) {
+        	throw new DAOException("Errore di ricerca della prenotazione");
+        }
 	}
 	
 	private List<GuestInformation> fetchGuests(BufferedReader guestsReader, String bookingID) throws IOException {
 		//Recupero informazioni dei partecipanti
 		List<GuestInformation> guests = new ArrayList<>();
 		String line;
-		while ((line = guestsReader.readLine()) != null) {
-			String[] parts = line.split(",");
-			if (parts[0].equals(bookingID)) {
-				GuestInformation guest = new GuestInformation(
-						parts[1], 
-						parts[2], 
-						LocalDate.parse(parts[3])
-						);
-				
-				guests.add(guest);
+		try {
+			while ((line = guestsReader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts[0].equals(bookingID)) {
+					GuestInformation guest = new GuestInformation(
+							parts[1], 
+							parts[2], 
+							LocalDate.parse(parts[3])
+							);
+					
+					guests.add(guest);
+				}
 			}
-		}
-		return guests;
+			return guests;
+		} catch (IOException e) {
+        	throw new DAOException("Errore di ricerca della prenotazione");
+        }
 	}
 	
-	private Provider fetchProvider(BufferedReader providerReader, String providerEmail) throws IOException {
+	private Provider fetchProvider(BufferedReader providerReader, String providerEmail) {
 		//Recupero delle informazioni del provider
 		String line;
-		while ((line = providerReader.readLine()) != null) {
-			String[] parts = line.split(",");
-			if (parts[0].equals(providerEmail)) {
-				return new Provider(
-						parts[0], //email
-						parts[1], //password
-						parts[2], //providerName
-						ProviderType.fromString(parts[3]), //providerType
-						Integer.parseInt(parts[4]), //nofferedActivities
-						new ProviderPersonalInfo(
-								parts[5], 
-								parts[6], 
-								parts[7]
-								) //Personal info
-						);
+		try {
+			while ((line = providerReader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts[0].equals(providerEmail)) {
+					return new Provider(
+							parts[0], //email
+							parts[1], //password
+							parts[2], //providerName
+							ProviderType.fromString(parts[3]), //providerType
+							Integer.parseInt(parts[4]), //nofferedActivities
+							new ProviderPersonalInfo(
+									parts[5], 
+									parts[6], 
+									parts[7]
+									) //Personal info
+							);
+				}
 			}
-		}
-		return null;
+			return null;
+		} catch (IOException e) {
+        	throw new DAOException("Errore di ricerca della prenotazione");
+        }
 	}
 }
