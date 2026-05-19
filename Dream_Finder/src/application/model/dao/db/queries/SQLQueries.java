@@ -9,7 +9,7 @@ public class SQLQueries {
 			+ " WHERE User.email=Provider.providerEmail"
 			+ " ORDER BY rate DESC LIMIT 5;";
 	
-	public static final String FIND_TOP_ACTIVITIES = ///
+	public static final String FIND_TOP_ACTIVITIES = 
 			"SELECT Activity.*, Activity.rate AS activityRate"
 			+ " FROM ispw.Activity JOIN ispw.Provider"
 			+ " ON Activity.provider = Provider.providerEmail"
@@ -17,7 +17,7 @@ public class SQLQueries {
 			+ " ORDER BY Activity.rate DESC"
 			+ " LIMIT 2;";
 	
-	public static final String FIND_AVAILABLE_DATES = ///
+	public static final String FIND_AVAILABLE_DATES = 
 			"SELECT *"
 			+ " FROM ispw.AvailableDates"
 			+ " WHERE AvailableDates.activity = ?"
@@ -81,7 +81,7 @@ public class SQLQueries {
 	
 	public static final String FIND_PROVIDER_BY_EMAIL =
 			"Select User.*, Provider.*"
-			+ " FROM ispw.Traveler JOIN ispw.User ON"
+			+ " FROM ispw.Provider JOIN ispw.User ON"
 			+ " Provider.providerEmail = User.email"
 			+ " WHERE User.email = ?;";
 	

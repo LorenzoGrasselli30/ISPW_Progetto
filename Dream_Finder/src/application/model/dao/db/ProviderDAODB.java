@@ -142,7 +142,7 @@ public class ProviderDAODB implements ProviderDAO {
 			throw new DAOException("Errore di accesso al database");
 		}
 		
-		try (PreparedStatement stmProvider = conn.prepareStatement(SQLQueries.FIND_PROVIDER_BY_EMAIL);) {
+		try (PreparedStatement stmProvider = conn.prepareStatement(SQLQueries.FIND_PROVIDER_BY_EMAIL)) {
 			
 				stmProvider.setString(1, email);
 				ResultSet rsProvider = stmProvider.executeQuery();
