@@ -1,4 +1,3 @@
-booking,guestName,guestSurname,dob76cce30a-b007-4ca2-a261-5ce967b32f8d,Mario,Rossi,2004-10-21
-76cce30a-b007-4ca2-a261-5ce967b32f8d,Luigi,Rossi,2000-05-25
-76cce30a-b007-4ca2-a261-5ce967b32f8d,Mino,Rossi,2021-05-14
-76cce30a-b007-4ca2-a261-5ce967b32f8d,Gino,Rossi,2020-05-21
+booking,guestName,guestSurname,dob
+85d8f9b3-428f-42a3-aad3-a0ed366b4bac,Mario,Rossi,2004-10-21
+85d8f9b3-428f-42a3-aad3-a0ed366b4bac,Luigi,Verdi,2004-07-15

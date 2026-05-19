@@ -1,1 +1,2 @@
-bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName76cce30a-b007-4ca2-a261-5ce967b32f8d,2026-05-18,2026-08-01,2,2,false,false,0.0,0.0,106.66666666666667,mario.rossi@mail.com,Roma: biglietto d'ingresso per Castel Sant'Angelo
+bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName
+85d8f9b3-428f-42a3-aad3-a0ed366b4bac,2026-05-19,2026-08-01,2,0,true,false,10.0,0.0,70.0,mario.rossi@mail.com,Roma: tour guidato del Colosseo

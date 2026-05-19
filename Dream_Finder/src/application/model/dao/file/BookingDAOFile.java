@@ -51,18 +51,20 @@ public class BookingDAOFile implements BookingDAO {
 		String result= booking.getBookingID();
 				
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKING_FILE_PATH, true))) {
+			writer.newLine();
             writer.write(booking.getBookingID() + "," + booking.getBookingDate().toString() + "," + booking.getBookedDate().toString()
             + "," + booking.getPriceInformation().getnFullTickets() + "," + booking.getPriceInformation().getnReducedTickets()
             + "," + booking.getPriceInformation().isShuttleService() + "," + booking.getPriceInformation().isGuideService()
             + "," + booking.getPriceInformation().getShuttlePrice() + "," + booking.getPriceInformation().getGuidePrice() + "," + booking.getPriceInformation().getTotalPrice()
-            + "," + booking.getTraveler().getEmail() + "," + booking.getActivity().getActivityName() + "\n");
+            + "," + booking.getTraveler().getEmail() + "," + booking.getActivity().getActivityName());
         } catch (IOException e) {
         	throw new DAOException("");
         }
 		
 		for (GuestInformation guest : booking.getGuests()) {
 			try (BufferedWriter writer = new BufferedWriter(new FileWriter(GUEST_FILE_PATH, true))) {
-	            writer.write(booking.getBookingID() + "," + guest.getName() + "," + guest.getSurname()  + "," + guest.getDateOfBirth().toString() + "\n");
+				writer.newLine();
+	            writer.write(booking.getBookingID() + "," + guest.getName() + "," + guest.getSurname()  + "," + guest.getDateOfBirth().toString());
 	        } catch (IOException e) {
 	        	throw new DAOException("");
 	        }

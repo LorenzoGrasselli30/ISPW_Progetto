@@ -14,18 +14,7 @@ public class ReceiptDAOFile implements ReceiptDAO {
 	
 	private static final String RECEIPT_FILE_PATH = "data/Receipt.csv";
 	private static final String RECEIPT_HEADER = "providerEmail,bookingID,cardNumber,expiredDate,ownerName,paymentID,paymentDescription,paymentOutcome";
-	/*
-	private static final String BOOKING_FILE_PATH = "data/Booking.csv";
-    private static final String BOOKING_HEADER = "bookingID,bookingDate,bookedDate,nFullTickets,nReducedTickets,shuttleService,guideService,shuttlePrice,guidePrice,totalPrice,travelerEmail,activityName";
-    private static final String GUEST_FILE_PATH = "data/Guest.csv";
-    private static final String GUEST_HEADER = "booking,guestName,guestSurname,dob";
-	private static final String TRAVELER_FILE_PATH = "data/Traveler.csv";
-    private static final String TRAVELER_HEADER = "email,password,username,name,surname,dob";
-    private static final String ACTIVITY_FILE_PATH = "data/Activity.csv";
-    private static final String ACTIVITY_HEADER = "providerEmail,activityName,price,activityType,rating,nRating,description,freeCancellation,bookNowPayLater,skipTheLine,duration,durationInMinutes";
-    private static final String DATES_FILE_PATH = "data/AvailableDates.csv";
-    private static final String DATES_HEADER = "activityName,providerEmail,aDay,nPlaces";
-	*/
+	
     public ReceiptDAOFile() {
     	UtilsFile.ensureFileExists(RECEIPT_FILE_PATH, RECEIPT_HEADER);
     }
