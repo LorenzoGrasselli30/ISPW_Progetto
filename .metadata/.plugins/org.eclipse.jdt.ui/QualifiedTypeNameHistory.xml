@@ -7,4 +7,6 @@
     <fullyQualifiedTypeName name="application.configuration.UserSession"/>
     <fullyQualifiedTypeName name="application.adapter.Target"/>
     <fullyQualifiedTypeName name="application.model.bean.ReceiptDTO"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="application.model.enums.ProviderType"/>
 </qualifiedTypeNameHistroy>

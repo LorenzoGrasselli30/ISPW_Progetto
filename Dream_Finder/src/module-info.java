@@ -15,6 +15,8 @@ module Dream_Finder {
  	requires org.mariadb.jdbc;
  	//requires com.mysql.cj;
     
+ 	requires org.junit.jupiter.api;
+ 	
 	opens application to javafx.graphics, javafx.fxml;
 	opens application.controller.graphic to javafx.fxml;
 }
