@@ -83,7 +83,7 @@ public class TestBookingApplicationController {
 		context.setCardNumber("4242424242424240");
 		context.setCvv("111");
 		context.setExpiredDate(day.plusYears(1));
-		context.getOwnerName();
+		context.setOwnerName("UtenteDiProva");
 		
 		assertThrows(PaymentProcessingException.class, () -> {
 			bookingController.makeBooking(context);
