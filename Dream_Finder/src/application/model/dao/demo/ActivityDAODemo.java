@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import application.exception.DAOException;
 import application.model.dao.ActivityDAO;
 import application.model.dao.ProviderDAO;
 import application.model.entity.Activity;
@@ -36,6 +37,10 @@ public class ActivityDAODemo implements ActivityDAO {
 			topActivities.addAll(providerTopActivities);
 		}
 		
+		if (topActivities.size() == 10) {
+			throw new DAOException("Errore di ricerca delle attività");
+		}
+		
 		Collections.shuffle(topActivities);
 		
 		return topActivities;
@@ -52,13 +57,13 @@ public class ActivityDAODemo implements ActivityDAO {
 			
 		//Caso provider non trovato
 		if (targetProvider == null) {
-			return null; 
+			throw new DAOException("Errore nel caricamento dell'attività corrispondente");
 		}
 				
 		return targetProvider.getActivities().stream()
 				.filter(a -> a.getActivityName().equals(activityName))
 				.findFirst()
-				.orElse(null); // Caos attività non trovata
+				.orElse(null); // Caso attività non trovata
 		}
 
 	@Override
@@ -71,9 +76,21 @@ public class ActivityDAODemo implements ActivityDAO {
 			allActivities.addAll(provider.getActivities());
 		}
 		
+		// Verifica che l'attività passata come parametro esista nel sistema
+		boolean activityExists = allActivities.stream()
+				.anyMatch(a -> a.getActivityName().equals(activityName) 
+						&& a.getProvider().getProviderName().equals(providerName)
+						&& a.getActivityType().equals(activityType));
+				
+		if (!activityExists) {
+			throw new DAOException("Errore nel caricamento delle attività correlate");
+		}
+		
 		// Rimuove l'attività passata come parametro
 		allActivities = allActivities.stream()
-			.filter(a -> !a. getActivityName().equals(activityName) || ! a.getProvider().getProviderName().equals(providerName))
+			.filter(a -> !a. getActivityName().equals(activityName) 
+					|| ! a.getProvider().getProviderName().equals(providerName)
+					|| ! a.getActivityType().equals(activityType))
 			.collect(Collectors.toList());
 		
 		// Divide le attività in tre gruppi di priorità
@@ -107,7 +124,7 @@ public class ActivityDAODemo implements ActivityDAO {
 	public boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces) {
 		// Validazioni input
 	    if (activity == null || day == null || requestedPlaces == null || requestedPlaces <= 0) {
-	        return false;
+	    	throw new DAOException("Errore il giorno o l'attività richiesta per la prenotazione non è stata trovata");
 	    }
 	    
 	    List<Provider> providers = providerDAO.providersList();
@@ -117,8 +134,8 @@ public class ActivityDAODemo implements ActivityDAO {
 	    for (Provider provider : providers) {
 	        for (Activity a : provider.getActivities()) {
 	            boolean sameName = a.getActivityName().equals(activity.getActivityName());
-	            boolean sameProvider = a.getProvider().getProviderName()
-	                    .equals(activity.getProvider().getProviderName());
+	            boolean sameProvider = a.getProvider().getEmail()
+	                    .equals(activity.getProvider().getEmail());
 
 	            if (sameName && sameProvider) {
 	                targetActivity = a;
@@ -132,12 +149,16 @@ public class ActivityDAODemo implements ActivityDAO {
 	    
 	    // Attività non trovata nella lista
 	    if (targetActivity == null) {
-	        return false;
+	    	throw new DAOException("Errore il giorno o l'attività richiesta per la prenotazione non è stata trovata");
 	    }
 
 	    ActivityAvailableDates dates = targetActivity.getAvaibleDates();
 	    
 	    Integer currentPlaces = dates.getAvaiblePlaces().get(day);
+	    if (currentPlaces == 0) {
+	    	throw new DAOException("Errore il giorno o l'attività richiesta per la prenotazione non è stata trovata");
+	    }
+	    
 	    dates.getAvaiblePlaces().put(day, currentPlaces - requestedPlaces);
 
 	    return true;
