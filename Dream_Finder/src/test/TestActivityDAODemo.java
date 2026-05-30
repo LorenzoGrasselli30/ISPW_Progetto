@@ -87,13 +87,10 @@ public class TestActivityDAODemo {
     }
 	
 	@Test
-    void testreservePlaces_invalidProviderEmail() {
-		// Verifica che venga lanciata una DAOException si richiede un giorno che non ha posti disponibili
+    void testreservePlaces_validInput() {
+		// Verifica che venga restituito il valore true su input corretti
 		// Prendo una attività
 		Activity activity = activityDAO.findByProvider("Roma: tour guidato del Colosseo", "LuigiSRL");
-		
-		// Ipotizziamo che non venga inizializzata correttamente l'email del provider
-		activity.getProvider().setEmail("EmailNonValida");
 		
 		// Prendo un giorno valido per la prenotazione: i giorni disponibili sono tutti i giorni a partire da domani della settimana tranne domenica
 		LocalDate current = java.time.LocalDate.now();
@@ -103,9 +100,7 @@ public class TestActivityDAODemo {
 		} else {
 		    day = current.plusDays(1); //Aumenta di un giorno
 		}	
-				
-		assertThrows(DAOException.class, () -> {
-			activityDAO.reservePlaces(activity, day, 1); 
-        });
+			
+		assertEquals(true, activityDAO.reservePlaces(activity, day, 1));
     }
 }

@@ -134,8 +134,7 @@ public class ActivityDAODemo implements ActivityDAO {
 	    for (Provider provider : providers) {
 	        for (Activity a : provider.getActivities()) {
 	            boolean sameName = a.getActivityName().equals(activity.getActivityName());
-	            boolean sameProvider = a.getProvider().getEmail()
-	                    .equals(activity.getProvider().getEmail());
+	            boolean sameProvider = a.getProvider().getEmail().equals(activity.getProvider().getEmail());
 
 	            if (sameName && sameProvider) {
 	                targetActivity = a;
@@ -155,7 +154,7 @@ public class ActivityDAODemo implements ActivityDAO {
 	    ActivityAvailableDates dates = targetActivity.getAvaibleDates();
 	    
 	    Integer currentPlaces = dates.getAvaiblePlaces().get(day);
-	    if (currentPlaces == 0) {
+	    if (currentPlaces == null || currentPlaces == 0) {
 	    	throw new DAOException("Errore il giorno o l'attività richiesta per la prenotazione non è stata trovata");
 	    }
 	    
