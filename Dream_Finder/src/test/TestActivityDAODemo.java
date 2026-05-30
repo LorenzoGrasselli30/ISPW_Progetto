@@ -28,8 +28,8 @@ public class TestActivityDAODemo {
 		// Verifica che venga lanciata una DAOException quando si immette una lista di provider non valida
 		List<Provider> providers = providerDAO.findTopProviders();
 		
-		// Ipotizziamo che non venga inizializzato correttamente l'email di un provider
-		providers.get(0).setEmail("EmailNonValida");
+		// Ipotizziamo che non venga inizializzato correttamente l'ultimo provider
+		providers.remove(providers.size() - 1);
 		
 		assertThrows(DAOException.class, () -> {
 			activityDAO.findTopActivities(providers); 
@@ -87,7 +87,7 @@ public class TestActivityDAODemo {
     }
 	
 	@Test
-    void testreservePlaces_validInput() {
+    void testreservePlaces_resevationSucceded() {
 		// Verifica che venga restituito il valore true su input corretti
 		// Prendo una attività
 		Activity activity = activityDAO.findByProvider("Roma: tour guidato del Colosseo", "LuigiSRL");

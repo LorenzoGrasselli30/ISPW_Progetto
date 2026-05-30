@@ -128,10 +128,11 @@ public class BookingApplicationController {
 		System.out.println(paymentInfo.getPaymentOutcome());
 		*/
 		
+		/*
 		if (!paymentInfo.getOutcome().equals("succeeded")) {
-			//Fai qualcosa per tornare indietro nella prenotazione 
-			return null;
+			throw new PaymentProcessingException("");
 		}
+		*/
 		
 		//Prenotazione dell'attività
 		Traveler currentTraveler= travelerDAO.findByEmail(UserSession.getInstance().getCurrentUser().getEmail());

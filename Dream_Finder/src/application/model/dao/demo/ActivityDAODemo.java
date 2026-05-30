@@ -25,7 +25,7 @@ public class ActivityDAODemo implements ActivityDAO {
 	
 	@Override
 	public List<Activity> findTopActivities(List<Provider> providers) {
-		List<Activity> topActivities = new ArrayList<>();
+		List<Activity> topActivities = new ArrayList<>(); 
 		
 		//Trova le due attività con il rating più alto proposte da un provider e le inserisce in una lista 
 		for (Provider provider: providers) {
@@ -37,7 +37,7 @@ public class ActivityDAODemo implements ActivityDAO {
 			topActivities.addAll(providerTopActivities);
 		}
 		
-		if (topActivities.size() == 10) {
+		if (topActivities.size() != 10) {
 			throw new DAOException("Errore di ricerca delle attività");
 		}
 		
