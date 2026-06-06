@@ -8,7 +8,6 @@ public class PriceCalculator extends Subject {
 	 private Double shuttlePrice;
 	 private Double guidePrice;
 	 
-	 
 	 public Double getPrice() {
 		 return totalPrice;
 	 	}

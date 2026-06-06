@@ -62,7 +62,7 @@ public class ReceiptGraphicController {
             receiptIDLabel.setText("- ID: " + receipt.getPaymentOutcome().getID());
         }
         if (paymentOutcomeLabel != null) {
-            paymentOutcomeLabel.setText("- Stato: " + receipt.getPaymentOutcome());
+            paymentOutcomeLabel.setText("- Stato: " + receipt.getPaymentOutcome().getOutcome());
         }
 
         // Imposta info pagamento

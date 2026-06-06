@@ -219,15 +219,15 @@ public class FormGraphicController {
         int age = Period.between(dob, LocalDate.now(ZoneId.systemDefault())).getYears();
         boolean isFullTicket = participantIndex < context.getnFullTickets();
 
-        if (isFullTicket && age <= 12) {
+        if (isFullTicket && age <= 7) {
             AlertUtils.showAlert(AlertType.WARNING, "Dati errati",
-                "I biglietti interi NON valgono per partecipanti con un età minore o uguale ai 12 anni.");
+                "I biglietti interi NON valgono per partecipanti con un età minore o uguale ai 7 anni.");
             return false;
         }
 
-        if (!isFullTicket && age > 12) {
+        if (!isFullTicket && age > 7) {
             AlertUtils.showAlert(AlertType.WARNING, "Dati errati",
-                "I biglietti ridotti NON valgono per partecipanti con un età superiore ai 12 anni.");
+                "I biglietti ridotti NON valgono per partecipanti con un età superiore ai 7 anni.");
             return false;
         }
 
