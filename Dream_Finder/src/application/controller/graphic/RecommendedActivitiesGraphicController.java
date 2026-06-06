@@ -9,10 +9,12 @@ import application.model.bean.BookingContext;
 import application.model.bean.BookingDTO;
 import application.model.bean.ReceiptDTO;
 import application.view.ActivityLayoutUtils;
+import application.view.AlertUtils;
 import application.view.WindowsNavigatorUtils;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -62,7 +64,7 @@ public class RecommendedActivitiesGraphicController {
 	
 	private void populateRelatedSection(List<ActivityDTO> activities) {
     	if (relatedContainer == null) {
-			System.out.println("Errore: relatedContainer non è stato inizializzato");
+    		AlertUtils.showAlert(AlertType.ERROR, "Errore", "populateRelatedSection non è stato inizializzato");
 			return;
 		}
 		

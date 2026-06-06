@@ -44,11 +44,11 @@ public class ReceiptGraphicController {
     private Label totalPriceLabel;
     
 	public void initReceipt(ReceiptDTO receipt) {
-		/*
+		
 		if (receipt == null) {
             return;
         }
-	*/
+        
         // Imposta i nomi
         if (nameLabel != null) {
             nameLabel.setText(receipt.getOwnerName());

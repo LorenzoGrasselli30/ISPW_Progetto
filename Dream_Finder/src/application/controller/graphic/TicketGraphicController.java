@@ -2,7 +2,10 @@ package application.controller.graphic;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import application.Main;
 import application.model.bean.BookingDTO;
 import application.model.bean.GuestInformationDTO;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.scene.text.FontWeight;
 
 public class TicketGraphicController {
 	
+	private static final Logger LOGGER = Logger.getLogger(TicketGraphicController.class.getName());
 	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	@FXML
@@ -41,12 +45,11 @@ public class TicketGraphicController {
     private VBox participantsBox;
     
 	public void initBooking(BookingDTO booking) {
-		/*
+		
 		if (booking == null) {
             return;
         }
-        */
- 
+		
         if (nameLabel != null) {
             nameLabel.setText(booking.getTravelerName()+" "+booking.getTravelerSurname());
         }
@@ -116,7 +119,7 @@ public class TicketGraphicController {
                     ticketType = "Ridotto";
                 }
             } catch (Exception e) {
-                System.err.println("Errore nel parsing della data di nascita: " + guest.getDateOfBirth());
+            	LOGGER.log(Level.SEVERE, "Errore nel parsing della data di nascita", e);
             }
 
             Label ticketTypeLbl = new Label("Tipologia di biglietto: " + ticketType);

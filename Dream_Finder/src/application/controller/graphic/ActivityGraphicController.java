@@ -245,7 +245,6 @@ public class ActivityGraphicController implements Observer{
     
     //Pattern observer
 	private void recalculateTotal() {
-		System.out.println("currentBasePrice: "+currentActivity.getPrice());
 		subject.calculatePrice(currentActivity, fullTicketCount, reducedTicketCount, guideTour, shuttleService);
 	}
     
