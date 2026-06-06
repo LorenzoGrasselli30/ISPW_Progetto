@@ -177,8 +177,16 @@ public class BookingApplicationController {
 		//Aggiungere un modo per controllare il risultato
 		Boolean receiptResult= receiptDAO.saveReceipt(receipt);
 		
+		if (!receiptResult) {
+			return null;
+		}
+		
 		//Vado a rendere i posti dell'attività scelta non disponibili
 		Boolean reserveResult= activityDAO.reservePlaces(bookedActivity, context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()));
+		
+		if (!reserveResult) {
+			return null;
+		}
 		
 		context.setPaymentID(paymentInfo.getID());
 		context.setBookingID(bookingResult);
