@@ -7,7 +7,7 @@ public abstract class Subject {
 
 	 private List<Observer> observers = new ArrayList<>();
 
-	 public void registerObserver(Observer o) {
+	 	public void registerObserver(Observer o) {
 	        if (o != null && !observers.contains(o)) {
 	            observers.add(o);
 	        }

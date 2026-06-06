@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import application.exception.DAOException;
 import application.model.dao.TravelerDAO;
 import application.model.dao.db.queries.SQLQueries;
+import application.model.entity.Provider;
 import application.model.entity.Traveler;
 
 public class TravelerDAODB implements TravelerDAO {
@@ -38,5 +40,11 @@ public class TravelerDAODB implements TravelerDAO {
 	    }
 		
 		return newTraveler;
+	}
+
+	@Override
+	public List<Provider> fetchBookingHistory(Traveler traveler) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

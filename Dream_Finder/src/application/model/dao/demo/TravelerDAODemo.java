@@ -2,9 +2,11 @@ package application.model.dao.demo;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import application.model.dao.TravelerDAO;
+import application.model.entity.Provider;
 import application.model.entity.Traveler;
 
 public class TravelerDAODemo implements TravelerDAO {
@@ -12,10 +14,10 @@ public class TravelerDAODemo implements TravelerDAO {
 	private Map<String, Traveler> travelers = new HashMap<>();
 	
     public TravelerDAODemo() {
-    	inizialiveTravelersDemo();
+    	inizializeTravelersDemo();
     }
 
-	private void inizialiveTravelersDemo() {
+	private void inizializeTravelersDemo() {
 		travelers.put("mario.rossi@mail.com", new Traveler("mario.rossi@mail.com", "Mariorossi1!", "Mariorossi1", "Mario", "Rossi", LocalDate.parse("2004-10-21")));
 		travelers.put("utente1@mail.com", new Traveler("utente1@mail.com", "Utente1!", "Utente111", "Utente1", "Utente1", LocalDate.parse("1999-07-10")));
 		travelers.put("utente2@mail.com", new Traveler("utente2@mail.com", "Utente2!", "Utente222", "Utente2", "Utente2", LocalDate.parse("1984-08-08")));
@@ -25,5 +27,11 @@ public class TravelerDAODemo implements TravelerDAO {
 	@Override
 	public Traveler findByEmail(String formattedEmail) {
 		return travelers.get(formattedEmail);
+	}
+
+	@Override
+	public List<Provider> fetchBookingHistory(Traveler traveler) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

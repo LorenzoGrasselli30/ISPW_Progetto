@@ -1,6 +1,7 @@
 package application.model.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import application.model.enums.UserRole;
 
@@ -11,7 +12,7 @@ public class Traveler extends User {
 	private String surname;
 	private LocalDate dob;
 	
-	//private List<Activity> favActivities;
+	private List<Booking> bookingHistory;
 	
 	public Traveler(String email, String password, String username, String name, String surname, LocalDate dob) {
 		
@@ -20,7 +21,6 @@ public class Traveler extends User {
 		this.name= name;
 		this.surname= surname;
 		this.dob = dob;
-		//this.favActivities = new ArrayList<>();
 	}
 
 	public String getUsername() {
@@ -55,4 +55,11 @@ public class Traveler extends User {
 		this.name = name;
 	}
 
+	public List<Booking> getBookingHistory() {
+		return bookingHistory;
+	}
+
+	public void setBookingHistory(List<Booking> bookingHistory) {
+		this.bookingHistory = bookingHistory;
+	}
 }

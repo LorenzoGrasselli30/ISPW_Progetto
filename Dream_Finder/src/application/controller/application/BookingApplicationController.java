@@ -73,7 +73,7 @@ public class BookingApplicationController {
 		return newActivityDTO;
 	}
 
-	public List<ActivityDTO> fetchRelatedInfo(String activityName, ActivityType activityType, String providerName) {
+	public List<ActivityDTO> findRecommendedActivities(String activityName, ActivityType activityType, String providerName) {
 		
 		List<Activity> newActivities = activityDAO.findRelatedActivities(activityName, activityType, providerName);
 		
@@ -218,7 +218,7 @@ public class BookingApplicationController {
 		return context;
 	}
 
-	public ReceiptDTO fetchCurrentReceipt(String paymentID) {
+	public ReceiptDTO generatePaymentReceipt(String paymentID) {
 		ReceiptDTO result= new ReceiptDTO();
 		
 		Receipt reciptFounded= receiptDAO.findByID(paymentID);
@@ -244,7 +244,7 @@ public class BookingApplicationController {
 		return result;
 	}
 
-	public BookingDTO fetchCurrentTicket(String bookingID) {
+	public BookingDTO generateTicket(String bookingID) {
 		BookingDTO result= new BookingDTO();
 		
 		Booking bookingFounded= bookingDAO.findByID(bookingID);

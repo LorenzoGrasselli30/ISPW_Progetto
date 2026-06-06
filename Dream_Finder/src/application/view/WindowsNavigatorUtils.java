@@ -214,7 +214,7 @@ public class WindowsNavigatorUtils {
         
         //Passa le informazioni dell'attività
         ActivityGraphicController activityController= loader.getController();
-        activityController.selectActivityInfo(activity);
+        activityController.selectActivity(activity);
         
         //Imposta la nuova scena
         stage.setScene(new Scene(root));
@@ -309,7 +309,7 @@ public class WindowsNavigatorUtils {
         
         //Passa le informazioni dell'attività
         ActivityGraphicController activityController= loader.getController();
-        activityController.selectActivityInfo(context.getActivity());
+        activityController.selectActivity(context.getActivity());
         
         //Imposta la nuova scena
         parentStage.setScene(new Scene(root));

@@ -10,7 +10,7 @@ import com.stripe.exception.StripeException;
 //Classe adeptee
 public class StripePayment {
 	
-    static {
+    static { //eseguito una sola volta quando la classe viene caricata in memoria, prima che venga creata qualsiasi istanza della classe
         try {
             Stripe.apiKey = loadApiKey();
         } catch (IOException e) {

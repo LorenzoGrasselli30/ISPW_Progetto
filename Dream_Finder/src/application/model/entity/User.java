@@ -2,7 +2,7 @@ package application.model.entity;
 
 import application.model.enums.UserRole;
 
-public abstract class User {
+public class User { 
 	
 	private String email;
 	private String password;

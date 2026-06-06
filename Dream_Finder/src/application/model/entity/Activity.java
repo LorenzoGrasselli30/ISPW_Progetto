@@ -49,7 +49,7 @@ public class Activity {
 	public ActivityRating getRating() {
 		return rating;
 	}
-
+	
 	public int calculateRelevanceScore(Activity target, ActivityType referenceType, String referenceProvider) {
         int score = 0;
         
@@ -65,7 +65,7 @@ public class Activity {
         
         return score;
     }
-
+	
 	public ActivityAvailableDates getAvaibleDates() {
 		return availableDates;
 	}

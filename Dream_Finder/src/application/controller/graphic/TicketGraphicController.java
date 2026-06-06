@@ -72,10 +72,10 @@ public class TicketGraphicController {
         }
 
         // Popola la lista dei partecipanti
-        populateParticipants(booking);
+        showTicket(booking);
 	}
 	
-	private void populateParticipants(BookingDTO booking) {
+	private void showTicket(BookingDTO booking) {
         if (participantsBox == null) {
             return;
         }

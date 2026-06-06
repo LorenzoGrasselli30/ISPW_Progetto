@@ -8,7 +8,7 @@ import application.model.enums.ProviderType;
 import application.model.enums.UserRole;
 
 public class Provider extends User {
-	//Composizione con Activity
+	//Aggregazione con Activity
 	private List<Activity> activities;
 	
 	private String providerName;

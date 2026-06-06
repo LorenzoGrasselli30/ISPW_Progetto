@@ -178,7 +178,7 @@ public class ActivityGraphicController implements Observer{
         }
 	}
 	
-    public void selectActivityInfo(ActivityDTO activity) {
+    public void selectActivity(ActivityDTO activity) {
 		String activityName= activity.getActivityName();
 		String providerName= activity.getProviderName();
 		
@@ -235,7 +235,7 @@ public class ActivityGraphicController implements Observer{
 					skiplineSection.setManaged(activityInfo.getSkipLine());
 				}	
 		
-				List<ActivityDTO> relatedInfo= bookingController.fetchRelatedInfo(activityInfo.getActivityName(), 
+				List<ActivityDTO> relatedInfo= bookingController.findRecommendedActivities(activityInfo.getActivityName(), 
 						activityInfo.getActivityType(), activityInfo.getProviderName());
 				
 				populateRelatedSection(relatedInfo);

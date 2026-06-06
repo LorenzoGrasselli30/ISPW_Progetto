@@ -30,7 +30,7 @@ public class RecommendedActivitiesCLIView implements StartCLI {
 		ReceiptDTO currentReceipt;
 		BookingDTO currentBooking;
 		
-		List<ActivityDTO> relatedInfo= bookingController.fetchRelatedInfo(
+		List<ActivityDTO> relatedInfo= bookingController.findRecommendedActivities(
 				context.getActivity().getActivityName(), 
 				context.getActivity().getActivityType(),
 				context.getActivity().getProviderName()
@@ -79,12 +79,12 @@ public class RecommendedActivitiesCLIView implements StartCLI {
 				
 				break;
 			case "2":
-				currentBooking= bookingController.fetchCurrentTicket(context.getBookingID());
+				currentBooking= bookingController.generateTicket(context.getBookingID());
 				
 				navigator.navigateToTicket(currentBooking);
 				break;
 			case "3":
-				currentReceipt= bookingController.fetchCurrentReceipt(context.getPaymentID());
+				currentReceipt= bookingController.generatePaymentReceipt(context.getPaymentID());
 				
 				navigator.navigateToReceipt(currentReceipt);
 				break;

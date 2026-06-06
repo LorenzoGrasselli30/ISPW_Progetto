@@ -9,4 +9,6 @@
     <fullyQualifiedTypeName name="application.model.bean.ReceiptDTO"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="application.model.enums.ProviderType"/>
+    <fullyQualifiedTypeName name="application.model.enums.ActivityType"/>
+    <fullyQualifiedTypeName name="application.model.bean.ActivityDTO"/>
 </qualifiedTypeNameHistroy>

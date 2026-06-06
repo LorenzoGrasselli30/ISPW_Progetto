@@ -47,7 +47,7 @@ public class RecommendedActivitiesGraphicController {
 	public void initRecommendedActivities(BookingContext context) {
 		this.context= context;
 		
-		List<ActivityDTO> relatedInfo= bookingController.fetchRelatedInfo(
+		List<ActivityDTO> relatedInfo= bookingController.findRecommendedActivities(
 				context.getActivity().getActivityName(), 
 				context.getActivity().getActivityType(),
 				context.getActivity().getProviderName()
@@ -73,7 +73,7 @@ public class RecommendedActivitiesGraphicController {
 		for (ActivityDTO activity : activities) {
 			VBox activityCard = ActivityLayoutUtils.createActivityCard(
 					activity, 
-					event -> handleActivityClick(event, activity), 
+					event -> selectActivity(event, activity), 
 					event -> handleHeartClick(event)
 					//Scrivere "this::handleHeartClick" per risolvere l'issues
 			);
@@ -83,7 +83,7 @@ public class RecommendedActivitiesGraphicController {
 	
 	
 	
-	private void handleActivityClick(MouseEvent event, ActivityDTO activity) {
+	private void selectActivity(MouseEvent event, ActivityDTO activity) {
 		try {
 			WindowsNavigatorUtils.openActivityWindow(event, ACTIVITYPATH, ACTIVITYTITLE, activity);
 		} catch (IOException e) {
@@ -124,7 +124,7 @@ public class RecommendedActivitiesGraphicController {
     	        case "receiptButton":
     	        	//Apre pagina con ricevuta e da la possibilità di scaricarla in versione non demo
     	        	if (currentReceipt == null) {
-    	        	currentReceipt= bookingController.fetchCurrentReceipt(context.getPaymentID());
+    	        	currentReceipt= bookingController.generatePaymentReceipt(context.getPaymentID());
     	        	}
     	        	
     	        	WindowsNavigatorUtils.openModalWindow(event, "receiptView.fxml", "Ricevuta: "+currentReceipt.getPaymentOutcome().getID(), null, currentReceipt, null);
@@ -133,7 +133,7 @@ public class RecommendedActivitiesGraphicController {
     	        case "ticketButton":
     	        	//Apre pagina con ticket e da la possibilità di scaricarla in versione non demo
     	        	if (currentBooking == null) {
-    	        		currentBooking= bookingController.fetchCurrentTicket(context.getBookingID());
+    	        		currentBooking= bookingController.generateTicket(context.getBookingID());
         	        	}
     	        	
     	        	WindowsNavigatorUtils.openModalWindow(event, "ticketView.fxml", "Ticket: "+currentBooking.getBookingID(), null, null, currentBooking);

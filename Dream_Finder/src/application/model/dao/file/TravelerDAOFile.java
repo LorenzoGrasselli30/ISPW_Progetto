@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import application.exception.DAOException;
 import application.model.dao.TravelerDAO;
+import application.model.entity.Provider;
 import application.model.entity.Traveler;
 
 public class TravelerDAOFile implements TravelerDAO {
@@ -35,6 +37,12 @@ public class TravelerDAOFile implements TravelerDAO {
         }
 		
 		return newTraveler;
+	}
+
+	@Override
+	public List<Provider> fetchBookingHistory(Traveler traveler) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
