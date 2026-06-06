@@ -45,21 +45,17 @@ public class StripePayment {
         Properties properties = new Properties();
         
         // Prova a caricare dal file nella root del progetto
-        try (FileInputStream input = new FileInputStream("src/config.properties")) {
-            properties.load(input);
-            String apiKey = properties.getProperty("stripe.api.key");
+        FileInputStream input = new FileInputStream("src/config.properties");
+        properties.load(input);
+        String apiKey = properties.getProperty("stripe.api.key");
             
-            if (apiKey == null || apiKey.trim().isEmpty()) {
-                throw new IOException("La chiave stripe.api.key non è configurata in config.properties");
-            }
-            
-            System.out.println("Chiave API caricata da config.properties");
-            return apiKey;
-            
-        } catch (IOException e) {
-            throw e;
+        if (apiKey == null || apiKey.trim().isEmpty()) {
+            throw new IOException("La chiave stripe.api.key non è configurata in config.properties");
         }
-    }
+            
+        System.out.println("Chiave API caricata da config.properties");
+        return apiKey;
+            
 	
 }
 
