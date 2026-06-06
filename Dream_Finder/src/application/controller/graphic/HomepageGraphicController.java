@@ -8,6 +8,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import application.controller.application.HomeApplicationController;
 import application.model.bean.ActivityDTO;
 import application.view.ActivityLayoutUtils;
@@ -17,6 +20,8 @@ import application.view.WindowsNavigatorUtils;
 public class HomepageGraphicController {
 	
 	private HomeApplicationController homeController;
+	
+	private static final Logger LOGGER = Logger.getLogger(HomepageGraphicController.class.getName());
 	
 	@FXML
 	private HBox forYouContainer;
@@ -52,14 +57,14 @@ public class HomepageGraphicController {
 						try {
 							handleActivityClick(event, activity);
 						} catch (IOException e) {
-							e.printStackTrace();
+							LOGGER.log(Level.SEVERE, "HomepageGraphicController exception", e);
 						}
 					}, 
 					event -> {
 						try {
 							handleHeartClick(event);
 						} catch (IOException e) {
-							e.printStackTrace();
+							LOGGER.log(Level.SEVERE, "HomepageGraphicController exception", e);
 						}
 					}
 			);

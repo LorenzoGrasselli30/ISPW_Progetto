@@ -2,6 +2,8 @@ package application.controller.graphic;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import application.controller.application.BookingApplicationController;
 import application.model.bean.ActivityDTO;
@@ -31,6 +33,7 @@ public class RecommendedActivitiesGraphicController {
 	static final String HOMEPAGETITLE = "Homepage"; 
 	static final String ACTIVITYPATH = "activityView.fxml"; 
 	static final String ACTIVITYTITLE = "Info Attivita'"; 
+	private static final Logger LOGGER = Logger.getLogger(RecommendedActivitiesGraphicController.class.getName());
 	
 	@FXML
     private HBox relatedContainer;
@@ -88,7 +91,7 @@ public class RecommendedActivitiesGraphicController {
 		try {
 			WindowsNavigatorUtils.openActivityWindow(event, ACTIVITYPATH, ACTIVITYTITLE, activity);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "RecommendedActivitiesGraphicController exception", e);
 		}
 	}
     
@@ -96,7 +99,7 @@ public class RecommendedActivitiesGraphicController {
 		try {
 			WindowsNavigatorUtils.openModalWindow(event, LOGINPATH, LOGINTITLE, null, null, null);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "RecommendedActivitiesGraphicController exception", e);
 		}
 	}
 	

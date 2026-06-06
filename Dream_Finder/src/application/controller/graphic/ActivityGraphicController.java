@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import application.configuration.UserSession;
 import application.controller.application.BookingApplicationController;
 import application.exception.AvailabilityException;
@@ -30,14 +33,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ActivityGraphicController implements Observer{
-    
+	
 	private BookingApplicationController bookingController;
 	
 	static final String LOGINPATH = "loginView.fxml";
 	static final String TITLELOGIN = "Login";
 	static final String HOMEPAGEPATH = "homeView.fxml";
 	static final String HOMEPAGETITLE = "Homepage";
-	 
+	private static final Logger LOGGER = Logger.getLogger(ActivityGraphicController.class.getName()); 
 	
 	//Pattern observer
 	private PriceCalculator subject;
@@ -314,7 +317,7 @@ public class ActivityGraphicController implements Observer{
 		try {
 			WindowsNavigatorUtils.openActivityWindow(event, "activityView.fxml", "Info Attivita'", activity);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "ActivityGraphicController exception", e);
 		}
 	}
     
@@ -322,7 +325,7 @@ public class ActivityGraphicController implements Observer{
 		try {
 			WindowsNavigatorUtils.openModalWindow(event, LOGINPATH, TITLELOGIN, null, null, null);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "ActivityGraphicController exception", e);
 		}
 	}
 	
