@@ -32,6 +32,7 @@ public class TravelerDAODemo implements TravelerDAO {
 
 	@Override
 	public List<Provider> fetchBookingHistory(Traveler traveler) {
+		//Funzione di recupero delle prenotazioni di un traveler non implementata
 		return new ArrayList<>();
 	}
 }

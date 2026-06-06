@@ -84,14 +84,6 @@ public class ActivityDAOFile implements ActivityDAO {
 
 	@Override
 	public Activity findByProvider(String activityName, String providerName) {
-		/* Trovare una spiegazione del perche è fatto cosi 
-		//Dependency Injection di ProviderDAO
-		private ProviderDAO providerDAO;
-			
-		public ActivityDAODemo(ProviderDAO providerDAO) {
-			this.providerDAO = providerDAO;
-		}
-		*/
 		
 		List<Provider> availableProviders = providerDAO.providersList();
 		

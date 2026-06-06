@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import application.exception.DAOException;
@@ -44,7 +45,7 @@ public class TravelerDAODB implements TravelerDAO {
 
 	@Override
 	public List<Provider> fetchBookingHistory(Traveler traveler) {
-		// TODO Auto-generated method stub
-		return null;
+		//Funzione di recupero delle prenotazioni di un traveler non implementata
+		return new ArrayList<>();
 	}
 }

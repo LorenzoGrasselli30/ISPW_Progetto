@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import application.exception.DAOException;
@@ -41,8 +42,8 @@ public class TravelerDAOFile implements TravelerDAO {
 
 	@Override
 	public List<Provider> fetchBookingHistory(Traveler traveler) {
-		// TODO Auto-generated method stub
-		return null;
+		//Funzione di recupero delle prenotazioni di un traveler non implementata
+		return new ArrayList<>();
 	}
 
 }

@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import application.Main;
 import application.model.bean.BookingDTO;
 import application.model.bean.GuestInformationDTO;
 import javafx.fxml.FXML;
