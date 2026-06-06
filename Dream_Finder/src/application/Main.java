@@ -1,7 +1,8 @@
 package application;
 	
 import java.util.Scanner;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import application.configuration.AppConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,20 +12,19 @@ import javafx.scene.Scene;
 import application.view.cli.*;
 
 public class Main extends Application {
+	
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/application/view/homeView.fxml"));
-			
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			//Font font = Font.loadFont(getClass().getResourceAsStream("/Fonts/Montserrat-Regular.ttf"), 18);
-			//System.out.println(font); // Se null, c’è un problema!
 			Scene scene = new Scene(root, 640, 480);
 			primaryStage.setTitle("Homepage");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Main exception", e);
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class Main extends Application {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Main exception", e);
 		}
 		
 		if ("GUI".equals(visual)) {

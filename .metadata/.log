@@ -10280,3 +10280,12 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.launching 4 150 2026-06-06 14:12:55.472
+!MESSAGE The archive: /BD_Progetto_Codice/libs/mariadb-java-client-3.0.8.jar which is referenced by the classpath, does not exist.
+
+!ENTRY org.eclipse.jdt.launching 4 150 2026-06-06 14:13:04.768
+!MESSAGE The archive: /BD_Progetto_Codice/libs/mariadb-java-client-3.0.8.jar which is referenced by the classpath, does not exist.
+
+!ENTRY org.eclipse.jdt.launching 4 150 2026-06-06 14:13:16.416
+!MESSAGE The archive: /BD_Progetto_Codice/libs/mariadb-java-client-3.0.8.jar which is referenced by the classpath, does not exist.

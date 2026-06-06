@@ -74,8 +74,7 @@ public class RecommendedActivitiesGraphicController {
 			VBox activityCard = ActivityLayoutUtils.createActivityCard(
 					activity, 
 					event -> selectActivity(event, activity), 
-					event -> handleHeartClick(event)
-					//Scrivere "this::handleHeartClick" per risolvere l'issues
+					this::handleHeartClick
 			);
 			relatedContainer.getChildren().add(activityCard);
 		}
