@@ -1,6 +1,7 @@
 package application.adapter;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -31,7 +32,7 @@ public class PaymentAdapter implements Target {
 			//In base al Expired date e al card number si hanno diversi tipi di risultati del pagamento
 			String paymentResult = null;
 				
-			if (expiredDate.isBefore(LocalDate.now())) {
+			if (expiredDate.isBefore(LocalDate.now(ZoneId.systemDefault()))) {
 				paymentResult = EXPIRED;
 			} else {
 				if(cardNumber.trim().equals("4242424242424242") && cvv != null) {

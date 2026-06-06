@@ -3,6 +3,7 @@ package application.controller.graphic;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -102,7 +103,7 @@ public class FormGraphicController {
                 @Override
                 public void updateItem(LocalDate item, boolean empty) {
                     super.updateItem(item, empty);
-                    setDisable(empty || item.isAfter(LocalDate.now()));
+                    setDisable(empty || item.isAfter(LocalDate.now(ZoneId.systemDefault())));
                 }
             });
             
@@ -215,7 +216,7 @@ public class FormGraphicController {
     }
 
     private boolean validateAgeForTicket(LocalDate dob, int participantIndex) {
-        int age = Period.between(dob, LocalDate.now()).getYears();
+        int age = Period.between(dob, LocalDate.now(ZoneId.systemDefault())).getYears();
         boolean isFullTicket = participantIndex < context.getnFullTickets();
 
         if (isFullTicket && age <= 12) {

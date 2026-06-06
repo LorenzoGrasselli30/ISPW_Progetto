@@ -3,6 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class TestActivityDAODemo {
 		Activity activity = activityDAO.findByProvider("Roma: tour guidato del Colosseo", "LuigiSRL");
 		
 		// Prendo un giorno valido per la prenotazione: i giorni disponibili sono tutti i giorni a partire da domani della settimana tranne domenica
-		LocalDate current = java.time.LocalDate.now();
+		LocalDate current = java.time.LocalDate.now(ZoneId.systemDefault());
 		LocalDate day;
 		if (current.getDayOfWeek() == java.time.DayOfWeek.SATURDAY) {
 			day = current.plusDays(2);
@@ -79,7 +80,7 @@ public class TestActivityDAODemo {
 		Activity activity = activityDAO.findByProvider("Roma: tour guidato del Colosseo", "LuigiSRL");
 		
 		// Prendo un giorno non valido per la prenotazione
-		LocalDate current = java.time.LocalDate.now();
+		LocalDate current = java.time.LocalDate.now(ZoneId.systemDefault());
 		
 		assertThrows(DAOException.class, () -> {
 			activityDAO.reservePlaces(activity, current, 1); 
@@ -93,7 +94,7 @@ public class TestActivityDAODemo {
 		Activity activity = activityDAO.findByProvider("Roma: tour guidato del Colosseo", "LuigiSRL");
 		
 		// Prendo un giorno valido per la prenotazione: i giorni disponibili sono tutti i giorni a partire da domani della settimana tranne domenica
-		LocalDate current = java.time.LocalDate.now();
+		LocalDate current = java.time.LocalDate.now(ZoneId.systemDefault());
 		LocalDate day;
 		if (current.getDayOfWeek() == java.time.DayOfWeek.SATURDAY) {
 			day = current.plusDays(2);

@@ -2,6 +2,7 @@ package application.view.cli;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +89,7 @@ public class FormCLIView implements StartCLI {
 	}
 
 	private boolean validateAgeForTicket(LocalDate dob, int participantIndex) {
-		int age = Period.between(dob, LocalDate.now()).getYears();
+		int age = Period.between(dob, LocalDate.now(ZoneId.systemDefault())).getYears();
 		boolean isFullTicket = participantIndex <= context.getnFullTickets();
 		
 		if (age <= 0) {

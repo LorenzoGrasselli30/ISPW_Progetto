@@ -1,6 +1,7 @@
 package application.model.dao.demo;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -276,7 +277,7 @@ public class ProviderDAODemo implements ProviderDAO{
 	//Creazione di date di disponibilità
 	private ActivityAvailableDates initializeAvailableDates(Integer dailyPlaces) {
 		 Map<LocalDate, Integer> places = new HashMap<>();
-	     LocalDate current = java.time.LocalDate.now();
+	     LocalDate current = java.time.LocalDate.now(ZoneId.systemDefault());
 	     int addedDays = 0;
 
 	        while (addedDays < 10) {

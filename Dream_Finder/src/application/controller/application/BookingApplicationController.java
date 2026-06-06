@@ -1,6 +1,7 @@
 package application.controller.application;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -134,7 +135,7 @@ public class BookingApplicationController {
 			guests.add(newGuest);
 		}
 		
-		LocalDate currentDate = LocalDate.now();
+		LocalDate currentDate = LocalDate.now(ZoneId.systemDefault());
 		
 		Booking newBooking= new Booking(
 				null,
