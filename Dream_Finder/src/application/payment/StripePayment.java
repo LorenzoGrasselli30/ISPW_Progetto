@@ -56,6 +56,6 @@ public class StripePayment {
         System.out.println("Chiave API caricata da config.properties");
         return apiKey;
             
-	
+	}
 }
 
