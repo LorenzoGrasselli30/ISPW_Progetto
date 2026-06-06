@@ -11,11 +11,7 @@ import com.stripe.exception.StripeException;
 public class StripePayment {
 	
     static { //eseguito una sola volta quando la classe viene caricata in memoria, prima che venga creata qualsiasi istanza della classe
-        try {
             Stripe.apiKey = loadApiKey();
-        } catch (IOException e) {
-            throw new ExceptionInInitializerError("Errore caricamento Stripe API key: " + e.getMessage());
-        }
     }
     
 	public PaymentIntent createPayment(String paymentResult, String activityName, 
@@ -41,21 +37,25 @@ public class StripePayment {
 	    return PaymentIntent.create(params);
 	}
 	
-	private static String loadApiKey() throws IOException {
+	private static String loadApiKey() {
         Properties properties = new Properties();
         
         // Prova a caricare dal file nella root del progetto
-        FileInputStream input = new FileInputStream("src/config.properties");
-        properties.load(input);
-        String apiKey = properties.getProperty("stripe.api.key");
+        try (FileInputStream input = new FileInputStream("src/config.properties")) {
+            properties.load(input);
+            String apiKey = properties.getProperty("stripe.api.key");
             
-        if (apiKey == null || apiKey.trim().isEmpty()) {
-            throw new IOException("La chiave stripe.api.key non è configurata in config.properties");
+            if (apiKey == null || apiKey.trim().isEmpty()) {
+                throw new IOException("La chiave stripe.api.key non è configurata in config.properties");
+            }
+            
+            System.out.println("Chiave API caricata da config.properties");
+            return apiKey;
+            
+        } catch (IOException e) {
+        	throw new ExceptionInInitializerError("Errore caricamento Stripe API key: " + e.getMessage());
         }
-            
-        System.out.println("Chiave API caricata da config.properties");
-        return apiKey;
-            
-	}
+    }
+	
 }
 

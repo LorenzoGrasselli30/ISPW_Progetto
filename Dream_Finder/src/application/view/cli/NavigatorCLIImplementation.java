@@ -19,8 +19,7 @@ public class NavigatorCLIImplementation implements NavigatorCLI {
 
 	@Override
 	public void navigateToSignup() {
-		// TODO Auto-generated method stub
-		
+		//La schermata sign up per la versione CLI non è stata ancora implementata
 	}
 
 	@Override

@@ -39,7 +39,6 @@ public class ReceiptDAOFile implements ReceiptDAO {
 
 	@Override
 	public Receipt findByID(String paymentID) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
