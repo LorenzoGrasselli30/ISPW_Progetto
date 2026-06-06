@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-
 import application.configuration.UserSession;
 import application.controller.application.BookingApplicationController;
 import application.exception.AvailabilityException;
@@ -136,8 +134,6 @@ public class ActivityGraphicController implements Observer{
 	}
 	
 	public void initialize() {
-    	System.out.println("Initialize chiamato");
-    	
     	//Gestione delle immagini
     	if (imageGalleryContainer != null && mainActivityImg != null) {
 			mainActivityImg.fitWidthProperty().bind(
@@ -265,7 +261,7 @@ public class ActivityGraphicController implements Observer{
 		
     private void populateRelatedSection(List<ActivityDTO> activities) {
     	if (relatedContainer == null) {
-			//System.err.println("Errore: forYouContainer non è stato inizializzato");
+    		AlertUtils.showAlert(AlertType.ERROR, "Errore", "populateRelatedSection non è stato inizializzato");
 			return;
 		}
 		
@@ -278,7 +274,6 @@ public class ActivityGraphicController implements Observer{
 					activity, 
 					event -> handleActivityClick(event, activity), 
 					event -> handleHeartClick(event)
-					//Scrivere "this::handleHeartClick" per risolvere l'issues
 			);
 			relatedContainer.getChildren().add(activityCard);
 		}

@@ -123,17 +123,6 @@ public class BookingApplicationController {
 		PaymentOutcomeDTO paymentInfo= paymentTarget.verifyPayment(context.getCardNumber(), context.getExpiredDate(), context.getCvv(), context.getActivity().getActivityName(), 
 				context.getOwnerName(), context.getActivity().getProviderName(), context.getTotalPrice());
 		
-		/*
-		System.out.println(paymentInfo.getPaymentID());
-		System.out.println(paymentInfo.getPaymentOutcome());
-		*/
-		
-		/*
-		if (!paymentInfo.getOutcome().equals("succeeded")) {
-			throw new PaymentProcessingException("");
-		}
-		*/
-		
 		//Prenotazione dell'attività
 		Traveler currentTraveler= travelerDAO.findByEmail(UserSession.getInstance().getCurrentUser().getEmail());
 		
@@ -193,28 +182,6 @@ public class BookingApplicationController {
 		context.setPaymentID(paymentInfo.getID());
 		context.setBookingID(bookingResult);
 		
-		/*
-		// DEBUG PRINT START
-				System.out.println("---------- BOOKING CONTEXT DUMP ----------");
-				System.out.println("Owner Name: " + context.getOwnerName());
-				System.out.println("Card Number: " + context.getCardNumber());
-				System.out.println("Expired Date: " + context.getExpiredDate());
-				System.out.println("CVV: " + context.getCvv());
-				System.out.println("Activity Name: " + (context.getActivity() != null ? context.getActivity().getActivityName() : "NULL"));
-				System.out.println("Provider Name: " + (context.getActivity() != null ? context.getActivity().getProviderName() : "NULL"));
-				System.out.println("Full Tickets: " + context.getnFullTickets());
-				System.out.println("Reduced Tickets: " + context.getnReducedTickets());
-				System.out.println("Shuttle Service: " + context.isShuttleService());
-				System.out.println("Shuttle Price: " + context.getShuttlePrice());
-				System.out.println("Guide Service: " + context.isGuideService());
-				System.out.println("Guide Price: " + context.getGuidePrice());
-				System.out.println("Total Price: " + context.getTotalPrice());
-				System.out.println("Payment ID: " + context.getPaymentID());
-				System.out.println("Booking ID: " + context.getBookingID());
-				System.out.println("Number of Guests: " + (context.getGuests() != null ? context.getGuests().size() : "0"));
-				System.out.println("------------------------------------------");
-				// DEBUG PRINT END
-		*/		
 		return context;
 	}
 
