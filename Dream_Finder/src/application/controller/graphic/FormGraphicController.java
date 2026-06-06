@@ -63,7 +63,6 @@ public class FormGraphicController {
 
             // HBox intestazione: titolo partecipante + tipo biglietto
             HBox headerBox = new HBox();
-            //headerBox.setAlignment(Pos.CENTER_LEFT);
       
             Label titleLabel = new Label("Informazioni " + i + "° partecipante:");
             titleLabel.setFont(Font.font("System", FontWeight.BOLD, 18));

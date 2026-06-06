@@ -108,8 +108,6 @@ public class LoginGraphicController implements Initializable {
 	    
 		try {
 	    //Controlla che i dati siano nel formato corretto 
-		//String formattedEmail = Formatter.removeBlanks(email.toLowerCase());
-		//Utilizza una classe formatter?
 		String formattedEmail = email.toLowerCase().trim();
 		String fomattedPassword = password.trim();
         

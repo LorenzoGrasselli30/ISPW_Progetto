@@ -2,6 +2,7 @@ package application.controller.graphic;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -36,7 +37,7 @@ public class HomepageGraphicController {
 	private void populateForYouSection(List<ActivityDTO> activities) {
 		
 		if (forYouContainer == null) {
-			System.err.println("Errore: forYouContainer non è stato inizializzato");
+			AlertUtils.showAlert(AlertType.ERROR, "Errore", "forYouContainer non è stato inizializzato");
 			return;
 		}
 		
