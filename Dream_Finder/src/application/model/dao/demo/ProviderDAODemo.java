@@ -289,7 +289,7 @@ public class ProviderDAODemo implements ProviderDAO{
 
 	        while (addedDays < 10) {
 	            current = current.plusDays(1); //Aumenta di un giorno
-	            if (current.getDayOfWeek() != java.time.DayOfWeek.SUNDAY) {
+	            if (!current.getDayOfWeek().equals(java.time.DayOfWeek.SUNDAY)) {
 	                places.put(current, dailyPlaces);
 	                addedDays++;
 	            }

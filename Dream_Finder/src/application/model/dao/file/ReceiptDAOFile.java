@@ -21,6 +21,9 @@ public class ReceiptDAOFile implements ReceiptDAO {
     
 	@Override
 	public Boolean saveReceipt(Receipt receipt) {
+		if (receipt == null) {
+			throw new DAOException("Errore nella generazione della ricevuta");
+		}
 		
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(RECEIPT_FILE_PATH, true))) {
 			writer.newLine();
