@@ -1,6 +1,7 @@
 package application.model.dao.demo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,6 @@ public class TravelerDAODemo implements TravelerDAO {
 
 	@Override
 	public List<Provider> fetchBookingHistory(Traveler traveler) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<>();
 	}
 }

@@ -40,8 +40,7 @@ public class DatabaseConnection {
         	try {
 				closeConnection();
 			} catch (SQLException e) {
-				System.err.println("Errore durante la chiusura della connesione con il database");
-				//LOGGER.log(Level.SEVERE, "Errore durante la chiusura della connesione con il database", e);
+				LOGGER.log(Level.SEVERE, "Errore durante la chiusura della connesione con il database", e);
 			}
         }));
     }
