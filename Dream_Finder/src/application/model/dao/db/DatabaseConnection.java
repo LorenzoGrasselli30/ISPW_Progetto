@@ -3,12 +3,14 @@ package application.model.dao.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Properties;
 import java.io.IOException;
 import java.io.FileInputStream;
 
 public class DatabaseConnection {
-	//private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
 
 	private DatabaseConnection() {} 
 	
@@ -30,8 +32,7 @@ public class DatabaseConnection {
             Class.forName("com.mysql.cj.jdbc.Driver"); 
             
         } catch (IOException | ClassNotFoundException e) {
-        	System.err.println("Errore di caricamento del database properties");
-        	//LOGGER.log(Level.SEVERE, "Error loading database properties", e);
+        	LOGGER.log(Level.SEVERE, "Errore di caricamento del database properties", e);
         }
         
         // Chiude la connessione quando l'applicazione termina
@@ -40,7 +41,7 @@ public class DatabaseConnection {
 				closeConnection();
 			} catch (SQLException e) {
 				System.err.println("Errore durante la chiusura della connesione con il database");
-				//LOGGER.log(Level.SEVERE, "Error closing database connection", e);
+				//LOGGER.log(Level.SEVERE, "Errore durante la chiusura della connesione con il database", e);
 			}
         }));
     }
