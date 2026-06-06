@@ -1,6 +1,7 @@
 package application.controller.graphic;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -111,7 +112,7 @@ public class TicketGraphicController {
             String ticketType = "Intero";
             try {
                 LocalDate dob = guest.getDateOfBirth();
-                LocalDate now = LocalDate.now();
+                LocalDate now = LocalDate.now(ZoneId.systemDefault());
                 int age = java.time.Period.between(dob, now).getYears();
 
                 if (age <= 12) {

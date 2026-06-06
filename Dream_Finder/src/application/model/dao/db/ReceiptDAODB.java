@@ -1,11 +1,10 @@
 package application.model.dao.db;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.time.LocalDate;
 import application.exception.DAOException;
 import application.model.dao.ReceiptDAO;
 import application.model.dao.db.queries.SQLQueries;
@@ -29,7 +28,7 @@ public class ReceiptDAODB implements ReceiptDAO {
 			stmReceipt.setString(2, receipt.getStripe().getPaymentDescription());
 			stmReceipt.setString(3, receipt.getStripe().getPaymentOutcome());
 			stmReceipt.setString(4, receipt.getCard().getCardNumber());
-			stmReceipt.setDate(5, Date.valueOf(receipt.getCard().getExpiredDate()));
+			stmReceipt.setObject(5, receipt.getCard().getExpiredDate());
 			stmReceipt.setString(6, receipt.getCard().getOwnerName());
 			stmReceipt.setString(7, receipt.getBookingInformation().getBookingID());
 			

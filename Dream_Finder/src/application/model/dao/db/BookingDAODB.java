@@ -1,7 +1,6 @@
 package application.model.dao.db;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,8 +40,8 @@ public class BookingDAODB implements BookingDAO {
 				PreparedStatement stmGuests = conn.prepareStatement(SQLQueries.INSERT_GUEST)) {
 			
 			stmBooking.setString(1, result);
-			stmBooking.setDate(2, Date.valueOf(booking.getBookingDate()));
-			stmBooking.setDate(3, Date.valueOf(booking.getBookedDate()));
+			stmBooking.setObject(2, booking.getBookingDate());
+			stmBooking.setObject(3, booking.getBookedDate());
 			stmBooking.setInt(4, booking.getPriceInformation().getnFullTickets());
 			stmBooking.setInt(5, booking.getPriceInformation().getnReducedTickets());
 			stmBooking.setBoolean(6, booking.getPriceInformation().isShuttleService());
@@ -59,7 +58,7 @@ public class BookingDAODB implements BookingDAO {
 			for (GuestInformation guest : booking.getGuests()) {
 				stmGuests.setString(2, guest.getName());
 				stmGuests.setString(3, guest.getSurname());
-				stmGuests.setDate(4, Date.valueOf(guest.getDateOfBirth()));
+				stmGuests.setObject(4, guest.getDateOfBirth());
 				
 				stmGuests.addBatch();
 			}

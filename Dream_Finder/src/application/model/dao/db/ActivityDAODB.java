@@ -1,7 +1,6 @@
 package application.model.dao.db;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -193,7 +192,7 @@ public class ActivityDAODB implements ActivityDAO {
 			stmReservePlaces.setInt(1, (currentPlaces - requestedPlaces));
 			stmReservePlaces.setString(2, activity.getActivityName());
 			stmReservePlaces.setString(3, activity.getProvider().getEmail());
-			stmReservePlaces.setDate(4, Date.valueOf(day));
+			stmReservePlaces.setObject(4, day);
 			
 			
 			stmReservePlaces.executeUpdate();
