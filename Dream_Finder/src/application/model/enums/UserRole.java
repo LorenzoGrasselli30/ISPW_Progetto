@@ -24,12 +24,4 @@ public enum UserRole {
     		return null;
     	}
     }
-    
-    /*
-    public static List<String> getRoleDisplayNames() {
-        return Arrays.stream(RoleUser.values())
-                .map(RoleUser::getDisplayName)
-                .collect(Collectors.toList());
-    }
-    */
 }

@@ -1,6 +1,8 @@
 package application.view;
 
 import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import application.model.bean.ActivityDTO;
 import javafx.geometry.Pos;
@@ -17,6 +19,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class ActivityLayoutUtils {
+	
+	private static final Logger LOGGER = Logger.getLogger(ActivityLayoutUtils.class.getName());
 	
 	private static final String DEFAULT_FONT = "System";
 	private static final String HBOX_PADDING = "-fx-padding: 0 5 0 5;";
@@ -67,7 +71,7 @@ public class ActivityLayoutUtils {
 	        });
 	      
 	    } catch (Exception e) {
-	        System.err.println("Errore nel caricamento dell'icona cuore: " + e.getMessage());
+	    	LOGGER.log(Level.SEVERE, "Errore nel caricamento dell'icona cuore", e);
 	    }
 	    
 	    header.getChildren().addAll(titleLabel, spacer, heartIcon);
@@ -89,7 +93,7 @@ public class ActivityLayoutUtils {
 	    try {
 	        activityImage.setImage(new Image(ActivityLayoutUtils.class.getResource("/Images/caption (3).jpg").toExternalForm()));
 	    } catch (Exception e) {
-	        System.err.println("Errore nel caricamento dell'immagine attività: " + e.getMessage());
+	    	LOGGER.log(Level.SEVERE, "Errore nel caricamento dell'immagine attività", e);
 	    }
 	    
 	    // --- Rating ---

@@ -7,13 +7,14 @@ module Dream_Finder {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	requires javafx.controls;
+	
+	// Stripe API
 	requires stripe.java;
     requires com.google.gson;
     
- // JDBC driver modules
+    // JDBC driver modules
  	requires java.sql;
  	requires org.mariadb.jdbc;
- 	//requires com.mysql.cj;
     
  	requires org.junit.jupiter.api;
  	

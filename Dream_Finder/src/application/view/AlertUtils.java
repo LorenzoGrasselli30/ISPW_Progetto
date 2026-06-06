@@ -37,7 +37,7 @@ public class AlertUtils {
 	        Platform.runLater(() -> { //Assicura che l'alert venga creato sul JavaFX Application Thread Necessario se chiamato da thread secondari
 	        	Alert alert = new Alert(alertType);
 	            setupAlertStructure(alert, title, message);
-	            String color = styleByAlertType(alert, alertType);
+	            String color = styleByAlertType(alertType);
 	            addCustomEffects(alert);
 	            addAppIcon(alert);
 	            customizeButtons(alert, color);
@@ -64,7 +64,7 @@ public class AlertUtils {
 	        dialogPane.setPrefWidth(500);
 	    }
 
-	    private static String styleByAlertType(Alert alert, Alert.AlertType type) { //cambia il colore dei bottoni in base al tipo di alert
+	    private static String styleByAlertType(Alert.AlertType type) { //cambia il colore dei bottoni in base al tipo di alert
 	        return switch (type) {
 	            case ERROR -> "#6FA655"; //Verde scuro
 	            case WARNING -> "#E9A649"; //Arancione

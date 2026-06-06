@@ -151,8 +151,6 @@ public class WindowsNavigatorUtils {
         modalstage.close();
         
         String parentTitle= ((Node) lastParentEvent.getSource()).getId();
-        System.out.println(parentTitle);
-        System.out.println(parentStage.getTitle());
         
         if ("traveler".equals(userRole)) { //Comportamento del login se l'utente è un traveler
         	
@@ -191,7 +189,6 @@ public class WindowsNavigatorUtils {
         	if ("Homepage".equals(parentStage.getTitle()) && ("newActivityButton".equals(parentTitle))) {
         		WindowsNavigatorUtils.openWindow(event, "newActivityView.fxml", "Nuova attivita'");
         	} else {
-        		//WindowsNavigatorUtils.changeParentWindow(event, "homeProviderView.fxml", "Homepage");
         		WindowsNavigatorUtils.closeWindow(event);
         	}
         	

@@ -57,7 +57,6 @@ public class StripePayment {
             return apiKey;
             
         } catch (IOException e) {
-            System.err.println("File config.properties non trovato");
             throw e;
         }
     }
