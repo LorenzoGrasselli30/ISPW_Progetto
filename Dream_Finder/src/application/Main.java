@@ -29,7 +29,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		//Bisogna creare un modo per scegliere GUI o CLI e successivamente bisogna chiedere se si vuole avviare l'applicazione con DB, Demo, File 
+		//Offre un modo per scegliere GUI o CLI e successivamente chiede se si vuole avviare l'applicazione con DB, Demo, File 
 		String visual = null;
 		String mode = null;
 		Scanner scanner= new Scanner(System.in); 

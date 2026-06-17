@@ -189,6 +189,10 @@ public class ActivityDAODB implements ActivityDAO {
 			
 			Integer currentPlaces = activity.getAvaibleDates().getAvaiblePlaces().get(day);
 			
+			if (currentPlaces - requestedPlaces < 0) {
+				return false;
+			}
+			
 			stmReservePlaces.setInt(1, (currentPlaces - requestedPlaces));
 			stmReservePlaces.setString(2, activity.getActivityName());
 			stmReservePlaces.setString(3, activity.getProvider().getEmail());
@@ -205,6 +209,11 @@ public class ActivityDAODB implements ActivityDAO {
 	
 	//Helpers
 	
+	/*
+	 * Correzione De Angelis:
+	 * Gli helper non sono sbagliati ma l'activityDAO non ha la responsabilità di creazione del provider 
+	 * per prendere un'entity provider va usata un'istanza del providerDAO
+	 */
 	private Provider providerHelper(ResultSet rs) throws SQLException {
         return new Provider(
             rs.getString("email"),

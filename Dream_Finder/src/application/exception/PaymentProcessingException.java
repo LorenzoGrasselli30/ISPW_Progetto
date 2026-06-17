@@ -1,6 +1,6 @@
 package application.exception;
 
-public class PaymentProcessingException extends Exception{
+public class PaymentProcessingException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
 

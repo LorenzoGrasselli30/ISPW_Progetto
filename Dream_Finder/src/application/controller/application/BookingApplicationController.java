@@ -118,13 +118,14 @@ public class BookingApplicationController {
 		
 		//Creo un oggetto della classe adaptee
 		StripePayment paymentAPI= new StripePayment();
-		//Interfaccia target utilizzata dal client
+		
+		//Interfaccia target utilizzata dal client (Adapter)
 		Target paymentTarget= new PaymentAdapter(paymentAPI);
 		
 		PaymentOutcomeDTO paymentInfo= paymentTarget.verifyPayment(context.getCardNumber(), context.getExpiredDate(), context.getCvv(), context.getActivity().getActivityName(), 
 				context.getOwnerName(), context.getActivity().getProviderName(), context.getTotalPrice());
 		
-		//Prenotazione dell'attività
+		//Creazione della prenotazione
 		Traveler currentTraveler= travelerDAO.findByEmail(UserSession.getInstance().getCurrentUser().getEmail());
 		
 		List<GuestInformation> guests= new ArrayList<>();
@@ -154,10 +155,7 @@ public class BookingApplicationController {
 					context.getBookedDate()
 				);
 		
-		String bookingResult= bookingDAO.confirmBooking(newBooking);
-		newBooking.setBookingID(bookingResult);
-		
-		//Salvataggio della ricevuta
+		//Creazione della ricevuta
 		Provider currentProvider = providerDAO.findByActivity(bookedActivity);
 		
 		Receipt receipt= new Receipt(
@@ -174,19 +172,19 @@ public class BookingApplicationController {
 				paymentInfo.getOutcome())
 				);
 		
-		//Aggiungere un modo per controllare il risultato
-		Boolean receiptResult= receiptDAO.saveReceipt(receipt);
-		
-		if (receiptResult.equals(Boolean.FALSE)) {
-			return null;
-		}
-		
 		//Vado a rendere i posti dell'attività scelta non disponibili
 		Boolean reserveResult= activityDAO.reservePlaces(bookedActivity, context.getBookedDate(), (context.getnFullTickets()+context.getnReducedTickets()));
 		
 		if (reserveResult.equals(Boolean.FALSE)) {
-			return null;
+			throw new AvailabilityException("Errore durante la preontazione dei posti");
 		}
+		
+		//Salvataggio della prenotazione in persistenza
+		String bookingResult= bookingDAO.confirmBooking(newBooking);
+		newBooking.setBookingID(bookingResult);
+				
+		//Salvataggio della ricevuta in persistenza
+		receiptDAO.saveReceipt(receipt);
 		
 		context.setPaymentID(paymentInfo.getID());
 		context.setBookingID(bookingResult);

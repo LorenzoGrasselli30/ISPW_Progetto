@@ -32,6 +32,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/*
+ * Correzione De Angelis:
+ * Ad ogni finestra non corrisponde un graphic controller. Quindi anche se scene builder chiede di inserire il controller conviene
+ * inserire una classe solo view tipo ActivityGUIView che gestisce l'interfaccia grafica (per es. cosa succede quando si cliccano i bottoni).
+ * Il graphic controller deve essere 1 al massimo 2 per boundary e deve avere le operazioni che combaciano dichiarate nel VOPC.
+ */
+
+//ConcreteObserver
 public class ActivityGraphicController implements Observer{
 	
 	private BookingApplicationController bookingController;

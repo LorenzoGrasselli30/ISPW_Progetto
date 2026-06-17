@@ -122,10 +122,6 @@ public class ActivityDAODemo implements ActivityDAO {
 
 	@Override
 	public boolean reservePlaces(Activity activity, LocalDate day, Integer requestedPlaces) {
-		// Validazioni input
-	    if (activity == null || day == null || requestedPlaces == null || requestedPlaces <= 0) {
-	    	throw new DAOException("Errore il giorno o l'attività richiesta per la prenotazione non è stata trovata");
-	    }
 	    
 	    List<Provider> providers = providerDAO.providersList();
 	    
@@ -148,14 +144,14 @@ public class ActivityDAODemo implements ActivityDAO {
 	    
 	    // Attività non trovata nella lista
 	    if (targetActivity == null) {
-	    	throw new DAOException("Errore il giorno o l'attività richiesta per la prenotazione non è stata trovata");
+	    	return false;
 	    }
 
 	    ActivityAvailableDates dates = targetActivity.getAvaibleDates();
 	    
 	    Integer currentPlaces = dates.getAvaiblePlaces().get(day);
-	    if (currentPlaces == null || currentPlaces == 0) {
-	    	throw new DAOException("Errore il giorno o l'attività richiesta per la prenotazione non è stata trovata");
+	    if (currentPlaces == null || currentPlaces == 0 || (currentPlaces - requestedPlaces) < 0) {
+	    	return false;
 	    }
 	    
 	    dates.getAvaiblePlaces().put(day, currentPlaces - requestedPlaces);

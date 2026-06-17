@@ -20,11 +20,7 @@ public class ReceiptDAOFile implements ReceiptDAO {
     }
     
 	@Override
-	public Boolean saveReceipt(Receipt receipt) {
-		if (receipt == null) {
-			throw new DAOException("Errore nella generazione della ricevuta");
-		}
-		
+	public void saveReceipt(Receipt receipt) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(RECEIPT_FILE_PATH, true))) {
 			writer.newLine();
             writer.write(receipt.getProvider().getEmail() + "," + receipt.getBookingInformation().getBookingID() 
@@ -33,8 +29,6 @@ public class ReceiptDAOFile implements ReceiptDAO {
         } catch (IOException e) {
         	throw new DAOException("Errore nella generazione della ricevuta");
         }
-		
-		return true;
 	}
 
 	@Override

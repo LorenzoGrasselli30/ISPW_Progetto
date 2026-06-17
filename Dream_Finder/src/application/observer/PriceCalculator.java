@@ -2,6 +2,7 @@ package application.observer;
 
 import application.model.bean.ActivityDTO;
 
+//ConcreteSubject
 public class PriceCalculator extends Subject {
 	
 	 private Double totalPrice;

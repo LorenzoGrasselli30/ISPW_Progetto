@@ -12,13 +12,8 @@ public class ReceiptDAODemo implements ReceiptDAO {
 	private Map<String, Receipt> receipts = new HashMap<>();
 	
 	@Override
-	public Boolean saveReceipt(Receipt receipt) {
-		if (receipt == null) {
-			throw new DAOException("Errore nella generazione della ricevuta");
-		}
-		
+	public void saveReceipt(Receipt receipt) {
 		receipts.put(receipt.getStripe().getPaymentID(), receipt);
-		return true;
 	}
 
 	@Override
